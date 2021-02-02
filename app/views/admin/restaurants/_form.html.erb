@@ -1,4 +1,4 @@
-<%= form_with(model: restaurant, local: true) do |form| %>
+<%= form_with(model: restaurant, url: admin_restaurant_url, local: true) do |form| %>
   <% if restaurant.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(restaurant.errors.count, "error") %> prohibited this restaurant from being saved:</h2>

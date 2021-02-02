@@ -1,4 +1,3 @@
-<%= form_with(model: menu_item, local: true) do |form| %>
   <% if menu_item.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(menu_item.errors.count, "error") %> prohibited this menu_item from being saved:</h2>
@@ -39,4 +38,3 @@
   <div class="actions">
     <%= form.submit %>
   </div>
-<% end %>
