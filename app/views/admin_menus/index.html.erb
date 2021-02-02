@@ -12,13 +12,13 @@
   </thead>
 
   <tbody>
-    <% @menus.each do |menu| %>
+    <% @admin_menus.each do |menu| %>
       <tr>
         <td><%= menu.name %></td>
         <td><%= menu.description %></td>
-        <td><%= link_to 'Show', menu %></td>
-        <td><%= link_to 'Edit', edit_menu_path(menu) %></td>
-        <td><%= link_to 'Destroy', menu, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', admin_menu_path(menu) %></td>
+        <td><%= link_to 'Edit', edit_admin_menu_path(menu) %></td>
+        <td><%= link_to 'Destroy', admin_menu_path(menu), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
