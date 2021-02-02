@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
+  # Bruker
+  resources :menu
   resources :restaurant
+
+  # Admin
   resources :restaurants
   resources :menus
   resources :menu_items

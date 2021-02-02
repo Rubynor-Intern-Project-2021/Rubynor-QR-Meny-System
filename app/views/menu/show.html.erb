@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @menu.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @menu.description %>
+</p>
+
+<% @menu.menu_items.each do |menu_item| %>
+  <strong><%= menu_item.name %></strong>
+  <p>Id: <%= menu_item.id %></p>
+  <p>Description: <%= menu_item.description %></p>
+  <p>Price: <%= menu_item.price %></p>
+<% end %>

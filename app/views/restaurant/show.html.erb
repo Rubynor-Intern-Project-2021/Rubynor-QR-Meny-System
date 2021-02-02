@@ -1,4 +1,4 @@
 <p><%= @restaurant.name %></p>
 <% @restaurant.menus.each do |menu| %>
-    <p><%= link_to menu.name, menu %></p>
+    <p><%= link_to menu.name, controller: "menu", action: "show", id: menu.id %></p>
 <% end %>
