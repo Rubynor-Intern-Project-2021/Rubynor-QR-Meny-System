@@ -1,0 +1,4 @@
+<p><%= @restaurant.name %></p>
+<% @restaurant.menus.each do |menu| %>
+    <p><%= link_to menu.name, menu %></p>
+<% end %>
