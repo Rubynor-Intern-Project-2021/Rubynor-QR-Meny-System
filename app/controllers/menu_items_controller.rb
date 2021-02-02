@@ -1,4 +1,5 @@
 class MenuItemsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_menu_item, only: %i[ show edit update destroy ]
 
   # GET /menu_items or /menu_items.json
