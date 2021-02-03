@@ -24,7 +24,7 @@ class MenuItemsControllerTest < ActionDispatch::IntegrationTest
           image_url: @menu_item.image_url, 
           name: @menu_item.name, 
           price: @menu_item.price, 
-          menu_id: @menu_item.menu_id
+          menu_id: menu_id
         } 
       }
     end
