@@ -15,7 +15,7 @@
   <p>Id: <%= menu_item.id %></p>
   <p>Description: <%= menu_item.description %></p>
   <p>Price: <%= menu_item.price %></p>
-  <p><%= link_to 'Edit', edit_menu_item_path(menu_item) %></p>
+  <p><%= link_to 'Edit', edit_menu_path(menu_item) %></p>
 <% end %>
 
 <%= link_to 'Edit', edit_menu_path(@menu) %> |
