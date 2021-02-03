@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   namespace :admin do
-    get 'cool_man/asdf'
     resources :restaurants
     resources :menus
     resources :menu_items
