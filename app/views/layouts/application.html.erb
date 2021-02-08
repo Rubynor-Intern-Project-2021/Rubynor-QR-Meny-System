@@ -16,6 +16,9 @@
   </head>
 
   <body>
+    <% if session[:restaurant_id] != nil %>
+      <%= button_to 'Logout', logout_path, method: :delete %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
