@@ -1,8 +1,13 @@
 <p id="notice"><%= notice %></p>
+  <% @menu.menu_items.each do |menu_item| %>
+  <!-- retter-->
+    <div class="flex justify-between m-2 p-4 border-2 border-light-blue-500">
+      <div>
+        <%= menu_item.name %>
+      </div>
 
-<p>
-  <h2><%= @menu.name %></h2>
-</p>
-<% @menu.menu_items.each do |menu_item| %>
-  <p><strong>Nr <%= menu_item.number %>: <%= menu_item.name %> <%= menu_item.price %>,-</strong></p>
+      <div>
+        <%= menu_item.price %>,-
+      </div>
+    </div>
 <% end %>

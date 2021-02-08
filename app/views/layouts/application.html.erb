@@ -11,11 +11,13 @@
     <%= stylesheet_link_tag "tailwind"%>
     <%= stylesheet_link_tag "inter-font"%>
 
-    <style>
-  </style>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="bg-gray-100 font-sans">
+    <%= render 'restaurant/header' %>
+    <div class="py-14 px-3 lg:px-10 lg:py-32 ">
+      <%= yield %>
+    </div>
+
   </body>
 </html>

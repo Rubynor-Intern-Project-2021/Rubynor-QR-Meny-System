@@ -1,4 +1,23 @@
-<p><%= @restaurant.name %></p>
-<% @restaurant.menus.each do |menu| %>
-    <p><%= link_to menu.name, controller: "menu", action: "show", id: menu.id %></p>
-<% end %>
+<p id="notice"><%= notice %></p>
+
+<div class="flex justify-center p-10">
+
+  <!-- mobil -->
+  <div class="bg-white w-2/5 rounded-xl pt-4">
+
+    <h2 class="pl-4 font-semibold text-2xl text-gray-900 uppercase"><%= @restaurant.name %></h2>
+
+    <div class="bg-blue-200 rounded-2xl mt-6 ">
+      <div class="flex justify-center ">
+        <%= render 'menu/menu' %>
+        <!-- liste innhold-->
+        <% if @menu %>
+          <%= render 'menu' %>
+        <% end %>
+      </div>
+
+
+    </div>
+
+  </div>
+</div>

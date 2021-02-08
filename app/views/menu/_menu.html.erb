@@ -1,0 +1,4 @@
+<% @restaurant.menus.each do |menu| %>
+  <!-- liste objekt -->
+  <p class="p-2 text-xs text-gray-500 tracking-wide hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 overflow-hidden"><%= link_to menu.name, controller: "menu", action: "show", id: menu.id %></p>
+<% end %>
