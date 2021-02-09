@@ -12,7 +12,8 @@ class Admin::MenuItemsController < ApplicationController
 
   # GET /menu_items/new
   def new
-    @menu_item = MenuItem.new
+    @menu_id=params['menu_id']
+    @menu_item = MenuItem.new(:menu_id=>@menu_id)
   end
 
   # GET /menu_items/1/edit
@@ -25,7 +26,7 @@ class Admin::MenuItemsController < ApplicationController
 
     respond_to do |format|
       if @menu_item.save
-        format.html { redirect_to admin_menu_items_url, notice: "Menu item was successfully created." }
+        format.html { redirect_to  admin_restaurant_url(@menu_item.menu.restaurant.id), notice: "Menu item was successfully created." }
         format.json { render :show, status: :created, location: @menu_item }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +39,7 @@ class Admin::MenuItemsController < ApplicationController
   def update
     respond_to do |format|
       if @menu_item.update(menu_item_params)
-        format.html { redirect_to admin_menu_items_url, notice: "Menu item was successfully updated." }
+        format.html { redirect_to admin_restaurant_url(@menu_item.menu.restaurant.id), notice: "Menu item was successfully updated." }
         format.json { render :show, status: :ok, location: @menu_item }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -51,7 +52,7 @@ class Admin::MenuItemsController < ApplicationController
   def destroy
     @menu_item.destroy
     respond_to do |format|
-      format.html { redirect_to admin_menu_items_url, notice: "Menu item was successfully destroyed." }
+      format.html { redirect_to admin_restaurant_url(@menu_item.menu.restaurant.id), notice: "Menu item was successfully destroyed." }
       format.json { head :no_content }
     end
   end

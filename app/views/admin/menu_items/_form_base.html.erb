@@ -9,10 +9,10 @@
       </ul>
     </div>
   <% end %>
-<%= params['menu_id'] %>
+
   <div class="field">
-    <%= form.label :menu_id %>
-    <%= form.text_field :menu_id %>
+    <% #form.label :menu_id %>
+    <%= form.text_field :menu_id, type: :hidden %>
   </div>
 
   <div class="field">

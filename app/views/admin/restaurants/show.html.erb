@@ -16,31 +16,32 @@
         <td><strong><%= menu.name %></strong></td>
         <td><%= link_to 'Rediger', edit_admin_menu_path(menu) %></td>
         <td><%= link_to 'Slett', admin_menu_path(menu), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <tr>
+          <table>
+            <tbody>
+              <% menu.menu_items.each do |item| %>
+                <tr>
+                  <td>
+                    <% if item.number != nil %>
+                      Nr. <%= item.number %>.
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= item.name %>
+                  </td>
+                  <td> | </td>
+                  <td><%= link_to 'Rediger', edit_admin_menu_item_path(item) %></td>
+                  <td><%= link_to 'Slett', admin_menu_item_path(item), method: :delete, data: { confirm: 'Er du sikker?' } %></td>
+                </tr>
+              <% end %>
 
-        <table>
-          <tbody>
-            <% menu.menu_items.each do |item| %>
               <tr>
-                <td>
-                  <% if item.number != nil %>
-                    Nr. <%= item.number %>.
-                  <% end %>
-                </td>
-                <td>
-                  <%= item.name %>
-                </td>
-                <td> | </td>
-                <td><%= link_to 'Rediger', edit_admin_menu_item_path(item) %></td>
-                <td><%= link_to 'Slett', admin_menu_item_path(item), method: :delete, data: { confirm: 'Er du sikker?' } %></td>
+                <br>
+                <td><%= link_to 'Ny Gjenstand', new_admin_menu_item_path(:menu_id => menu.id) %></td>
               </tr>
-            <% end %>
-
-            <tr>
-              <br>
-              <td><%= link_to 'Ny Gjenstand', new_admin_menu_item_path(:menu_id => menu.id) %></td>
-            </tr>
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </tr>
         <br>
       </tr>
     <% end %>
