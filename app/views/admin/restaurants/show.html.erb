@@ -5,7 +5,47 @@
   <%= @restaurant.name %>
   <strong>Username:</strong>
   <%= @restaurant.username %>
+  <%= link_to 'Rediger', edit_admin_restaurant_path(@restaurant) %>
 </p>
 
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
-<%= link_to 'Back', admin_restaurants_path %>
+<br>
+<table>
+  <tbody>
+    <% @restaurant.menus.each do |menu| %>
+      <tr>
+        <td><strong><%= menu.name %></strong></td>
+        <td><%= link_to 'Rediger', edit_admin_menu_path(menu) %></td>
+        <td><%= link_to 'Slett', admin_menu_path(menu), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+        <table>
+          <tbody>
+            <% menu.menu_items.each do |item| %>
+              <tr>
+                <td>
+                  <% if item.number != nil %>
+                    Nr. <%= item.number %>.
+                  <% end %>
+                </td>
+                <td>
+                  <%= item.name %>
+                </td>
+                <td> | </td>
+                <td><%= link_to 'Rediger', edit_admin_menu_item_path(item) %></td>
+                <td><%= link_to 'Slett', admin_menu_item_path(item), method: :delete, data: { confirm: 'Er du sikker?' } %></td>
+              </tr>
+            <% end %>
+
+            <tr>
+              <br>
+              <td><%= link_to 'Ny Gjenstand', new_admin_menu_item_path(:menu_id => menu.id) %></td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+      </tr>
+    <% end %>
+    <tr>
+      <td><%= link_to 'Ny Meny', new_admin_menu_path(:restaurant_id => params[:id]) %></td>
+    </tr>
+  </tbody>
+</table>
