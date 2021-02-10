@@ -3,7 +3,8 @@ class Admin::RestaurantsController < ApplicationController
 
   # GET /restaurants or /restaurants.json
   def index
-    @restaurants = Restaurant.all
+    # Send the user directly to their own restaurant
+    redirect_to admin_restaurant_url id: session[:restaurant_id]
   end
 
   # GET /restaurants/1 or /restaurants/1.json

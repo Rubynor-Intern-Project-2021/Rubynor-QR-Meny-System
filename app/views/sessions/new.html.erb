@@ -1,23 +1,32 @@
-<section>
+<section class="m-4 space-y-8">
   <% if flash[:alert] %>
-    <aside class="notice"><%= flash[:alert] %></aside>
+    <aside class="w-80 p-5 border-2 border-gray-700 text-gray-700"><%= flash[:alert] %></aside>
   <% end %>
 
   <%= form_tag do %>
-    <h2>Please Login</h2>
+    <h2 class="text-4xl">Please Login</h2>
+    <div class="w-80 space-y-3">
+      <div class="field">
+        <%= label_tag :name, 'Name:', class: 'text-gray-700' %>
+        <div>
+          <%= text_field_tag :name, 
+              params[:name], 
+              class: 'w-80 border-gray-800 rounded-lg' %>
+        </div>
+      </div>
+      
+      <div class="field">
+        <%= label_tag :password, 'Password:', class: 'text-gray-700' %>
+        <div>
+          <%= password_field_tag :password, 
+              params[:password], 
+              class: 'w-80 border-gray-800 rounded-lg' %>
+        </div>
+      </div>
 
-    <div class="field">
-      <%= label_tag :name, 'Name:' %>
-      <%= text_field_tag :name, params[:name] %>
-    </div>
-    
-    <div class="field">
-      <%= label_tag :password, 'Password:' %>
-      <%= password_field_tag :password, params[:password] %>
-    </div>
-
-    <div class="actions">
-      <%= submit_tag "Login" %>
+      <div class="actions">
+        <%= submit_tag "Login", class: 'btn-indigo' %>
+      </div>
     </div>
   <% end %>
 </section>

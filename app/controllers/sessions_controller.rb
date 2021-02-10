@@ -9,7 +9,6 @@ class SessionsController < ApplicationController
 
   def create
     restaurant = Restaurant.find_by(username: params[:name])
-    puts "Restaurant Name #{ restaurant.name }"
     if restaurant&.authenticate(params[:password])
       session[:restaurant_id] = restaurant.id
       redirect_to admin_restaurant_url id: restaurant.id
