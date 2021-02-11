@@ -39,6 +39,17 @@
     <%= form.text_field :price %>
   </div>
 
+  <div>
+    <% if menu_item.image.attached? %>
+      <%= image_tag menu_item.image, style: "width: 200px" %>
+    <% end %>
+
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+
+  </div>
+
+
   <div class="actions">
     <%= form.submit %>
   </div>
