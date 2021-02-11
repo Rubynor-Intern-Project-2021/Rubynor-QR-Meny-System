@@ -1,26 +1,21 @@
 <p id="notice"><%= notice %></p>
 
-<div class="pt-10">
-
-  <!-- mobil -->
-  <div class="lg:bg-white lg:w-2/5 rounded-xl lg:pt-4 flex justify-center">
-
-    <div class="w-full bg-green-200 rounded-xl p-3">
+<div class="pt-20">
+  <div class="lg:w-2/5 flex justify-center">
+    <div class="w-full bg-green-200 rounded-xl p-3 ">
       <div class="flex justify-center mb-10">
+        <!-- Menyer-->
         <%= render 'menu/menu' %>
-        <!-- liste innhold-->
+        <!-- Meny-innhold-->
       </div>
-<!--      <div class="list">
-        <%#= render 'items_list', locals: { menu_item: @menu_item } %>
-      </div>-->
       <div id="selected_menu">
-        <p>
-          pmonsci
-        </p>
+        <% unless @selected %>
+        <div>
+          <%= render partial: 'menu/selected_menu', locals: { menu: MenuItem.where(:menu_id => 1) }  %>
+        </div>
+        <% end %>
       </div>
     </div>
-
   </div>
-
 </div>
 

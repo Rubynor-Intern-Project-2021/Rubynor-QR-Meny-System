@@ -10,16 +10,14 @@
     <%= stylesheet_pack_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "tailwind"%>
     <%= stylesheet_link_tag "inter-font"%>
-
   </head>
 
   <body class="lg:bg-gray-100 font-sans">
-  <% if @restaurant %>
-    <%= render 'restaurant/header' %>
+    <% if @restaurant %>
+      <%= render 'shared/header' %>
     <% end %>
     <div class="py-14 px-3 lg:px-10 lg:py-32 ">
       <%= yield %>
     </div>
-
   </body>
 </html>
