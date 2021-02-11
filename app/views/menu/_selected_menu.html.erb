@@ -1,0 +1,16 @@
+<!-- retter som vises under menyene-->
+
+<% menu.each do |menu_item| %>
+  <%= link_to menu_item_path(menu_item) do %>
+    <div class="flex justify-between bg-white rounded-l p-3 m-2">
+      <div>
+        <%= menu_item.name %>
+      </div>
+
+      <div>
+        <%= menu_item.price %>,-
+      </div>
+    </div>
+
+  <% end%>
+<% end %>

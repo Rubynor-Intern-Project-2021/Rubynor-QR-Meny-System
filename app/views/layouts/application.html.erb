@@ -13,8 +13,10 @@
 
   </head>
 
-  <body class="bg-gray-100 font-sans">
+  <body class="lg:bg-gray-100 font-sans">
+  <% if @restaurant %>
     <%= render 'restaurant/header' %>
+    <% end %>
     <div class="py-14 px-3 lg:px-10 lg:py-32 ">
       <%= yield %>
     </div>
