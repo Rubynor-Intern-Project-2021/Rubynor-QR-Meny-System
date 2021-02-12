@@ -29,6 +29,11 @@
       <li class="mr-3">
         <a class="inline-block text-grey-dark no-underline hover:text-grey-lighter hover:text-underline py-2 px-4" href="#">link</a>
       </li>
+      <% if session[:restaurant_id] != nil %>
+        <li class="mr-3">
+            <%= button_to 'Logout', logout_path, method: :delete, class: "inline-block text-grey-dark no-underline hover:text-grey-lighter hover:text-underline py-2 px-4" %>
+        </li>
+      <% end %>
     </ul>
   </div>
 </nav>
