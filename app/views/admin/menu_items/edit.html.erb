@@ -2,4 +2,4 @@
 
 <%= render 'form_edit', menu_item: @menu_item %>
 
-<%= link_to 'Back', admin_menu_item_path %>
+<%= link_to 'Back', admin_restaurant_path(@menu_item.menu.restaurant) %>

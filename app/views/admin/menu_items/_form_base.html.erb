@@ -11,10 +11,14 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :menu_id %>
-    <%= form.text_field :menu_id %>
+    <% #form.label :menu_id %>
+    <%= form.text_field :menu_id, type: :hidden %>
   </div>
 
+  <div class="field">
+    <%= form.label :number %>
+    <%= form.text_field :number %>
+  </div>
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
@@ -27,13 +31,24 @@
 
   <div class="field">
     <%= form.label :description %>
-    <%= form.text_field :description %>
+    <%= form.text_area :description %>
   </div>
 
   <div class="field">
     <%= form.label :price %>
     <%= form.text_field :price %>
   </div>
+
+  <div>
+    <% if menu_item.image.attached? %>
+      <%= image_tag menu_item.image, style: "width: 200px" %>
+    <% end %>
+
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+
+  </div>
+
 
   <div class="actions">
     <%= form.submit %>

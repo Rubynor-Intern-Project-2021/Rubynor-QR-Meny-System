@@ -12,7 +12,8 @@ class Admin::MenusController < ApplicationController
 
   # GET /admin_menus/new
   def new
-    @menu = Menu.new
+    @restaurant_id=params['restaurant_id']
+    @menu = Menu.new(:restaurant_id=>@restaurant_id)
   end
 
   # GET /admin_menus/1/edit
@@ -25,7 +26,7 @@ class Admin::MenusController < ApplicationController
 
     respond_to do |format|
       if @menu.save
-        format.html { redirect_to admin_menus_url, notice: "Menu was successfully created." }
+        format.html { redirect_to admin_restaurant_url(@menu.restaurant.id), notice: "Menu was successfully created." }
         format.json { render :show, status: :created, location: @menu }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +39,7 @@ class Admin::MenusController < ApplicationController
   def update
     respond_to do |format|
       if @menu.update(menu_params)
-        format.html { redirect_to admin_menus_url, notice: "Menu was successfully updated." }
+        format.html { redirect_to admin_restaurant_url(@menu.restaurant.id), notice: "Menu was successfully updated." }
         format.json { render :show, status: :ok, location: @menu }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -51,7 +52,7 @@ class Admin::MenusController < ApplicationController
   def destroy
     @menu.destroy
     respond_to do |format|
-      format.html { redirect_to admin_menus_url, notice: "Menu was successfully destroyed." }
+      format.html { redirect_to admin_restaurant_url(@menu.restaurant.id), notice: "Menu was successfully destroyed." }
       format.json { head :no_content }
     end
   end

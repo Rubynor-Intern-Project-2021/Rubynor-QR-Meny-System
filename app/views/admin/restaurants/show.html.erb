@@ -5,7 +5,68 @@
   <%= @restaurant.name %>
   <strong>Username:</strong>
   <%= @restaurant.username %>
+  <%= link_to 'Rediger', edit_admin_restaurant_path(@restaurant) %>
 </p>
 
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
-<%= link_to 'Back', admin_restaurants_path %>
+<br>
+<table>
+  <tbody>
+    <% @restaurant.menus.order(:name).each do |menu| %>
+      <tr>
+
+        <table>
+          <thead>
+            <tr>
+              <td colspan="2"><strong><%= menu.name %></strong></td>
+              <td style="color: blue"><%= link_to 'Rediger', edit_admin_menu_path(menu) %></td>
+              <td style="color: red"><%= link_to 'Slett', admin_menu_path(menu), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><button class="collapsible", type="button">></button></td>
+            </tr>
+          </thead>
+          <tbody style="display: none">
+            <% menu.menu_items.order(:number).each do |item| %>
+              <tr>
+                <td style="color:red;">
+                  <% if item.number != '' && item.number != nil %>
+                    Nr. <%= item.number %>.
+                  <% end %>
+                </td>
+                <td>
+                  <%= item.name %>
+                </td>
+                <td style="color: blue"><%= link_to 'Rediger', edit_admin_menu_item_path(item) %></td>
+                <td style="color: red"><%= link_to 'Slett', admin_menu_item_path(item), method: :delete, data: { confirm: 'Er du sikker?' } %></td>
+              </tr>
+            <% end %>
+            <tr>
+              <br>
+              <td><%= link_to 'Ny Gjenstand', new_admin_menu_item_path(:menu_id => menu.id) %></td>
+            </tr>
+          </tbody>
+        </table>
+      </tr>
+    <% end %>
+
+    <tr>
+      <td><%= link_to 'Ny Meny', new_admin_menu_path(:restaurant_id => params[:id]) %></td>
+    </tr>
+  </tbody>
+</table>
+
+
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.parentElement.parentElement.parentElement.nextElementSibling
+            if (content.style.display === "") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "";
+            }
+        });
+    }
+</script>
