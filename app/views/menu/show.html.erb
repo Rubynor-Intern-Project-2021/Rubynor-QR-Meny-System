@@ -1,8 +1,0 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <h2><%= @menu.name %></h2>
-</p>
-<% @menu.menu_items.each do |menu_item| %>
-  <p><strong>Nr <%= menu_item.number %>: <%= menu_item.name %> <%= menu_item.price %>,-</strong></p>
-<% end %>

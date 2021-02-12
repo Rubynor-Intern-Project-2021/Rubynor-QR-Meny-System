@@ -10,15 +10,17 @@
     <%= stylesheet_pack_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "tailwind"%>
     <%= stylesheet_link_tag "inter-font"%>
-
-    <style>
-  </style>
   </head>
 
-  <body>
-    <% if session[:restaurant_id] != nil %>
-      <%= button_to 'Logout', logout_path, method: :delete %>
+  <body class="lg:bg-gray-100 font-sans">
+    <% if @restaurant %>
+      <%= render 'shared/header' %>
     <% end %>
-    <%= yield %>
-  </body>
+    <div class="py-14 px-3 lg:px-10 lg:py-32 ">
+      <%= yield %>
+      
+      <% if session[:restaurant_id] != nil %>
+        <%= button_to 'Logout', logout_path, method: :delete %>
+      <% end %>
+    </div>
 </html>
