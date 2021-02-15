@@ -1,3 +1,5 @@
+require 'rqrcode'
+
 class Admin::RestaurantsController < ApplicationController
   before_action :set_restaurant, only: %i[ show edit update destroy ]
 
@@ -9,6 +11,21 @@ class Admin::RestaurantsController < ApplicationController
 
   # GET /restaurants/1 or /restaurants/1.json
   def show
+    puts "No QR code generated for #{@restaurant.name}"
+    qr = RQRCode::QRCode.new(restaurant_url(@restaurant.id))
+    png = qr.as_png(
+      bit_depth: 1,
+      border_modules: 0,
+      color_mode: ChunkyPNG::COLOR_GRAYSCALE,
+      color: 'black',
+      file: nil,
+      fill: 'white',
+      module_px_size: 6,
+      resize_exactly_to: false,
+      resize_gte_to: false,
+      size: 1200
+    )
+    @qr_code = png.to_data_url
   end
 
   # GET /restaurants/new
