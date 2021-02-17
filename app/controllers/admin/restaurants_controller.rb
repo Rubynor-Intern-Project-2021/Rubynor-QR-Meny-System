@@ -1,3 +1,5 @@
+require 'rqrcode'
+
 class Admin::RestaurantsController < ApplicationController
   before_action :set_restaurant, only: %i[ show edit update destroy ]
 
@@ -9,6 +11,10 @@ class Admin::RestaurantsController < ApplicationController
 
   # GET /restaurants/1 or /restaurants/1.json
   def show
+    if @restaurant.qr_code == nil 
+      puts "Adding qr code"
+      add_qr_code()
+    end
   end
 
   # GET /restaurants/new
@@ -23,6 +29,7 @@ class Admin::RestaurantsController < ApplicationController
   # POST /restaurants or /restaurants.json
   def create
     @restaurant = Restaurant.new(restaurant_params)
+    add_qr_code()
 
     respond_to do |format|
       if @restaurant.save
@@ -66,5 +73,24 @@ class Admin::RestaurantsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def restaurant_params
       params.require(:restaurant).permit(:name, :username, :password, :password_confirmation)
+    end
+    
+    def add_qr_code 
+      qr = RQRCode::QRCode.new(restaurant_url(@restaurant.id))
+      png = qr.as_png(
+        bit_depth: 1,
+        border_modules: 0,
+        color_mode: ChunkyPNG::COLOR_GRAYSCALE,
+        color: 'black',
+        file: nil,
+        fill: 'white',
+        module_px_size: 6,
+        resize_exactly_to: false,
+        resize_gte_to: false,
+        size: 1200
+      )
+      @restaurant.qr_code = png.to_data_url
+      @restaurant.save()
+
     end
 end
