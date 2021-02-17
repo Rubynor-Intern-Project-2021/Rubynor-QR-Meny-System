@@ -3,5 +3,6 @@ class MenuItemController < ApplicationController
 
   def show
     @menu_item = MenuItem.find(params[:id])
+    @restaurant = Restaurant.all
   end
 end

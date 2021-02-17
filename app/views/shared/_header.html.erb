@@ -2,16 +2,17 @@
 
 <nav class="flex items-center justify-between flex-wrap bg-white-1000  lg:bg-gray-800 p-2 md:p-6 fixed w-full z-10 pin-t">
 
-    <div class="flex items-center flex-no-shrink text-gray-900 lg:text-white mr-6">
-      <a class="font-semibold uppercase text-gray-900 lg:text-white no-underline hover:text-white hover:no-underline" href="#">
-        <span class="text-2xl pl-2"><i class="em em-grinning"></i> <%= @restaurant.name %></span>
-      </a>
-    </div>
-
+  <div class="flex items-center flex-no-shrink text-gray-900 lg:text-white mr-6">
+    <a class="font-semibold uppercase text-gray-900 lg:text-white no-underline hover:text-white hover:no-underline" href="#">
+      <span class="text-2xl pl-2"><i class="em em-grinning"></i> <%= @restaurant.name %></span>
+    </a>
+  </div>
 
   <div class="block lg:hidden">
     <button id="nav-toggle" class="flex items-center px-3 py-2 border rounded text-gray-600 hover:text-gray-900">
-      <svg class="fill-current h-5 w-5" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+      <svg class="fill-current h-5 w-5" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title>
+        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
+      </svg>
     </button>
   </div>
 
@@ -31,7 +32,7 @@
       </li>
       <% if session[:restaurant_id] != nil %>
         <li class="mr-3">
-            <%= button_to 'Logout', logout_path, method: :delete, class: "inline-block text-grey-dark no-underline hover:text-grey-lighter hover:text-underline py-2 px-4" %>
+          <%= button_to 'Logout', logout_path, method: :delete, class: "inline-block text-grey-dark no-underline hover:text-grey-lighter hover:text-underline py-2 px-4" %>
         </li>
       <% end %>
     </ul>
@@ -41,7 +42,7 @@
 
 <script>
     //Javascript to toggle the menu
-    document.getElementById('nav-toggle').onclick = function(){
+    document.getElementById('nav-toggle').onclick = function () {
         document.getElementById("nav-content").classList.toggle("hidden");
     }
 </script>

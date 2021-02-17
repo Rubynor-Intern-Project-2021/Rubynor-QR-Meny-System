@@ -13,11 +13,15 @@
   </head>
 
   <body class="lg:bg-gray-100 font-sans">
-    <% if @restaurant %>
-      <%= render 'shared/header' %>
-    <% end %>
-    <div class="py-14 px-3 lg:px-10 lg:py-32 ">
-      <%= yield %>
-      
-    </div>
+      <div class="pb-14">
+        <% if @restaurant %>
+          <%= render 'shared/header' %>
+        <% end %>
+      </div>
+
+      <div class="lg:px-10 lg:py-32 ">
+        <%= yield %>
+      </div>
+
+  </body>
 </html>
