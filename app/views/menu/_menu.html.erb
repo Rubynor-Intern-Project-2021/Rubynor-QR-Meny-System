@@ -1,6 +1,0 @@
-<!-- Menyer -->
-<% @restaurant.menus.each do |menu| %>
-  <p class="p-2 text-base text-gray-500 tracking-wide hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 overflow-hidden active">
-    <%= link_to menu.name, selected_menu_path(:menu_id => menu), :remote => true %></p>
-<% end %>
-
