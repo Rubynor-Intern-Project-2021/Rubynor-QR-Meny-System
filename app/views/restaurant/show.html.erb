@@ -1,21 +1,39 @@
 <p id="notice"><%= notice %></p>
 
-<div class="pt-20">
+<div class="pt-28">
   <div class="lg:w-2/5 flex justify-center">
-    <div class="w-full bg-green-200 rounded-xl p-3 ">
-      <div class="flex justify-center mb-10">
-        <!-- Menyer-->
-        <%= render 'menu/menu' %>
+    <div class="w-full bg-white rounded-tl-3xl p-8">
+      <div>
+        <p class="mb-2 text-gray-900 font-semibold text-2xl">Meny</p>
+      </div>
+      <div class="flex overflow-x-hidden">
+        <!-- Menyer -->
+        <% @restaurant.menus.each_with_index do |menu, index| %>
+          <p class="pb-2 mr-4 text-gray-500 tracking-wide hover:text-gray-800 hover:shadow-md">
+            <%= link_to menu.name, selected_menu_path(:menu_id => menu), :onclick => 'get_id(this.id)', :id => index, :remote => true %></p>
+        <% end %>
         <!-- Meny-innhold-->
       </div>
+
       <div id="selected_menu">
         <% unless @selected %>
-        <div>
-          <%= render partial: 'menu/selected_menu', locals: { menu: MenuItem.where(:menu_id => 1) }  %>
-        </div>
+          <div>
+            <%= render partial: 'menu/selected_menu', locals: { menu: @restaurant.menus.first } %>
+          </div>
         <% end %>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+    document.getElementById(0).classList.add("active");
+    function get_id(id) {
+        for (let i = 0; i < <%= @restaurant.menus.size %>; i++) {
+            document.getElementById(i).classList.remove("active");
+        }
+        document.getElementById(id).classList.add("active");
+    }
+</script>
+
 
