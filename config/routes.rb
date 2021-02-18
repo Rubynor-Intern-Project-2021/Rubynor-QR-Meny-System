@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   resources :menu
   resources :restaurant
   resources :menu_item
-  get "/fetch_items" => 'restaurant#from_menu', as: 'fetch_items'
   get "/selected_menu" => 'menu#selected_menu', as: 'selected_menu'
 
   # Admin

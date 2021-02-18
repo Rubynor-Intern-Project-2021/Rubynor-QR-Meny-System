@@ -1,14 +1,22 @@
 <!-- retter som vises under menyene-->
-<% menu.each do |menu_item| %>
+<% menu.menu_items.each do |menu_item| %>
   <%= link_to menu_item_path(menu_item) do %>
-    <div class="flex justify-between bg-white rounded-l p-3 m-2 ">
-      <div>
-        <%= menu_item.name %>
+    <!-- Hver rad-->
+    <div class="m-1 flex justify-evenly pt-6 overflow-x-auto">
+      <div class="flex ">
+        <div></div>
+        <div class="w-1/3 mr-4 ">
+          <% if menu_item.image.attached? %>
+            <%= image_tag menu_item.image, class:"shadow object-cover rounded max-w-full h-auto align-middle border-none"%>
+          <% end %>
+        </div>
+        <div class="mt-1 text-gray-900 text-lg font-semibold tracking-wider w-48">
+          <%= menu_item.name %>
+        </div>
       </div>
-
-      <div class="text-gray-600">
+      <div class=" text-lg mt-1 ml-10 text-gray-600 ">
         <%= menu_item.price.to_i %>,-
       </div>
     </div>
-  <% end%>
+  <% end %>
 <% end %>
