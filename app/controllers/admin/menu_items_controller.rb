@@ -14,10 +14,12 @@ class Admin::MenuItemsController < ApplicationController
   def new
     @menu_id=params['menu_id']
     @menu_item = MenuItem.new(:menu_id=>@menu_id)
+    @restaurant = @menu_item.menu.restaurant
   end
 
   # GET /menu_items/1/edit
   def edit
+    @restaurant = @menu_item.menu.restaurant
   end
 
   # POST /menu_items or /menu_items.json

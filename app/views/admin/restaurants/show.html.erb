@@ -1,6 +1,11 @@
 <div class="container mx-auto bg-red-200">
   <p id="notice"><%= notice %></p>
 
+  <p>
+    <strong>QR Kode</strong>
+    <img src="<%= @restaurant.qr_code %>" class="w-20" />
+  </p>
+
   <p class="p-2">
     <strong>Name:</strong>
     <%= @restaurant.name %>
