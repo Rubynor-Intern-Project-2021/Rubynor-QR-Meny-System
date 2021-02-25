@@ -1,58 +1,63 @@
-<p id="notice"><%= notice %></p>
+<div class="container mx-auto bg-red-200">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @restaurant.name %>
-  <strong>Username:</strong>
-  <%= @restaurant.username %>
-  <%= link_to 'Rediger', edit_admin_restaurant_path(@restaurant) %>
-</p>
+  <p class="p-2">
+    <strong>Name:</strong>
+    <%= @restaurant.name %>
+    <strong>Username:</strong>
+    <%= @restaurant.username %>
+    <%= link_to 'Rediger', edit_admin_restaurant_path(@restaurant),  class: "bg-blue-500 rounded text-white hover:bg-blue-400 py-2 px-4" %>
+  </p>
 
-<br>
-<table>
-  <tbody>
-    <% @restaurant.menus.order(:name).each do |menu| %>
-      <tr>
+  <table>
+    <tbody>
+      <% @restaurant.menus.order(:name).each do |menu| %>
+        <tr>
 
-        <table>
-          <thead>
-            <tr>
-              <td colspan="2"><strong><%= menu.name %></strong></td>
-              <td style="color: blue"><%= link_to 'Rediger', edit_admin_menu_path(menu) %></td>
-              <td style="color: red"><%= link_to 'Slett', admin_menu_path(menu), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              <td><button class="collapsible", type="button">></button></td>
-            </tr>
-          </thead>
-          <tbody style="display: none">
-            <% menu.menu_items.order(:number).each do |item| %>
-              <tr>
-                <td style="color:red;">
-                  <% if item.number != '' && item.number != nil %>
-                    Nr. <%= item.number %>.
-                  <% end %>
-                </td>
-                <td>
-                  <%= item.name %>
-                </td>
-                <td style="color: blue"><%= link_to 'Rediger', edit_admin_menu_item_path(item) %></td>
-                <td style="color: red"><%= link_to 'Slett', admin_menu_item_path(item), method: :delete, data: { confirm: 'Er du sikker?' } %></td>
+          <table class="table-fixed w-full text-white">
+            <thead class="bg-gray-800">
+              <tr class="h-20">
+                <th class="w-1/12"></th>
+                <th class="w-6/12"><strong><%= menu.name %></strong></th>
+                <th class="w-5/12 pe-1">
+                  <%= link_to 'Rediger', edit_admin_menu_path(menu), class: "bg-blue-500 rounded hover:bg-blue-400 py-2 px-4" %>
+                  <%= link_to 'Slett', admin_menu_path(menu), method: :delete, data: { confirm: 'Are you sure?' }, class: "bg-red-500 rounded hover:bg-red-400 py-2 px-4"  %>
+                  <button class="collapsible", type="button">></button>
+                </th>
               </tr>
-            <% end %>
-            <tr>
-              <br>
-              <td><%= link_to 'Ny Gjenstand', new_admin_menu_item_path(:menu_id => menu.id) %></td>
-            </tr>
-          </tbody>
-        </table>
+            </thead>
+            <tbody><!--Kolapser denne bodyen-->
+              <% menu.menu_items.order(:number).each do |item| %>
+                <tr class="h-20">
+                  <td class="w-15">
+                    <% if item.number != '' && item.number != nil %>
+                      Nr. <%= item.number %>.
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= item.name %>
+                  </td>
+                  <td class="justify-end">
+                    <%= link_to 'Rediger', edit_admin_menu_item_path(item), class: "bg-blue-500 rounded hover:bg-blue-400 py-2 px-4" %>
+                    <%= link_to 'Slett', admin_menu_item_path(item), method: :delete, data: { confirm: 'Er du sikker?'}, class: "bg-red-500 rounded hover:bg-red-400 py-2 px-4"  %>
+                  </td>
+                </tr>
+              <% end %>
+              <tr>
+                <br>
+                <td colspan="2"><%= link_to 'Ny Gjenstand', new_admin_menu_item_path(:menu_id => menu.id), class: "bg-green-500 rounded text-white hover:bg-green-400 py-2 px-4", :method => :get  %></td>
+              </tr>
+            </tbody>
+          </table>
+        </tr>
+      <% end %>
+      <br>
+      <tr>
+        <td><%= button_to 'Ny Meny', new_admin_menu_path(:restaurant_id => params[:id]), class: "bg-green-500 rounded text-white hover:bg-green-400 py-2 px-4", :method => :get  %></td>
       </tr>
-    <% end %>
-
-    <tr>
-      <td><%= link_to 'Ny Meny', new_admin_menu_path(:restaurant_id => params[:id]) %></td>
-    </tr>
-  </tbody>
-</table>
-
+    </tbody>
+  </table>
+</div>
 
 <script>
     var coll = document.getElementsByClassName("collapsible");
