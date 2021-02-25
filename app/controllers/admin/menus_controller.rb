@@ -18,6 +18,7 @@ class Admin::MenusController < ApplicationController
 
   # GET /admin_menus/1/edit
   def edit
+    @restaurant = @menu.restaurant
   end
 
   # POST /admin_menus or /admin_menus.json
