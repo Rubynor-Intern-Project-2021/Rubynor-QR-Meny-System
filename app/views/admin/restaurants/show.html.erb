@@ -50,7 +50,7 @@
               <% end %>
               <tr>
                 <br>
-                <td colspan="2"><%= link_to 'Ny Gjenstand', new_admin_menu_item_path(:menu_id => menu.id), class: "bg-green-500 rounded text-white hover:bg-green-400 py-2 px-4", :method => :get  %></td>
+                <td colspan="2"><%= link_to 'Ny Gjenstand', new_admin_menu_item_path(:menu_id => menu.id), class: "bg-green-500 rounded text-white hover:bg-green-400 py-2 px-4" %></td>
               </tr>
             </tbody>
           </table>
@@ -58,7 +58,7 @@
       <% end %>
       <br>
       <tr>
-        <td><%= button_to 'Ny Meny', new_admin_menu_path(:restaurant_id => params[:id]), class: "bg-green-500 rounded text-white hover:bg-green-400 py-2 px-4", :method => :get  %></td>
+        <td><%= link_to 'Ny Meny', new_admin_menu_path(:restaurant_id => params[:id]), class: "bg-green-500 rounded text-white hover:bg-green-400 py-2 px-4" %></td>
       </tr>
     </tbody>
   </table>
