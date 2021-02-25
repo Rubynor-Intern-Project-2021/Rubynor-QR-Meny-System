@@ -14,6 +14,7 @@ class Admin::MenusController < ApplicationController
   def new
     @restaurant_id=params['restaurant_id']
     @menu = Menu.new(:restaurant_id=>@restaurant_id)
+    @restaurant = @menu.restaurant
   end
 
   # GET /admin_menus/1/edit
