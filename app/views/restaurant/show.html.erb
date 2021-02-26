@@ -13,6 +13,7 @@
             <%= link_to menu.name, selected_menu_path(:menu_id => menu), :onclick => 'get_id(this.id)', :id => index, :remote => true %></p>
         <% end %>
       </div>
+
       <!-- Meny-innhold-->
       <div id="selected_menu">
         <% unless @selected %>
