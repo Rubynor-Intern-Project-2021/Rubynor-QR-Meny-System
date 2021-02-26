@@ -1,4 +1,4 @@
-<div class="container mx-auto bg-red-200">
+<div class="container mx-auto bg-gray-700 px-4 py-4">
   <p id="notice"><%= notice %></p>
 
   <p>
@@ -48,22 +48,24 @@
                   </td>
                 </tr>
               <% end %>
-              <tr>
+              <tr class="h-20">
                 <br>
-                <td colspan="2"><%= link_to 'Ny Gjenstand', new_admin_menu_item_path(:menu_id => menu.id), class: "bg-green-500 rounded text-white hover:bg-green-400 py-2 px-4", :method => :get  %></td>
+                <td colspan="40"><%= link_to 'Ny Gjenstand', new_admin_menu_item_path(:menu_id => menu.id), class: "bg-green-500 rounded text-white hover:bg-green-400 py-2 px-4" %></td>
               </tr>
             </tbody>
           </table>
         </tr>
       <% end %>
       <br>
-      <tr>
-        <td><%= button_to 'Ny Meny', new_admin_menu_path(:restaurant_id => params[:id]), class: "bg-green-500 rounded text-white hover:bg-green-400 py-2 px-4", :method => :get  %></td>
+      <tr class="h-20">
+        <td><%= link_to 'Ny Meny', new_admin_menu_path(:restaurant_id => params[:id]), class: "bg-green-500 rounded text-white hover:bg-green-400 py-2 px-4" %></td>
       </tr>
     </tbody>
   </table>
 </div>
-
+<style>
+    tr:nth-child(even) {background-color: gray;}
+</style>
 <script>
     var coll = document.getElementsByClassName("collapsible");
     var i;
