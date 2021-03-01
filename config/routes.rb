@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :order_items
+  resources :orders
   controller :sessions do
     get 'login' => :new
     post 'login' => :create
