@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   skip_before_action :authorize
   before_action :set_order, only: %i[ show edit update destroy ]
+  rescue_from ActiveRecord::RecordNotFound, with: :invalid_order
 
   # GET /orders or /orders.json
   def index
@@ -50,9 +51,10 @@ class OrdersController < ApplicationController
 
   # DELETE /orders/1 or /orders/1.json
   def destroy
-    @order.destroy
+    @order.destroy if @order.id == session[:order_id]
+    session[:order_id] = nil
     respond_to do |format|
-      format.html { redirect_to orders_url, notice: "Order was successfully destroyed." }
+      format.html { redirect_to restaurant_url, notice: "Handlekurven er tom." }
       format.json { head :no_content }
     end
   end
@@ -66,5 +68,10 @@ class OrdersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def order_params
       params.require(:order).permit(:order_status, :customer_info, :location)
+    end
+
+    def invalid_order
+      logger.error "Attempt to access invalid cart #{params[:id]}"
+      redirect_to restaurant_index_url, notice: 'Invalid order'
     end
 end

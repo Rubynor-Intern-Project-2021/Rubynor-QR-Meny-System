@@ -5,11 +5,12 @@
   <div class="flex flex-col rounded-tl-3xl lg:rounded-2xl w-full bg-white lg:w-1/3">
     <div class=" p-8">
       <div>
-        <p class="mb-2 lg:mb-5 text-gray-900 font-semibold text-2xl">Bestilling</p>
+        <p class="mb-2 lg:mb-5 text-gray-900 font-semibold text-2xl">Handlekurv</p>
       </div>
       <div>
+
         <% @order.order_items.each do |item| %>
-          <%= link_to menu_item_path(item) do %>
+          <%= link_to menu_item_path(item.menu_item) do %>
             <!-- Hver rad-->
             <div class="m-1 flex justify-evenly pt-6 overflow-x-auto">
               <div class="flex ">
@@ -21,14 +22,21 @@
                 </div>
                 <div class="mt-1 text-gray-900 text-lg font-semibold tracking-wider w-48">
                   <%= item.menu_item.name %>
+                  &times; <%= item.quantity %>
                 </div>
               </div>
               <div class=" text-lg mt-1 ml-10 text-gray-600 ">
-                <%= item.menu_item.price.to_i %>,-
+                <%= item.total_price.to_i %>,-
               </div>
             </div>
           <% end %>
         <% end %>
+        <div>
+          Totalt <%= @order.total_price.to_i %>,-
+        </div>
+        <div>
+          <%= button_to 'Slett', @order, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
 
         <%= form_with(model: @order, local: true) do |form| %>
           <% if @order.errors.any? %>
@@ -42,17 +50,17 @@
               </ul>
             </div>
           <% end %>
-
-            <div class="field mt-10">
-              <%= form.text_area :customer_info, :size=> "40", placeholder: "Informasjon til kokken", :maxlength=>"200"%>
+            <p class="mt-10 mb-2 font-semibold ">Kommentar til kjøkkenet</p>
+            <div class="field">
+              <%= form.text_area :customer_info, :size=> "40", placeholder: "F.eks. uten løk", :maxlength=>"200"%>
             </div>
-
-            <div class="field mt-5">
-              <%= form.text_area :location, :size=>"5", placeholder: "Bordnr", :maxlength=>"5" %>
+            <p class="mt-5 mb-2 font-semibold ">Bordnr</p>
+            <div class="field">
+              <%= form.text_area :location, :size=>"10", placeholder: "F.eks. 1234", :maxlength=>"5" %>
             </div>
           
           <div class="actions mt-10">
-            <%= form.submit 'Bekreft' %>
+            <%= form.submit 'Bestill' %>
           </div>
         <% end %>
       </div>

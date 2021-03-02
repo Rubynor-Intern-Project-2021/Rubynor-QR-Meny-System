@@ -22,11 +22,12 @@ class OrderItemsController < ApplicationController
 
   # POST /order_items or /order_items.json
   def create
-    @order_item = OrderItem.new(order_item_params)
+    menu_item = MenuItem.find(params[:menu_item_id])
+    @order_item = @order.add_menu_item(menu_item)
 
     respond_to do |format|
       if @order_item.save
-        format.html { redirect_to @order_item, notice: "Order item was successfully created." }
+        format.html { redirect_to @order_item.order}
         format.json { render :show, status: :created, location: @order_item }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -65,6 +66,6 @@ class OrderItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_item_params
-      params.require(:order_item).permit(:menu_item_id, :order_id)
+      params.require(:order_item).permit(:menu_item_id)
     end
 end
