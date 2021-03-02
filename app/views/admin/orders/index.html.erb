@@ -1,0 +1,52 @@
+<div class="container mx-auto bg-gray-700 px-4 py-4">
+  <p id="notice"><%= notice %></p>
+
+  <table>
+    <tbody>
+      <% @orders.order(:id).each do |order| %>
+        <tr>
+
+          <table class="table-fixed w-full text-white">
+            <thead class="bg-gray-800">
+              <tr class="h-20">
+                <th class="w-1/12"><strong>Sted: <%= order.location %> Bestilling: <%= order.id %></strong></th>
+                <th class="justify-right">
+                  <button class="collapsible", type="button">></button>
+                </th>
+              </tr>
+            </thead>
+            <tbody style="display: none"><!--Kolapser denne bodyen-->
+              <% order.order_items.each do |order_item| %>
+                <tr class="h-10">
+                  <td>
+                    <%= order_item.menu_item.name %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </tr>
+      <% end %>
+      <br>
+    </tbody>
+  </table>
+</div>
+<style>
+    tr:nth-child(even) {background-color: gray;}
+</style>
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.parentElement.parentElement.parentElement.nextElementSibling
+            if (content.style.display === "") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "";
+            }
+        });
+    }
+</script>
