@@ -31,9 +31,7 @@
             </div>
           <% end %>
         <% end %>
-        <div>
-          Totalt <%= @order.total_price.to_i %>,-
-        </div>
+
         <div>
           <%= button_to 'Slett', @order, method: :delete, data: { confirm: 'Are you sure?' } %>
         </div>
@@ -58,7 +56,9 @@
             <div class="field">
               <%= form.text_area :location, :size=>"10", placeholder: "F.eks. 1234", :maxlength=>"5" %>
             </div>
-          
+          <div>
+            Totalt <%= @order.total_price.to_i %>,-
+          </div>
           <div class="actions mt-10">
             <%= form.submit 'Bestill' %>
           </div>
