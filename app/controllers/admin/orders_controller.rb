@@ -1,6 +1,6 @@
 class Admin::OrdersController < ApplicationController
-  def index 
-    @restaurant = Restaurant.find(session[:restaurant_id])
+  def show 
+    @restaurant = Restaurant.find(params[:id])
     @orders = @restaurant.orders
   end
 end
