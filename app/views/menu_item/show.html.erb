@@ -22,7 +22,7 @@
       <div class="text-gray-700 pt-10">
         <%= @menu_item.description %>
       </div>
-
+      <%= button_to 'Legg til', order_items_path(menu_item_id: @menu_item) %>
     </div>
   </div>
 
