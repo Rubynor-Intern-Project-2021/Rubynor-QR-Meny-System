@@ -1,10 +1,11 @@
-<p id="notice"><%= notice %></p>
-
 <nav class="flex items-center justify-between flex-wrap bg-white lg:bg-gray-800 p-2 fixed w-full z-10 pin-t">
 
-    <div class="flex items-center flex-no-shrink text-gray-900 lg:text-white mr-6">
-      <%= link_to @restaurant.name, restaurant_path(:id => @restaurant.id), class: "text-2xl pl-2 font-semibold uppercase text-gray-900 lg:text-white hover:text-gray-600 lg:hover:text-gray-200 no-underline hover:text-white hover:no-underline" %>
-    </div>
+  <div class="flex items-center flex-no-shrink text-gray-900 lg:text-white mr-6">
+    <%= link_to @restaurant.name, restaurant_path(:id => @restaurant.id), class: "text-2xl pl-2 font-semibold uppercase text-gray-900 lg:text-white hover:text-gray-600 lg:hover:text-gray-200 no-underline hover:text-white hover:no-underline" %>
+  </div>
+  <div>
+    <%= link_to 'Orders', order_path(1) %>
+  </div>
 
   <div class="block lg:hidden">
     <button id="nav-toggle" class="flex items-center px-3 py-2 border rounded text-gray-600 hover:text-gray-600">
@@ -17,7 +18,7 @@
   <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block pt-6 lg:pt-0" id="nav-content">
     <ul class="list-reset lg:flex justify-end flex-1 items-center">
       <li class="mr-3">
-        <%= link_to 'Meny', restaurant_path(:id => @restaurant.id), class: 'nav-btn'%>
+        <%= link_to 'Meny', restaurant_path(:id => @restaurant.id), class: 'nav-btn' %>
       </li>
       <% if session[:restaurant_id] != nil %>
         <li class="mr-3">
@@ -25,7 +26,7 @@
         </li>
 
         <li class="mr-3">
-            <%= link_to 'Logout', logout_path, method: :delete, class: "nav-btn" %>
+          <%= link_to 'Logout', logout_path, method: :delete, class: "nav-btn" %>
         </li>
       <% end %>
     </ul>
