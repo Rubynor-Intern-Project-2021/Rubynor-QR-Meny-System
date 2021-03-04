@@ -16,6 +16,12 @@ Rails.application.routes.draw do
   resources :menu
   resources :restaurant
   resources :menu_item
+  controller :menu_item do
+    post 'add_to_cart' => :addToCart
+    delete 'remove_one_from_cart' => :removeOneFromCart
+    delete 'remove_all_from_cart' => :removeAllFromCart
+    delete 'empty_cart' => :emptyCart
+  end
   get "/selected_menu" => 'menu#selected_menu', as: 'selected_menu'
 
   # Admin

@@ -22,7 +22,10 @@
       <div class="text-gray-700 pt-10">
         <%= @menu_item.description %>
       </div>
-      <%= button_to 'Legg til', order_items_path(menu_item_id: @menu_item) %>
+      <!--<%= button_to 'Legg til', order_items_path(menu_item_id: @menu_item) %>-->
+      <%= button_to 'Legg til', add_to_cart_path(menu_item_id: @menu_item) %>
+      <%= button_to 'Fjern alle', remove_all_from_cart_path(menu_item_id: @menu_item), method: :delete %>
+      <%= button_to 'Fjern alt', empty_cart_path(), method: :delete %>
     </div>
   </div>
 
