@@ -1,0 +1,27 @@
+<tr>
+  <table class="mb-4 table-fixed w-full text-white">
+    <thead class="bg-gray-800">
+      <tr class="h-20">
+        <th class="text-left">
+          <div class="ml-8 inline-block w-9/12">
+            <strong>Sted: <%= order.location %> - Bestilling: <%= order.id %></strong>
+          </div>
+          <div class="inline-block">
+            <button class="collapsible w-5 h-5", type="button"></button>
+          </div>
+
+        </th>
+      </tr>
+    </thead>
+    <tbody style="display: none"><!--Kolapser denne bodyen-->
+      <% order.order_items.each do |order_item| %>
+        <tr class="h-10">
+          <td class="pl-8">
+            <%= order_item.menu_item.name %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</tr>
+
