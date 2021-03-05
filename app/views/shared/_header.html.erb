@@ -21,9 +21,15 @@
         <%= link_to 'Meny', restaurant_path(:id => @restaurant.id), class: 'nav-btn' %>
       </li>
       <% if session[:restaurant_id] != nil %>
+        <li class="mr-3 hidden lg:block text-gray-200">|</li>
+        <li class="mr-3 block lg:hidden"><hr style="height:2px;border-width:0;color:gray;background-color:gray"/></li>
         <li class="mr-3">
           <%= link_to 'Admin', admin_restaurant_path(:id => @restaurant.id), class: "nav-btn" %>
         </li>
+        <li class="mr-3">
+          <%= link_to 'Ordre', admin_order_path(:id => @restaurant.id), class: "nav-btn" %>
+        </li>
+
 
         <li class="mr-3">
           <%= link_to 'Logout', logout_path, method: :delete, class: "nav-btn" %>
