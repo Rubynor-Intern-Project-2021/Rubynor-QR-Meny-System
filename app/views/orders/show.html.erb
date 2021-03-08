@@ -5,41 +5,23 @@
   <div class="flex flex-col rounded-tl-3xl lg:rounded-2xl w-full bg-white lg:w-1/3">
     <div class=" p-8">
       <div>
-        <p class="mb-2 lg:mb-5 text-gray-900 font-semibold text-2xl">Handlekurv</p>
+        <p class="mb-2 lg:mb-5 text-gray-900 font-semibold text-xl">Handlekurv</p>
       </div>
 
       <div>
 
         <% @order.order_items.each do |item| %>
-
+          <%#= link_to menu_item_path(item.menu_item) do %>
             <!-- Hver rad-->
-            <div class="m-1 flex justify-evenly pt-6 overflow-x-auto">
-              <div class="flex ">
-                <div></div>
-                <div class="w-1/3 mr-4 ">
-                  <% if item.menu_item.image.attached? %>
-                    <%= image_tag item.menu_item.image, class: "shadow object-cover rounded max-w-full h-auto align-middle border-none" %>
-                  <% end %>
-                </div>
-                <div class="mt-1 text-gray-900 text-lg font-semibold tracking-wider w-48">
-                  <%= item.menu_item.name %>
-                  <div class=" pt-1 lg:pt-5">
-                    <%= react_component("OrderItem", { menuItem: item }) %>
-                  </div>
-                </div>
-              </div>
-              <div class=" text-lg mt-1 ml-10 text-gray-600 ">
-                <%= item.total_price.to_i %>,-
-              </div>
-            </div>
-
-        <% end %>
+            <%= react_component("Order_item", { menuItem: item.menu_item, quantity:item.quantity}) %>
+          <% end %>
+        <%# end %>
 
         <div>
           <%= button_to 'Slett', @order, method: :delete, data: { confirm: 'Are you sure?' } %>
         </div>
 
-        <%= form_with(model: @order, local: true) do |form| %>
+        <%= form_with model: @order, local: true, builder: TailwindBuilder do |form| %>
           <% if @order.errors.any? %>
             <div id="error_explanation">
               <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
@@ -51,17 +33,22 @@
               </ul>
             </div>
           <% end %>
-            <p class="mt-10 mb-2 font-semibold ">Kommentar til kjøkkenet</p>
-            <div class="field">
-              <%= form.text_area :customer_info, :size=> "40", placeholder: "F.eks. uten løk", :maxlength=>"200"%>
-            </div>
-            <p class="mt-5 mb-2 font-semibold ">Bordnr</p>
-            <div class="field">
-              <%= form.text_area :location, :size=>"10", placeholder: "F.eks. 1234", :maxlength=>"5" %>
-            </div>
+          <div class="mt-8">
+            <%= form.label :"Kommentar til kjøkkenet"%>
+          </div>
+
+          <%= form.text_area :customer_info, placeholder: "F.eks. uten løk"%>
+
+          <div class="mt-4">
+            <%= form.label :"Bordnr"%>
+          </div>
+
+          <%= form.text_field :customer_info, placeholder: "F.eks. 1234", :maxlength=>"5" %>
+
           <div>
             Totalt <%= @order.total_price.to_i %>,-
           </div>
+
           <div class="actions mt-10">
             <%= form.submit 'Bestill' %>
           </div>

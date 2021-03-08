@@ -16,7 +16,7 @@ class OrderItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create order_item" do
-    assert_difference('OrderItem.count') do
+    assert_difference('Order_item.count') do
       post order_items_url, params: { order_item: { menu_item_id: @order_item.menu_item_id, order_id: @order_item.order_id } }
     end
 
@@ -39,7 +39,7 @@ class OrderItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy order_item" do
-    assert_difference('OrderItem.count', -1) do
+    assert_difference('Order_item.count', -1) do
       delete order_item_url(@order_item)
     end
 
