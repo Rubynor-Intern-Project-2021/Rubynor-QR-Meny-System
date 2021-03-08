@@ -7,10 +7,11 @@
       <div>
         <p class="mb-2 lg:mb-5 text-gray-900 font-semibold text-2xl">Handlekurv</p>
       </div>
+
       <div>
 
         <% @order.order_items.each do |item| %>
-          <%= link_to menu_item_path(item.menu_item) do %>
+
             <!-- Hver rad-->
             <div class="m-1 flex justify-evenly pt-6 overflow-x-auto">
               <div class="flex ">
@@ -22,14 +23,16 @@
                 </div>
                 <div class="mt-1 text-gray-900 text-lg font-semibold tracking-wider w-48">
                   <%= item.menu_item.name %>
-                  &times; <%= item.quantity %>
+                  <div class=" pt-1 lg:pt-5">
+                    <%= react_component("OrderItem", { menuItem: item }) %>
+                  </div>
                 </div>
               </div>
               <div class=" text-lg mt-1 ml-10 text-gray-600 ">
                 <%= item.total_price.to_i %>,-
               </div>
             </div>
-          <% end %>
+
         <% end %>
 
         <div>

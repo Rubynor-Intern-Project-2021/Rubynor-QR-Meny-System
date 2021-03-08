@@ -30,7 +30,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 # Nicole har lagt til
 gem 'jquery-rails'
-gem 'active_link_to'
+gem 'react-rails'
 
 
 group :development, :test do
