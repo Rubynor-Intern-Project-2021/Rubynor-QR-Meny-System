@@ -2,10 +2,10 @@ import React from 'react'
 import {useState} from 'react';
 import PropTypes from 'prop-types';
 
-const Order_item = ({menuItem, quantity}) => {
+const orderItem = ({menuItem, quantity}) => {
 
 
-    Order_item.propTypes = {
+    orderItem.propTypes = {
         name: PropTypes.string,
         quantity: PropTypes.number,
         price: PropTypes.number
@@ -69,5 +69,5 @@ const Order_item = ({menuItem, quantity}) => {
     )
 }
 
-export default Order_item;
+export default orderItem;
 

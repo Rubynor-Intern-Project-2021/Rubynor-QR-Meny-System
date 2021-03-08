@@ -13,7 +13,7 @@
         <% @order.order_items.each do |item| %>
           <%#= link_to menu_item_path(item.menu_item) do %>
             <!-- Hver rad-->
-            <%= react_component("Order_item", { menuItem: item.menu_item, quantity:item.quantity}) %>
+            <%= react_component("order_item", { menuItem: item.menu_item, quantity:item.quantity}) %>
           <% end %>
         <%# end %>
 
