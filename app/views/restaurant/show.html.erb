@@ -22,9 +22,23 @@
           </div>
         <% end %>
       </div>
+
+      <br>
+      <div class="text-sm text-gray-500">
+        Allergener
+        <br>
+        <% @allergens.each_with_index do |allergen, index| %>
+
+          <%= allergen.short_name %> = <%= allergen.name %> 
+          <% if index < (@allergens.length - 1) %>
+            , 
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
+
 
 <script>
     document.getElementById(0).classList.add("active");

@@ -3,5 +3,6 @@ class RestaurantController < ApplicationController
 
   def show 
     @restaurant = Restaurant.find(params[:id])
+    @allergens = Allergen.all()
   end
 end
