@@ -10,8 +10,13 @@
             <%= image_tag menu_item.image, class:"shadow object-cover rounded max-w-full h-auto align-middle border-none"%>
           <% end %>
         </div>
-        <div class="mt-1 text-gray-900 text-lg font-semibold tracking-wider w-48">
-          <%= menu_item.name %>
+        <div>
+          <div class="mt-1 text-gray-900 text-lg font-semibold tracking-wider w-48">
+            <%= menu_item.name %>
+          </div>
+          <div class="text-gray-700 text-sm ">
+            <%= truncate(menu_item.description) %>
+          </div>
         </div>
       </div>
       <div class=" text-lg mt-1 ml-10 text-gray-600 ">
