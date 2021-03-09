@@ -23,6 +23,12 @@
         <%= @menu_item.description %>
       </div>
 
+      <div class="text-gray-700 pt-10">
+        Allergener:
+        <br>
+        <%= @menu_item.get_allergen_names_long.join(', ') %>
+      </div>
+
     </div>
   </div>
 

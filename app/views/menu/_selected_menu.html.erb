@@ -12,6 +12,11 @@
         </div>
         <div class="mt-1 text-gray-900 text-lg font-semibold tracking-wider w-48">
           <%= menu_item.name %>
+          <br>
+          <div class="font-normal text-sm">
+            Allergener 
+            <%= menu_item.get_allergen_names_short.join(', ') %>
+          </div>
         </div>
       </div>
       <div class=" text-lg mt-1 ml-10 text-gray-600 ">
