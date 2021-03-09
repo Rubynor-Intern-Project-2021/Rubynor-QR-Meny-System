@@ -59,6 +59,29 @@ class OrdersController < ApplicationController
     end
   end
 
+  def total_price
+    @totalPrice=0
+    temp=0
+    session[:cart].each do |item|
+      temp=(MenuItem.find(item["item_id"]).price * item["amount"])
+      @totalPrice+=temp
+      p "pris for en #{temp}"
+    end
+    p "total pris = #{@totalPrice}"
+  end
+
+  def total_amount
+    @totalAmount
+    session[:cart].each do |item|
+      @totalAmount+=(item["amount"])
+    end
+    p @totalAmount
+  end
+
+
+  helper_method :total_price
+  helper_method :total_amount
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order

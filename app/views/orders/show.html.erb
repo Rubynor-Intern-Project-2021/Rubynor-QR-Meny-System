@@ -10,15 +10,16 @@
 
       <div>
 
-        <% @order.order_items.each do |item| %>
+        <% session[:cart].each do |item| %>
+          <% menu_item=MenuItem.find(item["item_id"])%>
           <%#= link_to menu_item_path(item.menu_item) do %>
             <!-- Hver rad-->
-            <%= react_component("order_item", { menuItem: item.menu_item, quantity:item.quantity}) %>
+            <%= react_component("order_item", { menuItem: menu_item, quantity:item["amount"]}) %>
           <% end %>
         <%# end %>
 
         <div>
-          <%= button_to 'Slett', @order, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= button_to 'Slett', empty_cart_path(), method: :delete, data: { confirm: 'Are you sure?' } %>
         </div>
 
         <%= form_with model: @order, local: true, builder: TailwindBuilder do |form| %>
@@ -46,7 +47,7 @@
           <%= form.text_field :customer_info, placeholder: "F.eks. 1234", :maxlength=>"5" %>
 
           <div>
-            Totalt <%= @order.total_price.to_i %>,-
+            Totalt <%= total_price() %>,-
           </div>
 
           <div class="actions mt-10">

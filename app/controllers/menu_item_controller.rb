@@ -22,14 +22,15 @@ class MenuItemController < ApplicationController
   def removeOneFromCart
     id=params[:menu_item_id].to_i
     session[:cart].each do |item|
-      if item["item_id"]==id
-        item["amount"]-=1
-        if item["amount"]==0
-          session[:cart].delete(item)
-        end
+      if item["amount"]<=0
+        session[:cart].delete(item)
       end
 
+      if item["item_id"]==id
+        item["amount"]-=1
+      end
     end
+
     p session[:cart]
 
   end

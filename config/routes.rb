@@ -23,6 +23,10 @@ Rails.application.routes.draw do
     delete 'remove_all_from_cart' => :removeAllFromCart
     delete 'empty_cart' => :emptyCart
   end
+  controller :orders do
+    get 'total_price' => :total_price
+    get 'total_amount' => :total_amount
+  end
   get "/selected_menu" => 'menu#selected_menu', as: 'selected_menu'
 
   # Admin
