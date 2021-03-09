@@ -3,17 +3,47 @@ class MenuItemController < ApplicationController
 
   def addToCart
     session[:cart] ||= []
-    session[:cart] << params[:menu_item_id].to_i
+    id=params[:menu_item_id].to_i
+    exists=false
+
+    session[:cart].each do |item|
+      if item["item_id"]==id
+        item["amount"]+=1
+        exists=true
+        break
+      end
+    end
+    if !exists
+      session[:cart] << { item_id: id, amount: 1 }
+    end
     p session[:cart]
-    p params[:menu_item_id]
   end
+
   def removeOneFromCart
+    id=params[:menu_item_id].to_i
+    session[:cart].each do |item|
+      if item["item_id"]==id
+        item["amount"]-=1
+        if item["amount"]==0
+          session[:cart].delete(item)
+        end
+      end
+
+    end
+    p session[:cart]
 
   end
+
   def removeAllFromCart
-    session[:cart].delete(params[:menu_item_id].to_i)
+    id=params[:menu_item_id].to_i
+    session[:cart].each do |item|
+      if item["item_id"]==id
+        session[:cart].delete(item)
+      end
+    end
     p session[:cart]
   end
+
   def emptyCart
     session[:cart] = []
     p session[:cart]
