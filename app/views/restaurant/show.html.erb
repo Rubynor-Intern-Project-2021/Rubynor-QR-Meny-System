@@ -27,13 +27,7 @@
       <div class="text-sm text-gray-500">
         Allergener
         <br>
-        <% @allergens.each_with_index do |allergen, index| %>
-
-          <%= allergen.short_name %> = <%= allergen.name %> 
-          <% if index < (@allergens.length - 1) %>
-            , 
-          <% end %>
-        <% end %>
+        <%= @restaurant.get_allergen_map.join(', ') %>
       </div>
     </div>
   </div>
