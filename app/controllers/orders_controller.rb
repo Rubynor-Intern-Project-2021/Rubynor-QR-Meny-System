@@ -71,7 +71,7 @@ class OrdersController < ApplicationController
   end
 
   def total_amount
-    @totalAmount
+    @totalAmount=0
     session[:cart].each do |item|
       @totalAmount+=(item["amount"])
     end

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :menu_item
   controller :menu_item do
     post 'add_to_cart' => :addToCart
+    post 'add_one_to_cart' => :addOneToCart
     delete 'remove_one_from_cart' => :removeOneFromCart
     delete 'remove_all_from_cart' => :removeAllFromCart
     delete 'empty_cart' => :emptyCart
