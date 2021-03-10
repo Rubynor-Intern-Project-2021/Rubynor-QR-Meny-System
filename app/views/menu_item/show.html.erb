@@ -24,6 +24,12 @@
       </div>
       <!--<%= button_to 'Legg til(GAMMEL)', order_items_path(menu_item_id: @menu_item) %>-->
 
+      <div class="text-gray-700 pt-10">
+        Allergener:
+        <br>
+        <%= @menu_item.get_allergen_names_long.join(', ') %>
+      </div>
+
 
       <%= button_to 'Legg til en gjenstand(+)', add_to_cart_path(menu_item_id: @menu_item) %>
       <%= button_to 'Fjern en gjenstand(-)', remove_one_from_cart_path(menu_item_id: @menu_item), method: :delete %>

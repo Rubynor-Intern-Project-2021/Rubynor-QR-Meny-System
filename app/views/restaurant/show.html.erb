@@ -22,9 +22,17 @@
           </div>
         <% end %>
       </div>
+
+      <br>
+      <div class="text-sm text-gray-500">
+        Allergener
+        <br>
+        <%= @restaurant.get_allergen_map.join(', ') %>
+      </div>
     </div>
   </div>
 </div>
+
 
 <script>
     document.getElementById(0).classList.add("active");
