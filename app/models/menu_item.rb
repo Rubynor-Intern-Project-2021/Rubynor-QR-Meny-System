@@ -27,10 +27,12 @@ class MenuItem < ApplicationRecord
 
   private
 
-  def ensure_not_referenced_by_any_order_item
-    unless order_items.empty?
-      errors.add(:base, 'Order Items present')
-      throw :abort
-    end
-  end
+
+    private
+        def ensure_not_referenced_by_any_line_item
+            unless order_items.empty?
+                errors.add(:base, 'Order item pressent')
+                throw :abort
+            end
+        end
 end

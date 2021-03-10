@@ -5,53 +5,5 @@
   font-weight: bold;
 }
 
-$block: '.quantity-input';
-$border: 0 solid #dbdbdb;
-$border-radius: 3px;
-$color--primary: #f3f3f3;
-$modifier--text-color: #888;
-
-
-#{$block} {
-  display: flex;
-
-}
-
-#{$block}__modifier,
-#{$block}__screen {
-  user-select: none;
-  outline: none;
-}
-
-#{$block}__modifier {
-  width: 2rem;
-  font-size: 0.5rem;
-
-  background: $color--primary;
-  color: $modifier--text-color;
-  border: $border;
-  text-align: center;
-  text-shadow: 0 1px 0 rgba(#fff, .6);
-
-  cursor: pointer;
-
-
-  &--left {
-    border-radius: $border-radius 0 0 $border-radius;
-  }
-
-  &--right {
-    border-radius: 0 $border-radius $border-radius 0;
-  }
-}
-
-#{$block}__screen {
-  width: 2rem;
-
-  border: 0;
-  border-top: $border;
-  border-bottom: $border;
-  text-align: center;
-}
 
 

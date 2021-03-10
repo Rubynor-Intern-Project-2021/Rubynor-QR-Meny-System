@@ -1,5 +1,7 @@
 class OrderItemsController < ApplicationController
-  skip_before_action :authorize
+  include CurrentOrder
+  before_action :set_order, only: [:create]
+
   before_action :set_order_item, only: %i[ show edit update destroy ]
 
   # GET /order_items or /order_items.json
@@ -22,12 +24,16 @@ class OrderItemsController < ApplicationController
 
   # POST /order_items or /order_items.json
   def create
-    menu_item = MenuItem.find(params[:menu_item_id])
-    @order_item = @order.add_menu_item(menu_item)
+    menu_item=MenuItem.find(params[:menu_item_id])
+    p "test51"
+    @order_item=@order.add_menu_item(menu_item)
+
+    p "test5"
 
     respond_to do |format|
+      p "test6"
       if @order_item.save
-        format.html { redirect_to @order_item.order}
+        format.html { redirect_to @order_item.order, notice: "Order item was successfully created." }
         format.json { render :show, status: :created, location: @order_item }
       else
         format.html { render :new, status: :unprocessable_entity }
