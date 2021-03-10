@@ -10,7 +10,6 @@
           <% menu_item = MenuItem.find(item["item_id"]) %>
           <%#= link_to menu_item_path(item.menu_item) do %>
           <!-- Hver rad-->
-
           <div>
             <%= react_component("order_item", { menuItem: menu_item, quantity: item["amount"] }) %>
           </div>
