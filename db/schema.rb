@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_02_172150) do
+ActiveRecord::Schema.define(version: 2021_03_08_120010) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -31,6 +31,22 @@ ActiveRecord::Schema.define(version: 2021_03_02_172150) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "allergen_items", force: :cascade do |t|
+    t.integer "allergen_id", null: false
+    t.integer "menu_item_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["allergen_id"], name: "index_allergen_items_on_allergen_id"
+    t.index ["menu_item_id"], name: "index_allergen_items_on_menu_item_id"
+  end
+
+  create_table "allergens", force: :cascade do |t|
+    t.text "name"
+    t.text "short_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "menu_items", force: :cascade do |t|
@@ -84,6 +100,8 @@ ActiveRecord::Schema.define(version: 2021_03_02_172150) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "allergen_items", "allergens"
+  add_foreign_key "allergen_items", "menu_items"
   add_foreign_key "menu_items", "menus"
   add_foreign_key "menus", "restaurants"
   add_foreign_key "order_items", "menu_items"

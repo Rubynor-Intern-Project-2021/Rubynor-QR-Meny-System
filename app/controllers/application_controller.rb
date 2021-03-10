@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :authorize
+  before_action :setup_session_cart_array
 
   def total_amount
     @totalAmount=0
@@ -19,5 +20,9 @@ class ApplicationController < ActionController::Base
       unless Restaurant.find_by(id: session[:restaurant_id]) 
         redirect_to login_url, notice: "Please log in"
       end
+    end
+
+    def setup_session_cart_array
+      session[:cart] ||= []
     end
 end
