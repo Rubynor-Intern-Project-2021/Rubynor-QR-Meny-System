@@ -2,6 +2,7 @@ import React from 'react'
 import {useState} from 'react';
 import PropTypes from 'prop-types';
 import {useSpring, animated} from 'react-spring'
+import { HiOutlineTrash } from 'react-icons/hi';
 
 const orderItem = ({menuItem, quantity}) => {
 
@@ -62,7 +63,7 @@ const orderItem = ({menuItem, quantity}) => {
 
     const smallScreen = () => {
         return (
-            <animated.div style={slide} className="px-8 py-1.5 my-0.5 flex bg-white justify-between z-10 relative">
+            <animated.div style={slide} className="px-8 py-2 my-0.5 flex bg-white justify-between z-10 relative">
                 <div className="flex justify-between">
                     <div className="text-gray-800 ">
                         <div className="flex ">
@@ -89,7 +90,7 @@ const orderItem = ({menuItem, quantity}) => {
     const bigScreen = () => {
         return (
             <div className="flex justify-between z-10 relative">
-                <div className="pl-8 py-1.5">
+                <div className="pl-8 py-2">
 
                 <div className="flex justify-between">
                     <div className="text-gray-800 ">
@@ -109,27 +110,24 @@ const orderItem = ({menuItem, quantity}) => {
                 </div>
                 </div>
                 <div>
-                <animated.div style={slide} className="pr-8 py-1.5 text-gray-700 bg-white">
+                <animated.div style={slide} className="pr-8 py-2 text-gray-700 bg-white">
                     {totalPrice},00 NOK
                 </animated.div>
             </div>
             </div>
-
         )
-
     }
 
     const mql = window.matchMedia('(max-width: 600px)');
     let mobileView = mql.matches;
 
-
     return (
         <div className="relative ">
             {mobileView ? smallScreen() : bigScreen()}
-
-            <button id="delete" className="w-20 bg-green-300 py-1.5 absolute top-0 right-0 ">
-                Slett
+            <button id="delete" className="text-white text-lg w-20 bg-green-300 py-2 pl-8 absolute top-0 right-0 ">
+                <HiOutlineTrash />
             </button>
+
         </div>
     )
 }
