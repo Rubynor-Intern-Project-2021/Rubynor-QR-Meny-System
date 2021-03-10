@@ -61,26 +61,88 @@ class OrdersController < ApplicationController
 
   def total_price
     @totalPrice=0
-    temp=0
     session[:cart].each do |item|
-      temp=(MenuItem.find(item["item_id"]).price * item["amount"])
-      @totalPrice+=temp
-      p "pris for en #{temp}"
+      @totalPrice+=(MenuItem.find(item["item_id"]).price * item["amount"])
     end
-    p "total pris = #{@totalPrice}"
+    @totalPrice
   end
 
-  def total_amount
-    @totalAmount=0
+
+  def addToCart
+    session[:cart] ||= []
+    id=params[:menu_item_id].to_i
+    amount=params[:amount].to_i
+    exists=false
+
     session[:cart].each do |item|
-      @totalAmount+=(item["amount"])
+      if item["item_id"]==id
+        item["amount"]+=amount
+        exists=true
+        break
+      end
     end
-    p @totalAmount
+    if !exists
+      session[:cart] << { item_id: id, amount: amount }
+    end
+    p session[:cart]
+
+  end
+
+  def addOneToCart
+    id=params[:menu_item_id].to_i
+    exists=false
+
+    session[:cart].each do |item|
+      if item["item_id"]==id
+        item["amount"]+=1
+        exists=true
+        break
+      end
+    end
+    if !exists
+      session[:cart] << { item_id: id, amount: 1 }
+    end
+    p session[:cart]
+  end
+
+  def removeOneFromCart
+    id=params[:menu_item_id].to_i
+    session[:cart].each do |item|
+      if item["amount"]<=0
+        session[:cart].delete(item)
+      end
+
+      if item["item_id"]==id
+        item["amount"]-=1
+      end
+    end
+
+    p session[:cart]
+
+  end
+
+  def removeAllFromCart
+    id=params[:menu_item_id].to_i
+    session[:cart].each do |item|
+      if item["item_id"]==id
+        session[:cart].delete(item)
+      end
+    end
+    p session[:cart]
+  end
+
+  def emptyCart
+    session[:cart] = []
+    p session[:cart]
   end
 
 
   helper_method :total_price
-  helper_method :total_amount
+  helper_method :addToCart
+  helper_method :addOneToCart
+  helper_method :removeOneFromCart
+  helper_method :removeAllFromCart
+  helper_method :emptyCart
 
   private
     # Use callbacks to share common setup or constraints between actions.

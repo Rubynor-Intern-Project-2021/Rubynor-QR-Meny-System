@@ -17,16 +17,13 @@ Rails.application.routes.draw do
   resources :menu
   resources :restaurant
   resources :menu_item
-  controller :menu_item do
+  controller :orders do
     post 'add_to_cart' => :addToCart
     post 'add_one_to_cart' => :addOneToCart
     delete 'remove_one_from_cart' => :removeOneFromCart
     delete 'remove_all_from_cart' => :removeAllFromCart
     delete 'empty_cart' => :emptyCart
-  end
-  controller :orders do
     get 'total_price' => :total_price
-    get 'total_amount' => :total_amount
   end
   get "/selected_menu" => 'menu#selected_menu', as: 'selected_menu'
 
