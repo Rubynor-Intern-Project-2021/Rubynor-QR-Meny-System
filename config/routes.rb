@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :menu_items
     resources :orders
   end
+
   # Bruker
   resources :menu
   resources :restaurant
@@ -26,6 +27,22 @@ Rails.application.routes.draw do
     get 'total_price' => :total_price
   end
   get "/selected_menu" => 'menu#selected_menu', as: 'selected_menu'
+
+
+  namespace :api do
+    namespace :v1 do
+      controller :api do 
+        get 'total_price' => :total_price
+        get 'total_amount' => :total_amount
+        get 'add_to_cart' => :add_to_cart
+        get 'add_one_to_cart' => :add_one_to_cart 
+        get 'remove_one_from_cart' => :remove_one_from_cart
+        get 'remove_all_from_cart' => :remove_all_from_cart
+        get 'empty_cart' => :empty_cart
+
+      end
+    end
+  end
 
   # Admin
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
