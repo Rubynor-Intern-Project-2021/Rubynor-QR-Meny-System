@@ -3,12 +3,16 @@ class ApplicationController < ActionController::Base
 
   def total_amount
     @totalAmount=0
-    session[:cart].each do |item|
-      @totalAmount+=(item["amount"])
+    if session[:cart]!=nil
+      session[:cart].each do |item|
+        @totalAmount+=(item["amount"])
+      end
     end
     @totalAmount
   end
+
   helper_method :total_amount
+
 
   protected
     def authorize
