@@ -19,6 +19,7 @@ class Api::V1::ApiController < ApplicationController
     render json: totalAmount
   end
 
+  # /api/v1/add_to_cart?menu_item_id=x&amount=y
   def add_to_cart
     session[:cart] ||= []
     id=params[:menu_item_id].to_i
@@ -40,6 +41,7 @@ class Api::V1::ApiController < ApplicationController
     render json: { message: 'Successfully added to cart.' }, status: 200
   end
 
+  # /api/v1/add_to_cart?menu_item_id=x
   def add_one_to_cart
     id=params[:menu_item_id].to_i
     exists=false
@@ -59,6 +61,7 @@ class Api::V1::ApiController < ApplicationController
     render json: { message: 'Successfully added one to cart.' }, status: 200
   end
 
+  # /api/v1/add_to_cart?menu_item_id=x
   def remove_one_from_cart
     id=params[:menu_item_id].to_i
     session[:cart].each do |item|
@@ -77,6 +80,7 @@ class Api::V1::ApiController < ApplicationController
     render json: { message: 'Successfully removed one to cart.' }, status: 200
   end
 
+  # /api/v1/add_to_cart?menu_item_id=x
   def remove_all_from_cart
     id=params[:menu_item_id].to_i
     session[:cart].each do |item|
