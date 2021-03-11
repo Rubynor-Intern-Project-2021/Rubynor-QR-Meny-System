@@ -9,19 +9,12 @@ class OrderView extends Component {
     }
 
     componentDidMount() {
-        function refresh() {
+        this.interval = setInterval(() => 
             axios.get('/api/v1/get_orders?id=' + this.props.restaurantId) 
                 .then(res => {
                     const orders = res.data
                     this.setState({orders});  
-                })
-        }
-
-        refresh = refresh.bind(this);
-
-        refresh()
-
-        this.interval = setInterval(() => refresh);
+                }), 1000);
     }
 
     render() {
