@@ -106,8 +106,13 @@ class Api::V1::ApiController < ApplicationController
     render json: restaurant.orders
   end
 
-  def get_order_menu_item 
-    menu_item = OrderItem.find(params[:id]).menu_item
-    render json: menu_item
+  def get_order_items
+    order_items = []
+
+    Order.find(params[:id]).order_items.each do |order|
+      order_items << order.menu_item 
+    end
+
+    render json: order_items 
   end
 end

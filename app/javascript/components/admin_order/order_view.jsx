@@ -10,7 +10,6 @@ class OrderView extends Component {
 
     componentDidMount() {
         this.interval = setInterval(() => {
-            console.log("Refreshing");
             axios.get('/api/v1/get_orders?id=' + this.props.restaurantId) 
                 .then(res => {
                     const orders = res.data

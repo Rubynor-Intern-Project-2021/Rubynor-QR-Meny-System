@@ -41,7 +41,7 @@ Rails.application.routes.draw do
         get 'empty_cart' => :empty_cart
 
         get 'get_orders' => :get_orders
-        get 'get_order_menu_item' => :get_order_menu_item
+        get 'get_order_items' => :get_order_items
 
       end
     end

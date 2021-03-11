@@ -4,9 +4,16 @@ import axios from 'axios'
 class OrderItem extends Component {
     state = {}
 
+    constructor(props) {
+        super(props)
+
+        // Allow collapseField to use the state variable
+        this.collapseField = this.collapseField.bind(this);
+    }
+
     componentDidMount() {
         const orderItem = this.props.orderItem;
-        axios.get('/api/v1/get_order_menu_item?id=' + orderItem.id)
+        axios.get('/api/v1/get_order_items?id=' + orderItem.id)
             .then(res => {
                 this.setState({orderItem: orderItem, menuItem: res.data});
             })
@@ -16,16 +23,36 @@ class OrderItem extends Component {
     }
 
 
-    render() {
-        const orderItem = this.state.orderItem;
-        const menuItem = this.state.menuItem;
+    collapseField(e) {
+        let state = this.state;
+        state.collapsed = !state.collapsed;
+        this.setState(state)
+    }
 
-        if(!menuItem || !orderItem)
+    render() {
+
+        const orderItem = this.state.orderItem;
+        const menuItems = this.state.menuItem;
+
+
+        if(!menuItems || !orderItem)
             return (<p>Loading Data...</p>) 
 
-        function collapseField() {
+        let body = (<tbody></tbody>)
 
+        if(!this.state.collapsed) {
+            body = (
+                <tbody>
+                { menuItems.map((item, index) => (
+                    <tr key={index} className="h-10">
+                        <td className="pl-8">
+                            { item.name }
+                        </td>
+                     </tr>)
+                )}
+                </tbody>)
         }
+
 
         return (
             <table className="mb-4 table-fixed w-full text-white">
@@ -36,18 +63,12 @@ class OrderItem extends Component {
                       <strong>Sted: {orderItem.location} - Bestilling: {orderItem.id}</strong>
                     </div>
                     <div className="inline-block">
-                      <button onClick={collapseField} className="collapsible w-5 h-5"></button>
+                      <button onClick={this.collapseField} className="collapsible w-5 h-5"></button>
                     </div>
                   </th>
                 </tr>
               </thead>
-                <tbody>
-                  <tr className="h-10">
-                    <td className="pl-8">
-                      {menuItem.name}              
-                    </td>
-                  </tr>
-              </tbody>
+                {body}
             </table>
         )
     }
