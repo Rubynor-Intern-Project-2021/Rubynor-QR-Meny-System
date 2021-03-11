@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { FaArrowDown, FaArrowRight } from "react-icons/fa";
 
 class OrderItem extends Component {
     state = {}
@@ -39,6 +40,7 @@ class OrderItem extends Component {
             return (<p>Loading Data...</p>) 
 
         let body = (<tbody></tbody>)
+        let collapseButton = <FaArrowRight/>
 
         if(!this.state.collapsed) {
             body = (
@@ -51,8 +53,9 @@ class OrderItem extends Component {
                      </tr>)
                 )}
                 </tbody>)
-        }
 
+            collapseButton = <FaArrowDown/>
+        }
 
         return (
             <table className="mb-4 table-fixed w-full text-white">
@@ -63,7 +66,7 @@ class OrderItem extends Component {
                       <strong>Sted: {orderItem.location} - Bestilling: {orderItem.id}</strong>
                     </div>
                     <div className="inline-block">
-                      <button onClick={this.collapseField} className="collapsible w-5 h-5"></button>
+                      <button onClick={this.collapseField} className="collapsible w-5 h-5">{collapseButton}</button>
                     </div>
                   </th>
                 </tr>
