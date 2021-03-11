@@ -99,4 +99,15 @@ class Api::V1::ApiController < ApplicationController
  
     render json: { message: 'Successfully cleared cart.' }, status: 200
   end
+
+
+  def get_orders
+    restaurant = Restaurant.find(params[:id])
+    render json: restaurant.orders
+  end
+
+  def get_order_menu_item 
+    menu_item = OrderItem.find(params[:id]).menu_item
+    render json: menu_item
+  end
 end

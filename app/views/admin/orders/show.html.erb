@@ -1,13 +1,7 @@
 <div class="container mx-auto bg-gray-700 px-4 pb-1 pt-4">
   <p id="notice"><%= notice %></p>
 
-  <table>
-    <tbody>
-      <% @orders.order(:id).each do |order| %>
-        <%= render 'order_item', order: order %>
-     <% end %>
-    </tbody>
-  </table>
+  <%= react_component("admin_order/order_view", { restaurantId: @restaurant.id }) %>
 </div>
 <style>
     tr:nth-child(even) {background-color: gray;}
