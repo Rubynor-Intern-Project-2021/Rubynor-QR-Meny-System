@@ -17,6 +17,10 @@ class OrderView extends Component {
                 }), 1000);
     }
 
+    componentWillUnmount() {
+        clearInterval(this.interval)
+    }
+
     render() {
         if(this.state.orders.length == 0)
             return (<p className="text-gray-200">Waiting for orders...</p>)

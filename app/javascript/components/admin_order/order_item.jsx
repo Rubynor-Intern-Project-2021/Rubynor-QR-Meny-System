@@ -13,14 +13,8 @@ class OrderItem extends Component {
     }
 
     componentDidMount() {
-        const orderItem = this.props.orderItem;
-        axios.get('/api/v1/get_order_items?id=' + orderItem.id)
-            .then(res => {
-                this.setState({orderItem: orderItem, menuItem: res.data});
-            })
-    }
-    componentWillUnmount() {
-        clearInterval(this.interval)
+        this.state.orderItem = this.props.orderItem;
+        this.setState(this.state)
     }
 
 
@@ -31,13 +25,21 @@ class OrderItem extends Component {
     }
 
     render() {
+        if(!this.state.orderItem)
+            return <p>Waiting for order items</p>
 
         const orderItem = this.state.orderItem;
-        const menuItems = this.state.menuItem;
 
+        axios.get('/api/v1/get_order_items?id=' + orderItem.id).then(res => {
+                let state = this.state;
+                state.menuItems = res.data;
+                this.setState(state)
+        });
 
-        if(!menuItems || !orderItem)
-            return (<p>Loading Data...</p>) 
+        const menuItems = this.state.menuItems;
+        
+        if(!menuItems)
+            return <p>Loading..</p>
 
         let body = (<tbody></tbody>)
         let collapseButton = <FaArrowRight/>
