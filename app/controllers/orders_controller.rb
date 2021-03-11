@@ -89,6 +89,7 @@ class OrdersController < ApplicationController
   end
 
   def addOneToCart
+    session[:cart] ||= []
     id=params[:menu_item_id].to_i
     exists=false
 
