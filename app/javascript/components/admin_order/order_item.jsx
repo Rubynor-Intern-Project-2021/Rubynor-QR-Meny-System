@@ -15,6 +15,24 @@ class OrderItem extends Component {
     componentDidMount() {
         this.state.orderItem = this.props.orderItem;
         this.setState(this.state)
+
+        function refresh() {
+            axios.get('/api/v1/get_order_items?id=' + this.props.orderItem.id).then(res => {
+                    let state = this.state;
+                    state.menuItems = res.data;
+                    this.setState(state)
+            });
+        }
+
+        refresh = refresh.bind(this);
+
+        refresh();
+
+        this.interval = setInterval(refresh, 1000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
     }
 
 
@@ -29,12 +47,6 @@ class OrderItem extends Component {
             return <p>Waiting for order items</p>
 
         const orderItem = this.state.orderItem;
-
-        axios.get('/api/v1/get_order_items?id=' + orderItem.id).then(res => {
-                let state = this.state;
-                state.menuItems = res.data;
-                this.setState(state)
-        });
 
         const menuItems = this.state.menuItems;
         
