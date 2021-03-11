@@ -24,6 +24,12 @@
       </div>
       <!--<%= button_to 'Legg til(GAMMEL)', order_items_path(menu_item_id: @menu_item) %>-->
 
+      <div class="text-gray-700 pt-10">
+        Allergener:
+        <br>
+        <%= @menu_item.get_allergen_names_long.join(', ') %>
+      </div>
+
 
       <%= button_to 'Legg til flere av gjenstand', add_to_cart_path(menu_item_id: @menu_item, amount: 4) %>
       <%= button_to 'Legg til en gjenstand(+)', add_one_to_cart_path(menu_item_id: @menu_item) %>

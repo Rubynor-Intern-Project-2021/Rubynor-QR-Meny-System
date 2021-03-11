@@ -1,60 +1,67 @@
-<p id="notice"><%= notice %></p>
-
-<div class="py-32 pt-28 flex justify-center">
+<div class="lg:py-5 pt-20 flex justify-center ">
   <!-- Kort -->
   <div class="flex flex-col rounded-tl-3xl lg:rounded-2xl w-full bg-white lg:w-1/3">
-    <div class=" p-8">
       <div>
-        <p class="mb-2 lg:mb-5 text-gray-900 font-semibold text-xl">Handlekurv</p>
+        <p class="p-8 lg:mb-5 text-gray-900 font-semibold text-xl">Handlekurv</p>
       </div>
 
       <div>
-
         <% session[:cart].each do |item| %>
-          <% menu_item=MenuItem.find(item["item_id"])%>
+          <% menu_item = MenuItem.find(item["item_id"]) %>
           <%#= link_to menu_item_path(item.menu_item) do %>
-            <!-- Hver rad-->
-            <%= react_component("order_item", { menuItem: menu_item, quantity:item["amount"]}) %>
-          <% end %>
-        <%# end %>
-
-        <div>
-          <%= button_to 'Slett', empty_cart_path(), method: :delete, data: { confirm: 'Are you sure?' } %>
-        </div>
-
-        <%= form_with model: @order, local: true, builder: TailwindBuilder do |form| %>
-          <% if @order.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
-
-              <ul>
-                <% @order.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-          <% end %>
-          <div class="mt-8">
-            <%= form.label :"Kommentar til kjøkkenet"%>
-          </div>
-
-          <%= form.text_area :customer_info, placeholder: "F.eks. uten løk"%>
-
-          <div class="mt-4">
-            <%= form.label :"Bordnr"%>
-          </div>
-
-          <%= form.text_field :customer_info, placeholder: "F.eks. 1234", :maxlength=>"5" %>
-
+          <!-- Hver rad-->
           <div>
-            Totalt <%= total_price() %>,-
-          </div>
-
-          <div class="actions mt-10">
-            <%= form.submit 'Bestill' %>
+            <%= react_component("order_item", { menuItem: menu_item, quantity: item["amount"] }) %>
           </div>
         <% end %>
+        <%# end %>
+
+        <div class="px-8 ">
+          <div>
+            <%= button_to 'Slett handlekurv', empty_cart_path, method: :delete, data: { confirm: 'Are you sure?' }, class: " text-xs mt-3 p-2 rounded-sm  bg-white border-2 border-green-300"%>
+          </div>
+
+          <%= form_with model: @order, local: true, builder: TailwindBuilder do |form| %>
+            <% if @order.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+                <ul>
+                  <% @order.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div class="mt-8">
+              <%= form.label :"Kommentar til kjøkkenet" %>
+            </div>
+
+            <%= form.text_area :customer_info, placeholder: "F.eks. uten løk" %>
+            <div class="mt-4">
+              <%= form.label :"Bordnr" %>
+            </div>
+            <%= form.text_field :customer_info, placeholder: "F.eks. 1234", :maxlength => "5" %>
+
+            <div class=" w-full bg-white mt-12">
+              <div class="flex justify-between ">
+                <div class="font-semibold">
+                  Totalt
+                </div>
+                <div class="font-semibold">
+                  <%= total_price() %>0 NOK
+                </div>
+              </div>
+
+              <div class="actions ">
+                <%= form.submit 'Bestill', class: "uppercase bg-white mb-5 mt-1 py-2 w-full  border-green-300 border-solid border-2" %>
+              </div>
+            </div>
+        <% end %>
+
+        </div>
       </div>
-    </div>
   </div>
 </div>
+
+
