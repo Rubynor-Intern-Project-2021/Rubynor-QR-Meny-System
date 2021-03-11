@@ -1,4 +1,5 @@
 class OrderItemsController < ApplicationController
+  skip_before_action :authorize
   include CurrentOrder
   before_action :set_order, only: [:create]
 

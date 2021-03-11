@@ -1,8 +1,9 @@
 import React from 'react'
-import {useState} from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
-import {useSpring, animated} from 'react-spring'
-import { HiOutlineTrash } from 'react-icons/hi';
+import { useSpring, animated } from 'react-spring'
+import { HiOutlineTrash } from 'react-icons/hi'
+import axios from "axios";
 
 const orderItem = ({menuItem, quantity}) => {
 
@@ -19,6 +20,38 @@ const orderItem = ({menuItem, quantity}) => {
     const [price, setPrice] = useState(parseInt(menuItem.price));
     const [totalPrice, setTotalPrice] = useState(parseInt(menuItem.price * quantity));
 
+    function AddOne() {
+        axios.get('/api/v1/add_one_to_cart/',
+            {
+                params: {menu_item_id: menuItem.id}})
+            .then(response => {
+                console.log(response.data)
+            }).catch(error => {
+            console.log(error);
+        })
+    }
+
+    function RemoveOne() {
+        axios.get('/api/v1/remove_one_from_cart',
+            {
+                params: {menu_item_id: menuItem.id}})
+            .then(response => {
+                console.log(response.data)
+            }).catch(error => {
+            console.log(error);
+        })
+    }
+
+    function RemoveAll() {
+        axios.get('/api/v1/remove_all_from_cart',
+            {
+                params: {menu_item_id: menuItem.id}})
+            .then(response => {
+                console.log(response.data)
+            }).catch(error => {
+            console.log(error);
+        })
+    }
 
     //react spring -> animasjon
     const slide = useSpring({
@@ -30,7 +63,6 @@ const orderItem = ({menuItem, quantity}) => {
         }
     });
 
-
     const total_price = (val) => {
         setTotalPrice(price * val);
     }
@@ -39,18 +71,20 @@ const orderItem = ({menuItem, quantity}) => {
         setZero(false)
         setNum(num + 1);
         total_price(num + 1)
-
+        AddOne()
     }
 
     const decNum = () => {
-        setZero(false)
+
         if (num > 1) {
+            setZero(false)
             setNum(num - 1);
-            total_price(num - 1)
+            total_price(num - 1);
+            RemoveOne();
         } else {
             setNum(0);
-            total_price(0)
-            setZero(true)
+            total_price(0);
+            setZero(true);
         }
     }
 
@@ -59,7 +93,9 @@ const orderItem = ({menuItem, quantity}) => {
             ...item,
             quantity: event.target.value
         })
+
     }
+
 
     const smallScreen = () => {
         return (
@@ -124,10 +160,12 @@ const orderItem = ({menuItem, quantity}) => {
     return (
         <div className="relative ">
             {mobileView ? smallScreen() : bigScreen()}
-            <button id="delete" className="text-white text-lg w-20 bg-green-300 py-2 pl-8 absolute top-0 right-0 ">
+            <button onClick={() => RemoveAll()} id="delete" className="text-white text-lg w-20 bg-green-300 py-2 pl-8 absolute top-0 right-0 ">
                 <HiOutlineTrash />
             </button>
-
+            <button onClick={() => RemoveAll()} id="delete" className="text-white text-lg w-20 bg-red-300 py-2 pl-8 ">
+                slett
+            </button>
         </div>
     )
 }

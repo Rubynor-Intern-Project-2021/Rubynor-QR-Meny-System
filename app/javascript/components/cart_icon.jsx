@@ -2,10 +2,33 @@ import React from 'react'
 import {useState} from 'react';
 import { RiShoppingBag2Line } from 'react-icons/ri';
 import { BsFillCircleFill } from 'react-icons/bs';
+import axios from "axios";
+import {useEffect} from 'react';
+import { createStore } from 'redux';
+import {inc, dec, store} from './configureStore'
 
 
 const cartIcon = () => {
-    const [amount, setAmount] = useState(4)
+    const [amount, setAmount] = useState('')
+
+    store.subscribe(() => {
+        console.log(store.getState())
+        setAmount(store.getState())
+    });
+
+    function GetAmount() {
+        axios.get('/api/v1/total_amount')
+            .then(response => {
+                console.log(response.data)
+                setAmount(response.data)
+            }).catch(error => {
+            console.log(error);
+        })
+    }
+
+    useEffect(() =>{
+        GetAmount()
+    }, [])
 
     return (
         <div className="relative">

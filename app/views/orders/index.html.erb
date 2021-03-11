@@ -1,31 +1,56 @@
-<p id="notice"><%= notice %></p>
+<div class="lg:py-5 pt-20 flex justify-center ">
+  <!-- Kort -->
+  <div class="flex flex-col rounded-tl-3xl lg:rounded-2xl w-full bg-white lg:w-1/3">
+    <div>
+      <p class="p-8 lg:mb-5 text-gray-900 font-semibold text-xl">Handlekurv</p>
+    </div>
 
-<h1>Orders</h1>
+    <div>
+      <% session[:cart].each do |item| %>
+        <% menu_item = MenuItem.find(item["item_id"]) %>
+        <%#= link_to menu_item_path(item.menu_item) do %>
+        <!-- Hver rad-->
+        <div>
+          <%= react_component("order_item", { menuItem: menu_item, quantity: item["amount"] }) %>
+        </div>
+      <% end %>
+      <%# end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Order status</th>
-      <th>Customer info</th>
-      <th>Location</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <div class="px-8 ">
+        <div>
+          <%= button_to 'Slett handlekurv', empty_cart_path, method: :delete, data: { confirm: 'Are you sure?' }, class: " text-xs mt-3 p-2 rounded-sm  bg-white border-2 border-green-300"%>
+        </div>
 
-  <tbody>
-    <% @orders.each do |order| %>
-      <tr>
-        <td><%= order.order_status %></td>
-        <td><%= order.customer_info %></td>
-        <td><%= order.location %></td>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <%= form_with local: true, builder: TailwindBuilder do |form| %>
+          <div class="mt-8">
+            <%= form.label :"Kommentar til kjøkkenet" %>
+          </div>
 
-<br>
+          <%= form.text_area :customer_info, placeholder: "F.eks. uten løk" %>
+          <div class="mt-4">
+            <%= form.label :"Bordnr" %>
+          </div>
+          <%= form.text_field :customer_info, placeholder: "F.eks. 1234", :maxlength => "5" %>
 
-<%= link_to 'New Order', new_order_path %>
+          <div class=" w-full bg-white mt-12">
+            <div class="flex justify-between ">
+              <div class="font-semibold">
+                Totalt
+              </div>
+              <div class="font-semibold">
+                <%= total_price() %>0 NOK
+              </div>
+            </div>
+
+            <div class="actions ">
+              <%= form.submit 'Bestill', class: "uppercase bg-white mb-5 mt-1 py-2 w-full  border-green-300 border-solid border-2" %>
+            </div>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
