@@ -14,6 +14,7 @@ class OrderItem extends Component {
 
     componentDidMount() {
         this.state.orderItem = this.props.orderItem;
+        this.state.collapsed = true;
         this.setState(this.state)
 
         function refresh() {
@@ -79,7 +80,7 @@ class OrderItem extends Component {
                     <div className="ml-8 inline-block w-9/12">
                       <strong>Sted: {orderItem.location} - Bestilling: {orderItem.id}</strong>
                     </div>
-                    <div className="inline-block">
+                    <div className="inline-block float-right pr-10">
                       <button onClick={this.collapseField} className="collapsible w-5 h-5">{collapseButton}</button>
                     </div>
                   </th>
