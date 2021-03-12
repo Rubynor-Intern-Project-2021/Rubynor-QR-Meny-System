@@ -40,6 +40,9 @@ Rails.application.routes.draw do
         get 'remove_all_from_cart' => :remove_all_from_cart
         get 'empty_cart' => :empty_cart
 
+        get 'get_orders' => :get_orders
+        get 'get_order_items' => :get_order_items
+
       end
     end
   end
