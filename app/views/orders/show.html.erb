@@ -46,7 +46,8 @@
             </div>
 
             <div class="actions ">
-              <%= form.submit 'Bestill', class: "uppercase bg-white mb-5 mt-1 py-2 w-full  border-green-300 border-solid border-2" %>
+              <%= link_to 'Legg til', api_v1_create_order_path(restaurant_id: 2, info: :customer_info, location: "7 og 30 mil norover, litt øst, og oppover"), class: "uppercase bg-white mb-5 mt-1 py-2 w-full  border-green-300 border-solid border-2" %>
+
             </div>
           </div>
         <% end %>

@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       controller :api do
+        get 'create_order' => :create_order
         get 'total_price' => :total_price
         get 'total_amount' => :total_amount
         get 'add_to_cart' => :add_to_cart

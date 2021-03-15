@@ -102,6 +102,25 @@ class Api::V1::ApiController < ApplicationController
   end
 
 
+  def create_order
+
+    p "create order 1"
+    id=params[:restaurant_id]
+    info=params[:customer_info]
+    location=params[:location]
+
+    p "create order 2"
+    @order = Order.create(restaurant_id: id, order_status: 0, customer_info: info, location: location)
+
+    p "create order 3"
+    session[:cart].each do |item|
+      @order_item=@order.add_menu_item(item)
+    end
+
+    p "create order 4"
+    render json: { message: 'Successfully created cart.' }, status: 200
+  end
+
   def get_orders
     restaurant = Restaurant.find(params[:id])
     render json: restaurant.orders
