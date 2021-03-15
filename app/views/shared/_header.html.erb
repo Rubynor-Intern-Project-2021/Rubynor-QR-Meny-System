@@ -4,7 +4,7 @@
     <%= link_to @restaurant.name, restaurant_path(:id => @restaurant.id), class: "text-2xl pl-2 font-semibold uppercase text-gray-900 lg:text-white hover:text-gray-600 lg:hover:text-gray-200 no-underline hover:text-white hover:no-underline" %>
   </div>
   <div class="">
-    <%= link_to orders_path() do %>
+    <%= link_to order_path(:id => @restaurant.id) do %>
       <%= react_component("cart_icon")%>
     <% end %>
   </div>

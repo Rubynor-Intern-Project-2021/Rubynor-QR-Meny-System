@@ -6,33 +6,25 @@
     </div>
 
     <div>
+
       <% session[:cart].each do |item| %>
+        <%list = Hash.new%>
         <% menu_item = MenuItem.find(item["item_id"]) %>
+        <%list[menu_item.to_json] = item["amount"] %>
         <%#= link_to menu_item_path(item.menu_item) do %>
         <!-- Hver rad-->
         <div>
-          <%= react_component("order_item", { menuItem: menu_item, quantity: item["amount"] }) %>
+          <%= react_component("order_list", { orderItems: list }) %>
         </div>
-      <% end %>
       <%# end %>
+      <% end %>
 
       <div class="px-8 ">
         <div>
-          <%= button_to 'Slett handlekurv', empty_cart_path, method: :delete, data: { confirm: 'Are you sure?' }, class: " text-xs mt-3 p-2 rounded-sm  bg-white border-2 border-green-300"%>
+          <%= button_to 'Slett handlekurv', empty_cart_path, method: :delete, data: { confirm: 'Are you sure?' }, class: " text-xs mt-3 p-2 rounded-sm  bg-white border-2 border-green-300" %>
         </div>
 
-        <%= form_with model: @order, local: true, builder: TailwindBuilder do |form| %>
-          <% if @order.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
-
-              <ul>
-                <% @order.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-          <% end %>
+        <%= form_with local: true, builder: TailwindBuilder do |form| %>
           <div class="mt-8">
             <%= form.label :"Kommentar til kjøkkenet" %>
           </div>
