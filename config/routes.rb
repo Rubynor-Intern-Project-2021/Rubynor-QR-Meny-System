@@ -32,14 +32,17 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      controller :api do 
+      controller :api do
         get 'total_price' => :total_price
         get 'total_amount' => :total_amount
         get 'add_to_cart' => :add_to_cart
-        get 'add_one_to_cart' => :add_one_to_cart 
+        get 'add_one_to_cart' => :add_one_to_cart
         get 'remove_one_from_cart' => :remove_one_from_cart
         get 'remove_all_from_cart' => :remove_all_from_cart
         get 'empty_cart' => :empty_cart
+
+        get 'get_orders' => :get_orders
+        get 'get_order_items' => :get_order_items
 
       end
     end

@@ -4,10 +4,11 @@
     <%= link_to @restaurant.name, restaurant_path(:id => @restaurant.id), class: "text-2xl pl-2 font-semibold uppercase text-gray-900 lg:text-white hover:text-gray-600 lg:hover:text-gray-200 no-underline hover:text-white hover:no-underline" %>
   </div>
   <div class="">
-    <%= link_to order_path(1)  do %>
+    <%= link_to orders_path() do %>
       <%= react_component("cart_icon")%>
     <% end %>
   </div>
+
 
   <div class="block lg:hidden">
     <button id="nav-toggle" class="flex items-center px-3 py-2 border rounded text-gray-600 hover:text-gray-600">
