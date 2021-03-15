@@ -12,7 +12,8 @@ export const dec = () => {
     };
 };
 
-export const counter = (state = 0, action) => {
+
+export const countReducer = (state = 0, action) => {
     switch (action.type) {
         case 'INC':
             return state + 1;
@@ -21,4 +22,15 @@ export const counter = (state = 0, action) => {
     }
 };
 
-export const store = createStore(counter);
+export const orderListReducer = (state = [], action) => {
+    switch(action.type) {
+        case 'SET_ORDERS':
+            return action.payload;
+        case 'REMOVE_ORDER':
+            return order => action.payload.id !== order.id;
+        default:
+            throw new Error();
+    }
+};
+
+export const store = createStore(countReducer);
