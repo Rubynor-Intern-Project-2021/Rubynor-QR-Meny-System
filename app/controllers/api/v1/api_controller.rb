@@ -21,6 +21,7 @@ class Api::V1::ApiController < ApplicationController
 
   # /api/v1/add_to_cart?menu_item_id=x&amount=y
   def add_to_cart
+
     session[:cart] ||= []
     id=params[:menu_item_id].to_i
     amount=params[:amount].to_i

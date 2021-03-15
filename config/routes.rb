@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   controller :orders do
     post 'add_to_cart' => :addToCart
     post 'add_one_to_cart' => :addOneToCart
+    post 'create_order' => :create_order
     delete 'remove_one_from_cart' => :removeOneFromCart
     delete 'remove_all_from_cart' => :removeAllFromCart
     delete 'empty_cart' => :emptyCart

@@ -1,8 +1,4 @@
 class OrderItemsController < ApplicationController
-  skip_before_action :authorize
-  include CurrentOrder
-  before_action :set_order, only: [:create]
-
   before_action :set_order_item, only: %i[ show edit update destroy ]
 
   # GET /order_items or /order_items.json
@@ -25,14 +21,20 @@ class OrderItemsController < ApplicationController
 
   # POST /order_items or /order_items.json
   def create
-    menu_item=MenuItem.find(params[:menu_item_id])
-    p "test51"
-    @order_item=@order.add_menu_item(menu_item)
 
-    p "test5"
+    menu_item=MenuItem.find(params[:menu_item])
+    info=(params[:info])
+    location=(params[:location])
+
+    @order = Order.create(restaurant_id: menu_item.menu.restaurant.id, order_status: 0, customer_info: info, location: location)
+
+    p menu_item
+
+    session[:cart].each do |item|
+      @order_item=@order.add_menu_item(item)
+    end
 
     respond_to do |format|
-      p "test6"
       if @order_item.save
         format.html { redirect_to @order_item.order, notice: "Order item was successfully created." }
         format.json { render :show, status: :created, location: @order_item }
@@ -73,6 +75,6 @@ class OrderItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_item_params
-      params.require(:order_item).permit(:menu_item_id)
+      params.require(:order_item).permit(:menu_item_id, :quantity, :location, :info)
     end
 end

@@ -5,7 +5,6 @@ class OrdersController < ApplicationController
 
   # GET /orders or /orders.json
   def index
-    @orders = Order.all
   end
 
   # GET /orders/1 or /orders/1.json
@@ -23,8 +22,10 @@ class OrdersController < ApplicationController
 
   # POST /orders or /orders.json
   def create
+    p "testing"
     @order = Order.new(order_params)
 
+    p "testing"
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: "Order was successfully created." }
@@ -59,12 +60,14 @@ class OrdersController < ApplicationController
     end
   end
 
+
+
   def total_price
-    @totalPrice=0
+    totalPrice=0
     session[:cart].each do |item|
-      @totalPrice+=(MenuItem.find(item["item_id"]).price * item["amount"])
+      totalPrice+=((MenuItem.find(item["item_id"]).price || 0) * item["amount"])
     end
-    @totalPrice
+    totalPrice
   end
 
 
@@ -89,6 +92,7 @@ class OrdersController < ApplicationController
   end
 
   def addOneToCart
+    session[:cart] ||= []
     id=params[:menu_item_id].to_i
     exists=false
 
@@ -137,6 +141,7 @@ class OrdersController < ApplicationController
   end
 
 
+  helper_method :create_order
   helper_method :total_price
   helper_method :addToCart
   helper_method :addOneToCart
