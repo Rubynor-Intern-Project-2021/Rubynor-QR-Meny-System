@@ -34,7 +34,7 @@
       <%= button_to 'Tøm handlekurv', empty_cart_path(), method: :delete %>
 
       <%= react_component("add_to_cart", { menuItem: @menu_item }) %>
-      <%= button_to 'Legg til flere av gjenstand', add_to_cart_path(menu_item_id: @menu_item, amount: 4) %>
+      <%= link_to 'Legg til flere av gjenstand', add_to_cart_path(menu_item_id: @menu_item, amount: 4) %>
 
       <%= total_amount() %>
     </div>

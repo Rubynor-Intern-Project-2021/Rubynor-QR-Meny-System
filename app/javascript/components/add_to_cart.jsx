@@ -1,6 +1,7 @@
 import React from 'react'
 import {useState} from 'react';
 import PropTypes from 'prop-types';
+import axios from "axios";
 
 const addToCart = ({menuItem}) => {
 
@@ -32,6 +33,18 @@ const addToCart = ({menuItem}) => {
             setNum(0);
         }
     }
+    function addMultipleToCart() {
+        console.log("TEEST"+menuItem.id)
+        axios.get('/api/v1/add_to_cart',
+            {
+                params: {menu_item_id: menuItem.id, amount: num}})
+            .then(response => {
+                console.log(response.data)
+                setNum(0)
+            }).catch(error => {
+            console.log(error);
+        })
+    }
 
 
 
@@ -53,7 +66,7 @@ const addToCart = ({menuItem}) => {
             <div className="text-gray-700 ">
                 {totalPrice},00 kr
             </div>
-            <div>  </div>
+            <button onClick={addMultipleToCart}>ADD TO CART</button>
 
         </div>
     )
