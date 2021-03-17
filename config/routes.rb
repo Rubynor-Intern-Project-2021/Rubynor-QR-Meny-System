@@ -19,9 +19,9 @@ Rails.application.routes.draw do
   resources :restaurant
   resources :menu_item
   controller :orders do
+    post 'make_order' => :make_order
     post 'add_to_cart' => :addToCart
     post 'add_one_to_cart' => :addOneToCart
-    post 'create_order' => :create_order
     delete 'remove_one_from_cart' => :removeOneFromCart
     delete 'remove_all_from_cart' => :removeAllFromCart
     delete 'empty_cart' => :emptyCart
@@ -33,6 +33,8 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       controller :api do
+        #get 'create_order' => :create_order
+
         get 'total_price' => :total_price
         get 'total_amount' => :total_amount
         get 'add_to_cart' => :add_to_cart

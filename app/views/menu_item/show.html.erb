@@ -23,15 +23,12 @@
         <%= @menu_item.description %>
       </div>
 
-      <%= button_to 'Legg til', order_items_path(menu_item: @menu_item, info: "yo", location: "7 og 30 mil norover, litt øst, og oppover") %>
-
       <div class="text-gray-700 pt-10">
         Allergener:
         <br>
         <%= @menu_item.get_allergen_names_long.join(', ') %>
       </div>
 
-      <%= button_to 'Tøm handlekurv', empty_cart_path(), method: :delete %>
 
       <%= react_component("add_to_cart", { menuItem: @menu_item }) %>
       <%= link_to 'Legg til flere av gjenstand', add_to_cart_path(menu_item_id: @menu_item, amount: 4) %>

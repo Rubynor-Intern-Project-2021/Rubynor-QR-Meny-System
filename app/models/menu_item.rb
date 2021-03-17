@@ -1,7 +1,6 @@
 class MenuItem < ApplicationRecord
   has_many :order_items
   has_many :allergen_items
-  before_destroy :ensure_not_referenced_by_any_order_item
   belongs_to :menu
   has_one_attached :image
 

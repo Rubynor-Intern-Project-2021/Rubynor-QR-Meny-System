@@ -1,10 +1,7 @@
 class Admin::MenusController < ApplicationController
   before_action :set_menu, only: %i[ show edit update destroy ]
 
-  # GET /admin_menus or /admin_menus.json
-  def index
-    @admin_menus = Menu.all
-  end
+
 
   # GET /admin_menus/1 or /admin_menus/1.json
   def show
@@ -42,10 +39,8 @@ class Admin::MenusController < ApplicationController
     respond_to do |format|
       if @menu.update(menu_params)
         format.html { redirect_to admin_restaurant_url(@menu.restaurant.id), notice: "Menu was successfully updated." }
-        format.json { render :show, status: :ok, location: @menu }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @menu.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -55,7 +50,6 @@ class Admin::MenusController < ApplicationController
     @menu.destroy
     respond_to do |format|
       format.html { redirect_to admin_restaurant_url(@menu.restaurant.id), notice: "Menu was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 

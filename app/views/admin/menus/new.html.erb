@@ -1,9 +1,9 @@
+<%= link_to '<', admin_restaurant_path(@restaurant.id), class: "pr-5" %>
+<div class="flex justify-center">
 
-<div class="m-4 space-y-8">
-    <div>
-        <%= link_to 'Back',  admin_restaurant_url(@menu.restaurant.id)%>
-        <p class="text-4xl">New Menu</p>
-    </div>
+  <div>
+    <h1 class="text-4xl m-4">Editing Menu</h1>
+
     <%= render 'form_new', menu: @menu %>
-
+  </div>
 </div>

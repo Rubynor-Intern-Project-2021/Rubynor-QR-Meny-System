@@ -10,7 +10,7 @@
   </div>
 <% end %>
 <div  class=" lg:flex lg:justify-center ">
-  <div class="flex flex-col bg-white rounded-2xl lg:w-1/3">
+  <div class="flex flex-col rounded-2xl lg:w-1/3">
 
     <div>
       <% if menu_item.image.attached? %>
@@ -30,31 +30,26 @@
       </div>
 
       <div class="field text-gray-700 pt-5">
-        <%= form.label :number %><br>
-        <%= form.text_field :number %>
+        <%= form.label :number, class: 'text-gray-700' %><br>
+        <%= form.text_field :number, class: 'w-80 border-gray-800 rounded-lg' %>
       </div>
       <div class="field text-gray-700 pt-5">
-        <%= form.label :name %><br>
-        <%= form.text_field :name %>
-      </div>
-
-      <div class="field text-gray-700 pt-5">
-        <%= form.label :image_url %><br>
-        <%= form.text_field :image_url %>
+        <%= form.label :name, class: 'text-gray-700' %><br>
+        <%= form.text_field :name, class: 'w-80 border-gray-800 rounded-lg' %>
       </div>
 
       <div class="field text-gray-700 pt-5">
-        <%= form.label :description %><br>
-        <%= form.text_area :description %>
+        <%= form.label :description, class: 'text-gray-700' %><br>
+        <%= form.text_area :description, class: 'w-80 border-gray-800 rounded-lg' %>
       </div>
 
       <div class="field text-gray-700 pt-5">
-        <%= form.label :price %><br>
-        <%= form.text_field :price %>
+        <%= form.label :price, class: 'text-gray-700' %><br>
+        <%= form.text_field :price, class: 'w-80 border-gray-800 rounded-lg' %>
       </div>
 
       <div class="actions text-gray-700 pt-5">
-        <%= form.submit %>
+        <%= form.submit class: 'btn-indigo' %>
       </div>
     </div>
   </div>
