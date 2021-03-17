@@ -8,9 +8,11 @@ class Order < ApplicationRecord
   }
 
   def add_menu_item(menu_item)
-
+    p "test add_menu_item"
     current_item = order_items.build(menu_item_id: menu_item["item_id"])
     current_item.quantity = menu_item["amount"]
+    current_item.save
+    p current_item
 
     current_item
   end

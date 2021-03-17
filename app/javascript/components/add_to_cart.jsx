@@ -11,7 +11,7 @@ const addToCart = ({menuItem}) => {
     }
 
     const [item, setItem] = useState(menuItem);
-    const [num, setNum] = useState(0);
+    const [num, setNum] = useState(1);
     const [price, setPrice] = useState(parseInt(menuItem.price));
     const [totalPrice, setTotalPrice] = useState(parseInt(menuItem.price * 0));
 
