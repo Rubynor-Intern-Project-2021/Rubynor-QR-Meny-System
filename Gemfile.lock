@@ -115,6 +115,7 @@ GEM
     nokogiri (1.11.2)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
+    pg (1.2.3)
     pry (0.14.0)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -195,7 +196,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.4.2)
     tailwindcss-rails (0.3.3)
       rails (>= 6.0.0)
     thor (1.1.0)
@@ -237,6 +237,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   jquery-rails
   listen (~> 3.2)
+  pg
   pry-rails
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.4)
@@ -246,7 +247,6 @@ DEPENDENCIES
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
-  sqlite3 (~> 1.4)
   tailwindcss-rails (~> 0.3.1)
   turbolinks (~> 5)
   tzinfo-data
