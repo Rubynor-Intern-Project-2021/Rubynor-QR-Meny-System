@@ -1,7 +1,5 @@
 class OrdersController < ApplicationController
   skip_before_action :authorize
-  before_action :set_order, only: %i[ show edit update destroy ]
-  rescue_from ActiveRecord::RecordNotFound, with: :invalid_order
 
   # GET /orders or /orders.json
   def index
@@ -158,7 +156,7 @@ class OrdersController < ApplicationController
 
     session[:cart]=[]
     p "create order 4"
-    redirect_to restaurant_path(id), notice: "Bestillingen er sendt"
+    redirect_to restaurant_path(id)
   end
 
   helper_method :make_order
@@ -170,18 +168,9 @@ class OrdersController < ApplicationController
   helper_method :emptyCart
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_order
-      @order = Order.find(params[:id])
-    end
 
     # Only allow a list of trusted parameters through.
     def order_params
       params.require(:order).permit(:order_status, :customer_info, :location, :restaurant_id)
-    end
-
-    def invalid_order
-      logger.error "Attempt to access invalid cart #{params[:id]}"
-      redirect_to restaurant_index_url, notice: 'Invalid order'
     end
 end
