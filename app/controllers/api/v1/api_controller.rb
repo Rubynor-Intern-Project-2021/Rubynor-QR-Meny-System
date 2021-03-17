@@ -1,4 +1,6 @@
 class Api::V1::ApiController < ApplicationController
+  skip_before_action :authorize
+
   def total_price
     totalPrice=0
 
