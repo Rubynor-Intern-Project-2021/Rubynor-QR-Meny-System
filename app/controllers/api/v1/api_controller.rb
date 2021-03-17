@@ -102,6 +102,7 @@ class Api::V1::ApiController < ApplicationController
   end
 
 
+=begin
   def create_order
 
     p "create order 1"
@@ -115,11 +116,13 @@ class Api::V1::ApiController < ApplicationController
     p "create order 3"
     session[:cart].each do |item|
       @order_item=@order.add_menu_item(item)
+      p item
     end
 
     p "create order 4"
     render json: { message: 'Successfully created cart.' }, status: 200
   end
+=end
 
   def get_orders
     restaurant = Restaurant.find(params[:id])

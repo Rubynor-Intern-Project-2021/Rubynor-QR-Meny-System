@@ -141,8 +141,27 @@ class OrdersController < ApplicationController
     p session[:cart]
   end
 
+  def make_order
+    p "create order 1"
+    id=params[:restaurant_id]
+    info=params[:customer_info]
+    location=params[:location]
 
-  helper_method :create_order
+    p "create order 2"
+    @order = Order.create(restaurant_id: id, order_status: 0, customer_info: info, location: location)
+
+    p "create order 3"
+    session[:cart].each do |item|
+      @order_item=@order.add_menu_item(item)
+      p item
+    end
+
+    session[:cart]=[]
+    p "create order 4"
+    redirect_to restaurant_path(id), notice: "Bestillingen er sendt"
+  end
+
+  helper_method :make_order
   helper_method :total_price
   helper_method :addToCart
   helper_method :addOneToCart
