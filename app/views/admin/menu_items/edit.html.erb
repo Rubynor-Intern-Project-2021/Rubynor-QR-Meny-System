@@ -1,5 +1,11 @@
-<h1>Editing Menu Item</h1>
 
-<%= render 'form_edit', menu_item: @menu_item %>
 
-<%= link_to 'Back', admin_restaurant_path(@menu_item.menu.restaurant) %>
+<%= link_to '<', admin_restaurant_path(@menu_item.menu.restaurant), class: "pr-5" %>
+<div class="flex justify-center">
+
+  <div>
+    <h1 class="text-4xl m-4">New Menu Item</h1>
+
+    <%= render 'form_edit', menu_item: @menu_item %>
+  </div>
+</div>

@@ -7,7 +7,7 @@ class TotalPrice extends Component {
     
 
     componentDidMount() {
-        function refresh() {
+         let refresh = () => {
             axios.get('/api/v1/total_price') 
                 .then(res => {
                     const total_price = res.data
