@@ -65,4 +65,4 @@ gem 'rqrcode'
 gem 'pry-rails'
 
 gem 'pg'
-gem "azure-storage-blob", require: false
+gem "azure-storage", require: false
