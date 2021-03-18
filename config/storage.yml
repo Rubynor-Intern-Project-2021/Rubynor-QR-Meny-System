@@ -25,7 +25,8 @@ local:
 microsoft:
   service: AzureStorage
   storage_account_name: qrmenystorage
-  storage_access_key: <%= Rails.application.credentials.dig(:azure_storage, :storage_access_key) %>
+  #storage_access_key: <%= Rails.application.credentials.dig(:azure_storage, :storage_access_key) %>
+  storage_access_key: <%= ENV['STORAGE_ACCESS_KEY'] %>
   container: image-container
 
 # mirror:
