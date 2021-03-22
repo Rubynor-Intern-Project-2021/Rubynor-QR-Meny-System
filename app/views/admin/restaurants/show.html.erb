@@ -62,6 +62,15 @@
       </tr>
     </tbody>
   </table>
+
+  <table>
+    <tbody>
+    <% @restaurant.menus.each do |menu| %>
+    <% menu_items = menu.menu_items%>
+      <%= react_component("admin_menu/menu_item", { menu: menu, menuItems: menu_items })%>
+    <% end %>
+     </tbody>
+  </table>
 </div>
 <style>
     tr:nth-child(even) {background-color: gray;}
