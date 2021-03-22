@@ -98,6 +98,7 @@ GEM
     faraday_middleware (0.14.0)
       faraday (>= 0.7.4, < 1.0)
     ffi (1.15.0)
+    ffi (1.15.0-x64-mingw32)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     i18n (1.8.9)
@@ -129,7 +130,10 @@ GEM
     nokogiri (1.11.2)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
+    nokogiri (1.11.2-x64-mingw32)
+      racc (~> 1.4)
     pg (1.2.3)
+    pg (1.2.3-x64-mingw32)
     pry (0.14.0)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -190,6 +194,8 @@ GEM
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
       ffi (~> 1.9)
+    sassc (2.4.0-x64-mingw32)
+      ffi (~> 1.9)
     sassc-rails (2.1.2)
       railties (>= 4.0.0)
       sassc (>= 2.0)
@@ -220,6 +226,9 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (1.2.9)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2021.1)
+      tzinfo (>= 1.0.0)
+    wdm (0.1.1)
     web-console (4.1.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -242,6 +251,7 @@ GEM
 
 PLATFORMS
   ruby
+  x64-mingw32
 
 DEPENDENCIES
   azure-storage
@@ -265,6 +275,7 @@ DEPENDENCIES
   tailwindcss-rails (~> 0.3.1)
   turbolinks (~> 5)
   tzinfo-data
+  wdm (~> 0.1.0)
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)

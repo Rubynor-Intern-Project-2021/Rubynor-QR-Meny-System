@@ -1,6 +1,6 @@
 import React from 'react'
 import {useState} from 'react';
-import {inc, dec, store} from './configureStore'
+import {inc, dec, store} from '../configureStore'
 
 
 const testButtons = () => {

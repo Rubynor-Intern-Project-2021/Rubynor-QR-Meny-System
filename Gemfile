@@ -31,6 +31,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # Nicole har lagt til
 gem 'jquery-rails'
 gem 'react-rails'
+gem 'wdm', '~> 0.1.0'
 
 
 group :development, :test do

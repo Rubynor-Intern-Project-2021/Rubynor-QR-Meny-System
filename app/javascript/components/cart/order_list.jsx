@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useReducer} from 'react'
 import PropTypes from 'prop-types';
 import OrderItem from "./order_item";
-import {orderListReducer, store} from './configureStore'
+import {orderListReducer, store} from '../configureStore'
 
 
 const OrderList = ({orderItems}) => {

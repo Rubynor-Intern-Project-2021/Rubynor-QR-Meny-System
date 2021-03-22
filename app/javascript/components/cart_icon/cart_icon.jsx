@@ -5,7 +5,7 @@ import { BsFillCircleFill } from 'react-icons/bs';
 import axios from "axios";
 import {useEffect} from 'react';
 import { createStore } from 'redux';
-import {inc, dec, store} from './configureStore'
+import {inc, dec, store} from '../configureStore'
 
 
 const cartIcon = () => {
@@ -42,9 +42,7 @@ const cartIcon = () => {
                 {amount}
             </div>
         </div>
-
     )
-
 }
 
 export default cartIcon;
