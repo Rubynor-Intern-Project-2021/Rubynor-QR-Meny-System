@@ -20,7 +20,7 @@ development:
   database: qr_db
   host: localhost
   pool: 5
-  username: QRUser
+  username: qruser
   password: 123
   timeout: 5000
  
@@ -51,6 +51,6 @@ test:
   database: qr_db_test
   host: localhost
   pool: 5
-  username: QRUser
+  username: qruser
   password: 123
   timeout: 5000
