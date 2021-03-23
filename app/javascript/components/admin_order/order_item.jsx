@@ -10,6 +10,7 @@ class OrderItem extends Component {
 
         // Allow collapseField to use the state variable
         this.collapseField = this.collapseField.bind(this);
+        this.finishOrder = this.finishOrder.bind(this);
     }
 
     componentDidMount() {
@@ -43,6 +44,12 @@ class OrderItem extends Component {
         this.setState(state)
     }
 
+    finishOrder(e) {
+        axios.get("/api/v1/finish_order?id=" + this.state.orderItem.id).then(res => {
+            
+        });
+    }
+
     render() {
         if(!this.state.orderItem)
             return <p>Waiting for order items</p>
@@ -63,10 +70,20 @@ class OrderItem extends Component {
                 { menuItems.map((item, index) => (
                     <tr key={index} className="h-10">
                         <td className="pl-8">
-                            { item.name }
+                            <div className="inline-block">
+                                { item.name } x{item.quantity}
+                            </div>
+                            <div className="inline-block float-right pr-10">
+                                {item.total_price},-
+                            </div>
                         </td>
                      </tr>)
                 )}
+                <tr className="h-10">
+                    <td className="pl-8">
+                        Kommentar: { orderItem.customer_info }
+                    </td>
+                </tr>
                 </tbody>)
 
             collapseButton = <FaArrowDown/>
@@ -82,6 +99,10 @@ class OrderItem extends Component {
                     </div>
                     <div className="inline-block float-right pr-10">
                       <button onClick={this.collapseField} className="collapsible w-5 h-5">{collapseButton}</button>
+                    </div>
+
+                    <div className="inline-block float-right pr-10">
+                      <button onClick={this.finishOrder}>Fullfør</button>
                     </div>
                   </th>
                 </tr>

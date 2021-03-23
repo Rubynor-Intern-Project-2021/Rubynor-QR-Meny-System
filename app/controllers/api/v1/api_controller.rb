@@ -128,16 +128,43 @@ class Api::V1::ApiController < ApplicationController
 
   def get_orders
     restaurant = Restaurant.find(params[:id])
-    render json: restaurant.orders
+
+    orders = []
+
+    restaurant.orders.each do |order| 
+      if(order.order_status == "Startet")
+        orders << order
+      end
+    end
+
+    render json: orders
   end
 
   def get_order_items
     order_items = []
 
+
     Order.find(params[:id]).order_items.each do |order|
-      order_items << order.menu_item 
+      order_item = {}
+      order_item[:name] = order.menu_item.name
+      order_item[:description] = order.menu_item.description
+      if(order.menu_item.price)
+        order_item[:total_price] = order.menu_item.price * order.quantity
+      else
+        order_item[:total_price] = 0
+      end
+      order_item[:quantity] = order.quantity
+      order_items << order_item 
     end
 
     render json: order_items 
+  end
+
+  def finish_order
+    order = Order.find(params[:id])
+    order.order_status = "Ferdig"
+    order.save()
+
+    render json: { message: 'Successfully finished order.' }, status: 200
   end
 end
