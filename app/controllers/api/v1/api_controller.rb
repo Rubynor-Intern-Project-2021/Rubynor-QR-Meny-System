@@ -77,7 +77,7 @@ class Api::V1::ApiController < ApplicationController
       end
     end
 
-    p session[:cart]
+ toString   p session[:cart]
 
  
     render json: { message: 'Successfully removed one to cart.' }, status: 200
@@ -128,8 +128,22 @@ class Api::V1::ApiController < ApplicationController
 
   def get_orders
     restaurant = Restaurant.find(params[:id])
+    
+    orders = []
 
-    render json: restaurant.orders
+    restaurant.orders.each do |order|
+      item = {}
+      item[:id] = order.id
+      item[:order_status] = order.order_status
+      item[:customer_info] = order.customer_info
+      item[:location] = order.location
+      item[:created_at] = order.created_at.strftime("%d.%m kl. %H:%M")
+
+
+      orders << item
+    end
+
+    render json: orders
   end
 
   def get_order_items
@@ -138,6 +152,7 @@ class Api::V1::ApiController < ApplicationController
 
     Order.find(params[:id]).order_items.each do |order|
       order_item = {}
+      order_item[:number] = order.menu_item.number
       order_item[:name] = order.menu_item.name
       order_item[:description] = order.menu_item.description
       if(order.menu_item.price)
