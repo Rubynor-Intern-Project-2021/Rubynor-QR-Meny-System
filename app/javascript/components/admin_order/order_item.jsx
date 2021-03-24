@@ -64,6 +64,13 @@ class OrderItem extends Component {
         let body = (<tbody></tbody>)
         let collapseButton = <FaArrowRight/>
 
+        let finishBtn = <p></p>
+        if(orderItem.order_status == "Startet") {
+            finishBtn = (<div className="inline-block float-right pr-10">
+                            <button onClick={this.finishOrder}>Fullfør</button>
+                        </div>)
+        }
+
         if(!this.state.collapsed) {
             body = (
                 <tbody>
@@ -101,9 +108,8 @@ class OrderItem extends Component {
                       <button onClick={this.collapseField} className="collapsible w-5 h-5">{collapseButton}</button>
                     </div>
 
-                    <div className="inline-block float-right pr-10">
-                      <button onClick={this.finishOrder}>Fullfør</button>
-                    </div>
+                    {finishBtn}
+
                   </th>
                 </tr>
               </thead>
