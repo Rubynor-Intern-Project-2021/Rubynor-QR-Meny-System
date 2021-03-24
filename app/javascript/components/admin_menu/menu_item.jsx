@@ -38,7 +38,7 @@ const MenuItem = ({menu, menuItems}) => {
                     <td className="text-left p-2">
                         {item.description}
                     </td>
-                    <td className="flex pl-32 align-text-top p-2">
+                    <td className="flex pl-20 align-text-top p-2">
                         <Link icon={<BiPencil size={20}/>} label="Rediger" href={Routes.edit_admin_menu_item_path(item)}/>
                         <Link icon={<BiXCircle size={20}/>} label="Slett" href={Routes.admin_menu_item_path(item)}/>
                     </td>
@@ -69,7 +69,7 @@ const MenuItem = ({menu, menuItems}) => {
                 <th className="w-1/2">
 
                 </th>
-                <th className="flex w-1/4 pl-32 pt-2">
+                <th className="flex w-1/4 pl-20 pt-2">
                     <Link icon={<BiPencil size={20}/>} label="Rediger" href={Routes.edit_admin_menu_path(menu)}/>
                     <Link icon={<BiXCircle size={20}/>} label="Slett" href={Routes.admin_menu_path(menu)}/>
                     <button onClick={collapseField} className="collapsible ">{collapseButton}</button>
