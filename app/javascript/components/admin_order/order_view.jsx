@@ -8,6 +8,12 @@ class OrderView extends Component {
         orders: []
     }
 
+    constructor(props) {
+        super(props)
+        this.showNotFinished = this.showNotFinished.bind(this);
+        this.showFinished = this.showFinished.bind(this);
+    }
+
     componentDidMount() {
         function refresh() {
             axios.get('/api/v1/get_orders?id=' + this.props.restaurantId) 
@@ -27,12 +33,37 @@ class OrderView extends Component {
         clearInterval(this.interval);
     }
 
-    render() {
-        if(this.state.orders.length == 0)
-            return (<p className="text-gray-200">Waiting for orders...</p>)
+    showNotFinished(e) {
+        this.state.showFinished = false;
+        this.setState(this.state);
+    }
 
-        return this.state.orders.map((item, index) => 
-            <OrderItem key={index} orderItem={item}/>
+    showFinished(e) {
+        this.state.showFinished = true;
+        this.setState(this.state);
+    }
+
+    render() {
+        let orders = [];
+
+        this.state.orders.forEach(order => {
+            if(this.state.showFinished && order.order_status == "Ferdig") {
+                orders.push(order);
+            }
+            else if (!this.state.showFinished && order.order_status == "Startet") {
+                orders.push(order);
+            }
+        });
+
+        return (
+            <div className="text-gray-200">
+                <button className="pr-2" onClick={this.showNotFinished}>Ikke Fullført</button>|
+                <button className="pl-2" onClick={this.showFinished}>Fullført</button>
+                {orders.map((item, index) => 
+                    <OrderItem key={item.id.toString() + ":" + index.toString()} orderItem={item}/>
+
+                )}
+            </div>
         );
     }
 }

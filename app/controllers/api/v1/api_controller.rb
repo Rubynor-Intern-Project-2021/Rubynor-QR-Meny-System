@@ -129,15 +129,7 @@ class Api::V1::ApiController < ApplicationController
   def get_orders
     restaurant = Restaurant.find(params[:id])
 
-    orders = []
-
-    restaurant.orders.each do |order| 
-      if(order.order_status == "Startet")
-        orders << order
-      end
-    end
-
-    render json: orders
+    render json: restaurant.orders
   end
 
   def get_order_items
