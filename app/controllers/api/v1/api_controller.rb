@@ -137,7 +137,7 @@ class Api::V1::ApiController < ApplicationController
       item[:order_status] = order.order_status
       item[:customer_info] = order.customer_info
       item[:location] = order.location
-      item[:created_at] = order.created_at.strftime("%d.%m kl. %H:%M")
+      item[:created_at] = order.created_at.strftime("%d.%m.%y kl. %H:%M")
 
 
       orders << item
