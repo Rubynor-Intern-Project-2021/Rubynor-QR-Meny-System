@@ -1,93 +1,42 @@
-<div class="container mx-auto bg-gray-700 px-4 py-4">
-  <p id="notice"><%= notice %></p>
+<div class="px-20 2xl:px-56">
+  <div>
+    <div class="pt-5">
+      <strong>QR Kode</strong>
+      <div class="flex pb-5">
+        <div>
+          <img src="<%= @restaurant.qr_code %>" class="w-20"/>
+        </div>
+        <div class="pl-5">
+          <div>
+            <strong>Navn:</strong>
+            <%= @restaurant.name %>
+          </div>
 
-  <p>
-    <strong>QR Kode</strong>
-    <img src="<%= @restaurant.qr_code %>" class="w-20" />
-  </p>
+          <div>
+            <strong>Brukernavn:</strong>
+            <%= @restaurant.username %>
+          </div>
+          <div class="mt-2">
+            <%= link_to 'Rediger', edit_admin_restaurant_path(@restaurant), class: "text-sm bg-gray-200 border border-gray-400 rounded hover:bg-gray-300 py-1 px-2" %>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <p class="p-2">
-    <strong>Name:</strong>
-    <%= @restaurant.name %>
-    <strong>Username:</strong>
-    <%= @restaurant.username %>
-    <%= link_to 'Rediger', edit_admin_restaurant_path(@restaurant),  class: "bg-blue-500 rounded text-white hover:bg-blue-400 py-2 px-4" %>
-  </p>
-
-  <table>
-    <tbody>
-      <% @restaurant.menus.order(:name).each do |menu| %>
-        <tr>
-
-          <table class="table-fixed w-full text-white">
-            <thead class="bg-gray-800">
-              <tr class="h-20">
-                <th class="w-1/12"></th>
-                <th class="w-6/12"><strong><%= menu.name %></strong></th>
-                <th class="w-5/12 pe-1">
-                  <%= link_to 'Rediger', edit_admin_menu_path(menu), class: "bg-blue-500 rounded hover:bg-blue-400 py-2 px-4" %>
-                  <%= link_to 'Slett', admin_menu_path(menu), method: :delete, data: { confirm: 'Are you sure?' }, class: "bg-red-500 rounded hover:bg-red-400 py-2 px-4"  %>
-                  <button class="collapsible", type="button">></button>
-                </th>
-              </tr>
-            </thead>
-            <tbody style="display: none"><!--Kolapser denne bodyen-->
-              <% menu.menu_items.order(:number).each do |item| %>
-                <tr class="h-20">
-                  <td class="w-15">
-                    <% if item.number != '' && item.number != nil %>
-                      Nr. <%= item.number %>.
-                    <% end %>
-                  </td>
-                  <td>
-                    <%= item.name %>
-                  </td>
-                  <td class="justify-end">
-                    <%= link_to 'Rediger', edit_admin_menu_item_path(item), class: "bg-blue-500 rounded hover:bg-blue-400 py-2 px-4" %>
-                    <%= link_to 'Slett', admin_menu_item_path(item), method: :delete, data: { confirm: 'Er du sikker?'}, class: "bg-red-500 rounded hover:bg-red-400 py-2 px-4"  %>
-                  </td>
-                </tr>
-              <% end %>
-              <tr class="h-20">
-                <br>
-                <td colspan="40"><%= link_to 'Ny Gjenstand', new_admin_menu_item_path(:menu_id => menu.id), class: "bg-green-500 rounded text-white hover:bg-green-400 py-2 px-4" %></td>
-              </tr>
-            </tbody>
-          </table>
-        </tr>
+    <table>
+      <tbody>
+      <div class="font-bold text-3xl my-5">
+        Menyer
+      </div>
+      <% @restaurant.menus.each do |menu| %>
+        <% menu_items = menu.menu_items %>
+        <%= react_component("admin_menu/menu_item", { menu: menu, menuItems: menu_items }) %>
       <% end %>
-      <br>
       <tr class="h-20">
-        <td><%= link_to 'Ny Meny', new_admin_menu_path(:restaurant_id => params[:id]), class: "bg-green-500 rounded text-white hover:bg-green-400 py-2 px-4" %></td>
+        <td><%= link_to 'Ny meny', new_admin_menu_path(:restaurant_id => params[:id]), class: "text-sm bg-gray-200 border border-gray-400 rounded hover:bg-gray-300 py-1 px-2" %></td>
       </tr>
-    </tbody>
-  </table>
-
-  <table>
-    <tbody>
-    <% @restaurant.menus.each do |menu| %>
-    <% menu_items = menu.menu_items%>
-      <%= react_component("admin_menu/menu_item", { menu: menu, menuItems: menu_items })%>
-    <% end %>
-     </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>
 </div>
-<style>
-    tr:nth-child(even) {background-color: gray;}
-</style>
-<script>
-    var coll = document.getElementsByClassName("collapsible");
-    var i;
 
-    for (i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var content = this.parentElement.parentElement.parentElement.nextElementSibling
-            if (content.style.display === "") {
-                content.style.display = "none";
-            } else {
-                content.style.display = "";
-            }
-        });
-    }
-</script>
