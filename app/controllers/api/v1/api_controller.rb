@@ -29,6 +29,8 @@ class Api::V1::ApiController < ApplicationController
     amount=params[:amount].to_i
     exists=false
 
+
+
     session[:cart].each do |item|
       if item["item_id"]==id
         item["amount"]+=amount
@@ -37,11 +39,12 @@ class Api::V1::ApiController < ApplicationController
       end
     end
     if !exists
-      session[:cart] << { item_id: id, amount: amount }
+      session[:cart] << { "item_id": id, "amount": amount }
     end
-    p session[:cart]
     
-    render json: { message: 'Successfully added to cart.' }, status: 200
+    render json: { 
+      message: 'Successfully added to cart.', 
+    }, status: 200
   end
 
   # /api/v1/add_to_cart?menu_item_id=x
