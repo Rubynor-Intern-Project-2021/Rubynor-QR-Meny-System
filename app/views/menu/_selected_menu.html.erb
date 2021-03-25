@@ -2,28 +2,31 @@
 <% menu.menu_items.each do |menu_item| %>
   <%= link_to menu_item_path(menu_item) do %>
     <!-- Hver rad-->
-    <div class="m-1 flex justify-evenly pt-6 overflow-x-auto">
-      <div class="flex ">
-        <div></div>
-        <div class="w-1/3 mr-4 ">
-          <% if menu_item.image.attached? %>
-            <%= image_tag menu_item.image, class:"shadow object-cover rounded max-w-full h-auto align-middle border-none"%>
+    <div class="flex my-1">
+      <div class="hidden sm:block flex-initial w-32">
+        <% if menu_item.image.attached? %>
+          <%= image_tag menu_item.image, class:"shadow object-cover rounded max-w-full h-auto align-middle border-none"%>
+        <% end %>
+      </div>
+      
+
+      <div class="flex-1 pl-0 sm:pl-2">
+        <div>
+          <div class="inline-block">
+            <%= menu_item.name %>
+          </div>
+          <% if menu_item.get_allergen_names_short.length >= 1 %>
+            <div class="inline-block font-normal text-sm">
+              (<%= menu_item.get_allergen_names_short.join(', ') %>)
+            </div>
           <% end %>
         </div>
-
-        <div class="mt-1 text-gray-900 text-lg font-semibold tracking-wider w-48">
-          <%= menu_item.name %>
-          <br>
-          <div class="text-gray-700 text-sm">
-            Allergener
-            <%= menu_item.get_allergen_names_short.join(', ') %>
-          </div>
-          <div class="text-gray-700 text-sm ">
-            <%= truncate(menu_item.description) %>
-          </div>
+        <div class="text-gray-700 text-sm ">
+          <%= truncate(menu_item.description) %>
         </div>
       </div>
-      <div class=" text-lg mt-1 ml-10 text-gray-600 ">
+
+      <div class="flex-row-reverse">
         <%= menu_item.price.to_i %>,-
       </div>
     </div>
