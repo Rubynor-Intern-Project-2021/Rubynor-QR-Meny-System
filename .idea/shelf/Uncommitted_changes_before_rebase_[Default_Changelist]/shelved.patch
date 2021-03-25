@@ -1,0 +1,521 @@
+Index: app/javascript/components/admin_menu/menu_item.jsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, {useState} from 'react'\r\nimport {IoIosArrowForward, IoIosArrowDown, IoIosCloseCircle, IoIosAddCircleOutline} from \"react-icons/io\";\r\nimport {BiPencil, BiXCircle} from \"react-icons/bi\";\r\n\r\n\r\nconst MenuItem = ({menu, menuItems}) => {\r\n    const [isCollapsed, setIsCollapsed] = useState(true)\r\n    const [collapseButton, setCollapseButton] = useState(<IoIosArrowForward/>)\r\n\r\n    function Link({label, href, icon}) {\r\n        return (\r\n            <a className=\"flex mr-3\" href={href}>\r\n                <div className=\"px-0.5\">\r\n                    {icon}\r\n                </div>\r\n                <div>\r\n                    {label}\r\n                </div>\r\n            </a>\r\n        )\r\n    }\r\n\r\n    const collapseField = () => {\r\n        setIsCollapsed(!isCollapsed)\r\n        if (isCollapsed)\r\n            setCollapseButton(<IoIosArrowDown/>)\r\n        else\r\n            setCollapseButton(<IoIosArrowForward/>)\r\n    }\r\n\r\n    let body = (\r\n        <tbody>\r\n        {isCollapsed === false && menuItems.map((item, index) => (\r\n                <tr className=\"bg-gray-100 border-b border-gray-200\" key={index}>\r\n                    <td className=\"align-text-top p-2\">\r\n                        {item.name}\r\n                    </td>\r\n                    <td className=\"text-left p-2\">\r\n                        {item.description}\r\n                    </td>\r\n                    <td className=\"flex pl-20 align-text-top p-2\">\r\n                        <Link icon={<BiPencil size={20}/>} label=\"Rediger\" href={Routes.edit_admin_menu_item_path(item)}/>\r\n                        <Link icon={<BiXCircle size={20}/>} label=\"Slett\" href={Routes.admin_menu_item_path(item)}/>\r\n                    </td>\r\n                </tr>\r\n            )\r\n        )}\r\n        {isCollapsed === false &&\r\n        <tr className=\"bg-gray-100\">\r\n            <td className=\"p-2\">\r\n                <Link icon={<IoIosAddCircleOutline size={22}/>} label=\"Legg til\"\r\n                      href={Routes.new_admin_menu_item_path({menu_id: menu.id})}/>\r\n            </td>\r\n            <td>\r\n            </td>\r\n            <td>\r\n            </td>\r\n        </tr>\r\n        }\r\n        </tbody>\r\n    )\r\n\r\n    return (\r\n        <table className=\"mb-2 table-fixed w-full bg-gray-200 text-gray-800 tracking-wide\">\r\n            <tr className=\"border-b-2 border-gray-300\">\r\n                <th className=\" w-1/4 text-left pl-4 py-2\">\r\n                    {menu.name}\r\n                </th>\r\n                <th className=\"w-1/2\">\r\n\r\n                </th>\r\n                <th className=\"flex w-1/4 pl-20 pt-2\">\r\n                    <Link icon={<BiPencil size={20}/>} label=\"Rediger\" href={Routes.edit_admin_menu_path(menu)}/>\r\n                    <Link icon={<BiXCircle size={20}/>} label=\"Slett\" href={Routes.admin_menu_path(menu)}/>\r\n                    <button onClick={collapseField} className=\"collapsible \">{collapseButton}</button>\r\n                </th>\r\n            </tr>\r\n            {body}\r\n        </table>\r\n    )\r\n}\r\n\r\nexport default MenuItem;\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/javascript/components/admin_menu/menu_item.jsx b/app/javascript/components/admin_menu/menu_item.jsx
+--- a/app/javascript/components/admin_menu/menu_item.jsx	(revision 70f0397e211ae12f827fdc68d2b83fc814c50c50)
++++ b/app/javascript/components/admin_menu/menu_item.jsx	(date 1616677099279)
+@@ -1,11 +1,14 @@
+-import React, {useState} from 'react'
++import React, {useState} from 'react';
+ import {IoIosArrowForward, IoIosArrowDown, IoIosCloseCircle, IoIosAddCircleOutline} from "react-icons/io";
+ import {BiPencil, BiXCircle} from "react-icons/bi";
++import Modal from './modal';
+ 
+ 
+ const MenuItem = ({menu, menuItems}) => {
+     const [isCollapsed, setIsCollapsed] = useState(true)
+     const [collapseButton, setCollapseButton] = useState(<IoIosArrowForward/>)
++    const [show, setShow] = useState(false)
++
+ 
+     function Link({label, href, icon}) {
+         return (
+@@ -28,32 +31,53 @@
+             setCollapseButton(<IoIosArrowForward/>)
+     }
+ 
++    let modal = (
++        <>
++            {show &&
++            <Modal>
++                <div
++                    style={{color: 'black'}}
++                >
++                    En modal
++                </div>
++            </Modal>}
++        </>
++
++    )
++
+     let body = (
+         <tbody>
+         {isCollapsed === false && menuItems.map((item, index) => (
+-                <tr className="bg-gray-100 border-b border-gray-200" key={index}>
+-                    <td className="align-text-top p-2">
+-                        {item.name}
+-                    </td>
+-                    <td className="text-left p-2">
+-                        {item.description}
+-                    </td>
+-                    <td className="flex pl-20 align-text-top p-2">
+-                        <Link icon={<BiPencil size={20}/>} label="Rediger" href={Routes.edit_admin_menu_item_path(item)}/>
+-                        <Link icon={<BiXCircle size={20}/>} label="Slett" href={Routes.admin_menu_item_path(item)}/>
++                <tr className="bg-gray-100 border-b border-gray-200 h-10" key={index}>
++                    <td className="pl-8">
++                        <div className="inline-block">
++                            {item.name}
++                        </div>
++                        <div className="inline-block">
++                            {item.description}
++                        </div>
++                        <div className="inline-block float-right pr-10">
++                            <Link icon={<BiPencil size={20}/>} label="Rediger"
++                                  href={Routes.edit_admin_menu_item_path(item)}/>
++                            <Link icon={<BiXCircle size={20}/>} label="Slett" href={Routes.admin_menu_item_path(item)}/>
++                        </div>
+                     </td>
+                 </tr>
+             )
+         )}
+         {isCollapsed === false &&
+         <tr className="bg-gray-100">
+-            <td className="p-2">
+-                <Link icon={<IoIosAddCircleOutline size={22}/>} label="Legg til"
+-                      href={Routes.new_admin_menu_item_path({menu_id: menu.id})}/>
+-            </td>
+-            <td>
+-            </td>
+-            <td>
++            <td className="pl-8">
++                <div className="p-2">
++                    <Link icon={<IoIosAddCircleOutline size={22}/>} label="Legg til"
++                          href={Routes.new_admin_menu_item_path({menu_id: menu.id})}/>
++                </div>
++
++                <div>
++                </div>
++
++                <div>
++                </div>
+             </td>
+         </tr>
+         }
+@@ -62,6 +86,7 @@
+ 
+     return (
+         <table className="mb-2 table-fixed w-full bg-gray-200 text-gray-800 tracking-wide">
++            <thead>
+             <tr className="border-b-2 border-gray-300">
+                 <th className=" w-1/4 text-left pl-4 py-2">
+                     {menu.name}
+@@ -75,7 +100,9 @@
+                     <button onClick={collapseField} className="collapsible ">{collapseButton}</button>
+                 </th>
+             </tr>
++            </thead>
+             {body}
++            {modal}
+         </table>
+     )
+ }
+Index: .idea/Rubynor-QR-Meny-System.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"RUBY_MODULE\" version=\"4\">\r\n  <component name=\"FacetManager\">\r\n    <facet type=\"RailsFacetType\" name=\"Ruby on Rails\">\r\n      <configuration>\r\n        <RAILS_FACET_CONFIG_ID NAME=\"RAILS_FACET_SUPPORT_REMOVED\" VALUE=\"false\" />\r\n        <RAILS_FACET_CONFIG_ID NAME=\"RAILS_TESTS_SOURCES_PATCHED\" VALUE=\"true\" />\r\n        <RAILS_FACET_CONFIG_ID NAME=\"RAILS_FACET_APPLICATION_ROOT\" VALUE=\"$MODULE_DIR$\" />\r\n      </configuration>\r\n    </facet>\r\n  </component>\r\n  <component name=\"ModuleRunConfigurationManager\">\r\n    <shared />\r\n  </component>\r\n  <component name=\"NewModuleRootManager\">\r\n    <content url=\"file://$MODULE_DIR$\">\r\n      <sourceFolder url=\"file://$MODULE_DIR$/features\" isTestSource=\"true\" />\r\n      <sourceFolder url=\"file://$MODULE_DIR$/spec\" isTestSource=\"true\" />\r\n      <sourceFolder url=\"file://$MODULE_DIR$/test\" isTestSource=\"true\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/.bundle\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/public/packs\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/bundle\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/cache\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/log\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/tmp\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/public/system\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/components\" />\r\n    </content>\r\n    <orderEntry type=\"inheritedJdk\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"actioncable (v6.0.3.5, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"actionmailbox (v6.0.3.5, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"actionmailer (v6.0.3.5, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"actionpack (v6.0.3.5, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"actiontext (v6.0.3.5, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"actionview (v6.0.3.5, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"activejob (v6.0.3.5, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"activemodel (v6.0.3.5, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"activerecord (v6.0.3.5, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"activestorage (v6.0.3.5, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"activesupport (v6.0.3.5, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"addressable (v2.7.0, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"azure-core (v0.1.15, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"azure-storage (v0.15.0.preview, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"babel-source (v5.8.35, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"babel-transpiler (v0.7.0, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"bcrypt (v3.1.16, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"bindex (v0.8.1, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"bootsnap (v1.7.2, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"builder (v3.2.4, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"bundler (v1.17.2, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"byebug (v11.1.3, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"capybara (v3.35.3, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"childprocess (v3.0.0, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"chunky_png (v1.4.0, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"coderay (v1.1.3, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"concurrent-ruby (v1.1.8, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"connection_pool (v2.2.3, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"crass (v1.0.6, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"erubi (v1.10.0, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"execjs (v2.7.0, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"faraday (v0.17.4, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"faraday_middleware (v0.14.0, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"ffi (v1.15.0, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"globalid (v0.4.2, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"i18n (v1.8.9, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"jbuilder (v2.11.2, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"jquery-rails (v4.4.0, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"js-routes (v1.4.14, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"listen (v3.4.1, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"loofah (v2.9.0, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"mail (v2.7.1, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"marcel (v0.3.3, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"method_source (v1.0.0, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"mimemagic (v0.3.5, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"mini_mime (v1.0.2, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"minitest (v5.14.4, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"msgpack (v1.4.2, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"multipart-post (v2.1.1, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"nio4r (v2.5.7, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"nokogiri (v1.11.2, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"pg (v1.2.3, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"pry (v0.14.0, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"pry-rails (v0.3.9, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"public_suffix (v4.0.6, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"puma (v4.3.7, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"racc (v1.5.2, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"rack (v2.2.3, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"rack-proxy (v0.6.5, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"rack-test (v1.1.0, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"rails (v6.0.3.5, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"rails-dom-testing (v2.0.3, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"rails-html-sanitizer (v1.3.0, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"railties (v6.0.3.5, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"rake (v13.0.3, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"rb-fsevent (v0.10.4, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"rb-inotify (v0.10.1, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"react-rails (v2.6.1, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"regexp_parser (v2.1.1, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"rqrcode (v1.2.0, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"rqrcode_core (v0.2.0, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"rubyzip (v2.3.0, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"sass-rails (v6.0.0, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"sassc (v2.4.0, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"sassc-rails (v2.1.2, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"selenium-webdriver (v3.142.7, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"spring (v2.1.1, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"spring-watcher-listen (v2.0.1, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"sprockets (v4.0.2, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"sprockets-rails (v3.2.2, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"tailwindcss-rails (v0.3.3, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"thor (v1.1.0, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"thread_safe (v0.3.6, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"tilt (v2.0.10, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"turbolinks (v5.2.1, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"turbolinks-source (v5.2.0, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"tzinfo (v1.2.9, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"tzinfo-data (v1.2021.1, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"wdm (v0.1.1, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"web-console (v4.1.0, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"webdrivers (v4.6.0, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"webpacker (v4.3.0, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"websocket-driver (v0.7.3, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"websocket-extensions (v0.1.5, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"xpath (v3.2.0, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n    <orderEntry type=\"library\" scope=\"PROVIDED\" name=\"zeitwerk (v2.4.2, ruby-2.6.6-p146) [gem]\" level=\"application\" />\r\n  </component>\r\n  <component name=\"RModuleSettingsStorage\">\r\n    <LOAD_PATH number=\"0\" />\r\n    <I18N_FOLDERS number=\"1\" string0=\"$MODULE_DIR$/config/locales\" />\r\n  </component>\r\n  <component name=\"RailsGeneratorsCache\">\r\n    <option name=\"generators\">\r\n      <list>\r\n        <option value=\"active_record:migration\" />\r\n        <option value=\"active_record:model\" />\r\n        <option value=\"active_record:observer\" />\r\n        <option value=\"active_record:session_migration\" />\r\n        <option value=\"controller\" />\r\n        <option value=\"erb:controller\" />\r\n        <option value=\"erb:mailer\" />\r\n        <option value=\"erb:scaffold\" />\r\n        <option value=\"generator\" />\r\n        <option value=\"helper\" />\r\n        <option value=\"integration_test\" />\r\n        <option value=\"mailer\" />\r\n        <option value=\"metal\" />\r\n        <option value=\"migration\" />\r\n        <option value=\"model\" />\r\n        <option value=\"model_subclass\" />\r\n        <option value=\"observer\" />\r\n        <option value=\"performance_test\" />\r\n        <option value=\"plugin\" />\r\n        <option value=\"resource\" />\r\n        <option value=\"scaffold\" />\r\n        <option value=\"scaffold_controller\" />\r\n        <option value=\"session_migration\" />\r\n        <option value=\"stylesheets\" />\r\n        <option value=\"test_unit:controller\" />\r\n        <option value=\"test_unit:helper\" />\r\n        <option value=\"test_unit:integration\" />\r\n        <option value=\"test_unit:mailer\" />\r\n        <option value=\"test_unit:model\" />\r\n        <option value=\"test_unit:observer\" />\r\n        <option value=\"test_unit:performance\" />\r\n        <option value=\"test_unit:plugin\" />\r\n        <option value=\"test_unit:scaffold\" />\r\n      </list>\r\n    </option>\r\n    <option name=\"myGenerators\">\r\n      <list>\r\n        <option value=\"active_record:migration\" />\r\n        <option value=\"active_record:model\" />\r\n        <option value=\"active_record:observer\" />\r\n        <option value=\"active_record:session_migration\" />\r\n        <option value=\"controller\" />\r\n        <option value=\"erb:controller\" />\r\n        <option value=\"erb:mailer\" />\r\n        <option value=\"erb:scaffold\" />\r\n        <option value=\"generator\" />\r\n        <option value=\"helper\" />\r\n        <option value=\"integration_test\" />\r\n        <option value=\"mailer\" />\r\n        <option value=\"metal\" />\r\n        <option value=\"migration\" />\r\n        <option value=\"model\" />\r\n        <option value=\"model_subclass\" />\r\n        <option value=\"observer\" />\r\n        <option value=\"performance_test\" />\r\n        <option value=\"plugin\" />\r\n        <option value=\"resource\" />\r\n        <option value=\"scaffold\" />\r\n        <option value=\"scaffold_controller\" />\r\n        <option value=\"session_migration\" />\r\n        <option value=\"stylesheets\" />\r\n        <option value=\"test_unit:controller\" />\r\n        <option value=\"test_unit:helper\" />\r\n        <option value=\"test_unit:integration\" />\r\n        <option value=\"test_unit:mailer\" />\r\n        <option value=\"test_unit:model\" />\r\n        <option value=\"test_unit:observer\" />\r\n        <option value=\"test_unit:performance\" />\r\n        <option value=\"test_unit:plugin\" />\r\n        <option value=\"test_unit:scaffold\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"RakeTasksCache\">\r\n    <option name=\"myRootTask\">\r\n      <RakeTaskImpl id=\"rake\" />\r\n    </option>\r\n  </component>\r\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/Rubynor-QR-Meny-System.iml b/.idea/Rubynor-QR-Meny-System.iml
+--- a/.idea/Rubynor-QR-Meny-System.iml	(revision 70f0397e211ae12f827fdc68d2b83fc814c50c50)
++++ b/.idea/Rubynor-QR-Meny-System.iml	(date 1616674478149)
+@@ -116,7 +116,6 @@
+     <orderEntry type="library" scope="PROVIDED" name="turbolinks-source (v5.2.0, ruby-2.6.6-p146) [gem]" level="application" />
+     <orderEntry type="library" scope="PROVIDED" name="tzinfo (v1.2.9, ruby-2.6.6-p146) [gem]" level="application" />
+     <orderEntry type="library" scope="PROVIDED" name="tzinfo-data (v1.2021.1, ruby-2.6.6-p146) [gem]" level="application" />
+-    <orderEntry type="library" scope="PROVIDED" name="wdm (v0.1.1, ruby-2.6.6-p146) [gem]" level="application" />
+     <orderEntry type="library" scope="PROVIDED" name="web-console (v4.1.0, ruby-2.6.6-p146) [gem]" level="application" />
+     <orderEntry type="library" scope="PROVIDED" name="webdrivers (v4.6.0, ruby-2.6.6-p146) [gem]" level="application" />
+     <orderEntry type="library" scope="PROVIDED" name="webpacker (v4.3.0, ruby-2.6.6-p146) [gem]" level="application" />
+@@ -207,7 +206,187 @@
+   </component>
+   <component name="RakeTasksCache">
+     <option name="myRootTask">
+-      <RakeTaskImpl id="rake" />
++      <RakeTaskImpl id="rake">
++        <subtasks>
++          <RakeTaskImpl description="List versions of all Rails frameworks and the environment" fullCommand="about" id="about" />
++          <RakeTaskImpl id="action_mailbox">
++            <subtasks>
++              <RakeTaskImpl id="ingress">
++                <subtasks>
++                  <RakeTaskImpl description="Relay an inbound email from Exim to Action Mailbox (URL and INGRESS_PASSWORD required)" fullCommand="action_mailbox:ingress:exim" id="exim" />
++                  <RakeTaskImpl description="Relay an inbound email from Postfix to Action Mailbox (URL and INGRESS_PASSWORD required)" fullCommand="action_mailbox:ingress:postfix" id="postfix" />
++                  <RakeTaskImpl description="Relay an inbound email from Qmail to Action Mailbox (URL and INGRESS_PASSWORD required)" fullCommand="action_mailbox:ingress:qmail" id="qmail" />
++                </subtasks>
++              </RakeTaskImpl>
++              <RakeTaskImpl description="Copy over the migration" fullCommand="action_mailbox:install" id="install" />
++            </subtasks>
++          </RakeTaskImpl>
++          <RakeTaskImpl id="action_text">
++            <subtasks>
++              <RakeTaskImpl description="Copy over the migration, stylesheet, and JavaScript files" fullCommand="action_text:install" id="install" />
++            </subtasks>
++          </RakeTaskImpl>
++          <RakeTaskImpl id="active_storage">
++            <subtasks>
++              <RakeTaskImpl description="Copy over the migration needed to the application" fullCommand="active_storage:install" id="install" />
++            </subtasks>
++          </RakeTaskImpl>
++          <RakeTaskImpl id="app">
++            <subtasks>
++              <RakeTaskImpl description="Applies the template supplied by LOCATION=(/path/to/template) or URL" fullCommand="app:template" id="template" />
++              <RakeTaskImpl description="Update configs and some other initially generated files (or use just update:configs or update:bin)" fullCommand="app:update" id="update" />
++            </subtasks>
++          </RakeTaskImpl>
++          <RakeTaskImpl id="assets">
++            <subtasks>
++              <RakeTaskImpl description="Remove old compiled assets" fullCommand="assets:clean[keep]" id="clean[keep]" />
++              <RakeTaskImpl description="Remove compiled assets" fullCommand="assets:clobber" id="clobber" />
++              <RakeTaskImpl description="Load asset compile environment" fullCommand="assets:environment" id="environment" />
++              <RakeTaskImpl description="Compile all the assets named in config.assets.precompile" fullCommand="assets:precompile" id="precompile" />
++            </subtasks>
++          </RakeTaskImpl>
++          <RakeTaskImpl id="cache_digests">
++            <subtasks>
++              <RakeTaskImpl description="Lookup first-level dependencies for TEMPLATE (like messages/show or comments/_comment.html)" fullCommand="cache_digests:dependencies" id="dependencies" />
++              <RakeTaskImpl description="Lookup nested dependencies for TEMPLATE (like messages/show or comments/_comment.html)" fullCommand="cache_digests:nested_dependencies" id="nested_dependencies" />
++            </subtasks>
++          </RakeTaskImpl>
++          <RakeTaskImpl id="db">
++            <subtasks>
++              <RakeTaskImpl description="Creates the database from DATABASE_URL or config/database.yml for the current RAILS_ENV (use db:create:all to create all databases in the config). Without RAILS_ENV or when RAILS_ENV is development, it defaults to creating the development and test databases" fullCommand="db:create" id="create" />
++              <RakeTaskImpl description="Drops the database from DATABASE_URL or config/database.yml for the current RAILS_ENV (use db:drop:all to drop all databases in the config). Without RAILS_ENV or when RAILS_ENV is development, it defaults to dropping the development and test databases" fullCommand="db:drop" id="drop" />
++              <RakeTaskImpl id="environment">
++                <subtasks>
++                  <RakeTaskImpl description="Set the environment value for the database" fullCommand="db:environment:set" id="set" />
++                </subtasks>
++              </RakeTaskImpl>
++              <RakeTaskImpl id="fixtures">
++                <subtasks>
++                  <RakeTaskImpl description="Loads fixtures into the current environment's database" fullCommand="db:fixtures:load" id="load" />
++                </subtasks>
++              </RakeTaskImpl>
++              <RakeTaskImpl description="Migrate the database (options: VERSION=x, VERBOSE=false, SCOPE=blog)" fullCommand="db:migrate" id="migrate" />
++              <RakeTaskImpl id="migrate">
++                <subtasks>
++                  <RakeTaskImpl description="Display status of migrations" fullCommand="db:migrate:status" id="status" />
++                </subtasks>
++              </RakeTaskImpl>
++              <RakeTaskImpl description="Runs setup if database does not exist, or runs migrations if it does" fullCommand="db:prepare" id="prepare" />
++              <RakeTaskImpl description="Rolls the schema back to the previous version (specify steps w/ STEP=n)" fullCommand="db:rollback" id="rollback" />
++              <RakeTaskImpl id="schema">
++                <subtasks>
++                  <RakeTaskImpl id="cache">
++                    <subtasks>
++                      <RakeTaskImpl description="Clears a db/schema_cache.yml file" fullCommand="db:schema:cache:clear" id="clear" />
++                      <RakeTaskImpl description="Creates a db/schema_cache.yml file" fullCommand="db:schema:cache:dump" id="dump" />
++                    </subtasks>
++                  </RakeTaskImpl>
++                  <RakeTaskImpl description="Creates a db/schema.rb file that is portable against any DB supported by Active Record" fullCommand="db:schema:dump" id="dump" />
++                  <RakeTaskImpl description="Loads a schema.rb file into the database" fullCommand="db:schema:load" id="load" />
++                </subtasks>
++              </RakeTaskImpl>
++              <RakeTaskImpl description="Loads the seed data from db/seeds.rb" fullCommand="db:seed" id="seed" />
++              <RakeTaskImpl id="seed">
++                <subtasks>
++                  <RakeTaskImpl description="Truncates tables of each database for current environment and loads the seeds" fullCommand="db:seed:replant" id="replant" />
++                </subtasks>
++              </RakeTaskImpl>
++              <RakeTaskImpl description="Creates the database, loads the schema, and initializes with the seed data (use db:reset to also drop the database first)" fullCommand="db:setup" id="setup" />
++              <RakeTaskImpl id="structure">
++                <subtasks>
++                  <RakeTaskImpl description="Dumps the database structure to db/structure.sql" fullCommand="db:structure:dump" id="dump" />
++                  <RakeTaskImpl description="Recreates the databases from the structure.sql file" fullCommand="db:structure:load" id="load" />
++                </subtasks>
++              </RakeTaskImpl>
++              <RakeTaskImpl description="Retrieves the current schema version number" fullCommand="db:version" id="version" />
++            </subtasks>
++          </RakeTaskImpl>
++          <RakeTaskImpl id="js">
++            <subtasks>
++              <RakeTaskImpl description="Make a js file that will have functions that will return restful routes/urls" fullCommand="js:routes" id="routes" />
++            </subtasks>
++          </RakeTaskImpl>
++          <RakeTaskImpl id="log">
++            <subtasks>
++              <RakeTaskImpl description="Truncates all/specified *.log files in log/ to zero bytes (specify which logs with LOGS=test,development)" fullCommand="log:clear" id="clear" />
++            </subtasks>
++          </RakeTaskImpl>
++          <RakeTaskImpl description="Prints out your Rack middleware stack" fullCommand="middleware" id="middleware" />
++          <RakeTaskImpl description="Restart app by touching tmp/restart.txt" fullCommand="restart" id="restart" />
++          <RakeTaskImpl description="Generate a cryptographically secure secret key (this is typically used to generate a secret for cookie sessions)" fullCommand="secret" id="secret" />
++          <RakeTaskImpl description="Report code statistics (KLOCs, etc) from the application or engine" fullCommand="stats" id="stats" />
++          <RakeTaskImpl id="tailwindcss">
++            <subtasks>
++              <RakeTaskImpl description="Install Tailwind CSS into the app" fullCommand="tailwindcss:install" id="install" />
++              <RakeTaskImpl id="install">
++                <subtasks>
++                  <RakeTaskImpl description="Install Tailwind CSS with the asset pipeline" fullCommand="tailwindcss:install:asset_pipeline" id="asset_pipeline" />
++                  <RakeTaskImpl description="Install Tailwind CSS with webpacker" fullCommand="tailwindcss:install:webpacker" id="webpacker" />
++                </subtasks>
++              </RakeTaskImpl>
++              <RakeTaskImpl description="Show the list of class names being kept in Tailwind CSS" fullCommand="tailwindcss:keeping_class_names" id="keeping_class_names" />
++              <RakeTaskImpl description="Show Tailwind CSS styles that are left after purging unused class names" fullCommand="tailwindcss:preview_purge" id="preview_purge" />
++            </subtasks>
++          </RakeTaskImpl>
++          <RakeTaskImpl description="Runs all tests in test folder except system ones" fullCommand="test" id="test" />
++          <RakeTaskImpl id="test">
++            <subtasks>
++              <RakeTaskImpl description="Run tests quickly, but also reset db" fullCommand="test:db" id="db" />
++              <RakeTaskImpl description="Run system tests only" fullCommand="test:system" id="system" />
++            </subtasks>
++          </RakeTaskImpl>
++          <RakeTaskImpl id="time">
++            <subtasks>
++              <RakeTaskImpl description="List all time zones, list by two-letter country code (`rails time:zones[US]`), or list by UTC offset (`rails time:zones[-8]`)" fullCommand="time:zones[country_or_offset]" id="zones[country_or_offset]" />
++            </subtasks>
++          </RakeTaskImpl>
++          <RakeTaskImpl id="tmp">
++            <subtasks>
++              <RakeTaskImpl description="Clear cache, socket and screenshot files from tmp/ (narrow w/ tmp:cache:clear, tmp:sockets:clear, tmp:screenshots:clear)" fullCommand="tmp:clear" id="clear" />
++              <RakeTaskImpl description="Creates tmp directories for cache, sockets, and pids" fullCommand="tmp:create" id="create" />
++            </subtasks>
++          </RakeTaskImpl>
++          <RakeTaskImpl description="Lists all available tasks in Webpacker" fullCommand="webpacker" id="webpacker" />
++          <RakeTaskImpl id="webpacker">
++            <subtasks>
++              <RakeTaskImpl description="Installs Webpacker binstubs in this application" fullCommand="webpacker:binstubs" id="binstubs" />
++              <RakeTaskImpl description="Verifies that webpack &amp; webpack-dev-server are present" fullCommand="webpacker:check_binstubs" id="check_binstubs" />
++              <RakeTaskImpl description="Verifies if Node.js is installed" fullCommand="webpacker:check_node" id="check_node" />
++              <RakeTaskImpl description="Verifies if Yarn is installed" fullCommand="webpacker:check_yarn" id="check_yarn" />
++              <RakeTaskImpl description="Remove old compiled webpacks" fullCommand="webpacker:clean[keep]" id="clean[keep]" />
++              <RakeTaskImpl description="Remove the webpack compiled output directory" fullCommand="webpacker:clobber" id="clobber" />
++              <RakeTaskImpl description="Compile JavaScript packs using webpack for production with digests" fullCommand="webpacker:compile" id="compile" />
++              <RakeTaskImpl description="Provide information on Webpacker's environment" fullCommand="webpacker:info" id="info" />
++              <RakeTaskImpl description="Install Webpacker in this application" fullCommand="webpacker:install" id="install" />
++              <RakeTaskImpl id="install">
++                <subtasks>
++                  <RakeTaskImpl description="Install everything needed for Angular" fullCommand="webpacker:install:angular" id="angular" />
++                  <RakeTaskImpl description="Install everything needed for Coffee" fullCommand="webpacker:install:coffee" id="coffee" />
++                  <RakeTaskImpl description="Install everything needed for Elm" fullCommand="webpacker:install:elm" id="elm" />
++                  <RakeTaskImpl description="Install everything needed for Erb" fullCommand="webpacker:install:erb" id="erb" />
++                  <RakeTaskImpl description="Install everything needed for React" fullCommand="webpacker:install:react" id="react" />
++                  <RakeTaskImpl description="Install everything needed for Stimulus" fullCommand="webpacker:install:stimulus" id="stimulus" />
++                  <RakeTaskImpl description="Install everything needed for Svelte" fullCommand="webpacker:install:svelte" id="svelte" />
++                  <RakeTaskImpl description="Install everything needed for Typescript" fullCommand="webpacker:install:typescript" id="typescript" />
++                  <RakeTaskImpl description="Install everything needed for Vue" fullCommand="webpacker:install:vue" id="vue" />
++                </subtasks>
++              </RakeTaskImpl>
++              <RakeTaskImpl description="Verifies if Webpacker is installed" fullCommand="webpacker:verify_install" id="verify_install" />
++              <RakeTaskImpl description="Support for older Rails versions" fullCommand="webpacker:yarn_install" id="yarn_install" />
++            </subtasks>
++          </RakeTaskImpl>
++          <RakeTaskImpl id="yarn">
++            <subtasks>
++              <RakeTaskImpl description="Install all JavaScript dependencies as specified via Yarn" fullCommand="yarn:install" id="install" />
++            </subtasks>
++          </RakeTaskImpl>
++          <RakeTaskImpl id="zeitwerk">
++            <subtasks>
++              <RakeTaskImpl description="Checks project structure for Zeitwerk compatibility" fullCommand="zeitwerk:check" id="check" />
++            </subtasks>
++          </RakeTaskImpl>
++        </subtasks>
++      </RakeTaskImpl>
+     </option>
+   </component>
+ </module>
+\ No newline at end of file
+Index: app/javascript/stylesheets/tailwind-components.scss
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>.btn-indigo {\r\n    @apply py-2 px-4 bg-indigo-500 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-75;\r\n}\r\n\r\n\r\n.nav-btn {\r\n    @apply inline-block text-gray-800 lg:text-gray-200 no-underline hover:text-gray-700 lg:hover:text-gray-100 hover:underline py-2 px-4\r\n}\r\n\r\n.nav-btn-active {\r\n    @apply inline-block text-green-700 no-underline py-2 px-4\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/javascript/stylesheets/tailwind-components.scss b/app/javascript/stylesheets/tailwind-components.scss
+--- a/app/javascript/stylesheets/tailwind-components.scss	(revision 70f0397e211ae12f827fdc68d2b83fc814c50c50)
++++ b/app/javascript/stylesheets/tailwind-components.scss	(date 1616674432578)
+@@ -10,3 +10,4 @@
+ .nav-btn-active {
+     @apply inline-block text-green-700 no-underline py-2 px-4
+ }
++
+Index: app/javascript/components/admin_menu/modal.jsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/javascript/components/admin_menu/modal.jsx b/app/javascript/components/admin_menu/modal.jsx
+new file mode 100644
+--- /dev/null	(date 1616676327009)
++++ b/app/javascript/components/admin_menu/modal.jsx	(date 1616676327009)
+@@ -0,0 +1,12 @@
++import React  from 'react';
++
++const modal = props => {
++    return (
++        <div className="Modal">
++            {props.children}
++        </div>
++    );
++};
++
++
++export default modal;
+\ No newline at end of file
+Index: app/assets/stylesheets/application.scss
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\r\n.active {\r\n  color: #585858;\r\n  text-shadow: #262626;\r\n  font-weight: bold;\r\n}\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/assets/stylesheets/application.scss b/app/assets/stylesheets/application.scss
+--- a/app/assets/stylesheets/application.scss	(revision 70f0397e211ae12f827fdc68d2b83fc814c50c50)
++++ b/app/assets/stylesheets/application.scss	(date 1616674999842)
+@@ -4,6 +4,25 @@
+   text-shadow: #262626;
+   font-weight: bold;
+ }
++.Modal {
++  position: fixed;
++  z-index: 500;
++  background-color: white;
++  width: 70%;
++  border: 1px solid #ccc;
++  box-shadow: 1px 1px 1px black;
++  padding: 16px;
++  left: 15%;
++  top: 30%;
++  box-sizing: border-box;
++  transition: all 0.3s ease-out;
++}
+ 
++@media (min-width: 600px) {
++  .Modal {
++    width: 500px;
++    left: calc(50% - 250px);
++  }
++}
+ 
+ 
+Index: .idea/dataSources.local.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"dataSourceStorageLocal\">\r\n    <data-source name=\"Rails Rubynor-QR-Meny-System: development\" uuid=\"dd30414c-fbc3-421c-97af-fa2896df60a9\">\r\n      <database-info product=\"PostgreSQL\" version=\"13.2\" jdbc-version=\"4.2\" driver-name=\"PostgreSQL JDBC Driver\" driver-version=\"42.2.5\" dbms=\"POSTGRES\" exact-version=\"13.2\" exact-driver-version=\"42.2\">\r\n        <identifier-quote-string>&quot;</identifier-quote-string>\r\n      </database-info>\r\n      <case-sensitivity plain-identifiers=\"lower\" quoted-identifiers=\"exact\" />\r\n      <user-name>qruser</user-name>\r\n      <schema-mapping>\r\n        <introspection-scope>\r\n          <node kind=\"database\" qname=\"@\">\r\n            <node kind=\"schema\" qname=\"@\" />\r\n          </node>\r\n        </introspection-scope>\r\n      </schema-mapping>\r\n    </data-source>\r\n    <data-source name=\"Rails Rubynor-QR-Meny-System: test\" uuid=\"8bb7a68b-ad9f-41db-b43c-445f6d8a665c\">\r\n      <database-info product=\"\" version=\"\" jdbc-version=\"\" driver-name=\"\" driver-version=\"\" dbms=\"POSTGRES\" exact-version=\"0\" />\r\n      <user-name>QRUser</user-name>\r\n      <schema-mapping />\r\n    </data-source>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dataSources.local.xml b/.idea/dataSources.local.xml
+--- a/.idea/dataSources.local.xml	(revision 70f0397e211ae12f827fdc68d2b83fc814c50c50)
++++ b/.idea/dataSources.local.xml	(date 1616674432597)
+@@ -2,22 +2,11 @@
+ <project version="4">
+   <component name="dataSourceStorageLocal">
+     <data-source name="Rails Rubynor-QR-Meny-System: development" uuid="dd30414c-fbc3-421c-97af-fa2896df60a9">
+-      <database-info product="PostgreSQL" version="13.2" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.2.5" dbms="POSTGRES" exact-version="13.2" exact-driver-version="42.2">
+-        <identifier-quote-string>&quot;</identifier-quote-string>
+-      </database-info>
+-      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+-      <user-name>qruser</user-name>
+-      <schema-mapping>
+-        <introspection-scope>
+-          <node kind="database" qname="@">
+-            <node kind="schema" qname="@" />
+-          </node>
+-        </introspection-scope>
+-      </schema-mapping>
++      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" exact-version="0" />
++      <schema-mapping />
+     </data-source>
+     <data-source name="Rails Rubynor-QR-Meny-System: test" uuid="8bb7a68b-ad9f-41db-b43c-445f6d8a665c">
+       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" exact-version="0" />
+-      <user-name>QRUser</user-name>
+       <schema-mapping />
+     </data-source>
+   </component>
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"4efee63b-a75b-476a-a252-fa7951a58b0f\" name=\"Default Changelist\" comment=\"\">\r\n      <change afterPath=\"$PROJECT_DIR$/app/javascript/js-routes.js.erb\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/app/javascript/routes.js\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/config/webpack/loaders/erb.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/Rubynor-QR-Meny-System.iml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/Rubynor-QR-Meny-System.iml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Gemfile\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Gemfile\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Gemfile.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Gemfile.lock\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/app/javascript/components/admin_menu/menu_item.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/javascript/components/admin_menu/menu_item.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/app/javascript/packs/application.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/javascript/packs/application.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/app/views/admin/restaurants/show.html.erb\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/views/admin/restaurants/show.html.erb\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/config/webpack/environment.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/config/webpack/environment.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/package.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/package.json\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/yarn.lock\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/yarn.lock\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitSEFilterConfiguration\">\r\n    <file-type-list>\r\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\r\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\r\n      <filtered-out-file-type name=\"TAG\" />\r\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\r\n    </file-type-list>\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1q4l7uos3K6dykYxDt1eE1eJuwO\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ASKED_ADD_EXTERNAL_FILES\" value=\"true\" />\r\n    <property name=\"Git.Branch.Popup.ShowAllRemotes\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$\" />\r\n    <property name=\"nodejs_package_manager_path\" value=\"yarn\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"preferences.pluginManager\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\nicol\\RubymineProjects\\Rubynor-QR-Meny-System\\app\\javascript\\components\\cart_icon\" />\r\n      <recent name=\"C:\\Users\\nicol\\RubymineProjects\\Rubynor-QR-Meny-System\\app\\javascript\\components\" />\r\n      <recent name=\"C:\\Users\\nicol\\RubymineProjects\\Rubynor-QR-Meny-System\\app\\javascript\\components\\cart\" />\r\n      <recent name=\"C:\\Users\\nicol\\RubymineProjects\\Rubynor-QR-Meny-System\\app\\javascript\\components\\navbar\" />\r\n      <recent name=\"C:\\Users\\nicol\\RubymineProjects\\Rubynor-QR-Meny-System\\app\\javascript\\components\\configureStore\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Rails.Development: Rubynor-QR-Meny-System\">\r\n    <configuration name=\"Development: Rubynor-QR-Meny-System\" type=\"RailsRunConfigurationType\" factoryName=\"Rails\">\r\n      <module name=\"Rubynor-QR-Meny-System\" />\r\n      <predefined_log_file enabled=\"true\" id=\"RUBY_RAILS_SERVER\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"RUBY_ARGS\" VALUE=\"\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"WORK DIR\" VALUE=\"$MODULE_DIR$\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"SHOULD_USE_SDK\" VALUE=\"false\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"ALTERN_SDK_NAME\" VALUE=\"\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"myPassParentEnvs\" VALUE=\"true\" />\r\n      <EXTENSION ID=\"BundlerRunConfigurationExtension\" bundleExecEnabled=\"false\" />\r\n      <EXTENSION ID=\"JRubyRunConfigurationExtension\" NailgunExecEnabled=\"false\" />\r\n      <EXTENSION ID=\"RubyCoverageRunConfigurationExtension\" track_test_folders=\"true\" runner=\"rcov\" IGNORE_RCOVRT=\"true\" ENABLE_BRANCH_COVERAGE=\"true\" ENABLE_FORKED_COVERAGE=\"true\" />\r\n      <EXTENSION ID=\"org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension\" SCRATCH_USE_RAILS_RUNNER=\"false\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"SCRIPT_ARGS\" VALUE=\"\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"PORT\" VALUE=\"3000\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"IP\" VALUE=\"127.0.0.1\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"DUMMY_APP\" VALUE=\"test/dummy\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"RAILS_SERVER_TYPE\" VALUE=\"Default\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"ENVIRONMENT_TYPE\" VALUE=\"development\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"LAUNCH_JS\" VALUE=\"false\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"Production: Rubynor-QR-Meny-System\" type=\"RailsRunConfigurationType\" factoryName=\"Rails\">\r\n      <module name=\"Rubynor-QR-Meny-System\" />\r\n      <predefined_log_file enabled=\"true\" id=\"RUBY_RAILS_SERVER\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"RUBY_ARGS\" VALUE=\"\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"WORK DIR\" VALUE=\"$MODULE_DIR$\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"SHOULD_USE_SDK\" VALUE=\"false\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"ALTERN_SDK_NAME\" VALUE=\"\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"myPassParentEnvs\" VALUE=\"true\" />\r\n      <EXTENSION ID=\"BundlerRunConfigurationExtension\" bundleExecEnabled=\"false\" />\r\n      <EXTENSION ID=\"JRubyRunConfigurationExtension\" NailgunExecEnabled=\"false\" />\r\n      <EXTENSION ID=\"RubyCoverageRunConfigurationExtension\" track_test_folders=\"true\" runner=\"rcov\" IGNORE_RCOVRT=\"true\" ENABLE_BRANCH_COVERAGE=\"true\" ENABLE_FORKED_COVERAGE=\"true\" />\r\n      <EXTENSION ID=\"org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension\" SCRATCH_USE_RAILS_RUNNER=\"false\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"SCRIPT_ARGS\" VALUE=\"\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"PORT\" VALUE=\"3000\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"IP\" VALUE=\"127.0.0.1\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"DUMMY_APP\" VALUE=\"test/dummy\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"RAILS_SERVER_TYPE\" VALUE=\"Default\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"ENVIRONMENT_TYPE\" VALUE=\"production\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"LAUNCH_JS\" VALUE=\"false\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"spec: Rubynor-QR-Meny-System\" type=\"RakeRunConfigurationType\" factoryName=\"Rake\">\r\n      <module name=\"Rubynor-QR-Meny-System\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RUBY_ARGS\" VALUE=\"\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"WORK DIR\" VALUE=\"$MODULE_DIR$\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"SHOULD_USE_SDK\" VALUE=\"false\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"ALTERN_SDK_NAME\" VALUE=\"\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"myPassParentEnvs\" VALUE=\"true\" />\r\n      <EXTENSION ID=\"BundlerRunConfigurationExtension\" bundleExecEnabled=\"false\" />\r\n      <EXTENSION ID=\"JRubyRunConfigurationExtension\" NailgunExecEnabled=\"false\" />\r\n      <EXTENSION ID=\"RubyCoverageRunConfigurationExtension\" track_test_folders=\"true\" runner=\"rcov\" IGNORE_RCOVRT=\"true\" ENABLE_BRANCH_COVERAGE=\"true\" ENABLE_FORKED_COVERAGE=\"true\" />\r\n      <EXTENSION ID=\"org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension\" SCRATCH_USE_RAILS_RUNNER=\"false\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_NAME\" VALUE=\"spec\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_ARGS\" VALUE=\"\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_ATTACHED_TEST_FRAMEWORKS\" VALUE=\":rspec \" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_OPTION_TRACE\" VALUE=\"false\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_OPTION_DRYRUN\" VALUE=\"false\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_OPTION_PREREQS\" VALUE=\"false\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_OPTION_TESTOPTS\" VALUE=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"test: Rubynor-QR-Meny-System\" type=\"RakeRunConfigurationType\" factoryName=\"Rake\">\r\n      <module name=\"Rubynor-QR-Meny-System\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RUBY_ARGS\" VALUE=\"\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"WORK DIR\" VALUE=\"$MODULE_DIR$\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"SHOULD_USE_SDK\" VALUE=\"false\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"ALTERN_SDK_NAME\" VALUE=\"\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"myPassParentEnvs\" VALUE=\"true\" />\r\n      <envs>\r\n        <env name=\"RAILS_ENV\" value=\"test\" />\r\n      </envs>\r\n      <EXTENSION ID=\"BundlerRunConfigurationExtension\" bundleExecEnabled=\"false\" />\r\n      <EXTENSION ID=\"JRubyRunConfigurationExtension\" NailgunExecEnabled=\"false\" />\r\n      <EXTENSION ID=\"RubyCoverageRunConfigurationExtension\" track_test_folders=\"true\" runner=\"rcov\" IGNORE_RCOVRT=\"true\" ENABLE_BRANCH_COVERAGE=\"true\" ENABLE_FORKED_COVERAGE=\"true\" />\r\n      <EXTENSION ID=\"org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension\" SCRATCH_USE_RAILS_RUNNER=\"false\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_NAME\" VALUE=\"test\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_ARGS\" VALUE=\"\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_ATTACHED_TEST_FRAMEWORKS\" VALUE=\":test_unit \" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_OPTION_TRACE\" VALUE=\"false\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_OPTION_DRYRUN\" VALUE=\"false\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_OPTION_PREREQS\" VALUE=\"false\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_OPTION_TESTOPTS\" VALUE=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"SpringUtil\" SPRING_PRE_LOADER_OPTION=\"true\" RAKE_SPRING_PRE_LOADER_OPTION=\"true\" RAILS_SPRING_PRE_LOADER_OPTION=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"4efee63b-a75b-476a-a252-fa7951a58b0f\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1616346581851</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1616346581851</updated>\r\n      <workItem from=\"1616346586672\" duration=\"4533000\" />\r\n      <workItem from=\"1616407300121\" duration=\"31996000\" />\r\n      <workItem from=\"1616575969756\" duration=\"16984000\" />\r\n    </task>\r\n    <task id=\"LOCAL−00001\" summary=\"react-opprydding\">\r\n      <created>1616423020953</created>\r\n      <option name=\"number\" value=\"LOCAL−00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL−00001\" />\r\n      <updated>1616423020953</updated>\r\n    </task>\r\n    <task id=\"LOCAL−00002\" summary=\"admin react:menu_item\">\r\n      <created>1616425402055</created>\r\n      <option name=\"number\" value=\"LOCAL−00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL−00002\" />\r\n      <updated>1616425402055</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"3\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\r\n    <MESSAGE value=\"react-opprydding\" />\r\n    <MESSAGE value=\"admin react:menu_item\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"admin react:menu_item\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 70f0397e211ae12f827fdc68d2b83fc814c50c50)
++++ b/.idea/workspace.xml	(date 1616677099456)
+@@ -2,19 +2,13 @@
+ <project version="4">
+   <component name="ChangeListManager">
+     <list default="true" id="4efee63b-a75b-476a-a252-fa7951a58b0f" name="Default Changelist" comment="">
+-      <change afterPath="$PROJECT_DIR$/app/javascript/js-routes.js.erb" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/app/javascript/routes.js" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/config/webpack/loaders/erb.js" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/app/javascript/components/admin_menu/modal.jsx" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/Rubynor-QR-Meny-System.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Rubynor-QR-Meny-System.iml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/application.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/application.scss" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/app/javascript/components/admin_menu/menu_item.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/admin_menu/menu_item.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/app/javascript/packs/application.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/packs/application.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/app/views/admin/restaurants/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/restaurants/show.html.erb" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/config/webpack/environment.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/webpack/environment.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/javascript/stylesheets/tailwind-components.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/stylesheets/tailwind-components.scss" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -24,7 +18,7 @@
+   <component name="Git.Settings">
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$" value="master" />
++        <entry key="$PROJECT_DIR$" value="admin-react" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+@@ -57,11 +51,11 @@
+   </component>
+   <component name="RecentsManager">
+     <key name="MoveFile.RECENT_KEYS">
++      <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components\admin_menu" />
+       <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components\cart_icon" />
+       <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components" />
+       <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components\cart" />
+       <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components\navbar" />
+-      <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components\configureStore" />
+     </key>
+   </component>
+   <component name="RunManager" selected="Rails.Development: Rubynor-QR-Meny-System">
+@@ -163,6 +157,7 @@
+       <workItem from="1616346586672" duration="4533000" />
+       <workItem from="1616407300121" duration="31996000" />
+       <workItem from="1616575969756" duration="16984000" />
++      <workItem from="1616661528670" duration="5457000" />
+     </task>
+     <task id="LOCAL−00001" summary="react-opprydding">
+       <created>1616423020953</created>
+@@ -176,7 +171,13 @@
+       <option name="presentableId" value="LOCAL−00002" />
+       <updated>1616425402055</updated>
+     </task>
+-    <option name="localTasksCounter" value="3" />
++    <task id="LOCAL−00003" summary="Admin: liten fiks">
++      <created>1616595682626</created>
++      <option name="number" value="LOCAL−00003" />
++      <option name="presentableId" value="LOCAL−00003" />
++      <updated>1616595682626</updated>
++    </task>
++    <option name="localTasksCounter" value="4" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -198,6 +199,7 @@
+     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+     <MESSAGE value="react-opprydding" />
+     <MESSAGE value="admin react:menu_item" />
+-    <option name="LAST_COMMIT_MESSAGE" value="admin react:menu_item" />
++    <MESSAGE value="Admin: liten fiks" />
++    <option name="LAST_COMMIT_MESSAGE" value="Admin: liten fiks" />
+   </component>
+ </project>
+\ No newline at end of file

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { FaArrowDown, FaArrowRight } from "react-icons/fa";
+import {IoIosArrowForward, IoIosArrowDown} from "react-icons/io";
 
 class OrderItem extends Component {
     state = {}
@@ -62,7 +62,7 @@ class OrderItem extends Component {
             return <p>Loading..</p>
 
         let body = (<tbody></tbody>)
-        let collapseButton = <FaArrowRight/>
+        let collapseButton = <IoIosArrowForward/>
 
         let finishBtn = <p></p>
         if(orderItem.order_status == "Startet") {
@@ -75,10 +75,10 @@ class OrderItem extends Component {
             body = (
                 <tbody>
                 { menuItems.map((item, index) => (
-                    <tr key={index} className="h-10">
+                    <tr key={index} className="h-10 bg-gray-100 border-b border-gray-200">
                         <td className="pl-8">
                             <div className="inline-block">
-                                {item.number}. { item.name } x{item.quantity}
+                                {item.number} { item.name } x{item.quantity}
                             </div>
                             <div className="inline-block float-right pr-10">
                                 {item.total_price},-
@@ -86,20 +86,20 @@ class OrderItem extends Component {
                         </td>
                      </tr>)
                 )}
-                <tr className="h-10">
+                <tr className="h-8">
                     <td className="pl-8">
                         Kommentar: { orderItem.customer_info }
                     </td>
                 </tr>
                 </tbody>)
 
-            collapseButton = <FaArrowDown/>
+            collapseButton = <IoIosArrowDown/>
         }
 
         return (
-            <table className="mb-4 table-fixed w-full text-white">
-              <thead className="bg-gray-800">
-                <tr className="h-20">
+            <table className="mb-4 table-fixed w-full bg-gray-200 text-gray-800 tracking-wide">
+              <thead className="">
+                <tr className="h-16 border-b-2 border-gray-300">
                   <th className="text-left">
                     <div className="ml-8 inline-block pr-5">
                       <strong>Sted: {orderItem.location} - Bestilling: {orderItem.id}</strong>
@@ -120,7 +120,6 @@ class OrderItem extends Component {
             </table>
         )
     }
-    
 }
 
 

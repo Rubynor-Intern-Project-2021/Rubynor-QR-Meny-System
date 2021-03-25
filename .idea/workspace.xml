@@ -2,19 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4efee63b-a75b-476a-a252-fa7951a58b0f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/javascript/js-routes.js.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/javascript/routes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/webpack/loaders/erb.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/javascript/components/admin_menu/modal.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Rubynor-QR-Meny-System.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Rubynor-QR-Meny-System.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/application.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/application.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascript/components/admin_menu/menu_item.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/admin_menu/menu_item.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/packs/application.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/packs/application.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/components/admin_order/order_item.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/admin_order/order_item.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/stylesheets/tailwind-components.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/stylesheets/tailwind-components.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/orders/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/orders/show.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/admin/restaurants/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/restaurants/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/webpack/environment.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/webpack/environment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +21,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="admin-react" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -57,11 +54,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components\admin_menu" />
       <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components\cart_icon" />
       <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components" />
       <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components\cart" />
       <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components\navbar" />
-      <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components\configureStore" />
     </key>
   </component>
   <component name="RunManager" selected="Rails.Development: Rubynor-QR-Meny-System">
@@ -163,6 +160,7 @@
       <workItem from="1616346586672" duration="4533000" />
       <workItem from="1616407300121" duration="31996000" />
       <workItem from="1616575969756" duration="16984000" />
+      <workItem from="1616661528670" duration="18546000" />
     </task>
     <task id="LOCAL−00001" summary="react-opprydding">
       <created>1616423020953</created>
@@ -176,7 +174,13 @@
       <option name="presentableId" value="LOCAL−00002" />
       <updated>1616425402055</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL−00003" summary="Admin: liten fiks">
+      <created>1616595682626</created>
+      <option name="number" value="LOCAL−00003" />
+      <option name="presentableId" value="LOCAL−00003" />
+      <updated>1616595682626</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,6 +202,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="react-opprydding" />
     <MESSAGE value="admin react:menu_item" />
-    <option name="LAST_COMMIT_MESSAGE" value="admin react:menu_item" />
+    <MESSAGE value="Admin: liten fiks" />
+    <option name="LAST_COMMIT_MESSAGE" value="Admin: liten fiks" />
   </component>
 </project>
