@@ -77,8 +77,6 @@ class Api::V1::ApiController < ApplicationController
       end
     end
 
- toString   p session[:cart]
-
  
     render json: { message: 'Successfully removed one to cart.' }, status: 200
   end

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, {useReducer} from 'react'
 import {useState} from 'react';
 import PropTypes from 'prop-types';
 import axios from "axios";
+import {store} from './configureStore'
 
 const addToCart = ({menuItem}) => {
 
@@ -33,17 +34,25 @@ const addToCart = ({menuItem}) => {
             setNum(0);
         }
     }
+    
     function addMultipleToCart() {
         console.log("TEEST"+menuItem.id)
         axios.get('/api/v1/add_to_cart',
             {
-                params: {menu_item_id: menuItem.id, amount: num}})
+            params: {menu_item_id: menuItem.id, amount: num}})
             .then(response => {
-                console.log(response.data)
+                axios.get('/api/v1/total_amount').then(res => {
+                    store.dispatch({
+                        type: 'UPDATE_ICON',
+                        payload: res.data
+                    });
+                }); 
+
                 setNum(0)
             }).catch(error => {
             console.log(error);
         })
+
     }
 
 

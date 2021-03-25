@@ -32,7 +32,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'jquery-rails'
 gem 'js-routes'
 gem 'react-rails'
-gem 'wdm', '~> 0.1.0'
+#gem 'wdm', '~> 0.1.0'
 
 
 group :development, :test do

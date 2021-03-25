@@ -16,18 +16,11 @@ const OrderList = ({orderItems}) => {
     );
 
 
-    const getCoursesAsync = () =>
-        new Promise(resolve => resolve({orders: orderItems})
-        );
-
     useEffect(() => {
-
-        getCoursesAsync().then(result => {
-            dispatchOrders({
-                type: 'SET_ORDERS',
-                payload: result.orders
-            });
-        })
+        dispatchOrders({
+            type: 'SET_ORDERS',
+            payload: orderItems
+        });
     }, []);
 
     const handleRemoveOrder = order => {
