@@ -48,6 +48,15 @@
         <%= form.text_field :price, class: 'w-80 border-gray-800 rounded-lg' %>
       </div>
 
+      <div class="field text-gray-700 pt-5">
+        <%= form.label :allergens, class: 'text-gray-700' %><br>
+        <% Allergen.all.each do |allergen| %>
+          <div > 
+            <input class="border-gray-800 mr-2 rounded-lg" type="checkbox" value="<%=allergen.id%>"><%=allergen.name%></input>
+          </div>
+        <% end %>
+      </div>
+
       <div class="actions text-gray-700 pt-5">
         <%= form.submit class: 'btn-indigo' %>
       </div>

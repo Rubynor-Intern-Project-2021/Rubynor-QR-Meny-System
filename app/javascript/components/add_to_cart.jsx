@@ -3,11 +3,10 @@ import {useState} from 'react';
 import PropTypes from 'prop-types';
 import axios from "axios";
 import {store} from './configureStore'
-import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
-
-
+import {FaMinus, FaPlus} from "react-icons/all";
 
 const addToCart = ({menuItem}) => {
+
 
     addToCart.propTypes = {
         price: PropTypes.number
@@ -62,12 +61,12 @@ const addToCart = ({menuItem}) => {
             <div className="flex justify-between py-2">
                 <div className="text-gray-800 ">
                     <div className="flex text-sm">
-                        <button onClick={decNum} >
-                            <AiOutlineMinus/>
+                        <button onClick={decNum}  className="">
+                            {<FaMinus size={20}/>}
                         </button>
-                        <p className="px-5"> {num} </p>
-                        <button onClick={incNum} >
-                            <AiOutlinePlus/>
+                        <p className="px-3 font-bold"> {num} </p>
+                        <button onClick={incNum}  className="">
+                            {<FaPlus size={20}/>}
                         </button>
                     </div>
                 </div>
@@ -76,6 +75,9 @@ const addToCart = ({menuItem}) => {
             <div >
                 <button onClick={addMultipleToCart} className="text-xs text-white bg-gray-700 uppercase bg-white px-10 py-2">Legg i kurv</button>
             </div>
+            <br />
+            <button onClick={addMultipleToCart} className="uppercase bg-white mb-5 mt-1 py-2  border-green-300 border-solid border-2" >LEGG TIL</button>
+
         </div>
     )
 }

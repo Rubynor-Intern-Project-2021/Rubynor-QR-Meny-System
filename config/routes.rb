@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :restaurants
     resources :menus
+    resources :allergens
     resources :menu_items
     resources :orders
   end

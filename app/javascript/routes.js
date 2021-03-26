@@ -495,6 +495,12 @@ Based on Rails 6.0.3.5 routes of RubynorQrMenySystem::Application
 // add_to_cart => /add_to_cart(.:format)
   // function(options)
   add_to_cart_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"add_to_cart",false],[1,[2,[8,".",false],[3,"format",false]],false]]]),
+// admin_allergen => /admin/allergens/:id(.:format)
+  // function(id, options)
+  admin_allergen_path: Utils.route([["id",true],["format",false]], {}, [2,[7,"/",false],[2,[6,"admin",false],[2,[7,"/",false],[2,[6,"allergens",false],[2,[7,"/",false],[2,[3,"id",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
+// admin_allergens => /admin/allergens(.:format)
+  // function(options)
+  admin_allergens_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"admin",false],[2,[7,"/",false],[2,[6,"allergens",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]),
 // admin_menu => /admin/menus/:id(.:format)
   // function(id, options)
   admin_menu_path: Utils.route([["id",true],["format",false]], {}, [2,[7,"/",false],[2,[6,"admin",false],[2,[7,"/",false],[2,[6,"menus",false],[2,[7,"/",false],[2,[3,"id",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
@@ -528,6 +534,9 @@ Based on Rails 6.0.3.5 routes of RubynorQrMenySystem::Application
 // api_v1_empty_cart => /api/v1/empty_cart(.:format)
   // function(options)
   api_v1_empty_cart_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"v1",false],[2,[7,"/",false],[2,[6,"empty_cart",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
+// api_v1_finish_order => /api/v1/finish_order(.:format)
+  // function(options)
+  api_v1_finish_order_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"v1",false],[2,[7,"/",false],[2,[6,"finish_order",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
 // api_v1_get_order_items => /api/v1/get_order_items(.:format)
   // function(options)
   api_v1_get_order_items_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"v1",false],[2,[7,"/",false],[2,[6,"get_order_items",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
@@ -546,6 +555,9 @@ Based on Rails 6.0.3.5 routes of RubynorQrMenySystem::Application
 // api_v1_total_price => /api/v1/total_price(.:format)
   // function(options)
   api_v1_total_price_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"v1",false],[2,[7,"/",false],[2,[6,"total_price",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
+// edit_admin_allergen => /admin/allergens/:id/edit(.:format)
+  // function(id, options)
+  edit_admin_allergen_path: Utils.route([["id",true],["format",false]], {}, [2,[7,"/",false],[2,[6,"admin",false],[2,[7,"/",false],[2,[6,"allergens",false],[2,[7,"/",false],[2,[3,"id",false],[2,[7,"/",false],[2,[6,"edit",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]]),
 // edit_admin_menu => /admin/menus/:id/edit(.:format)
   // function(id, options)
   edit_admin_menu_path: Utils.route([["id",true],["format",false]], {}, [2,[7,"/",false],[2,[6,"admin",false],[2,[7,"/",false],[2,[6,"menus",false],[2,[7,"/",false],[2,[3,"id",false],[2,[7,"/",false],[2,[6,"edit",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]]),
@@ -600,6 +612,9 @@ Based on Rails 6.0.3.5 routes of RubynorQrMenySystem::Application
 // menu_item_index => /menu_item(.:format)
   // function(options)
   menu_item_index_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"menu_item",false],[1,[2,[8,".",false],[3,"format",false]],false]]]),
+// new_admin_allergen => /admin/allergens/new(.:format)
+  // function(options)
+  new_admin_allergen_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"admin",false],[2,[7,"/",false],[2,[6,"allergens",false],[2,[7,"/",false],[2,[6,"new",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
 // new_admin_menu => /admin/menus/new(.:format)
   // function(options)
   new_admin_menu_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"admin",false],[2,[7,"/",false],[2,[6,"menus",false],[2,[7,"/",false],[2,[6,"new",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
