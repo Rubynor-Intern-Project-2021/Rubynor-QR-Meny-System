@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {IoIosArrowForward, IoIosArrowDown, IoIosAddCircleOutline} from "react-icons/io";
 import {BiPencil, BiXCircle} from "react-icons/bi";
-import Modal from './modal';
+//import Modal from './modal';
 
 
 const MenuItem = ({menu, menuItems}) => {
@@ -31,7 +31,7 @@ const MenuItem = ({menu, menuItems}) => {
             setCollapseButton(<IoIosArrowForward/>)
     }
 
-    let modal = (
+    /*let modal = (
         <>
             {show &&
             <Modal>
@@ -42,12 +42,12 @@ const MenuItem = ({menu, menuItems}) => {
                 </div>
             </Modal>}
         </>
-    )
+    )*/
 
     let body = (
         <tbody>
         {isCollapsed === false && menuItems.map((item, index) => (
-                <tr key={index} className="h-10 bg-gray-100 border-b border-gray-200">
+                <tr key={index} className="admin-content-row">
                     <td className="pl-2 md:pl-8 lg:pl-8">
                         <div className="w-2/6 flex float-left inline-block align-text-top">
                             {item.name}
@@ -76,9 +76,9 @@ const MenuItem = ({menu, menuItems}) => {
 
     return (
 
-    <table className="mb-3 table-fixed w-full bg-gray-200 text-gray-800 tracking-wide">
+    <table className="mb-3 admin-title-row">
         <thead className="">
-        <tr className="h-16 border-b-2 border-gray-300">
+        <tr className="admin-tbl-border">
             <th className="text-left">
                 <div className="pl-2 md:pl-8 lg:pl-8 inline-block ">
                     {menu.name}

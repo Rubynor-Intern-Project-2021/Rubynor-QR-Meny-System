@@ -41,7 +41,7 @@ class Api::V1::ApiController < ApplicationController
     if !exists
       session[:cart] << { "item_id": id, "amount": amount }
     end
-    
+
     render json: { 
       message: 'Successfully added to cart.', 
     }, status: 200

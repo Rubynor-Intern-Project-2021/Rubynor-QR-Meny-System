@@ -41,6 +41,7 @@ const addToCart = ({menuItem}) => {
             {
             params: {menu_item_id: menuItem.id, amount: num}})
             .then(response => {
+
                 axios.get('/api/v1/total_amount').then(res => {
                     store.dispatch({
                         type: 'UPDATE_ICON',
@@ -59,7 +60,7 @@ const addToCart = ({menuItem}) => {
 
     return (
         <div className="m-1 flex justify-between pt-4">
-            <div className="flex justify-between">
+            <div className="flex justify-between py-3">
                 <div className="text-gray-800 ">
                     <div className="flex text-sm">
                         <button onClick={decNum} >
@@ -72,10 +73,11 @@ const addToCart = ({menuItem}) => {
                     </div>
                 </div>
             </div>
-            <div className="text-gray-700 ">
+            <div className="text-gray-700 py-3">
                 {totalPrice},00 kr
             </div>
-            <button onClick={addMultipleToCart}>ADD TO CART</button>
+            <br />
+            <button onClick={addMultipleToCart} className="uppercase bg-white mb-5 mt-1 py-2  border-green-300 border-solid border-2" >LEGG TIL</button>
 
         </div>
     )
