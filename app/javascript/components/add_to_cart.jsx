@@ -3,6 +3,7 @@ import {useState} from 'react';
 import PropTypes from 'prop-types';
 import axios from "axios";
 import {store} from './configureStore'
+import {FaMinus, FaPlus} from "react-icons/all";
 
 const addToCart = ({menuItem}) => {
 
@@ -63,12 +64,12 @@ const addToCart = ({menuItem}) => {
             <div className="flex justify-between py-3">
                 <div className="text-gray-800 ">
                     <div className="flex text-sm">
-                        <button onClick={decNum} >
-                            &mdash;
+                        <button onClick={decNum}  className="text-green-400 ">
+                            {<FaMinus size={20}/>}
                         </button>
-                        <p className="px-3"> {num} </p>
-                        <button onClick={incNum} >
-                            &#xff0b;
+                        <p className="px-3 font-bold"> {num} </p>
+                        <button onClick={incNum}  className="text-green-400 ">
+                            {<FaPlus size={20}/>}
                         </button>
                     </div>
                 </div>

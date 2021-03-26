@@ -1,11 +1,11 @@
 <nav class="flex items-center justify-between flex-wrap bg-white lg:bg-gray-800 p-2 fixed w-full z-10 pin-t">
 
-  <div class="flex items-center flex-no-shrink text-gray-900 lg:text-white mr-6">
-    <%= link_to @restaurant.name, restaurant_path(:id => @restaurant.id), class: "text-2xl pl-2 font-semibold uppercase text-gray-900 lg:text-white hover:text-gray-600 lg:hover:text-gray-200 no-underline hover:text-white hover:no-underline" %>
+  <div class="flex items-center flex-no-shrink text-gray-900 lg:text-gray-100 mr-6">
+    <%= link_to @restaurant.name, restaurant_path(:id => @restaurant.id), class: "text-md lg:text-2xl pl-2 font-semibold uppercase text-gray-900 lg:text-white hover:text-gray-600 lg:hover:text-gray-200 no-underline hover:text-white hover:no-underline" %>
   </div>
   <div class="">
     <%= link_to order_path(:id => @restaurant.id) do %>
-      <%= react_component("cart_icon/cart_icon")%>
+      <%= react_component("cart_icon/cart_icon") %>
     <% end %>
   </div>
 
@@ -25,7 +25,9 @@
       </li>
       <% if session[:restaurant_id] != nil %>
         <li class="mr-3 hidden lg:block text-gray-200">|</li>
-        <li class="mr-3 block lg:hidden"><hr style="height:2px;border-width:0;color:gray;background-color:gray"/></li>
+        <li class="mr-3 block lg:hidden">
+          <hr style="height:2px;border-width:0;color:gray;background-color:gray"/>
+        </li>
         <li class="mr-3">
           <%= link_to 'Admin', admin_restaurant_path(:id => @restaurant.id), class: "nav-btn" %>
         </li>

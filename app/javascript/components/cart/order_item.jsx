@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {useSpring, animated} from 'react-spring'
 import {HiOutlineTrash} from 'react-icons/hi'
 import axios from "axios";
+import {FaMinus, FaPlus} from "react-icons/all";
 
 
 const OrderItem = ({orderItem, quantity, handleRemoveOrder}) => {
@@ -109,11 +110,11 @@ const OrderItem = ({orderItem, quantity, handleRemoveOrder}) => {
                     <div className="text-gray-800 ">
                         <div className="flex ">
                             <button onClick={decNum} onChange={handleChange} className="text-green-400 ">
-                                &mdash;
+                                {<FaMinus size={20}/>}
                             </button>
-                            <p className="px-3"> {num} </p>
+                            <p className="px-3 font-bold"> {num} </p>
                             <button onClick={incNum} onChange={handleChange} className="text-green-400 ">
-                                &#xff0b;
+                                {<FaPlus size={20}/>}
                             </button>
                         </div>
                     </div>
@@ -137,11 +138,11 @@ const OrderItem = ({orderItem, quantity, handleRemoveOrder}) => {
                         <div className="text-gray-800 ">
                             <div className="flex ">
                                 <button onClick={decNum} onChange={handleChange} className="text-green-400 ">
-                                    &mdash;
+                                    {<FaMinus size={20}/>}
                                 </button>
-                                <p className="px-3"> {num} </p>
+                                <p className="px-3 font-bold"> {num} </p>
                                 <button onClick={incNum} onChange={handleChange} className="text-green-400 ">
-                                    &#xff0b;
+                                    {<FaPlus size={20}/>}
                                 </button>
                             </div>
                         </div>
