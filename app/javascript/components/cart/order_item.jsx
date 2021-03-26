@@ -105,25 +105,25 @@ const OrderItem = ({orderItem, quantity, handleRemoveOrder}) => {
 
     const smallScreen = () => {
         return (
-            <animated.div style={slide} className="px-8 py-2 my-0.5 flex bg-white justify-between z-10 relative">
+            <animated.div style={slide} className="pl-8 pr-2 py-2 my-0.5 flex bg-white justify-between z-6 relative">
                 <div className="flex justify-between">
                     <div className="text-gray-800 ">
                         <div className="flex ">
-                            <button onClick={decNum} onChange={handleChange} className="text-green-400 ">
-                                {<FaMinus size={20}/>}
+                            <button onClick={decNum} onChange={handleChange} className="">
+                                <FaMinus/>
                             </button>
-                            <p className="px-3 font-bold"> {num} </p>
-                            <button onClick={incNum} onChange={handleChange} className="text-green-400 ">
-                                {<FaPlus size={20}/>}
+                            <p className="px-4 text-sm"> {num} </p>
+                            <button onClick={incNum} onChange={handleChange} className="">
+                                <FaPlus/>
                             </button>
                         </div>
                     </div>
-                    <div className="pl-7 text-gray-500">
+                    <div className="text-sm pl-7 text-gray-500">
                         {name}
                     </div>
                 </div>
-                <div className="text-gray-700 ">
-                    {totalPrice},00 NOK
+                <div className="text-sm text-gray-700 ">
+                    {totalPrice} kr
                 </div>
             </animated.div>
         )
@@ -137,23 +137,23 @@ const OrderItem = ({orderItem, quantity, handleRemoveOrder}) => {
                     <div className="flex justify-between">
                         <div className="text-gray-800 ">
                             <div className="flex ">
-                                <button onClick={decNum} onChange={handleChange} className="text-green-400 ">
-                                    {<FaMinus size={20}/>}
+                                <button onClick={decNum} onChange={handleChange} className="">
+                                    <FaMinus/>
                                 </button>
-                                <p className="px-3 font-bold"> {num} </p>
-                                <button onClick={incNum} onChange={handleChange} className="text-green-400 ">
-                                    {<FaPlus size={20}/>}
+                                <p className="px-5"> {num} </p>
+                                <button onClick={incNum} onChange={handleChange} className="">
+                                    <FaPlus/>
                                 </button>
                             </div>
                         </div>
-                        <div className="pl-7 text-gray-500">
+                        <div className="text-md pl-7 text-gray-500">
                             {name}
                         </div>
                     </div>
                 </div>
                 <div>
-                    <animated.div style={slide} className="pl-10 py-2 text-gray-700 bg-white">
-                        {totalPrice},00 NOK
+                    <animated.div style={slide} className=" text-md pl-10 py-2 text-gray-700 bg-white">
+                        {totalPrice} kr
                     </animated.div>
                 </div>
             </div>
