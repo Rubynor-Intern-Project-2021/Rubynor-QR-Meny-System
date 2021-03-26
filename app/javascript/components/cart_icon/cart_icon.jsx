@@ -32,13 +32,13 @@ const cartIcon = () => {
 
     return (
         <div className="relative">
-            <div className="text-green-300">
+            <div className="text-gray-800 lg:text-gray-100">
                 <RiShoppingBag2Line size={25}/>
             </div>
-            <div className="text-green-300 absolute top-3 -right-0.5">
+            <div className="text-gray-800 absolute top-3 -right-0.5 lg:text-gray-100">
                 <BsFillCircleFill />
             </div>
-            <div className="text-xs text-white absolute top-3 right-0.5">
+            <div className="text-xs text-white absolute top-3 right-0.5 lg:text-gray-900">
                 {amount}
             </div>
         </div>
