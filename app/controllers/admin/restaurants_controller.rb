@@ -15,6 +15,8 @@ class Admin::RestaurantsController < ApplicationController
       puts "Adding qr code"
       add_qr_code()
     end
+
+    @allergens = Allergen.all
   end
 
   # GET /restaurants/new
