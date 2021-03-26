@@ -3,9 +3,11 @@ import {useState} from 'react';
 import PropTypes from 'prop-types';
 import axios from "axios";
 import {store} from './configureStore'
+import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
+
+
 
 const addToCart = ({menuItem}) => {
-
 
     addToCart.propTypes = {
         price: PropTypes.number
@@ -53,32 +55,27 @@ const addToCart = ({menuItem}) => {
             }).catch(error => {
             console.log(error);
         })
-
     }
 
-
-
     return (
-        <div className="m-1 flex justify-between pt-4">
-            <div className="flex justify-between py-3">
+        <div className="flex justify-between py-2">
+            <div className="flex justify-between py-2">
                 <div className="text-gray-800 ">
                     <div className="flex text-sm">
                         <button onClick={decNum} >
-                            &mdash;
+                            <AiOutlineMinus/>
                         </button>
-                        <p className="px-3"> {num} </p>
+                        <p className="px-5"> {num} </p>
                         <button onClick={incNum} >
-                            &#xff0b;
+                            <AiOutlinePlus/>
                         </button>
                     </div>
                 </div>
             </div>
-            <div className="text-gray-700 py-3">
-                {totalPrice},00 kr
-            </div>
-            <br />
-            <button onClick={addMultipleToCart} className="uppercase bg-white mb-5 mt-1 py-2  border-green-300 border-solid border-2" >LEGG TIL</button>
 
+            <div >
+                <button onClick={addMultipleToCart} className="text-xs text-white bg-gray-700 uppercase bg-white px-10 py-2">Legg i kurv</button>
+            </div>
         </div>
     )
 }
