@@ -3,7 +3,7 @@ import {useState} from 'react';
 import PropTypes from 'prop-types';
 import axios from "axios";
 import {store} from './configureStore'
-import {FaMinus, FaPlus} from "react-icons/all";
+import {AiOutlinePlus, AiOutlineMinus} from "react-icons/ai";
 
 const addToCart = ({menuItem}) => {
 
@@ -62,11 +62,11 @@ const addToCart = ({menuItem}) => {
                 <div className="text-gray-800 ">
                     <div className="flex text-sm">
                         <button onClick={decNum}  className="">
-                            {<FaMinus size={20}/>}
+                            {<AiOutlineMinus/>}
                         </button>
-                        <p className="px-3 font-bold"> {num} </p>
+                        <p className="px-4 font-bold"> {num} </p>
                         <button onClick={incNum}  className="">
-                            {<FaPlus size={20}/>}
+                            {<AiOutlinePlus/>}
                         </button>
                     </div>
                 </div>
@@ -75,9 +75,6 @@ const addToCart = ({menuItem}) => {
             <div >
                 <button onClick={addMultipleToCart} className="text-xs text-white bg-gray-700 uppercase bg-white px-10 py-2">Legg i kurv</button>
             </div>
-            <br />
-            <button onClick={addMultipleToCart} className="uppercase bg-white mb-5 mt-1 py-2  border-green-300 border-solid border-2" >LEGG TIL</button>
-
         </div>
     )
 }

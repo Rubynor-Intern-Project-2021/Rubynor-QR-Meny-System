@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {useSpring, animated} from 'react-spring'
 import {HiOutlineTrash} from 'react-icons/hi'
 import axios from "axios";
-import {FaMinus, FaPlus} from "react-icons/all";
+import {AiOutlinePlus, AiOutlineMinus} from "react-icons/ai";
 
 
 const OrderItem = ({orderItem, quantity, handleRemoveOrder}) => {
@@ -110,11 +110,11 @@ const OrderItem = ({orderItem, quantity, handleRemoveOrder}) => {
                     <div className="text-gray-800 ">
                         <div className="flex ">
                             <button onClick={decNum} onChange={handleChange} className="">
-                                <FaMinus/>
+                                <AiOutlineMinus/>
                             </button>
                             <p className="px-4 text-sm"> {num} </p>
                             <button onClick={incNum} onChange={handleChange} className="">
-                                <FaPlus/>
+                                <AiOutlinePlus/>
                             </button>
                         </div>
                     </div>
@@ -138,11 +138,11 @@ const OrderItem = ({orderItem, quantity, handleRemoveOrder}) => {
                         <div className="text-gray-800 ">
                             <div className="flex ">
                                 <button onClick={decNum} onChange={handleChange} className="">
-                                    <FaMinus/>
+                                    <AiOutlineMinus/>
                                 </button>
                                 <p className="px-5"> {num} </p>
                                 <button onClick={incNum} onChange={handleChange} className="">
-                                    <FaPlus/>
+                                    <AiOutlinePlus/>
                                 </button>
                             </div>
                         </div>
