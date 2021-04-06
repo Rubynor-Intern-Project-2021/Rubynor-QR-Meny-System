@@ -58,6 +58,28 @@ class Admin::MenuItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def menu_item_params
-      params.require(:menu_item).permit(:name, :number, :image_url, :description, :price, :menu_id, :image)
+      used_allergens = params[:allergens]
+
+      params_to_return = params.require(:menu_item).permit(:name, :number, :image_url, :description, :price, :menu_id, :image)
+
+      AllergenItem.where(:menu_item_id=>params[:id]).each do |item|
+        item.destroy
+      end
+
+      allergens_to_add = []
+      if used_allergens != nil 
+        used_allergens.each do |allergen_param|
+          p "Allergen: #{allergen_param[0]}"
+          allergen_item = AllergenItem.new(:menu_item_id=>params[:id], :allergen_id=>allergen_param[0])
+          allergens_to_add << allergen_item
+        end
+        params_to_return[:allergen_items] = allergens_to_add
+      end
+
+
+
+      p "Params to return #{params_to_return}"
+
+      params_to_return
     end
 end

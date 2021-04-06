@@ -52,7 +52,7 @@
         <%= form.label :allergens, class: 'text-gray-700' %><br>
         <% Allergen.all.each do |allergen| %>
           <div > 
-            <input class="border-gray-800 mr-2 rounded-lg" type="checkbox" value="<%=allergen.id%>"><%=allergen.name%></input>
+            <input name="allergens[<%=allergen.id%>] class="border-gray-800 mr-2 rounded-lg" type="checkbox" value="<%=allergen.id%>"><%=allergen.name%></input>
           </div>
         <% end %>
       </div>
