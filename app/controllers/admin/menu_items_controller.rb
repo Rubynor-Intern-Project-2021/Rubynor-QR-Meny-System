@@ -1,9 +1,6 @@
 class Admin::MenuItemsController < ApplicationController
   before_action :set_menu_item, only: %i[ show edit update destroy ]
 
-  # GET /menu_items/1 or /menu_items/1.json
-  def show
-  end
 
   # GET /menu_items/new
   def new
@@ -43,13 +40,25 @@ class Admin::MenuItemsController < ApplicationController
 
   # DELETE /menu_items/1 or /menu_items/1.json
   def destroy
-    @menu_item.destroy
+    @menu_item.status=3
     respond_to do |format|
       format.html { redirect_to admin_restaurant_url(@menu_item.menu.restaurant.id), notice: "Menu item was successfully destroyed." }
 
     end
   end
 
+  def set_item_status
+    p "menu_items Status"
+    item=MenuItem.find(params[:item_id])
+    item.status=params[:status]
+    p "menu_items Status2"
+    item.save
+    p "menu_items Status3"
+    respond_to do |format|
+      format.html { redirect_to admin_restaurant_url(item.menu.restaurant.id), notice: "Menu item was successfully changed." }
+    end
+
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_menu_item
