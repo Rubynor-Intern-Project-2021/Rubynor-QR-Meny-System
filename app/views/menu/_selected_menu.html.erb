@@ -3,9 +3,9 @@
   <%= link_to menu_item_path(menu_item) do %>
     <!-- Hver rad-->
     <div class="flex my-2">
-      <div class="hidden sm:block flex-initial w-32">
+      <div class="sm:block flex-initial w-32">
         <% if menu_item.image.attached? %>
-          <%= image_tag menu_item.image, class:"object-cover rounded max-w-full h-auto align-middle border-none"%>
+          <%= image_tag menu_item.image, class:"object-contain rounded max-w-full h-32 align-middle border-none"%>
         <% end %>
       </div>
 

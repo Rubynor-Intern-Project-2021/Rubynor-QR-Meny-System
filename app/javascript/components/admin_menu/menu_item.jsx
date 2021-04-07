@@ -31,18 +31,6 @@ const MenuItem = ({menu, menuItems}) => {
             setCollapseButton(<IoIosArrowForward/>)
     }
 
-    /*let modal = (
-        <>
-            {show &&
-            <Modal>
-                <div
-                    style={{color: 'black'}}
-                >
-                    En modal
-                </div>
-            </Modal>}
-        </>
-    )*/
 
     let body = (
         <tbody>
