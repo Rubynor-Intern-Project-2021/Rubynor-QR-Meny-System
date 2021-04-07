@@ -1,5 +1,5 @@
 <!-- retter som vises under menyene-->
-<% menu.menu_items.each do |menu_item| %>
+<% menu.menu_items.where(:status => 1).each do |menu_item| %>
   <%= link_to menu_item_path(menu_item) do %>
     <!-- Hver rad-->
     <div class="flex my-2">

@@ -34,21 +34,24 @@ const MenuItem = ({menu, menuItems}) => {
 
     let body = (
         <tbody>
-        {isCollapsed === false && menuItems.map((item, index) => (
-                <tr key={index} className="admin-content-row">
-                    <td className="pl-2 md:pl-8 lg:pl-8">
-                        <div className="w-2/6 flex float-left inline-block align-text-top">
-                            {item.name}
-                        </div>
-                        <div className="w-2/6 inline-block">
-                            {item.description}
-                        </div>
-                        <div className="md:flex float-right inline-block align-text-top pr-4 md:pr-10 lg:pr-10">
-                            <Link icon={<BiPencil size={20}/>} label="Rediger" href={Routes.edit_admin_menu_item_path(item)}/>
-                            <Link icon={<BiXCircle size={20}/>} label="Slett" href={Routes.admin_menu_item_path(item)}/>
-                        </div>
-                    </td>
-                </tr>)
+        {isCollapsed === false && menuItems.map((item, index) =>
+                (
+                    item.status!==3?
+                    <tr key={index} className="admin-content-row">
+                        <td className="pl-2 md:pl-8 lg:pl-8">
+                            <div className="w-2/6 flex float-left inline-block align-text-top">
+                                {item.name}
+                            </div>
+                            <div className="w-2/6 inline-block">
+                                {item.description}
+                            </div>
+                            <div className="md:flex float-right inline-block align-text-top pr-4 md:pr-10 lg:pr-10">
+                                <Link icon={<BiPencil size={20}/>} label="Rediger" href={Routes.edit_admin_menu_item_path(item)}/>
+                                <Link icon={<BiXCircle size={20}/>} label="Slett" href={Routes.admin_menu_item_path(item)}/>
+                            </div>
+                        </td>
+                    </tr>:""
+                )
             )
         }
         {isCollapsed === false &&
