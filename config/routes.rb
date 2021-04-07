@@ -7,12 +7,16 @@ Rails.application.routes.draw do
     delete 'logout' => :destroy
   end
 
+
   namespace :admin do
     resources :restaurants
     resources :menus
     resources :allergens
     resources :menu_items
     resources :orders
+    controller :menu_items do
+      get 'set_item_status' => :set_item_status
+    end
   end
 
   # Bruker
@@ -47,6 +51,8 @@ Rails.application.routes.draw do
         get 'get_orders' => :get_orders
         get 'get_order_items' => :get_order_items
         get 'finish_order' => :finish_order
+
+        get 'set_item_status' => :set_item_status
 
       end
     end

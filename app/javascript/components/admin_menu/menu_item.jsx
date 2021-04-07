@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {IoIosArrowForward, IoIosArrowDown, IoIosAddCircleOutline} from "react-icons/io";
 import {BiPencil, BiXCircle} from "react-icons/bi";
+import axios from "axios";
+import {GoEye, GoEyeClosed} from "react-icons/all";
 //import Modal from './modal';
 
 
@@ -10,9 +12,9 @@ const MenuItem = ({menu, menuItems}) => {
     const [show, setShow] = useState(false)
 
 
-    function Link({label, href, icon}) {
+    function Link({label, href, icon, method}) {
         return (
-            <a className="flex mr-3" href={href}>
+            <a className="flex mr-3" href={href} >
                 <div className="px-0.5">
                     {icon}
                 </div>
@@ -23,6 +25,8 @@ const MenuItem = ({menu, menuItems}) => {
         )
     }
 
+
+
     const collapseField = () => {
         setIsCollapsed(!isCollapsed)
         if (isCollapsed)
@@ -31,7 +35,6 @@ const MenuItem = ({menu, menuItems}) => {
             setCollapseButton(<IoIosArrowForward/>)
     }
 
-
     let body = (
         <tbody>
         {isCollapsed === false && menuItems.map((item, index) =>
@@ -39,15 +42,20 @@ const MenuItem = ({menu, menuItems}) => {
                     item.status!==3?
                     <tr key={index} className="admin-content-row">
                         <td className="pl-2 md:pl-8 lg:pl-8">
-                            <div className="w-2/6 flex float-left inline-block align-text-top">
+                            <div className="w-2/6 flex float-left inline-block align-text-top pr-4 md:pr-10 lg:pr-10">
                                 {item.name}
                             </div>
                             <div className="w-2/6 inline-block">
                                 {item.description}
                             </div>
                             <div className="md:flex float-right inline-block align-text-top pr-4 md:pr-10 lg:pr-10">
-                                <Link icon={<BiPencil size={20}/>} label="Rediger" href={Routes.edit_admin_menu_item_path(item)}/>
-                                <Link icon={<BiXCircle size={20}/>} label="Slett" href={Routes.admin_menu_item_path(item)}/>
+
+
+                                {item.status==2?
+                                    <Link icon={<GoEye size={20}/>} label="Vis" href={Routes.admin_set_item_status_path({item_id: item.id, status: 1})} method={0}/>
+                                    : <Link icon={<GoEyeClosed size={20}/>} label="Skjul" href={Routes.admin_set_item_status_path({item_id: item.id, status: 2})} method={0}/>}
+                                | <Link icon={<BiPencil size={20}/>} label="Rediger" href={Routes.edit_admin_menu_item_path(item)}  method={0}/>
+                                | <Link icon={<BiXCircle size={20}/>} label="Slett" href={Routes.admin_set_item_status_path({item_id: item.id, status: 3})} method={0}/>
                             </div>
                         </td>
                     </tr>:""

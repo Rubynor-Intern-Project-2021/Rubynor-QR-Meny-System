@@ -152,4 +152,12 @@ class Api::V1::ApiController < ApplicationController
 
     render json: { message: 'Successfully finished order.' }, status: 200
   end
+
+  def set_item_status
+    item=MenuItem.find(params[:item_id])
+    item.status=params[:status]
+    item.save()
+
+    render json: { message: 'Successfully changed status.' }, status: 200
+  end
 end
