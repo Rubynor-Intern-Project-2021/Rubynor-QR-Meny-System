@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e4c92fb-4087-4a2b-9a4b-d058fc01c5ef" name="Default Changelist" comment="Fikset på ikoner og knapper på menu_item og order">
-      <change beforePath="$PROJECT_DIR$/.idea/Rubynor-QR-Meny-System.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Rubynor-QR-Meny-System.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_03_2021_14_53_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_03_2021_14_53__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_03_2021_14_53_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_03_2021_14_53__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_03_2021_13_13_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_03_2021_13_13__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Default_Changelist_.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/javascript/components/modal.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/components/add_to_cart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/add_to_cart.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/menu_item/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/menu_item/show.html.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +15,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="admin-react" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -181,7 +174,13 @@
       <option name="presentableId" value="LOCAL−00003" />
       <updated>1616595682626</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL−00004" summary="gem og idea greier">
+      <created>1617796533019</created>
+      <option name="number" value="LOCAL−00004" />
+      <option name="presentableId" value="LOCAL−00004" />
+      <updated>1617796533019</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,9 +200,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <option name="RELOAD_CONTEXT" value="false" />
     <MESSAGE value="react-opprydding" />
     <MESSAGE value="admin react:menu_item" />
     <MESSAGE value="Admin: liten fiks" />
-    <option name="LAST_COMMIT_MESSAGE" value="Admin: liten fiks" />
+    <MESSAGE value="gem og idea greier" />
+    <option name="LAST_COMMIT_MESSAGE" value="gem og idea greier" />
   </component>
 </project>
