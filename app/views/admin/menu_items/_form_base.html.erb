@@ -52,7 +52,8 @@
         <%= form.label :allergens, class: 'text-gray-700' %><br>
         <% Allergen.all.each do |allergen| %>
           <div > 
-            <input name="allergens[<%=allergen.id%>] class="border-gray-800 mr-2 rounded-lg" type="checkbox" value="<%=allergen.id%>"><%=allergen.name%></input>
+            <% has_this_allergen = menu_item.allergen_items.any? {|item| item.allergen_id == allergen.id} %> 
+            <input <%= if has_this_allergen then "checked" end %> name="allergens[<%=allergen.id%>] class="border-gray-800 mr-2 rounded-lg" type="checkbox" value="<%=allergen.id%>"><%=allergen.name%></input>
           </div>
         <% end %>
       </div>
