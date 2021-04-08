@@ -3,7 +3,7 @@ import {MdClose} from "react-icons/md";
 
 export const ModalAlert = ({text, handleClose}) => {
     return (
-        <div className="flex py-3 px-3 text-gray-700 text-xs rounded-sm border border-purple-200 divide-x divide-gray-700">
+        <div className="flex py-3 px-3 text-gray-700 text-sm rounded-sm border border-purple-200 divide-x divide-gray-700">
             <div className="pr-2">{text} </div>
             <button className="pl-2" onClick={handleClose}>
                 <MdClose/>

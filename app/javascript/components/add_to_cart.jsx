@@ -62,7 +62,7 @@ const addToCart = ({menuItem}) => {
     let modal = null;
     if(openModal) {
         modal =
-            <div className="flex justify-end">
+            <div className="flex justify-center">
                 <ModalAlert
                     text="Varen ble lagt til i handlevogna"
                     handleClose={handleClose}
@@ -75,16 +75,16 @@ const addToCart = ({menuItem}) => {
             <div className="h-12 ">
                 {modal}
             </div>
-           <div className="flex justify-between py-2">
+           <div className="">
                 <div className="flex justify-between py-2">
-                    <div className="text-gray-800 ">
-                        <div className="flex text-sm">
+                    <div className="text-gray-800 mb-3 py-2 px-4 text-gray-700  rounded-sm border border-purple-200 ">
+                        <div className="flex">
                             <button onClick={decNum}  className="">
-                                {<AiOutlineMinus/>}
+                                <AiOutlineMinus/>
                             </button>
-                            <p className="px-4 font-bold"> {num} </p>
+                            <p className="px-5 font-semibold"> {num} </p>
                             <button onClick={incNum}  className="">
-                                {<AiOutlinePlus/>}
+                                <AiOutlinePlus/>
                             </button>
                         </div>
                     </div>
@@ -92,7 +92,7 @@ const addToCart = ({menuItem}) => {
 
                 <div >
                     <button onClick={() => { handleOpen(); addMultipleToCart(); }}
-                            className="text-sm text-white bg-gray-700 uppercase bg-white px-10 py-3">Legg i handlekurv</button>
+                            className="uppercase text-white bg-gray-700 mb-3 mt-1 py-2 w-full">Legg i handlekurv</button>
                 </div>
             </div>
         </>

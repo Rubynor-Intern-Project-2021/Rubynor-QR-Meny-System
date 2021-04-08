@@ -1,19 +1,19 @@
 <!--en rett-->
 <div class="bg-white lg:bg-gray-100 flex lg:py-24  justify-center">
 
-  <div class="flex flex-col bg-white rounded-2xl lg:w-1/3">
+  <div class="flex flex-col bg-white lg:rounded-2xl lg:w-1/3">
     <div>
       <% if @menu_item.image.attached? %>
-        <%= image_tag @menu_item.image, class:"object-cover h-full rounded-t-2xl w-full align-middle border-none"%>
+        <%= image_tag @menu_item.image, class:"object-cover h-full lg:rounded-t-2xl w-full align-middle border-none"%>
       <% end %>
     </div>
     <div class="m-6">
       <div class="flex flex-row justify-between">
-        <div class="font-semibold text-lg">
+        <div class="font-semibold text-2xl">
           <%= @menu_item.name %>
         </div>
 
-        <div class="font-semibold text-lg">
+        <div class="font-semibold text-2xl">
           <%= @menu_item.price.to_i %>,-
         </div>
       </div>
@@ -22,7 +22,7 @@
         <%= @menu_item.description %>
       </div>
 
-      <div class="text-gray-700 pt-6 mb-2">
+      <div class="text-gray-700 pt-10 mb-6">
         Allergener:
         <br>
         <%= @menu_item.get_allergen_names_long.join(', ') %>
