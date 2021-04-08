@@ -4,8 +4,12 @@
     <list default="true" id="3e4c92fb-4087-4a2b-9a4b-d058fc01c5ef" name="Default Changelist" comment="Fikset på ikoner og knapper på menu_item og order">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascript/components/add_to_cart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/add_to_cart.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/components/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/modal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/menu/_selected_menu.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/menu/_selected_menu.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/menu_item/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/menu_item/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/orders/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/orders/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/restaurant/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/restaurant/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/shared/_header.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/shared/_header.html.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +202,13 @@
       <option name="presentableId" value="LOCAL−00007" />
       <updated>1617888920454</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL−00008" summary="Endret på legg til-knappen og lagde mer plass til popupen">
+      <created>1617892148583</created>
+      <option name="number" value="LOCAL−00008" />
+      <option name="presentableId" value="LOCAL−00008" />
+      <updated>1617892148583</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -226,6 +236,7 @@
     <MESSAGE value="Pop up for alert og bekreftelse" />
     <MESSAGE value="Lagt til popup på menu_item sida" />
     <MESSAGE value="Oppdatering" />
-    <option name="LAST_COMMIT_MESSAGE" value="Oppdatering" />
+    <MESSAGE value="Endret på legg til-knappen og lagde mer plass til popupen" />
+    <option name="LAST_COMMIT_MESSAGE" value="Endret på legg til-knappen og lagde mer plass til popupen" />
   </component>
 </project>

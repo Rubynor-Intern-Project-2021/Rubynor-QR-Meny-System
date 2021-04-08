@@ -77,7 +77,7 @@ const addToCart = ({menuItem}) => {
             </div>
            <div className="">
                 <div className="flex justify-between py-2">
-                    <div className="text-gray-800 mb-3 py-2 px-4 text-gray-700  rounded-sm border border-purple-200 ">
+                    <div className="text-gray-800 mb-3 py-2 px-4 rounded-sm border border-purple-200 ">
                         <div className="flex">
                             <button onClick={decNum}  className="">
                                 <AiOutlineMinus/>
@@ -92,7 +92,9 @@ const addToCart = ({menuItem}) => {
 
                 <div >
                     <button onClick={() => { handleOpen(); addMultipleToCart(); }}
-                            className="uppercase text-white bg-gray-700 mb-3 mt-1 py-2 w-full">Legg i handlekurv</button>
+                            className="uppercase text-white bg-gray-700 mb-3 mt-1 py-2 w-full">
+                        Legg i handlekurv
+                    </button>
                 </div>
             </div>
         </>

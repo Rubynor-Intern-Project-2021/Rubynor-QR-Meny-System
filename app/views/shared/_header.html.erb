@@ -1,4 +1,4 @@
-<nav class="flex items-center justify-between flex-wrap bg-white lg:bg-gray-800 p-2 fixed w-full z-10 pin-t">
+<nav class="flex items-center justify-between flex-wrap bg-white lg:bg-gray-800 p-2 fixed w-full z-10 pin-t border-b border-gray-200">
 
   <div class="flex items-center flex-no-shrink text-gray-900 lg:text-gray-100 mr-6">
     <%= link_to @restaurant.name, restaurant_path(:id => @restaurant.id), class: "text-md lg:text-2xl pl-2 font-semibold uppercase text-gray-900 lg:text-white hover:text-gray-600 lg:hover:text-gray-200 no-underline hover:text-white hover:no-underline" %>
@@ -18,7 +18,7 @@
     </button>
   </div>
 
-  <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block pt-6 lg:pt-0" id="nav-content">
+  <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block pt-6 lg:pt-0 " id="nav-content">
     <ul class="list-reset lg:flex justify-end flex-1 items-center">
       <li class="mr-3">
         <%= link_to 'Meny', restaurant_path(:id => @restaurant.id), class: 'nav-btn' %>

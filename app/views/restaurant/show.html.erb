@@ -1,16 +1,17 @@
-<div class="flex lg:py-24  pt-2 justify-center">
+<div class="flex lg:py-16 justify-center">
 
   <!-- Kort -->
-  <div class="flex flex-col rounded-tl-3xl rounded-tr-3xl w-full bg-white  lg:rounded-2xl lg:w-1/3">
+  <div class="flex flex-col w-full bg-white lg:rounded-2xl lg:w-1/3">
     <div class="p-8">
       <div>
-        <p class="mb-2 lg:mb-5 text-gray-900 font-semibold text-xl">Meny</p>
+        <p class="mb-4 lg:mb-6 text-gray-900 font-semibold text-xl">Meny</p>
       </div>
-      <div class="flex overflow-x-hidden">
+      <div class="flex overflow-x-scroll hide-scroll-bar ">
         <!-- Menyer -->
         <% @restaurant.menus.where(:status => 1).each_with_index do |menu, index| %>
-          <p class="pb-2 mr-4 text-gray-500 tracking-wide hover:text-gray-800">
-            <%= link_to menu.name, selected_menu_path(:menu_id => menu), :onclick => 'get_id(this.id)', :id => index, :remote => true %></p>
+          <div class="pb-2 mr-4 text-gray-500 tracking-wide hover:text-gray-800 flex flex-nowrap">
+            <%= link_to menu.name, selected_menu_path(:menu_id => menu), :onclick => 'get_id(this.id)', :id => index, :remote => true %>
+          </div>
         <% end %>
       </div>
 
