@@ -498,6 +498,9 @@ Based on Rails 6.0.3.6 routes of RubynorQrMenySystem::Application
 // admin_allergen => /admin/allergens/:id(.:format)
   // function(id, options)
   admin_allergen_path: Utils.route([["id",true],["format",false]], {}, [2,[7,"/",false],[2,[6,"admin",false],[2,[7,"/",false],[2,[6,"allergens",false],[2,[7,"/",false],[2,[3,"id",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
+// admin_allergen_slett => /admin/allergen_slett(.:format)
+  // function(options)
+  admin_allergen_slett_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"admin",false],[2,[7,"/",false],[2,[6,"allergen_slett",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]),
 // admin_allergens => /admin/allergens(.:format)
   // function(options)
   admin_allergens_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"admin",false],[2,[7,"/",false],[2,[6,"allergens",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]),
@@ -528,6 +531,9 @@ Based on Rails 6.0.3.6 routes of RubynorQrMenySystem::Application
 // admin_set_item_status => /admin/set_item_status(.:format)
   // function(options)
   admin_set_item_status_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"admin",false],[2,[7,"/",false],[2,[6,"set_item_status",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]),
+// admin_set_menu_status => /admin/set_menu_status(.:format)
+  // function(options)
+  admin_set_menu_status_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"admin",false],[2,[7,"/",false],[2,[6,"set_menu_status",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]),
 // api_v1_add_one_to_cart => /api/v1/add_one_to_cart(.:format)
   // function(options)
   api_v1_add_one_to_cart_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"v1",false],[2,[7,"/",false],[2,[6,"add_one_to_cart",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),

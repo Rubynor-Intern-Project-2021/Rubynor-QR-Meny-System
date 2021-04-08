@@ -17,6 +17,12 @@ Rails.application.routes.draw do
     controller :menu_items do
       get 'set_item_status' => :set_item_status
     end
+    controller :allergens do
+      get 'allergen_slett' => :destroy
+    end
+    controller :menus do
+      get 'set_menu_status' => :set_menu_status
+    end
   end
 
   # Bruker
