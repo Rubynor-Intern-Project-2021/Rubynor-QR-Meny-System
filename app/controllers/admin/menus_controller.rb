@@ -1,5 +1,5 @@
 class Admin::MenusController < ApplicationController
-  before_action :set_menu, only: %i[ show edit update destroy ]
+  before_action :set_menu, only: %i[ show edit update ]
 
 
 
@@ -47,10 +47,25 @@ class Admin::MenusController < ApplicationController
 
   # DELETE /admin_menus/1 or /admin_menus/1.json
   def destroy
-    @menu.destroy
+    menu = Menu.find(params[:m_id])
+    menu.destroy
     respond_to do |format|
       format.html { redirect_to admin_restaurant_url(@menu.restaurant.id), notice: "Menu was successfully destroyed." }
     end
+  end
+
+  def set_menu_status
+    p "menu_items Status"
+    menu=Menu.find(params[:menu_id])
+    menu.status=params[:status]
+    p "menu_items Status2"
+    menu.save
+    p "menu_items Status3"
+
+    respond_to do |format|
+      format.html { redirect_to admin_restaurant_url(menu.restaurant.id), notice: "Menu was successfully changed." }
+    end
+
   end
 
   private

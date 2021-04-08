@@ -12,7 +12,7 @@ const MenuItem = ({menu, menuItems}) => {
     const [show, setShow] = useState(false)
 
 
-    function Link({label, href, icon, method}) {
+    function Link({label, href, icon}) {
         return (
             <a className="flex mr-3" href={href} >
                 <div className="px-0.5">
@@ -51,11 +51,11 @@ const MenuItem = ({menu, menuItems}) => {
                             <div className="md:flex float-right inline-block align-text-top pr-4 md:pr-10 lg:pr-10">
 
 
-                                {item.status==2?
-                                    <Link icon={<GoEye size={20}/>} label="Vis" href={Routes.admin_set_item_status_path({item_id: item.id, status: 1})} method={0}/>
-                                    : <Link icon={<GoEyeClosed size={20}/>} label="Skjul" href={Routes.admin_set_item_status_path({item_id: item.id, status: 2})} method={0}/>}
-                                | <Link icon={<BiPencil size={20}/>} label="Rediger" href={Routes.edit_admin_menu_item_path(item)}  method={0}/>
-                                | <Link icon={<BiXCircle size={20}/>} label="Slett" href={Routes.admin_set_item_status_path({item_id: item.id, status: 3})} method={0}/>
+                                {item.status===2?
+                                    <Link icon={<GoEye size={20}/>} label="Vis" href={Routes.admin_set_item_status_path({item_id: item.id, status: 1})} />
+                                    : <Link icon={<GoEyeClosed size={20}/>} label="Skjul" href={Routes.admin_set_item_status_path({item_id: item.id, status: 2})} />}
+                                | <Link icon={<BiPencil size={20}/>} label="Rediger" href={Routes.edit_admin_menu_item_path(item)}  />
+                                | <Link icon={<BiXCircle size={20}/>} label="Slett" href={Routes.admin_set_item_status_path({item_id: item.id, status: 3})} />
                             </div>
                         </td>
                     </tr>:""
@@ -85,9 +85,13 @@ const MenuItem = ({menu, menuItems}) => {
                 <div className="inline-block">
                 </div>
                 <div className="flex inline-block float-right pr-4 md:pr-8 lg:pr-8">
-                    <Link icon={<BiPencil size={20}/>} label="Rediger" href={Routes.edit_admin_menu_path(menu)}/>
-                    <Link icon={<BiXCircle size={20}/>} label="Slett" href={Routes.admin_menu_path(menu)}/>
-                    <button onClick={collapseField} className="collapsible ">{collapseButton}</button>
+
+                    {menu.status===2?
+                        <Link icon={<GoEye size={20}/>} label="Vis" href={Routes.admin_set_menu_status_path({menu_id: menu.id, status: 1})} />
+                        : <Link icon={<GoEyeClosed size={20}/>} label="Skjul" href={Routes.admin_set_menu_status_path({menu_id: menu.id, status: 2})} />}
+                    | <Link icon={<BiPencil size={20}/>} label="Rediger" href={Routes.edit_admin_menu_path(menu)}/>
+                    | <Link icon={<BiXCircle size={20}/>} label="Slett" href={Routes.admin_set_menu_status_path({menu_id: menu.id, status: 3})}/>
+                    | <button onClick={collapseField} className="collapsible ">{collapseButton}</button>
                 </div>
             </th>
         </tr>

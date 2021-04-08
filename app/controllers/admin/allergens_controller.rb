@@ -1,5 +1,5 @@
 class Admin::AllergensController < ApplicationController
-  before_action :set_allergen, only: %i[ show edit update destroy ]
+  before_action :set_allergen, only: %i[ show edit update ]
 
   # GET /allergens/new
   def new
@@ -41,7 +41,8 @@ class Admin::AllergensController < ApplicationController
   # DELETE /allergens/1 or /allergens/1.json
   def destroy
     @restaurant = Restaurant.find(session[:restaurant_id])
-    @allergen.destroy
+    allergen=Allergen.find(params[:a_id])
+    allergen.destroy
     respond_to do |format|
       format.html { redirect_to admin_restaurant_url(@restaurant.id), notice: "Allergen was successfully destroyed." }
 
