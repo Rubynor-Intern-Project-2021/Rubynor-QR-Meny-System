@@ -102,6 +102,15 @@ const OrderItem = ({orderItem, quantity, handleRemoveOrder}) => {
 
     }
 
+    const truncateString = (str, num) => {
+      // If the length of str is less than or equal to num
+      // just return str--don't truncate it.
+      if (str.length <= num) {
+        return str
+      }
+      // Return str truncated with '...' concatenated to the end of str.
+      return str.slice(0, num) + '...'
+    }
 
     const smallScreen = () => {
         return (
@@ -119,7 +128,7 @@ const OrderItem = ({orderItem, quantity, handleRemoveOrder}) => {
                         </div>
                     </div>
                     <div className="text-sm pl-7 text-gray-500">
-                        {name}
+                        {truncateString(name, 16)}
                     </div>
                 </div>
                 <div className="text-sm text-gray-700 ">
