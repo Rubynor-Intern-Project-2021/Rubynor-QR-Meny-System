@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import {IoIosArrowForward, IoIosArrowDown, IoIosAddCircleOutline} from "react-icons/io";
-import {BiPencil, BiXCircle} from "react-icons/bi";
-import axios from "axios";
-import {GoEye, GoEyeClosed} from "react-icons/all";
+import {BiPencil, BiXCircle, GoEye, GoEyeClosed, IoFastFoodOutline, RiForbid2Line} from "react-icons/all";
 //import Modal from './modal';
 
 
@@ -37,20 +35,26 @@ const MenuItem = ({menu, menuItems}) => {
 
     let body = (
         <tbody>
-        {isCollapsed === false && menuItems.map((item, index) =>
+        {isCollapsed === false && menuItems.sort((item, nextItem)=>item.number-nextItem.number).map((item, index) =>
                 (
                     item.status!==3?
                     <tr key={index} className="admin-content-row">
                         <td className="pl-2 md:pl-8 lg:pl-8">
-                            <div className="w-2/6 flex float-left inline-block align-text-top pr-4 md:pr-10 lg:pr-10">
+                            <div className="w-1/12 flex float-left inline-block align-text-top pr-4 md:pr-10 lg:pr-10">
+                                Nr. {item.number}
+                            </div>
+                            <div className="w-3/12 flex float-left inline-block align-text-top pr-4 md:pr-10 lg:pr-10">
                                 {item.name}
                             </div>
-                            <div className="w-2/6 inline-block">
+                            <div className="w-4/12 inline-block">
                                 {item.description}
                             </div>
                             <div className="md:flex float-right inline-block align-text-top pr-4 md:pr-10 lg:pr-10">
 
-
+                                {item.empty===0?
+                                    <Link icon={<RiForbid2Line size={20}/>} label="Vis tomt" href={Routes.admin_set_item_empty_status_path({item_id: item.id, status: 1})} />
+                                    : <Link icon={<IoFastFoodOutline size={20}/>} label="Vis vanlig" href={Routes.admin_set_item_empty_status_path({item_id: item.id, status: 0})} />}
+                                |
                                 {item.status===2?
                                     <Link icon={<GoEye size={20}/>} label="Vis" href={Routes.admin_set_item_status_path({item_id: item.id, status: 1})} />
                                     : <Link icon={<GoEyeClosed size={20}/>} label="Skjul" href={Routes.admin_set_item_status_path({item_id: item.id, status: 2})} />}
