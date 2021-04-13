@@ -528,9 +528,6 @@ Based on Rails 6.0.3.6 routes of RubynorQrMenySystem::Application
 // admin_restaurants => /admin/restaurants(.:format)
   // function(options)
   admin_restaurants_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"admin",false],[2,[7,"/",false],[2,[6,"restaurants",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]),
-// admin_set_item_empty_status => /admin/set_item_empty_status(.:format)
-  // function(options)
-  admin_set_item_empty_status_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"admin",false],[2,[7,"/",false],[2,[6,"set_item_empty_status",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]),
 // admin_set_item_status => /admin/set_item_status(.:format)
   // function(options)
   admin_set_item_status_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"admin",false],[2,[7,"/",false],[2,[6,"set_item_status",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]),

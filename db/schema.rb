@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_12_144538) do
+ActiveRecord::Schema.define(version: 2021_04_08_094522) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,7 +61,6 @@ ActiveRecord::Schema.define(version: 2021_04_12_144538) do
     t.integer "menu_id", null: false
     t.string "number"
     t.integer "status", default: 1
-    t.integer "empty", default: 0
     t.index ["menu_id"], name: "index_menu_items_on_menu_id"
   end
 
@@ -72,7 +71,6 @@ ActiveRecord::Schema.define(version: 2021_04_12_144538) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "restaurant_id", null: false
     t.integer "status", default: 1
-    t.integer "number"
     t.index ["restaurant_id"], name: "index_menus_on_restaurant_id"
   end
 

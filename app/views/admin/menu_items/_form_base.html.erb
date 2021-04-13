@@ -14,7 +14,7 @@
 
     <div>
       <% if menu_item.image.attached? %>
-        <%= image_tag menu_item.image, style: "shadow object-fill rounded-t-2xl w-full border-none"%>
+        <%= image_tag menu_item.image, style: "shadow object-cover rounded-t-2xl w-full h-auto align-middle border-none"%>
       <% end %>
 
     </div>
@@ -31,7 +31,7 @@
 
       <div class="field text-gray-700 pt-5">
         <%= form.label :number, class: 'text-gray-700' %><br>
-        <%= form.number_field :number, step: :any, class: 'w-80 border-gray-800 rounded-lg' %>
+        <%= form.text_field :number, class: 'w-80 border-gray-800 rounded-lg' %>
       </div>
       <div class="field text-gray-700 pt-5">
         <%= form.label :name, class: 'text-gray-700' %><br>
