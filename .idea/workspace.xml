@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3e4c92fb-4087-4a2b-9a4b-d058fc01c5ef" name="Default Changelist" comment="Fikset på ikoner og knapper på menu_item og order">
+    <list default="true" id="3e4c92fb-4087-4a2b-9a4b-d058fc01c5ef" name="Default Changelist" comment="Endret litt på meny-kortene, la til scroll, endret til hvit bakgrunn">
+      <change afterPath="$PROJECT_DIR$/app/javascript/components/modal/modalAlert.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/javascript/components/modal/modalConfirmMenu.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/javascript/components/modal/modalConfirmMenuItem.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascript/components/add_to_cart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/add_to_cart.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/components/admin_menu/allergen_item.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/admin_menu/allergen_item.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/components/admin_menu/menu_item.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/admin_menu/menu_item.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/components/cart_icon/cart_icon.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/cart_icon/cart_icon.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/components/configureStore/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/configureStore/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/components/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/modal/modals.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/restaurants/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/restaurants/show.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/menu/_selected_menu.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/menu/_selected_menu.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/menu_item/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/menu_item/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/orders/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/orders/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/restaurant/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/restaurant/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/shared/_header.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/shared/_header.html.erb" afterDir="false" />
     </list>
+    <list id="321a85b8-2e94-4e11-9213-59e15cfdc522" name="Revert &quot;Alternativ visning for meny gjenstander som ikke har ingreddienser, sortering for menyer&quot;" comment="Revert &quot;Alternativ visning for meny gjenstander som ikke har ingreddienser, sortering for menyer&quot;&#10;&#10;This reverts commit 286dadfa" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,11 +57,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components\modal" />
       <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components\admin_menu" />
       <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components\cart_icon" />
       <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components" />
       <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components\cart" />
-      <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components\navbar" />
     </key>
   </component>
   <component name="RunManager" selected="Rails.Development: Rubynor-QR-Meny-System">
@@ -208,11 +213,27 @@
       <option name="presentableId" value="LOCAL−00008" />
       <updated>1617892148583</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL−00009" summary="Revert &quot;Alternativ visning for meny gjenstander som ikke har ingreddienser, sortering for menyer&quot;&#10;&#10;This reverts commit 286dadfa">
+      <created>1618313334962</created>
+      <option name="number" value="LOCAL−00009" />
+      <option name="presentableId" value="LOCAL−00009" />
+      <updated>1618313334962</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -237,6 +258,7 @@
     <MESSAGE value="Lagt til popup på menu_item sida" />
     <MESSAGE value="Oppdatering" />
     <MESSAGE value="Endret på legg til-knappen og lagde mer plass til popupen" />
-    <option name="LAST_COMMIT_MESSAGE" value="Endret på legg til-knappen og lagde mer plass til popupen" />
+    <MESSAGE value="Revert &quot;Alternativ visning for meny gjenstander som ikke har ingreddienser, sortering for menyer&quot;&#10;&#10;This reverts commit 286dadfa" />
+    <option name="LAST_COMMIT_MESSAGE" value="Revert &quot;Alternativ visning for meny gjenstander som ikke har ingreddienser, sortering for menyer&quot;&#10;&#10;This reverts commit 286dadfa" />
   </component>
 </project>

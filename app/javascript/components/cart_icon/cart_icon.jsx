@@ -1,19 +1,17 @@
 import React from 'react'
-import {useState} from 'react';
+import { useState } from 'react';
 import { RiShoppingBag2Line } from 'react-icons/ri';
 import { BsFillCircleFill } from 'react-icons/bs';
 import axios from "axios";
-import {useEffect} from 'react';
-import { createStore } from 'redux';
-import {store} from '../configureStore'
+import { useEffect } from 'react';
+import { storeIcon } from '../configureStore'
 
 
 const cartIcon = () => {
     const [amount, setAmount] = useState('')
 
-    store.subscribe(() => {
-        console.log(store.getState())
-        setAmount(store.getState())
+    storeIcon.subscribe(() => {
+        setAmount(storeIcon.getState())
     });
 
     function GetAmount() {

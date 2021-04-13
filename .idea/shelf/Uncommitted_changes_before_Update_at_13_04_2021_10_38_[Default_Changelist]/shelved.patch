@@ -1,0 +1,433 @@
+Index: app/javascript/components/admin_menu/menu_item.jsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, {useState} from 'react';\r\nimport {IoIosArrowForward, IoIosArrowDown, IoIosAddCircleOutline} from \"react-icons/io\";\r\nimport {BiPencil, BiXCircle} from \"react-icons/bi\";\r\nimport axios from \"axios\";\r\nimport {GoEye, GoEyeClosed} from \"react-icons/all\";\r\n//import Modal from './modal';\r\n\r\n\r\nconst MenuItem = ({menu, menuItems}) => {\r\n    const [isCollapsed, setIsCollapsed] = useState(true)\r\n    const [collapseButton, setCollapseButton] = useState(<IoIosArrowForward/>)\r\n    const [show, setShow] = useState(false)\r\n\r\n\r\n    function Link({label, href, icon}) {\r\n        return (\r\n            <a className=\"flex mr-3\" href={href} >\r\n                <div className=\"px-0.5\">\r\n                    {icon}\r\n                </div>\r\n                <div>\r\n                    {label}\r\n                </div>\r\n            </a>\r\n        )\r\n    }\r\n\r\n\r\n\r\n    const collapseField = () => {\r\n        setIsCollapsed(!isCollapsed)\r\n        if (isCollapsed)\r\n            setCollapseButton(<IoIosArrowDown/>)\r\n        else\r\n            setCollapseButton(<IoIosArrowForward/>)\r\n    }\r\n\r\n    let body = (\r\n        <tbody>\r\n        {isCollapsed === false && menuItems.map((item, index) =>\r\n                (\r\n                    item.status!==3?\r\n                    <tr key={index} className=\"admin-content-row\">\r\n                        <td className=\"pl-2 md:pl-8 lg:pl-8\">\r\n                            <div className=\"w-2/6 flex float-left inline-block align-text-top pr-4 md:pr-10 lg:pr-10\">\r\n                                {item.name}\r\n                            </div>\r\n                            <div className=\"w-2/6 inline-block\">\r\n                                {item.description}\r\n                            </div>\r\n                            <div className=\"md:flex float-right inline-block align-text-top pr-4 md:pr-10 lg:pr-10\">\r\n\r\n\r\n                                {item.status===2?\r\n                                    <Link icon={<GoEye size={20}/>} label=\"Vis\" href={Routes.admin_set_item_status_path({item_id: item.id, status: 1})} />\r\n                                    : <Link icon={<GoEyeClosed size={20}/>} label=\"Skjul\" href={Routes.admin_set_item_status_path({item_id: item.id, status: 2})} />}\r\n                                | <Link icon={<BiPencil size={20}/>} label=\"Rediger\" href={Routes.edit_admin_menu_item_path(item)}  />\r\n                                | <Link icon={<BiXCircle size={20}/>} label=\"Slett\" href={Routes.admin_set_item_status_path({item_id: item.id, status: 3})} />\r\n                            </div>\r\n                        </td>\r\n                    </tr>:\"\"\r\n                )\r\n            )\r\n        }\r\n        {isCollapsed === false &&\r\n        <tr className=\"bg-gray-100 h-10\">\r\n            <td className=\"pl-1 md:pl-7 lg:pl-7\">\r\n                <Link icon={<IoIosAddCircleOutline size={22}/>} label=\"Legg til\"\r\n                      href={Routes.new_admin_menu_item_path({menu_id: menu.id})}/>\r\n            </td>\r\n        </tr>\r\n        }\r\n        </tbody>\r\n    )\r\n\r\n    return (\r\n\r\n    <table className=\"mb-3 admin-title-row\">\r\n        <thead className=\"\">\r\n        <tr className=\"admin-tbl-border\">\r\n            <th className=\"text-left\">\r\n                <div className=\"pl-2 md:pl-8 lg:pl-8 inline-block \">\r\n                    {menu.name}\r\n                </div>\r\n                <div className=\"inline-block\">\r\n                </div>\r\n                <div className=\"flex inline-block float-right pr-4 md:pr-8 lg:pr-8\">\r\n\r\n                    {menu.status===2?\r\n                        <Link icon={<GoEye size={20}/>} label=\"Vis\" href={Routes.admin_set_menu_status_path({menu_id: menu.id, status: 1})} />\r\n                        : <Link icon={<GoEyeClosed size={20}/>} label=\"Skjul\" href={Routes.admin_set_menu_status_path({menu_id: menu.id, status: 2})} />}\r\n                    | <Link icon={<BiPencil size={20}/>} label=\"Rediger\" href={Routes.edit_admin_menu_path(menu)}/>\r\n                    | <Link icon={<BiXCircle size={20}/>} label=\"Slett\" href={Routes.admin_set_menu_status_path({menu_id: menu.id, status: 3})}/>\r\n                    | <button onClick={collapseField} className=\"collapsible \">{collapseButton}</button>\r\n                </div>\r\n            </th>\r\n        </tr>\r\n        </thead>\r\n        {body}\r\n    </table>\r\n    )\r\n}\r\n\r\nexport default MenuItem;\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/javascript/components/admin_menu/menu_item.jsx b/app/javascript/components/admin_menu/menu_item.jsx
+--- a/app/javascript/components/admin_menu/menu_item.jsx	
++++ b/app/javascript/components/admin_menu/menu_item.jsx	
+@@ -1,20 +1,28 @@
+ import React, {useState} from 'react';
+ import {IoIosArrowForward, IoIosArrowDown, IoIosAddCircleOutline} from "react-icons/io";
+ import {BiPencil, BiXCircle} from "react-icons/bi";
+-import axios from "axios";
+ import {GoEye, GoEyeClosed} from "react-icons/all";
+-//import Modal from './modal';
++import {storeModal, showModal, store} from "../configureStore";
+ 
+ 
+ const MenuItem = ({menu, menuItems}) => {
+     const [isCollapsed, setIsCollapsed] = useState(true)
+     const [collapseButton, setCollapseButton] = useState(<IoIosArrowForward/>)
+-    const [show, setShow] = useState(false)
+ 
++    storeModal.subscribe(() => {
++        console.log(storeModal.getState())
++    });
+ 
+-    function Link({label, href, icon}) {
++    const handleDelete = ({id}) => {
++        store.dispatch({
++            type: 'UPDATE_ITEM',
++            payload: id
++        });
++    };
++
++    function Link({label, href, icon, action}) {
+         return (
+-            <a className="flex mr-3" href={href} >
++            <a className="flex mr-3" href={href} onClick={action}>
+                 <div className="px-0.5">
+                     {icon}
+                 </div>
+@@ -26,78 +34,91 @@
+     }
+ 
+ 
+-
+     const collapseField = () => {
+         setIsCollapsed(!isCollapsed)
+-        if (isCollapsed)
+-            setCollapseButton(<IoIosArrowDown/>)
+-        else
+-            setCollapseButton(<IoIosArrowForward/>)
++        {
++            isCollapsed ?
++                setCollapseButton(<IoIosArrowDown/>)
++                :
++                setCollapseButton(<IoIosArrowForward/>)
++        }
+     }
+ 
+-    let body = (
+-        <tbody>
+-        {isCollapsed === false && menuItems.map((item, index) =>
+-                (
+-                    item.status!==3?
++    let body = null;
++    if (!isCollapsed) {
++        body =
++            <tbody>
++            {menuItems.map((item, index) => (
++                item.status !== 3 ?
+                     <tr key={index} className="admin-content-row">
+                         <td className="pl-2 md:pl-8 lg:pl-8">
+-                            <div className="w-2/6 flex float-left inline-block align-text-top pr-4 md:pr-10 lg:pr-10">
++                            <div
++                                className="w-2/6 flex float-left inline-block align-text-top pr-4 md:pr-10 lg:pr-10">
+                                 {item.name}
+                             </div>
+                             <div className="w-2/6 inline-block">
+                                 {item.description}
+                             </div>
++
+                             <div className="md:flex float-right inline-block align-text-top pr-4 md:pr-10 lg:pr-10">
+-
+-
+-                                {item.status===2?
+-                                    <Link icon={<GoEye size={20}/>} label="Vis" href={Routes.admin_set_item_status_path({item_id: item.id, status: 1})} />
+-                                    : <Link icon={<GoEyeClosed size={20}/>} label="Skjul" href={Routes.admin_set_item_status_path({item_id: item.id, status: 2})} />}
+-                                | <Link icon={<BiPencil size={20}/>} label="Rediger" href={Routes.edit_admin_menu_item_path(item)}  />
+-                                | <Link icon={<BiXCircle size={20}/>} label="Slett" href={Routes.admin_set_item_status_path({item_id: item.id, status: 3})} />
++                                {item.status === 2 ?
++                                    <Link icon={<GoEye size={20}/>} label="Vis"
++                                          href={Routes.admin_set_item_status_path({
++                                              item_id: item.id,
++                                              status: 1})}/>
++                                    : <Link icon={<GoEyeClosed size={20}/>} label="Skjul"
++                                            href={Routes.admin_set_item_status_path({
++                                                item_id: item.id,
++                                                status: 2
++                                            })}/>}
++                                | <Link icon={<BiPencil size={20}/>} label="Rediger"
++                                        href={Routes.edit_admin_menu_item_path(item)}/>
++                                | <Link icon={<BiXCircle size={20}/>} label="Slett"
++                                        action={() => { storeModal.dispatch(showModal()); handleDelete(item.id); }}/>
+                             </div>
+                         </td>
+-                    </tr>:""
++                    </tr> : null
+                 )
+-            )
+-        }
+-        {isCollapsed === false &&
+-        <tr className="bg-gray-100 h-10">
+-            <td className="pl-1 md:pl-7 lg:pl-7">
+-                <Link icon={<IoIosAddCircleOutline size={22}/>} label="Legg til"
+-                      href={Routes.new_admin_menu_item_path({menu_id: menu.id})}/>
+-            </td>
+-        </tr>
+-        }
+-        </tbody>
+-    )
++            )}
++
++            <tr className="bg-gray-100 h-10">
++                <td className="pl-1 md:pl-7 lg:pl-7">
++                    <Link icon={<IoIosAddCircleOutline size={22}/>} label="Legg til"
++                          href={Routes.new_admin_menu_item_path({menu_id: menu.id})}/>
++                </td>
++            </tr>
++            </tbody>
++    }
++
+ 
+     return (
+ 
+-    <table className="mb-3 admin-title-row">
+-        <thead className="">
+-        <tr className="admin-tbl-border">
+-            <th className="text-left">
+-                <div className="pl-2 md:pl-8 lg:pl-8 inline-block ">
+-                    {menu.name}
+-                </div>
+-                <div className="inline-block">
+-                </div>
+-                <div className="flex inline-block float-right pr-4 md:pr-8 lg:pr-8">
++        <table className="mb-3 admin-title-row">
++            <thead className="">
++            <tr className="admin-tbl-border">
++                <th className="text-left">
++                    <div className="pl-2 md:pl-8 lg:pl-8 inline-block ">
++                        {menu.name}
++                    </div>
++                    <div className="inline-block">
++                    </div>
++                    <div className="flex inline-block float-right pr-4 md:pr-8 lg:pr-8">
+ 
+-                    {menu.status===2?
+-                        <Link icon={<GoEye size={20}/>} label="Vis" href={Routes.admin_set_menu_status_path({menu_id: menu.id, status: 1})} />
+-                        : <Link icon={<GoEyeClosed size={20}/>} label="Skjul" href={Routes.admin_set_menu_status_path({menu_id: menu.id, status: 2})} />}
+-                    | <Link icon={<BiPencil size={20}/>} label="Rediger" href={Routes.edit_admin_menu_path(menu)}/>
+-                    | <Link icon={<BiXCircle size={20}/>} label="Slett" href={Routes.admin_set_menu_status_path({menu_id: menu.id, status: 3})}/>
+-                    | <button onClick={collapseField} className="collapsible ">{collapseButton}</button>
+-                </div>
+-            </th>
+-        </tr>
+-        </thead>
+-        {body}
+-    </table>
++                        {menu.status === 2 ?
++                            <Link icon={<GoEye size={20}/>} label="Vis"
++                                  href={Routes.admin_set_menu_status_path({menu_id: menu.id, status: 1})}/>
++                            : <Link icon={<GoEyeClosed size={20}/>} label="Skjul"
++                                    href={Routes.admin_set_menu_status_path({menu_id: menu.id, status: 2})}/>}
++                        | <Link icon={<BiPencil size={20}/>} label="Rediger" href={Routes.edit_admin_menu_path(menu)}/>
++                        | <Link icon={<BiXCircle size={20}/>} label="Slett"
++                                href={Routes.admin_set_menu_status_path({menu_id: menu.id, status: 3})}/>
++                        | <button onClick={collapseField} className="collapsible px-1">{collapseButton}</button>
++                    </div>
++                </th>
++            </tr>
++            </thead>
++            {body}
++        </table>
+     )
+ }
+ 
+Index: app/views/layouts/application.html.erb
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html>\r\n  <head>\r\n    <title>Rubynor Qr Meny System</title>\r\n    <%= csrf_meta_tags %>\r\n    <%= csp_meta_tag %>\r\n\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no\">\r\n    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>\r\n    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>\r\n    <%= stylesheet_pack_tag \"application\", \"data-turbo-track\": \"reload\" %>\r\n    <%= stylesheet_link_tag \"tailwind\"%>\r\n    <%= stylesheet_link_tag \"inter-font\"%>\r\n  </head>\r\n\r\n  <body class=\"lg:bg-gray-100 font-sans\">\r\n      <div class=\"pb-14\">\r\n        <% if @restaurant %>\r\n          <%= render 'shared/header' %>\r\n        <% end %>\r\n      </div>\r\n\r\n      <div>\r\n        <%= yield %>\r\n      </div>\r\n\r\n  </body>\r\n</html>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/views/layouts/application.html.erb b/app/views/layouts/application.html.erb
+--- a/app/views/layouts/application.html.erb	
++++ b/app/views/layouts/application.html.erb	
+@@ -19,10 +19,16 @@
+           <%= render 'shared/header' %>
+         <% end %>
+       </div>
+-
+       <div>
+-        <%= yield %>
++        <div>
++          <%= react_component("modal/modalConfirm") %>
++          <%= react_component("modal/modalAlert") %>
++        </div>
++        <div>
++          <%= yield %>
++        </div>
+       </div>
+ 
++
+   </body>
+ </html>
+Index: app/javascript/components/modal/modalAlert.jsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/javascript/components/modal/modalAlert.jsx b/app/javascript/components/modal/modalAlert.jsx
+new file mode 100644
+--- /dev/null	
++++ b/app/javascript/components/modal/modalAlert.jsx	
+@@ -0,0 +1,41 @@
++import React, {useEffect, useState} from 'react';
++import {ModalAlert} from "./modal";
++import { storeModal, hideModal } from "../configureStore";
++
++const CartModalAlert = () => {
++    const [modalStatus, setModalStatus] = useState(false);
++
++    storeModal.subscribe(() => {
++        console.log(storeModal.getState())
++        setModalStatus(storeModal.getState())
++    });
++
++    useEffect(() => {
++        const timer = setTimeout(() => {
++            setModalStatus(false);
++        }, 5000);
++        return () => clearTimeout(timer);
++    }, [modalStatus]);
++
++    let modal = null;
++    if(modalStatus) {
++        modal =
++            <div className="flex justify-center">
++                <ModalAlert
++                    text="Varen ble lagt til i handlevogna"
++                    handleClose={() => storeModal.dispatch(hideModal())}
++                />
++            </div>
++    }
++
++
++    return (
++        <>
++            <div>
++                {modal}
++            </div>
++        </>
++    );
++};
++
++export default CartModalAlert;
+\ No newline at end of file
+Index: app/javascript/components/modal/modalConfirm.jsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/javascript/components/modal/modalConfirm.jsx b/app/javascript/components/modal/modalConfirm.jsx
+new file mode 100644
+--- /dev/null	
++++ b/app/javascript/components/modal/modalConfirm.jsx	
+@@ -0,0 +1,42 @@
++import React, { useState } from 'react';
++import { ModalConfirm } from "./modal";
++import {storeModal, hideModal, storeAdmin, store} from "../configureStore";
++
++const AdminModalConfirm = () => {
++    const [modalStatus, setModalStatus] = useState(false);
++    const [item, setItem] = useState();
++
++    storeModal.subscribe(() => {
++        console.log(storeModal.getState())
++        setModalStatus(storeModal.getState())
++    });
++
++    storeAdmin.subscribe(() => {
++        console.log(storeAdmin.getState())
++        setItem(storeAdmin.getState())
++    });
++
++
++    let modal = null;
++    if(modalStatus) {
++        modal =
++            <div className="flex justify-center">
++                <ModalConfirm
++                    header="Slett meny"
++                    text="Ønsker du å slette denne menyen?"
++                    handleCancel={() => storeModal.dispatch(hideModal())}
++                    handleConfirm={() => {storeModal.dispatch(hideModal()); Routes.admin_set_item_status_path({item_id: item.id, status: 3}); }}
++                />
++            </div>
++    }
++
++    return (
++        <>
++            <div>
++                {modal}
++            </div>
++        </>
++    );
++};
++
++export default AdminModalConfirm;
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"3e4c92fb-4087-4a2b-9a4b-d058fc01c5ef\" name=\"Default Changelist\" comment=\"Fikset på ikoner og knapper på menu_item og order\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/app/javascript/components/add_to_cart.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/javascript/components/add_to_cart.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/app/views/layouts/application.html.erb\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/views/layouts/application.html.erb\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/app/views/menu/_selected_menu.html.erb\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/views/menu/_selected_menu.html.erb\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/app/views/menu_item/show.html.erb\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/views/menu_item/show.html.erb\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/app/views/orders/show.html.erb\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/views/orders/show.html.erb\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/app/views/restaurant/show.html.erb\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/views/restaurant/show.html.erb\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/app/views/shared/_header.html.erb\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/views/shared/_header.html.erb\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"modal\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitSEFilterConfiguration\">\r\n    <file-type-list>\r\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\r\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\r\n      <filtered-out-file-type name=\"TAG\" />\r\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\r\n    </file-type-list>\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1q4l7uos3K6dykYxDt1eE1eJuwO\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ASKED_ADD_EXTERNAL_FILES\" value=\"true\" />\r\n    <property name=\"Git.Branch.Popup.ShowAllRemotes\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$\" />\r\n    <property name=\"nodejs_package_manager_path\" value=\"yarn\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"preferences.pluginManager\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\nicol\\RubymineProjects\\Rubynor-QR-Meny-System\\app\\javascript\\components\\admin_menu\" />\r\n      <recent name=\"C:\\Users\\nicol\\RubymineProjects\\Rubynor-QR-Meny-System\\app\\javascript\\components\\cart_icon\" />\r\n      <recent name=\"C:\\Users\\nicol\\RubymineProjects\\Rubynor-QR-Meny-System\\app\\javascript\\components\" />\r\n      <recent name=\"C:\\Users\\nicol\\RubymineProjects\\Rubynor-QR-Meny-System\\app\\javascript\\components\\cart\" />\r\n      <recent name=\"C:\\Users\\nicol\\RubymineProjects\\Rubynor-QR-Meny-System\\app\\javascript\\components\\navbar\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Rails.Development: Rubynor-QR-Meny-System\">\r\n    <configuration name=\"Development: Rubynor-QR-Meny-System\" type=\"RailsRunConfigurationType\" factoryName=\"Rails\">\r\n      <module name=\"Rubynor-QR-Meny-System\" />\r\n      <predefined_log_file enabled=\"true\" id=\"RUBY_RAILS_SERVER\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"RUBY_ARGS\" VALUE=\"\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"WORK DIR\" VALUE=\"$MODULE_DIR$\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"SHOULD_USE_SDK\" VALUE=\"false\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"ALTERN_SDK_NAME\" VALUE=\"\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"myPassParentEnvs\" VALUE=\"true\" />\r\n      <EXTENSION ID=\"BundlerRunConfigurationExtension\" bundleExecEnabled=\"false\" />\r\n      <EXTENSION ID=\"JRubyRunConfigurationExtension\" NailgunExecEnabled=\"false\" />\r\n      <EXTENSION ID=\"RubyCoverageRunConfigurationExtension\" track_test_folders=\"true\" runner=\"rcov\" IGNORE_RCOVRT=\"true\" ENABLE_BRANCH_COVERAGE=\"true\" ENABLE_FORKED_COVERAGE=\"true\" />\r\n      <EXTENSION ID=\"org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension\" SCRATCH_USE_RAILS_RUNNER=\"false\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"SCRIPT_ARGS\" VALUE=\"\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"PORT\" VALUE=\"3000\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"IP\" VALUE=\"127.0.0.1\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"DUMMY_APP\" VALUE=\"test/dummy\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"RAILS_SERVER_TYPE\" VALUE=\"Default\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"ENVIRONMENT_TYPE\" VALUE=\"development\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"LAUNCH_JS\" VALUE=\"false\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"Production: Rubynor-QR-Meny-System\" type=\"RailsRunConfigurationType\" factoryName=\"Rails\">\r\n      <module name=\"Rubynor-QR-Meny-System\" />\r\n      <predefined_log_file enabled=\"true\" id=\"RUBY_RAILS_SERVER\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"RUBY_ARGS\" VALUE=\"\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"WORK DIR\" VALUE=\"$MODULE_DIR$\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"SHOULD_USE_SDK\" VALUE=\"false\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"ALTERN_SDK_NAME\" VALUE=\"\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"myPassParentEnvs\" VALUE=\"true\" />\r\n      <EXTENSION ID=\"BundlerRunConfigurationExtension\" bundleExecEnabled=\"false\" />\r\n      <EXTENSION ID=\"JRubyRunConfigurationExtension\" NailgunExecEnabled=\"false\" />\r\n      <EXTENSION ID=\"RubyCoverageRunConfigurationExtension\" track_test_folders=\"true\" runner=\"rcov\" IGNORE_RCOVRT=\"true\" ENABLE_BRANCH_COVERAGE=\"true\" ENABLE_FORKED_COVERAGE=\"true\" />\r\n      <EXTENSION ID=\"org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension\" SCRATCH_USE_RAILS_RUNNER=\"false\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"SCRIPT_ARGS\" VALUE=\"\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"PORT\" VALUE=\"3000\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"IP\" VALUE=\"127.0.0.1\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"DUMMY_APP\" VALUE=\"test/dummy\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"RAILS_SERVER_TYPE\" VALUE=\"Default\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"ENVIRONMENT_TYPE\" VALUE=\"production\" />\r\n      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME=\"LAUNCH_JS\" VALUE=\"false\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"spec: Rubynor-QR-Meny-System\" type=\"RakeRunConfigurationType\" factoryName=\"Rake\">\r\n      <module name=\"Rubynor-QR-Meny-System\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RUBY_ARGS\" VALUE=\"\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"WORK DIR\" VALUE=\"$MODULE_DIR$\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"SHOULD_USE_SDK\" VALUE=\"false\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"ALTERN_SDK_NAME\" VALUE=\"\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"myPassParentEnvs\" VALUE=\"true\" />\r\n      <EXTENSION ID=\"BundlerRunConfigurationExtension\" bundleExecEnabled=\"false\" />\r\n      <EXTENSION ID=\"JRubyRunConfigurationExtension\" NailgunExecEnabled=\"false\" />\r\n      <EXTENSION ID=\"RubyCoverageRunConfigurationExtension\" track_test_folders=\"true\" runner=\"rcov\" IGNORE_RCOVRT=\"true\" ENABLE_BRANCH_COVERAGE=\"true\" ENABLE_FORKED_COVERAGE=\"true\" />\r\n      <EXTENSION ID=\"org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension\" SCRATCH_USE_RAILS_RUNNER=\"false\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_NAME\" VALUE=\"spec\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_ARGS\" VALUE=\"\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_ATTACHED_TEST_FRAMEWORKS\" VALUE=\":rspec \" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_OPTION_TRACE\" VALUE=\"false\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_OPTION_DRYRUN\" VALUE=\"false\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_OPTION_PREREQS\" VALUE=\"false\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_OPTION_TESTOPTS\" VALUE=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"test: Rubynor-QR-Meny-System\" type=\"RakeRunConfigurationType\" factoryName=\"Rake\">\r\n      <module name=\"Rubynor-QR-Meny-System\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RUBY_ARGS\" VALUE=\"\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"WORK DIR\" VALUE=\"$MODULE_DIR$\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"SHOULD_USE_SDK\" VALUE=\"false\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"ALTERN_SDK_NAME\" VALUE=\"\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"myPassParentEnvs\" VALUE=\"true\" />\r\n      <envs>\r\n        <env name=\"RAILS_ENV\" value=\"test\" />\r\n      </envs>\r\n      <EXTENSION ID=\"BundlerRunConfigurationExtension\" bundleExecEnabled=\"false\" />\r\n      <EXTENSION ID=\"JRubyRunConfigurationExtension\" NailgunExecEnabled=\"false\" />\r\n      <EXTENSION ID=\"RubyCoverageRunConfigurationExtension\" track_test_folders=\"true\" runner=\"rcov\" IGNORE_RCOVRT=\"true\" ENABLE_BRANCH_COVERAGE=\"true\" ENABLE_FORKED_COVERAGE=\"true\" />\r\n      <EXTENSION ID=\"org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension\" SCRATCH_USE_RAILS_RUNNER=\"false\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_NAME\" VALUE=\"test\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_ARGS\" VALUE=\"\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_ATTACHED_TEST_FRAMEWORKS\" VALUE=\":test_unit \" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_OPTION_TRACE\" VALUE=\"false\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_OPTION_DRYRUN\" VALUE=\"false\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_OPTION_PREREQS\" VALUE=\"false\" />\r\n      <RAKE_RUN_CONFIG_SETTINGS_ID NAME=\"RAKE_TASK_OPTION_TESTOPTS\" VALUE=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"SpringUtil\" SPRING_PRE_LOADER_OPTION=\"true\" RAKE_SPRING_PRE_LOADER_OPTION=\"true\" RAILS_SPRING_PRE_LOADER_OPTION=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"4efee63b-a75b-476a-a252-fa7951a58b0f\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1616346581851</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1616346581851</updated>\r\n      <workItem from=\"1616346586672\" duration=\"4533000\" />\r\n      <workItem from=\"1616407300121\" duration=\"31996000\" />\r\n      <workItem from=\"1616575969756\" duration=\"16984000\" />\r\n      <workItem from=\"1616661528670\" duration=\"18546000\" />\r\n    </task>\r\n    <task id=\"LOCAL−00001\" summary=\"react-opprydding\">\r\n      <created>1616423020953</created>\r\n      <option name=\"number\" value=\"LOCAL−00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL−00001\" />\r\n      <updated>1616423020953</updated>\r\n    </task>\r\n    <task id=\"LOCAL−00002\" summary=\"admin react:menu_item\">\r\n      <created>1616425402055</created>\r\n      <option name=\"number\" value=\"LOCAL−00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL−00002\" />\r\n      <updated>1616425402055</updated>\r\n    </task>\r\n    <task id=\"LOCAL−00003\" summary=\"Admin: liten fiks\">\r\n      <created>1616595682626</created>\r\n      <option name=\"number\" value=\"LOCAL−00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL−00003\" />\r\n      <updated>1616595682626</updated>\r\n    </task>\r\n    <task id=\"LOCAL−00004\" summary=\"gem og idea greier\">\r\n      <created>1617796533019</created>\r\n      <option name=\"number\" value=\"LOCAL−00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL−00004\" />\r\n      <updated>1617796533019</updated>\r\n    </task>\r\n    <task id=\"LOCAL−00005\" summary=\"Pop up for alert og bekreftelse\">\r\n      <created>1617888361831</created>\r\n      <option name=\"number\" value=\"LOCAL−00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL−00005\" />\r\n      <updated>1617888361831</updated>\r\n    </task>\r\n    <task id=\"LOCAL−00006\" summary=\"Lagt til popup på menu_item sida\">\r\n      <created>1617888444994</created>\r\n      <option name=\"number\" value=\"LOCAL−00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL−00006\" />\r\n      <updated>1617888444994</updated>\r\n    </task>\r\n    <task id=\"LOCAL−00007\" summary=\"Oppdatering\">\r\n      <created>1617888920454</created>\r\n      <option name=\"number\" value=\"LOCAL−00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL−00007\" />\r\n      <updated>1617888920454</updated>\r\n    </task>\r\n    <task id=\"LOCAL−00008\" summary=\"Endret på legg til-knappen og lagde mer plass til popupen\">\r\n      <created>1617892148583</created>\r\n      <option name=\"number\" value=\"LOCAL−00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL−00008\" />\r\n      <updated>1617892148583</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"9\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\r\n    <option name=\"RELOAD_CONTEXT\" value=\"false\" />\r\n    <MESSAGE value=\"react-opprydding\" />\r\n    <MESSAGE value=\"admin react:menu_item\" />\r\n    <MESSAGE value=\"Admin: liten fiks\" />\r\n    <MESSAGE value=\"gem og idea greier\" />\r\n    <MESSAGE value=\"Pop up for alert og bekreftelse\" />\r\n    <MESSAGE value=\"Lagt til popup på menu_item sida\" />\r\n    <MESSAGE value=\"Oppdatering\" />\r\n    <MESSAGE value=\"Endret på legg til-knappen og lagde mer plass til popupen\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Endret på legg til-knappen og lagde mer plass til popupen\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -1,15 +1,16 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="3e4c92fb-4087-4a2b-9a4b-d058fc01c5ef" name="Default Changelist" comment="Fikset på ikoner og knapper på menu_item og order">
++    <list default="true" id="3e4c92fb-4087-4a2b-9a4b-d058fc01c5ef" name="Default Changelist" comment="Endret litt på meny-kortene, la til scroll, endret til hvit bakgrunn">
++      <change afterPath="$PROJECT_DIR$/app/javascript/components/modal/modalAlert.jsx" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/app/javascript/components/modal/modalConfirm.jsx" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/app/javascript/components/add_to_cart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/add_to_cart.jsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/javascript/components/admin_menu/menu_item.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/admin_menu/menu_item.jsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/javascript/components/cart_icon/cart_icon.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/cart_icon/cart_icon.jsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/javascript/components/configureStore/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/configureStore/index.jsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/javascript/components/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/modal/modal.jsx" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/app/views/menu/_selected_menu.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/menu/_selected_menu.html.erb" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/app/views/menu_item/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/menu_item/show.html.erb" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/app/views/orders/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/orders/show.html.erb" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/app/views/restaurant/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/restaurant/show.html.erb" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/app/views/shared/_header.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/shared/_header.html.erb" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -19,7 +20,7 @@
+   <component name="Git.Settings">
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$" value="modal" />
++        <entry key="$PROJECT_DIR$" value="scroll" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+@@ -46,17 +47,20 @@
+     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+     <property name="WebServerToolWindowFactoryState" value="false" />
+-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
++    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/javascript/components/modal" />
+     <property name="nodejs_package_manager_path" value="yarn" />
+     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+   </component>
+   <component name="RecentsManager">
++    <key name="CopyFile.RECENT_KEYS">
++      <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components\modal" />
++    </key>
+     <key name="MoveFile.RECENT_KEYS">
++      <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components\modal" />
+       <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components\admin_menu" />
+       <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components\cart_icon" />
+       <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components" />
+       <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components\cart" />
+-      <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components\navbar" />
+     </key>
+   </component>
+   <component name="RunManager" selected="Rails.Development: Rubynor-QR-Meny-System">
+@@ -150,7 +154,7 @@
+   <component name="SpringUtil" SPRING_PRE_LOADER_OPTION="true" RAKE_SPRING_PRE_LOADER_OPTION="true" RAILS_SPRING_PRE_LOADER_OPTION="true" />
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+-      <changelist id="4efee63b-a75b-476a-a252-fa7951a58b0f" name="Default Changelist" comment="" />
++      <changelist id="3e4c92fb-4087-4a2b-9a4b-d058fc01c5ef" name="Default Changelist" comment="Endret litt på meny-kortene, la til scroll, endret til hvit bakgrunn" />
+       <created>1616346581851</created>
+       <option name="number" value="Default" />
+       <option name="presentableId" value="Default" />
+@@ -159,6 +163,7 @@
+       <workItem from="1616407300121" duration="31996000" />
+       <workItem from="1616575969756" duration="16984000" />
+       <workItem from="1616661528670" duration="18546000" />
++      <workItem from="1618214559758" duration="11608000" />
+     </task>
+     <task id="LOCAL−00001" summary="react-opprydding">
+       <created>1616423020953</created>
+@@ -208,7 +213,13 @@
+       <option name="presentableId" value="LOCAL−00008" />
+       <updated>1617892148583</updated>
+     </task>
+-    <option name="localTasksCounter" value="9" />
++    <task id="LOCAL−00009" summary="Endret litt på meny-kortene, la til scroll, endret til hvit bakgrunn">
++      <created>1617903010099</created>
++      <option name="number" value="LOCAL−00009" />
++      <option name="presentableId" value="LOCAL−00009" />
++      <updated>1617903010099</updated>
++    </task>
++    <option name="localTasksCounter" value="10" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -237,6 +248,7 @@
+     <MESSAGE value="Lagt til popup på menu_item sida" />
+     <MESSAGE value="Oppdatering" />
+     <MESSAGE value="Endret på legg til-knappen og lagde mer plass til popupen" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Endret på legg til-knappen og lagde mer plass til popupen" />
++    <MESSAGE value="Endret litt på meny-kortene, la til scroll, endret til hvit bakgrunn" />
++    <option name="LAST_COMMIT_MESSAGE" value="Endret litt på meny-kortene, la til scroll, endret til hvit bakgrunn" />
+   </component>
+ </project>
+\ No newline at end of file
+diff --git a/app/javascript/components/modal.jsx b/app/javascript/components/modal/modal.jsx
+rename from app/javascript/components/modal.jsx
+rename to app/javascript/components/modal/modal.jsx

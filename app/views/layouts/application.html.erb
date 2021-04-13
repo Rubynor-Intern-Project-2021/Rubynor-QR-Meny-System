@@ -1,28 +1,42 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Rubynor Qr Meny System</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Rubynor Qr Meny System</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_pack_tag "application", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "tailwind"%>
-    <%= stylesheet_link_tag "inter-font"%>
-  </head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_pack_tag "application", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "tailwind" %>
+  <%= stylesheet_link_tag "inter-font" %>
+</head>
 
-  <body class="lg:bg-gray-100 font-sans">
-      <div class="pb-14">
-        <% if @restaurant %>
-          <%= render 'shared/header' %>
-        <% end %>
-      </div>
+<body class="relative lg:bg-gray-100 font-sans">
+  <div class="pb-14">
+    <% if @restaurant %>
+      <%= render 'shared/header' %>
+    <% end %>
+  </div>
+  <div class="">
+    <%= yield %>
+  </div>
 
+  <div class="flex justify-center">
+    <div class="absolute top-1/2">
       <div>
-        <%= yield %>
+        <%= react_component("modal/modalAlert") %>
       </div>
-
-  </body>
+    </div>
+    <div class="absolute top-1/3">
+      <div>
+        <%= react_component("modal/modalConfirmMenu") %>
+      </div>
+      <div>
+        <%= react_component("modal/modalConfirmMenuItem") %>
+      </div>
+    </div>
+  </div>
+</body>
 </html>

@@ -3,7 +3,7 @@ import {MdClose} from "react-icons/md";
 
 export const ModalAlert = ({text, handleClose}) => {
     return (
-        <div className="flex py-3 px-3 text-gray-700 text-sm rounded-sm border border-purple-200 divide-x divide-gray-700">
+        <div className="flex py-3 px-3 bg-white text-gray-700 text-sm rounded-sm border border-purple-200 divide-x divide-gray-700">
             <div className="pr-2">{text} </div>
             <button className="pl-2" onClick={handleClose}>
                 <MdClose/>
@@ -28,7 +28,7 @@ export const ModalConfirm = ({header, text, handleCancel, handleConfirm}) => {
                     </button>
                 </div>
                 <div className="flex justify-center w-1/2 border border-purple-200 py-2">
-                    <button className="font-semibold text-red-600" onClick={handleConfirm}>
+                    <button className="font-semibold text-red-600" onClick={handleConfirm} >
                         Slett
                     </button>
                 </div>
