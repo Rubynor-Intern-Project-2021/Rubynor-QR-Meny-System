@@ -28,7 +28,7 @@ export const ModalConfirm = ({header, text, handleCancel, handleConfirm}) => {
                     </button>
                 </div>
                 <div className="flex justify-center w-1/2 border border-purple-200 py-2">
-                    <button className="font-semibold text-red-600" onClick={handleConfirm} >
+                    <button className="font-semibold text-red-600" onClick={handleConfirm}>
                         Slett
                     </button>
                 </div>

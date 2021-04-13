@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :orders
     controller :menu_items do
       get 'set_item_status' => :set_item_status
+      get 'set_item_empty_status' => :set_item_empty_status
     end
     controller :allergens do
       get 'allergen_slett' => :destroy

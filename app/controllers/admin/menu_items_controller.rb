@@ -59,12 +59,26 @@ class Admin::MenuItemsController < ApplicationController
     end
 
   end
+
+  def set_item_empty_status
+    p "menu_items Status"
+    item=MenuItem.find(params[:item_id])
+    item.empty=params[:status]
+    p params[:status]
+    p item.status
+    p "menu_items Status2"
+    item.save
+    p "menu_items Status3"
+    respond_to do |format|
+      format.html { redirect_to admin_restaurant_url(item.menu.restaurant.id), notice: "Menu item was successfully changed." }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_menu_item
       @menu_item = MenuItem.find(params[:id])
     end
-
     # Only allow a list of trusted parameters through.
     def menu_item_params
       used_allergens = params[:allergens]

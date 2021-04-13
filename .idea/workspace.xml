@@ -2,7 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e4c92fb-4087-4a2b-9a4b-d058fc01c5ef" name="Default Changelist" comment="Endret litt på meny-kortene, la til scroll, endret til hvit bakgrunn">
+      <change afterPath="$PROJECT_DIR$/db/migrate/20210412121804_add_number_to_menus.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/migrate/20210412144538_add_empty_to_menu_items.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/admin/menu_items_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/menu_items_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/admin/menus_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/menus_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/components/admin_menu/menu_item.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/admin_menu/menu_item.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/components/modal/modals.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/modal/modals.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menu_items/_form_base.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menu_items/_form_base.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/_form_base.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/_form_base.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/admin/restaurants/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/restaurants/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/menu/_selected_menu.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/menu/_selected_menu.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/restaurant/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/restaurant/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
     </list>
     <list id="321a85b8-2e94-4e11-9213-59e15cfdc522" name="Revert &quot;Alternativ visning for meny gjenstander som ikke har ingreddienser, sortering for menyer&quot;" comment="Revert &quot;Alternativ visning for meny gjenstander som ikke har ingreddienser, sortering for menyer&quot;&#10;&#10;This reverts commit 286dadfa" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,11 +54,14 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/db/migrate" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\db\migrate" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components\modal" />
       <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components\admin_menu" />
@@ -220,7 +237,13 @@
       <option name="presentableId" value="LOCAL−00011" />
       <updated>1618346967525</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL−00012" summary="Små fiks">
+      <created>1618347298907</created>
+      <option name="number" value="LOCAL−00012" />
+      <option name="presentableId" value="LOCAL−00012" />
+      <updated>1618347298907</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -262,6 +285,7 @@
     <MESSAGE value="Revert &quot;Alternativ visning for meny gjenstander som ikke har ingreddienser, sortering for menyer&quot;&#10;&#10;This reverts commit 286dadfa" />
     <MESSAGE value="Pop-ups:add to cart, delete menu, delete menuItem. Redux" />
     <MESSAGE value="Pop-ups:slett allergen. Ryddet opp i configureStore" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pop-ups:slett allergen. Ryddet opp i configureStore" />
+    <MESSAGE value="Små fiks" />
+    <option name="LAST_COMMIT_MESSAGE" value="Små fiks" />
   </component>
 </project>

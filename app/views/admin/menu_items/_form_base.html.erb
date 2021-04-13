@@ -14,7 +14,7 @@
 
     <div>
       <% if menu_item.image.attached? %>
-        <%= image_tag menu_item.image, style: "shadow object-cover rounded-t-2xl w-full h-auto align-middle border-none"%>
+        <%= image_tag menu_item.image, style: "shadow object-fill rounded-t-2xl w-full border-none"%>
       <% end %>
 
     </div>
@@ -31,7 +31,7 @@
 
       <div class="field text-gray-700 pt-5">
         <%= form.label :number, class: 'text-gray-700' %><br>
-        <%= form.text_field :number, class: 'w-80 border-gray-800 rounded-lg' %>
+        <%= form.number_field :number, step: :any, class: 'w-80 border-gray-800 rounded-lg' %>
       </div>
       <div class="field text-gray-700 pt-5">
         <%= form.label :name, class: 'text-gray-700' %><br>
@@ -51,8 +51,8 @@
       <div class="field text-gray-700 pt-5">
         <%= form.label :allergens, class: 'text-gray-700' %><br>
         <% Allergen.all.each do |allergen| %>
-          <div > 
-            <% has_this_allergen = menu_item.allergen_items.any? {|item| item.allergen_id == allergen.id} %> 
+          <div >
+            <% has_this_allergen = menu_item.allergen_items.any? {|item| item.allergen_id == allergen.id} %>
             <input <%= if has_this_allergen then "checked" end %> name="allergens[<%=allergen.id%>] class="border-gray-800 mr-2 rounded-lg" type="checkbox" value="<%=allergen.id%>"><%=allergen.name%></input>
           </div>
         <% end %>
