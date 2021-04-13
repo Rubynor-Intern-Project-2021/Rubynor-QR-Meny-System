@@ -1,16 +1,20 @@
-import React, {useState} from 'react';
-import {IoIosArrowForward, IoIosArrowDown, IoIosAddCircleOutline} from "react-icons/io";
+import React from 'react';
 import {BiPencil, BiXCircle} from "react-icons/bi";
-//import Modal from './modal';
+import {showModal, storeDeleteItem, storeModalAllergen} from "../configureStore";
 
 
 const AllergenItem = ({allergen}) => {
-    const [show, setShow] = useState(false)
 
+    const handleDelete = (id) => {
+        storeDeleteItem.dispatch({
+            type: 'DELETE_ITEM',
+            payload: id
+        });
+    };
 
-    function Link({label, href, icon}) {
+    function Link({label, href, icon, action}) {
         return (
-            <a className="flex mr-3" href={href}>
+            <a className="flex mr-3" href={href} onClick={action}>
                 <div className="px-0.5">
                     {icon}
                 </div>
@@ -33,8 +37,13 @@ const AllergenItem = ({allergen}) => {
                 <div className="inline-block">
                 </div>
                 <div className="flex inline-block float-right pr-4 md:pr-8 lg:pr-8">
-                    <Link icon={<BiPencil size={20}/>} label="Rediger" href={Routes.edit_admin_allergen_path(allergen)}/>
-                    <Link icon={<BiXCircle size={20}/>} label="Slett" href={Routes.admin_allergen_slett_path({a_id: allergen.id})}/>
+                    <Link icon={<BiPencil size={20}/>}
+                          label="Rediger"
+                          href={Routes.edit_admin_allergen_path(allergen)}/>
+                    <Link icon={<BiXCircle size={20}/>}
+                          label="Slett"
+                          action={() => { storeModalAllergen.dispatch(showModal());
+                            handleDelete(allergen.id); }}/>
                 </div>
             </th>
         </tr>

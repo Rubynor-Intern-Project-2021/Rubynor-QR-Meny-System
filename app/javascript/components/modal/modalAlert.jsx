@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ModalAlert } from "./modals";
-import { storeModalAlert, hideModalAlert } from "../configureStore";
+import { storeModalAlert, hideModal } from "../configureStore";
 
 const ModalAlertCart = () => {
     const [modalStatus, setModalStatus] = useState(false);
@@ -22,7 +22,7 @@ const ModalAlertCart = () => {
             <div className="flex justify-center">
                 <ModalAlert
                     text="Varen ble lagt til i handlevogna"
-                    handleClose={() => storeModalAlert.dispatch(hideModalAlert())}
+                    handleClose={() => storeModalAlert.dispatch(hideModal())}
                 />
             </div>
     }

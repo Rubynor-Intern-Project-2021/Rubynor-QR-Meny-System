@@ -1,77 +1,59 @@
 import {createStore} from 'redux';
 
-export const showModalAlert = () => {
+export const showModal = () => {
     return {
-        type: 'SHOW_ALERT'
+        type: 'SHOW'
     }
 };
 
-export const hideModalAlert = () => {
+export const hideModal = () => {
     return {
-        type: 'HIDE_ALERT'
-    }
-};
-
-export const showModalConfirmM = () => {
-    return {
-        type: 'SHOW_CONFIRM_MENU'
-    }
-};
-
-export const hideModalConfirmM = () => {
-    return {
-        type: 'HIDE_CONFIRM_MENU'
-    }
-};
-
-export const showModalConfirmMI = () => {
-    return {
-        type: 'SHOW_CONFIRM_MENU_ITEM'
-    }
-};
-
-export const hideModalConfirmMI = () => {
-    return {
-        type: 'HIDE_CONFIRM_MENU_ITEM'
+        type: 'HIDE'
     }
 };
 
 export const modalAlertReducer = (state = false, action) => {
     switch (action.type) {
-        case 'SHOW_ALERT':
+        case 'SHOW':
             state = true
             return state;
-        case 'HIDE_ALERT':
+        case 'HIDE':
             state = false;
-            return state;
-        default:
             return state;
     }
 };
 
 
-export const modalConfirmReducer = (state = false, action) => {
+export const modalMenuReducer = (state = false, action) => {
     switch (action.type) {
-        case 'SHOW_CONFIRM_MENU':
+        case 'SHOW':
             state = true
             return state;
-        case 'HIDE_CONFIRM_MENU':
+        case 'HIDE':
             state = false;
-            return state;
-        default:
             return state;
     }
 };
 
-export const modalConfirmItemReducer = (state = false, action) => {
+
+export const modalMenuItemReducer = (state = false, action) => {
     switch (action.type) {
-        case 'SHOW_CONFIRM_MENU_ITEM':
+        case 'SHOW':
             state = true
             return state;
-        case 'HIDE_CONFIRM_MENU_ITEM':
+        case 'HIDE':
             state = false;
             return state;
-        default:
+    }
+};
+
+export const modalAllergenReducer = (state = false, action) => {
+    switch (action.type) {
+        case 'SHOW':
+            state = true
+            return state;
+        case 'HIDE':
+            state = false;
             return state;
     }
 };
@@ -103,7 +85,8 @@ export const orderListReducer = (state = [], action) => {
 
 export const storeIcon = createStore(updateIconReducer);
 export const storeModalAlert = createStore(modalAlertReducer);
-export const storeModalConfirmMenu = createStore(modalConfirmReducer);
+export const storeModalMenu = createStore(modalMenuReducer);
+export const storeModalMenuItem = createStore(modalMenuItemReducer);
+export const storeModalAllergen = createStore(modalAllergenReducer);
 export const storeDeleteItem = createStore(deleteItemReducer);
-export const storeModalConfirmMenuItem = createStore(modalConfirmItemReducer);
 

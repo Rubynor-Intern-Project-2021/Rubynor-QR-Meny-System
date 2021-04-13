@@ -2,17 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e4c92fb-4087-4a2b-9a4b-d058fc01c5ef" name="Default Changelist" comment="Endret litt på meny-kortene, la til scroll, endret til hvit bakgrunn">
-      <change afterPath="$PROJECT_DIR$/app/javascript/components/modal/modalAlert.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/javascript/components/modal/modalConfirmMenu.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/javascript/components/modal/modalConfirmMenuItem.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/javascript/components/modal/modalAllergen.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascript/components/add_to_cart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/add_to_cart.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascript/components/admin_menu/allergen_item.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/admin_menu/allergen_item.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascript/components/admin_menu/menu_item.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/admin_menu/menu_item.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/components/cart_icon/cart_icon.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/cart_icon/cart_icon.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascript/components/configureStore/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/configureStore/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/components/modal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/modal/modals.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/restaurants/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/restaurants/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/components/modal/modalAlert.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/modal/modalAlert.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/components/modal/modalConfirmMenu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/modal/modalMenu.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/components/modal/modalConfirmMenuItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/modal/modalMenuItem.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
     </list>
     <list id="321a85b8-2e94-4e11-9213-59e15cfdc522" name="Revert &quot;Alternativ visning for meny gjenstander som ikke har ingreddienser, sortering for menyer&quot;" comment="Revert &quot;Alternativ visning for meny gjenstander som ikke har ingreddienser, sortering for menyer&quot;&#10;&#10;This reverts commit 286dadfa" />
@@ -219,7 +217,13 @@
       <option name="presentableId" value="LOCAL−00009" />
       <updated>1618313334962</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL−00010" summary="Pop-ups:add to cart, delete menu, delete menuItem. Redux">
+      <created>1618343360330</created>
+      <option name="number" value="LOCAL−00010" />
+      <option name="presentableId" value="LOCAL−00010" />
+      <updated>1618343360331</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -259,6 +263,7 @@
     <MESSAGE value="Oppdatering" />
     <MESSAGE value="Endret på legg til-knappen og lagde mer plass til popupen" />
     <MESSAGE value="Revert &quot;Alternativ visning for meny gjenstander som ikke har ingreddienser, sortering for menyer&quot;&#10;&#10;This reverts commit 286dadfa" />
-    <option name="LAST_COMMIT_MESSAGE" value="Revert &quot;Alternativ visning for meny gjenstander som ikke har ingreddienser, sortering for menyer&quot;&#10;&#10;This reverts commit 286dadfa" />
+    <MESSAGE value="Pop-ups:add to cart, delete menu, delete menuItem. Redux" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pop-ups:add to cart, delete menu, delete menuItem. Redux" />
   </component>
 </project>

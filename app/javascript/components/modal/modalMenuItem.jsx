@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { ModalConfirm } from "./modals";
-import { storeDeleteItem, hideModalConfirmMI, storeModalConfirmMenuItem } from "../configureStore";
+import { storeDeleteItem, hideModal, storeModalMenuItem } from "../configureStore";
 
-const ModalConfirmMenuItem = () => {
+const ModalMenuItem = () => {
     const [modalStatus, setModalStatus] = useState(false);
     const [itemId, setItemId] = useState();
 
-    storeModalConfirmMenuItem.subscribe(() => {
-        setModalStatus(storeModalConfirmMenuItem.getState())
+    storeModalMenuItem.subscribe(() => {
+        setModalStatus(storeModalMenuItem.getState())
     });
 
     storeDeleteItem.subscribe(() => {
@@ -22,8 +22,8 @@ const ModalConfirmMenuItem = () => {
                 <ModalConfirm
                     header="Slett"
                     text="Ønsker du å slette denne retten/ drikken?"
-                    handleCancel={() => storeModalConfirmMenuItem.dispatch(hideModalConfirmMI())}
-                    handleConfirm={() => { storeModalConfirmMenuItem.dispatch(hideModalConfirmMI());
+                    handleCancel={() => storeModalMenuItem.dispatch(hideModal())}
+                    handleConfirm={() => { storeModalMenuItem.dispatch(hideModal());
                     window.location.href=Routes.admin_set_item_status_path({item_id: itemId, status: 3});}}
 
                 />
@@ -39,4 +39,4 @@ const ModalConfirmMenuItem = () => {
     );
 };
 
-export default ModalConfirmMenuItem;
+export default ModalMenuItem;

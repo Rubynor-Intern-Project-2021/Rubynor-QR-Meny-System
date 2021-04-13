@@ -2,19 +2,19 @@ import React, {useState} from 'react';
 import {IoIosArrowForward, IoIosArrowDown, IoIosAddCircleOutline} from "react-icons/io";
 import {BiPencil, BiXCircle} from "react-icons/bi";
 import {GoEye, GoEyeClosed} from "react-icons/all";
-import {storeDeleteItem, storeModalConfirmMenuItem, storeModalConfirmMenu, showModalConfirmM, showModalConfirmMI } from "../configureStore";
+import {storeDeleteItem, storeModalMenuItem, storeModalMenu, showModal } from "../configureStore";
 
 
 const MenuItem = ({menu, menuItems}) => {
     const [isCollapsed, setIsCollapsed] = useState(true)
     const [collapseButton, setCollapseButton] = useState(<IoIosArrowForward/>)
 
-    storeModalConfirmMenuItem.subscribe(() => {
-        console.log(storeModalConfirmMenuItem.getState())
+    storeModalMenuItem.subscribe(() => {
+        console.log(storeModalMenuItem.getState())
     });
 
-    storeModalConfirmMenu.subscribe(() => {
-        console.log(storeModalConfirmMenu.getState())
+    storeModalMenu.subscribe(() => {
+        console.log(storeModalMenu.getState())
     });
 
     storeDeleteItem.subscribe(() => {
@@ -70,19 +70,24 @@ const MenuItem = ({menu, menuItems}) => {
 
                             <div className="md:flex float-right inline-block align-text-top pr-4 md:pr-10 lg:pr-10">
                                 {item.status === 2 ?
-                                    <Link icon={<GoEye size={20}/>} label="Vis"
+                                    <Link icon={<GoEye size={18}/>}
+                                          label="Vis"
                                           href={Routes.admin_set_item_status_path({
                                               item_id: item.id,
                                               status: 1})}/>
-                                    : <Link icon={<GoEyeClosed size={20}/>} label="Skjul"
+                                    : <Link icon={<GoEyeClosed size={18}/>}
+                                            label="Skjul"
                                             href={Routes.admin_set_item_status_path({
                                                 item_id: item.id,
-                                                status: 2
-                                            })}/>}
-                                | <Link icon={<BiPencil size={20}/>} label="Rediger"
+                                                status: 2})}/>
+                                }
+                                | <Link icon={<BiPencil size={20}/> }
+                                        label="Rediger"
                                         href={Routes.edit_admin_menu_item_path(item)}/>
-                                | <Link icon={<BiXCircle size={20}/>} label="Slett"
-                                        action={() => { storeModalConfirmMenuItem.dispatch(showModalConfirmMI()); handleDelete(item.id); }}/>
+                                | <Link icon={<BiXCircle size={20}/> }
+                                        label="Slett"
+                                        action={() => { storeModalMenuItem.dispatch(showModal());
+                                        handleDelete(item.id); }}/>
                             </div>
                         </td>
                     </tr> : null
@@ -112,13 +117,18 @@ const MenuItem = ({menu, menuItems}) => {
                     <div className="flex inline-block float-right pr-4 md:pr-8 lg:pr-8">
 
                         {menu.status === 2 ?
-                            <Link icon={<GoEye size={20}/>} label="Vis"
+                            <Link icon={<GoEye size={20}/>}
+                                  label="Vis"
                                   href={Routes.admin_set_menu_status_path({menu_id: menu.id, status: 1})}/>
                             : <Link icon={<GoEyeClosed size={20}/>} label="Skjul"
                                     href={Routes.admin_set_menu_status_path({menu_id: menu.id, status: 2})}/>}
-                        | <Link icon={<BiPencil size={20}/>} label="Rediger" href={Routes.edit_admin_menu_path(menu)}/>
-                        | <Link icon={<BiXCircle size={20}/>} label="Slett"
-                                action={() => { storeModalConfirmMenu.dispatch(showModalConfirmM()); handleDelete(menu.id); }}/>
+                        | <Link icon={<BiPencil size={20}/>}
+                                label="Rediger"
+                                href={Routes.edit_admin_menu_path(menu)}/>
+                        | <Link icon={<BiXCircle size={20}/>}
+                                label="Slett"
+                                action={() => { storeModalMenu.dispatch(showModal());
+                                    handleDelete(menu.id); }}/>
                         | <button onClick={collapseField} className="collapsible px-1">{collapseButton}</button>
                     </div>
                 </th>
