@@ -19,7 +19,7 @@
       <div id="selected_menu">
         <% unless @selected %>
           <div>
-            <%= render partial: 'menu/selected_menu', locals: { menu: @restaurant.menus.first } %>
+            <%= render partial: 'menu/selected_menu', locals: { menu: @restaurant.menus.where(:status=>1).first } %>
           </div>
         <% end %>
       </div>
