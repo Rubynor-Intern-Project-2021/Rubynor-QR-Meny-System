@@ -26,10 +26,12 @@
         </div>
 
         <% if menu_item.get_allergen_names_short.length >= 1 %>
-          <div class="text-sm">
+          <div class="text-gray-700 text-xs">
             (<%= menu_item.get_allergen_names_short.join(', ') %>)
           </div>
         <% end %>
+        <!-- dytt prisen ned til ny linje med br --!>
+        <br/>
         <div class="text-sm font-semibold absolute bottom-2 lg:bottom-4 right-2 lg:right-4">
           <%= menu_item.price.to_i %>,-
         </div>
