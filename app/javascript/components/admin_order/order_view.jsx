@@ -84,7 +84,7 @@ class OrderView extends Component {
                 <button className="pr-2" onClick={this.showNotFinished}>Ikke Fullført</button>|
                 <button className="pl-2" onClick={this.showFinished}>Fullført</button>
                 {orders.map((item, index) => 
-                    <OrderItem key={item.id.toString() + ":" + index.toString()} orderItem={item}/>
+                    <OrderItem key={item.id.toString()} orderItem={item}/>
 
                 )}
             </div>
