@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {IoIosArrowForward, IoIosArrowDown, IoIosAddCircleOutline} from "react-icons/io";
 import {BiPencil, BiXCircle} from "react-icons/bi";
-import {GoEye, GoEyeClosed} from "react-icons/all";
+import {GoEye, GoEyeClosed, IoFastFoodOutline, RiForbid2Line } from "react-icons/all";
 import {storeDeleteItem, storeModalMenuItem, storeModalMenu, showModal } from "../configureStore";
 
 
@@ -72,6 +72,12 @@ const MenuItem = ({menu, menuItems}) => {
                             </div>
 
                             <div className="md:flex float-right inline-block align-text-top pr-4 md:pr-10 lg:pr-10">
+                                 {item.empty===0?
+                                    <Link icon={<RiForbid2Line size={20}/>} 
+                                          label="Vis tomt" href={Routes.admin_set_item_empty_status_path({item_id: item.id, status: 1})} />
+                                    : <Link icon={<IoFastFoodOutline size={20}/>} 
+                                            label="Vis vanlig" href={Routes.admin_set_item_empty_status_path({item_id: item.id, status: 0})} />}
+                                |
                                 {item.status === 2 ?
                                     <Link icon={<GoEye size={20}/>}
                                           label="Vis"
