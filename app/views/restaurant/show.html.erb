@@ -17,9 +17,9 @@
 
       <!-- Meny-innhold-->
       <div id="selected_menu">
-        <% unless @selected %>
+        <% if @selected == nil && @restaurant.menus.where(:status => 1).length > 0 %>
           <div>
-            <%= render partial: 'menu/selected_menu', locals: { menu: @restaurant.menus.where(:status=>1).first } %>
+            <%= render partial: 'menu/selected_menu', locals: { menu: @restaurant.menus.where(:status=>1).order(:number).first } %>
           </div>
         <% end %>
       </div>
