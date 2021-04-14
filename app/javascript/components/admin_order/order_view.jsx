@@ -57,8 +57,8 @@ class OrderView extends Component {
 
         if(this.state.showFinished) {
             orders.sort(function(a, b) { 
-                var nameA = a.location.toUpperCase(); // ignore upper and lowercase
-                var nameB = b.location.toUpperCase(); // ignore upper and lowercase
+                var nameA = a.location;
+                var nameB = b.location;
                 if (nameA.length < nameB.length)
                 {
                     return -1;
