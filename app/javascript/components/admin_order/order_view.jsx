@@ -55,6 +55,30 @@ class OrderView extends Component {
             }
         });
 
+        if(this.state.showFinished) {
+            orders.sort(function(a, b) { 
+                var nameA = a.location.toUpperCase(); // ignore upper and lowercase
+                var nameB = b.location.toUpperCase(); // ignore upper and lowercase
+                if (nameA.length < nameB.length)
+                {
+                    return -1;
+                }
+                if (nameA.length > nameB.length)
+                {
+                    return 1;
+                }
+                if (nameA < nameB) {
+                    return -1;
+                }
+                if (nameA > nameB) {
+                    return 1;
+                }
+
+                // names must be equal
+                return 0;
+            });
+        }
+
         return (
             <div className="text-gray-200">
                 <button className="pr-2" onClick={this.showNotFinished}>Ikke Fullført</button>|
