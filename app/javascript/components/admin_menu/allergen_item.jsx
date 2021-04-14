@@ -14,7 +14,7 @@ const AllergenItem = ({allergen}) => {
 
     function Link({label, href, icon, action}) {
         return (
-            <a className="flex mr-3" href={href} onClick={action}>
+            <a className="flex mr-3 cursor-pointer" href={href} onClick={action}>
                 <div className="px-0.5">
                     {icon}
                 </div>
