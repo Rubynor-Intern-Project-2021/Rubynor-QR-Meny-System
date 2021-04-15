@@ -23,8 +23,6 @@ const AdminQr = ({restaurant_id}) => {
         var textImage = window.TextImage(style);
         var data = textImage.toDataURL(location);
 
-        console.log(data);
-
         const options = {
             text: window.location.host + Routes.restaurant_path(restaurant_id) + "?location=" + location,
             logo: data,
