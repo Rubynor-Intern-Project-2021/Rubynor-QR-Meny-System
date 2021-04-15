@@ -3,9 +3,7 @@
     <div class="pt-5">
       <strong>QR Kode</strong>
       <div class="flex pb-5">
-        <div>
-          <img src="<%= @restaurant.qr_code %>" class="w-20"/>
-        </div>
+        <%= react_component("admin_qr/admin_qr", {restaurant_id: @restaurant.id}) %>
         <div class="pl-5">
           <div>
             <strong>Navn:</strong>

@@ -2888,6 +2888,11 @@ duplexify@^3.4.2, duplexify@^3.6.0:
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
 
+easyqrcodejs@^4.3.4:
+  version "4.3.4"
+  resolved "https://registry.yarnpkg.com/easyqrcodejs/-/easyqrcodejs-4.3.4.tgz#a8e12e1d8cdf17b269ca86550e2090b45a834239"
+  integrity sha512-ZNR7FPARDCufo3Il+3NQ/GepvXexb7f2UKogxSO/uaIqOQ0oB8KPS1uOQBjhra5mBvrPchIF25V8Mql8h5kM7w==
+
 ee-first@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
@@ -7041,6 +7046,11 @@ terser@^5.3.4:
     commander "^2.20.0"
     source-map "~0.7.2"
     source-map-support "~0.5.19"
+
+text-image@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/text-image/-/text-image-0.7.0.tgz#a9050b5ea7ed3563b80bb8ba4021250b647d4a96"
+  integrity sha512-847TrgCn/Xq/I2jQWYGEqNbLuZe6TGF3dmz4LPY1I/IjPZsVWO6eBAx1/ei07JJUbrrJOXi5uJV2D8NnVHsr/w==
 
 through2@^2.0.0:
   version "2.0.5"
