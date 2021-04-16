@@ -1,3 +1,3 @@
 class Allergen < ApplicationRecord
-  has_many :allergen_item
+  has_many :allergen_item, dependent: :destroy
 end
