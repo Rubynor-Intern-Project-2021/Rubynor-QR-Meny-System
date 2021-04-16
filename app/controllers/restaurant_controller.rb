@@ -7,6 +7,6 @@ class RestaurantController < ApplicationController
     end
 
     @restaurant = Restaurant.find(params[:id])
-    @allergens = Allergen.all()
+    @allergens = @restaurant.allergens
   end
 end

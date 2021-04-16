@@ -16,6 +16,7 @@ class Admin::AllergensController < ApplicationController
   def create
     @restaurant = Restaurant.find(session[:restaurant_id])
     @allergen = Allergen.new(allergen_params)
+    @allergen.restaurant_id = @restaurant.id
 
     respond_to do |format|
       if @allergen.save

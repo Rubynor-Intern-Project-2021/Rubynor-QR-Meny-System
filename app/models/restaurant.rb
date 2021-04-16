@@ -1,6 +1,7 @@
 class Restaurant < ApplicationRecord
   has_many :menus, dependent: :destroy
   has_many :orders, dependent: :destroy
+  has_many :allergens, dependent: :destroy
   validates :username, presence: true, uniqueness: true
   has_secure_password
 
@@ -8,7 +9,7 @@ class Restaurant < ApplicationRecord
   def get_allergen_map 
     arr = Array.new() 
 
-    Allergen.all().each do |allergen|
+    allergens.each do |allergen|
       arr << allergen.short_name + ' = ' + allergen.name
     end
 

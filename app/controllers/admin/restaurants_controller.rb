@@ -16,8 +16,9 @@ class Admin::RestaurantsController < ApplicationController
       add_qr_code()
     end
 
-    @allergens = Allergen.all
+    @allergens = @restaurant.allergens  
   end
+
 
   # GET /restaurants/new
   def new
