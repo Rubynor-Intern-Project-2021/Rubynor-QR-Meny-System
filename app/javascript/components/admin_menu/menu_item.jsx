@@ -56,7 +56,7 @@ const MenuItem = ({menu, menuItems}) => {
     if (!isCollapsed) {
         body =
             <tbody>
-            {menuItems.sort((item, nextItem)=>item.number-nextItem.number).map((item, index) =>
+            {menuItems.map((item, index) =>
                 (
                 item.status !== 3 ?
                     <tr key={index} className="admin-content-row">
