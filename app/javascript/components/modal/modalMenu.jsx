@@ -25,17 +25,14 @@ const ModalMenu = () => {
                     handleCancel={() => storeModalMenu.dispatch(hideModal())}
                     handleConfirm={() => { storeModalMenu.dispatch(hideModal());
                     window.location.href = Routes.admin_set_menu_status_path({menu_id: menuId, status: 3});}}
-
                 />
             </div>
     }
 
     return (
-        <>
-            <div>
-                {modal}
-            </div>
-        </>
+        <div>
+            {modal}
+        </div>
     );
 };
 

@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e4c92fb-4087-4a2b-9a4b-d058fc01c5ef" name="Default Changelist" comment="Endret litt på meny-kortene, la til scroll, endret til hvit bakgrunn">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_04_2021_09_58_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_04_2021_09_58__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_04_2021_16_37_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_04_2021_16_37__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_04_2021_18_06_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_04_2021_18_06__Default_Changelist_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/components/add_to_cart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/add_to_cart.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/components/modal/modalAlert.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/modal/modalAlert.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/components/modal/modalAllergen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/modal/modalAllergen.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/components/modal/modalMenu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/modal/modalMenu.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascript/components/modal/modalMenuItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/modal/modalMenuItem.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascript/components/modal/modals.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/modal/modals.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
     </list>
     <list id="321a85b8-2e94-4e11-9213-59e15cfdc522" name="Revert &quot;Alternativ visning for meny gjenstander som ikke har ingreddienser, sortering for menyer&quot;" comment="Revert &quot;Alternativ visning for meny gjenstander som ikke har ingreddienser, sortering for menyer&quot;&#10;&#10;This reverts commit 286dadfa" />
     <option name="SHOW_DIALOG" value="false" />
@@ -164,7 +163,8 @@
       <workItem from="1616407300121" duration="31996000" />
       <workItem from="1616575969756" duration="16984000" />
       <workItem from="1616661528670" duration="18546000" />
-      <workItem from="1618818473969" duration="5049000" />
+      <workItem from="1618818473969" duration="10591000" />
+      <workItem from="1618852892627" duration="1528000" />
     </task>
     <task id="LOCAL−00001" summary="react-opprydding">
       <created>1616423020953</created>
@@ -244,7 +244,13 @@
       <option name="presentableId" value="LOCAL−00013" />
       <updated>1618350489100</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL−00014" summary="Endret på admin-modalen">
+      <created>1618843292203</created>
+      <option name="number" value="LOCAL−00014" />
+      <option name="presentableId" value="LOCAL−00014" />
+      <updated>1618843292203</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -288,6 +294,7 @@
     <MESSAGE value="Pop-ups:slett allergen. Ryddet opp i configureStore" />
     <MESSAGE value="Små fiks" />
     <MESSAGE value="Oppdatert" />
-    <option name="LAST_COMMIT_MESSAGE" value="Oppdatert" />
+    <MESSAGE value="Endret på admin-modalen" />
+    <option name="LAST_COMMIT_MESSAGE" value="Endret på admin-modalen" />
   </component>
 </project>

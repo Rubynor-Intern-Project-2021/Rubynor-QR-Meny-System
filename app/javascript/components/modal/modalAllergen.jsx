@@ -24,18 +24,15 @@ const ModalConfirmMenu = () => {
                     text="Ønsker du å slette dette allergenet?"
                     handleCancel={() => storeModalAllergen.dispatch(hideModal())}
                     handleConfirm={() => { storeModalAllergen.dispatch(hideModal());
-                        window.location.href = Routes.admin_allergen_slett_path({a_id: allergenId});}}
-
+                    window.location.href = Routes.admin_allergen_slett_path({a_id: allergenId});}}
                 />
             </div>
     }
 
     return (
-        <>
-            <div>
-                {modal}
-            </div>
-        </>
+        <div>
+            {modal}
+        </div>
     );
 };
 

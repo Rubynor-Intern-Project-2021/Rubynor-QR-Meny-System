@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ModalAlert } from "./modals";
 import { storeModalAlert, hideModal } from "../configureStore";
 
-const ModalAlertCart = () => {
+const ModalAlertCart = ({restaurantId}) => {
     const [modalStatus, setModalStatus] = useState(false);
 
     storeModalAlert.subscribe(() => {
@@ -21,19 +21,19 @@ const ModalAlertCart = () => {
         modal =
             <div className="flex justify-center">
                 <ModalAlert
-                    text="Varen ble lagt til i handlevogna"
+                    text="Varen ble lagt til i "
                     handleClose={() => storeModalAlert.dispatch(hideModal())}
+                    handleClick={ () => window.location.href = Routes.order_path({id: restaurantId})}
+                    linkText="handlekurven"
                 />
             </div>
     }
 
 
     return (
-        <>
-            <div>
-                {modal}
-            </div>
-        </>
+        <div>
+            {modal}
+        </div>
     );
 };
 

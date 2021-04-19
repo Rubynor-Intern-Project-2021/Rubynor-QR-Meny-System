@@ -1,13 +1,20 @@
 import React from 'react';
 import {MdClose} from "react-icons/md";
 
-export const ModalAlert = ({text, handleClose}) => {
+export const ModalAlert = ({text, handleClose, handleClick, linkText}) => {
     return (
-        <div className="flex py-3 px-3 bg-white text-gray-700 text-sm rounded-sm border border-purple-200 divide-x divide-gray-700">
-            <div className="pr-2">{text} </div>
-            <button className="pl-2" onClick={handleClose}>
-                <MdClose/>
-            </button>
+        <div className="flex-col py-3 px-3 bg-white text-gray-700 text-sm rounded-sm border border-purple-200 ">
+            <div className="flex divide-x divide-gray-700">
+                <div>
+                    <div className="flex pr-2">{text} </div>
+                    <button className="text-blue-800 underline" onClick={handleClick}>
+                        {linkText}
+                    </button>
+                </div>
+                <button className="pl-2" onClick={handleClose}>
+                    <MdClose/>
+                </button>
+            </div>
         </div>
     );
 };
