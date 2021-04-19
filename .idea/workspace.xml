@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e4c92fb-4087-4a2b-9a4b-d058fc01c5ef" name="Default Changelist" comment="Endret litt på meny-kortene, la til scroll, endret til hvit bakgrunn">
-      <change afterPath="$PROJECT_DIR$/app/javascript/components/add_to/add_icon.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/javascript/components/modal/modalOrdered.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/components/add_to_cart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/add_to/add_to_cart.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/components/configureStore/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/configureStore/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/components/modal/modalAlert.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/modal/modalAlert.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/components/modal/modalOrdered.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/modal/modalOrdered.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascript/components/modal/modals.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/modal/modals.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/menu/_selected_menu.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/menu/_selected_menu.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/menu_item/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/menu_item/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/orders/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/orders/show.html.erb" afterDir="false" />
     </list>
     <list id="321a85b8-2e94-4e11-9213-59e15cfdc522" name="Revert &quot;Alternativ visning for meny gjenstander som ikke har ingreddienser, sortering for menyer&quot;" comment="Revert &quot;Alternativ visning for meny gjenstander som ikke har ingreddienser, sortering for menyer&quot;&#10;&#10;This reverts commit 286dadfa" />
     <option name="SHOW_DIALOG" value="false" />
@@ -167,7 +164,7 @@
       <workItem from="1616575969756" duration="16984000" />
       <workItem from="1616661528670" duration="18546000" />
       <workItem from="1618818473969" duration="10591000" />
-      <workItem from="1618852892627" duration="6594000" />
+      <workItem from="1618852892627" duration="10375000" />
     </task>
     <task id="LOCAL−00001" summary="react-opprydding">
       <created>1616423020953</created>
@@ -259,7 +256,13 @@
       <option name="presentableId" value="LOCAL−00015" />
       <updated>1618854789306</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL−00016" summary="Lagd modal for bestiiling, men veit ikke hvordan bestillingsknappen fungerer ennå så er ikke ferdig.">
+      <created>1618859637272</created>
+      <option name="number" value="LOCAL−00016" />
+      <option name="presentableId" value="LOCAL−00016" />
+      <updated>1618859637272</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -305,6 +308,7 @@
     <MESSAGE value="Oppdatert" />
     <MESSAGE value="Endret på admin-modalen" />
     <MESSAGE value="Knapp til handlekurv i popup" />
-    <option name="LAST_COMMIT_MESSAGE" value="Knapp til handlekurv i popup" />
+    <MESSAGE value="Lagd modal for bestiiling, men veit ikke hvordan bestillingsknappen fungerer ennå så er ikke ferdig." />
+    <option name="LAST_COMMIT_MESSAGE" value="Lagd modal for bestiiling, men veit ikke hvordan bestillingsknappen fungerer ennå så er ikke ferdig." />
   </component>
 </project>

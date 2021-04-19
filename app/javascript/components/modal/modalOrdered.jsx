@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { ModalAlert } from "./modals";
-import { storeModalAlert, hideModal } from "../configureStore";
+import { storeModalOrdered, hideModal } from "../configureStore";
 
-const ModalAlertCart = ({restaurantId}) => {
+const ModalOrdered = ({restaurantId}) => {
     const [modalStatus, setModalStatus] = useState(false);
 
-    storeModalAlert.subscribe(() => {
-        setModalStatus(storeModalAlert.getState())
+    storeModalOrdered.subscribe(() => {
+        setModalStatus(storeModalOrdered.getState())
     });
 
     useEffect(() => {
@@ -22,7 +22,7 @@ const ModalAlertCart = ({restaurantId}) => {
             <div className="flex justify-center">
                 <ModalAlert
                     text="Takk for din bestilling! Maten din vil komme så fort den er klar."
-                    handleClose={() => storeModalAlert.dispatch(hideModal())}
+                    handleClose={() => storeModalOrdered.dispatch(hideModal())}
                     handleClick={ () => window.location.href = Routes.restaurant_path({id: restaurantId})}
                     linkText="Tilbake til hovedsiden"
                 />
@@ -37,4 +37,4 @@ const ModalAlertCart = ({restaurantId}) => {
     );
 };
 
-export default ModalAlertCart;
+export default ModalOrdered;

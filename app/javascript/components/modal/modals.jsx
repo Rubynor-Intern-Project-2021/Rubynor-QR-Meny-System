@@ -3,16 +3,16 @@ import {MdClose} from "react-icons/md";
 
 export const ModalAlert = ({text, handleClose, handleClick, linkText}) => {
     return (
-        <div className="flex-col py-3 px-3 bg-white text-gray-700 text-sm rounded-sm border border-purple-200 ">
-            <div className="flex divide-x divide-gray-700">
-                <div>
-                    <div className="flex pr-2">{text} </div>
-                    <button className="text-blue-800 underline" onClick={handleClick}>
+        <div className="flex py-3 px-4 bg-white text-gray-700 text-sm rounded-sm border border-gray-300 ">
+            <div className="flex relative">
+                <div className="flex pr-6">
+                    <div >{text} </div>
+                    <button className="text-blue-800 underline pl-1 pr-3" onClick={handleClick}>
                         {linkText}
                     </button>
                 </div>
-                <button className="pl-2" onClick={handleClose}>
-                    <MdClose/>
+                <button className="absolute top-0.5 right-0" onClick={handleClose}>
+                    <MdClose size={16}/>
                 </button>
             </div>
         </div>
@@ -21,7 +21,7 @@ export const ModalAlert = ({text, handleClose, handleClick, linkText}) => {
 
 export const ModalConfirm = ({header, text, handleCancel, handleConfirm}) => {
     return (
-        <div className="rounded-md bg-white border border-purple-200">
+        <div className="rounded-md bg-white border border-gray-300">
             <div className="flex justify-center text-gray-900 font-bold pt-5 pb-3 px-7">
                 {header}
             </div>

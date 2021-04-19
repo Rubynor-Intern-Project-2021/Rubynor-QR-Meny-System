@@ -23,6 +23,16 @@ export const modalAlertReducer = (state = false, action) => {
     }
 };
 
+export const modalOrderedReducer = (state = false, action) => {
+    switch (action.type) {
+        case 'SHOW':
+            state = true
+            return state;
+        case 'HIDE':
+            state = false;
+            return state;
+    }
+};
 
 export const modalMenuReducer = (state = false, action) => {
     switch (action.type) {
@@ -85,6 +95,7 @@ export const orderListReducer = (state = [], action) => {
 
 export const storeIcon = createStore(updateIconReducer);
 export const storeModalAlert = createStore(modalAlertReducer);
+export const storeModalOrdered = createStore(modalOrderedReducer);
 export const storeModalMenu = createStore(modalMenuReducer);
 export const storeModalMenuItem = createStore(modalMenuItemReducer);
 export const storeModalAllergen = createStore(modalAllergenReducer);

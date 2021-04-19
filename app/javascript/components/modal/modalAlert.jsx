@@ -24,7 +24,7 @@ const ModalAlertCart = ({restaurantId}) => {
                     text="Varen ble lagt til i "
                     handleClose={() => storeModalAlert.dispatch(hideModal())}
                     handleClick={ () => window.location.href = Routes.order_path({id: restaurantId})}
-                    linkText="handlekurven"
+                    linkText=" handlekurven"
                 />
             </div>
     }
