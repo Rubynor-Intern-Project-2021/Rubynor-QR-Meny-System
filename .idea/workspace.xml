@@ -2,21 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e4c92fb-4087-4a2b-9a4b-d058fc01c5ef" name="Default Changelist" comment="Endret litt på meny-kortene, la til scroll, endret til hvit bakgrunn">
-      <change afterPath="$PROJECT_DIR$/db/migrate/20210412121804_add_number_to_menus.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/migrate/20210412144538_add_empty_to_menu_items.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_04_2021_09_58_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_04_2021_09_58__Default_Changelist_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_04_2021_16_37_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_04_2021_16_37__Default_Changelist_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_04_2021_18_06_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_04_2021_18_06__Default_Changelist_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/admin/menu_items_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/menu_items_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/admin/menus_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/menus_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/components/admin_menu/menu_item.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/admin_menu/menu_item.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/components/modal/modalMenuItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/modal/modalMenuItem.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascript/components/modal/modals.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/modal/modals.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/menu_items/_form_base.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menu_items/_form_base.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/menus/_form_base.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/menus/_form_base.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/restaurants/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/restaurants/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/menu/_selected_menu.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/menu/_selected_menu.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/restaurant/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/restaurant/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
     </list>
     <list id="321a85b8-2e94-4e11-9213-59e15cfdc522" name="Revert &quot;Alternativ visning for meny gjenstander som ikke har ingreddienser, sortering for menyer&quot;" comment="Revert &quot;Alternativ visning for meny gjenstander som ikke har ingreddienser, sortering for menyer&quot;&#10;&#10;This reverts commit 286dadfa" />
     <option name="SHOW_DIALOG" value="false" />
@@ -161,7 +155,7 @@
   <component name="SpringUtil" SPRING_PRE_LOADER_OPTION="true" RAKE_SPRING_PRE_LOADER_OPTION="true" RAILS_SPRING_PRE_LOADER_OPTION="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="4efee63b-a75b-476a-a252-fa7951a58b0f" name="Default Changelist" comment="" />
+      <changelist id="3e4c92fb-4087-4a2b-9a4b-d058fc01c5ef" name="Default Changelist" comment="Endret litt på meny-kortene, la til scroll, endret til hvit bakgrunn" />
       <created>1616346581851</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -170,6 +164,7 @@
       <workItem from="1616407300121" duration="31996000" />
       <workItem from="1616575969756" duration="16984000" />
       <workItem from="1616661528670" duration="18546000" />
+      <workItem from="1618818473969" duration="5049000" />
     </task>
     <task id="LOCAL−00001" summary="react-opprydding">
       <created>1616423020953</created>
@@ -243,7 +238,13 @@
       <option name="presentableId" value="LOCAL−00012" />
       <updated>1618347298907</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL−00013" summary="Oppdatert">
+      <created>1618350489100</created>
+      <option name="number" value="LOCAL−00013" />
+      <option name="presentableId" value="LOCAL−00013" />
+      <updated>1618350489100</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -286,6 +287,7 @@
     <MESSAGE value="Pop-ups:add to cart, delete menu, delete menuItem. Redux" />
     <MESSAGE value="Pop-ups:slett allergen. Ryddet opp i configureStore" />
     <MESSAGE value="Små fiks" />
-    <option name="LAST_COMMIT_MESSAGE" value="Små fiks" />
+    <MESSAGE value="Oppdatert" />
+    <option name="LAST_COMMIT_MESSAGE" value="Oppdatert" />
   </component>
 </project>

@@ -31,11 +31,9 @@ const ModalMenuItem = () => {
     }
 
     return (
-        <>
             <div>
                 {modal}
             </div>
-        </>
     );
 };
 
