@@ -6,7 +6,7 @@ import {storeDeleteItem, storeModalMenuItem, storeModalMenu, showModal } from ".
 
 
 const MenuItem = ({menu, menuItems}) => {
-    const [isCollapsed, setIsCollapsed] = useState(true)
+    const [isCollapsed, setIsCollapsed] = useState(false)
     const [collapseButton, setCollapseButton] = useState(<IoIosArrowForward/>)
 
     storeModalMenuItem.subscribe(() => {
@@ -118,6 +118,9 @@ const MenuItem = ({menu, menuItems}) => {
             <thead className="">
             <tr className="admin-tbl-border">
                 <th className="text-left">
+                    <div className="pl-2 md:pl-8 lg:pl-8 inline-block ">
+                        Nr. {menu.number}
+                    </div>
                     <div className="pl-2 md:pl-8 lg:pl-8 inline-block ">
                         {menu.name}
                     </div>
