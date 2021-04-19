@@ -57,8 +57,8 @@ const addToCart = ({menuItem}) => {
                 </div>
             </div>
 
-            <div >
-                <button onClick={() => { addMultipleToCart(); storeModalAlert.dispatch(showModal()); }}
+            <div>
+                <button id="leggTil" onClick={() => { addMultipleToCart(); storeModalAlert.dispatch(showModal()); }}
                         className="uppercase text-white bg-gray-700 mb-3 mt-1 py-2 w-full">
                         Legg i handlekurv
                 </button>
