@@ -6,7 +6,7 @@ import {storeDeleteItem, storeModalMenuItem, storeModalMenu, showModal } from ".
 
 
 const MenuItem = ({menu, menuItems}) => {
-    const [isCollapsed, setIsCollapsed] = useState(true)
+    const [isCollapsed, setIsCollapsed] = useState(false)
     const [collapseButton, setCollapseButton] = useState(<IoIosArrowForward/>)
 
     storeModalMenuItem.subscribe(() => {
