@@ -21,7 +21,7 @@
 
     <div class="mx-10">
       <div class="field">
-        <%= form.label :image %><br>
+        <%= form.label "Bilde" %><br>
         <%= form.file_field :image %>
       </div>
       <div class="field">
@@ -30,30 +30,30 @@
       </div>
 
       <div class="field text-gray-700 pt-5">
-        <%= form.label :number, class: 'text-gray-700' %><br>
+        <%= form.label "Nummer", class: 'text-gray-700' %><br>
         <%= form.number_field :number, step: :any, class: 'w-80 border-gray-800 rounded-lg' %>
       </div>
       <div class="field text-gray-700 pt-5">
-        <%= form.label :name, class: 'text-gray-700' %><br>
+        <%= form.label "Navn", class: 'text-gray-700' %><br>
         <%= form.text_field :name, class: 'w-80 border-gray-800 rounded-lg' %>
       </div>
 
       <div class="field text-gray-700 pt-5">
-        <%= form.label :description, class: 'text-gray-700' %><br>
+        <%= form.label "Beskrivelse", class: 'text-gray-700' %><br>
         <%= form.text_area :description, class: 'w-80 border-gray-800 rounded-lg' %>
       </div>
 
       <div class="field text-gray-700 pt-5">
-        <%= form.label :price, class: 'text-gray-700' %><br>
+        <%= form.label "Pris", class: 'text-gray-700' %><br>
         <%= form.text_field :price, class: 'w-80 border-gray-800 rounded-lg' %>
       </div>
 
       <div class="field text-gray-700 pt-5 w-80">
-        <%= form.label :allergens, class: 'text-gray-700' %><br>
+        <%= form.label "Allergener", class: 'text-gray-700' %><br>
         <% @restaurant.allergens.each do |allergen| %>
           <div >
             <% has_this_allergen = menu_item.allergen_items.any? {|item| item.allergen_id == allergen.id} %>
-            <input <%= if has_this_allergen then "checked" end %> name="allergens[<%=allergen.id%>]" class="mr-2 border-gray-800 rounded-lg" type="checkbox" value="<%=allergen.id%>"><%=allergen.name%></input>
+            <input <%= if has_this_allergen then "checked" end %> name="allergens[<%=allergen.id%>]" class="mr-2 border-gray-800 rounded-lg" type="checkbox" value="<%=allergen.id%>"><%=allergen.name%>(<%=allergen.short_name %>)</input>
           </div>
         <% end %>
       </div>
