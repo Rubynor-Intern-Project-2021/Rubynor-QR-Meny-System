@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import axios from "axios";
-import { showModal, storeIcon, storeModalAlert } from './configureStore'
+import { showModal, storeIcon, storeModalAlert } from '../configureStore'
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 
 const addToCart = ({menuItem}) => {

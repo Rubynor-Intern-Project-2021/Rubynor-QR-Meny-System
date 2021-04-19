@@ -2,14 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e4c92fb-4087-4a2b-9a4b-d058fc01c5ef" name="Default Changelist" comment="Endret litt på meny-kortene, la til scroll, endret til hvit bakgrunn">
+      <change afterPath="$PROJECT_DIR$/app/javascript/components/add_to/add_icon.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/javascript/components/modal/modalOrdered.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/components/add_to_cart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/add_to_cart.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/components/modal/modalAlert.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/modal/modalAlert.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/components/modal/modalAllergen.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/modal/modalAllergen.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/components/modal/modalMenu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/modal/modalMenu.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/components/modal/modalMenuItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/modal/modalMenuItem.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/components/add_to_cart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/add_to/add_to_cart.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascript/components/modal/modals.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/components/modal/modals.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/menu/_selected_menu.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/menu/_selected_menu.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/menu_item/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/menu_item/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/orders/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/orders/show.html.erb" afterDir="false" />
     </list>
     <list id="321a85b8-2e94-4e11-9213-59e15cfdc522" name="Revert &quot;Alternativ visning for meny gjenstander som ikke har ingreddienser, sortering for menyer&quot;" comment="Revert &quot;Alternativ visning for meny gjenstander som ikke har ingreddienser, sortering for menyer&quot;&#10;&#10;This reverts commit 286dadfa" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,20 +48,22 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/db/migrate" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/javascript/components/modal" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components\modal" />
+      <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components\add_to" />
       <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\db\migrate" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components\add_to" />
       <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components\modal" />
       <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components\admin_menu" />
       <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components\cart_icon" />
       <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components" />
-      <recent name="C:\Users\nicol\RubymineProjects\Rubynor-QR-Meny-System\app\javascript\components\cart" />
     </key>
   </component>
   <component name="RunManager" selected="Rails.Development: Rubynor-QR-Meny-System">
@@ -164,7 +167,7 @@
       <workItem from="1616575969756" duration="16984000" />
       <workItem from="1616661528670" duration="18546000" />
       <workItem from="1618818473969" duration="10591000" />
-      <workItem from="1618852892627" duration="1528000" />
+      <workItem from="1618852892627" duration="6594000" />
     </task>
     <task id="LOCAL−00001" summary="react-opprydding">
       <created>1616423020953</created>
@@ -250,7 +253,13 @@
       <option name="presentableId" value="LOCAL−00014" />
       <updated>1618843292203</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL−00015" summary="Knapp til handlekurv i popup">
+      <created>1618854789306</created>
+      <option name="number" value="LOCAL−00015" />
+      <option name="presentableId" value="LOCAL−00015" />
+      <updated>1618854789306</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -295,6 +304,7 @@
     <MESSAGE value="Små fiks" />
     <MESSAGE value="Oppdatert" />
     <MESSAGE value="Endret på admin-modalen" />
-    <option name="LAST_COMMIT_MESSAGE" value="Endret på admin-modalen" />
+    <MESSAGE value="Knapp til handlekurv i popup" />
+    <option name="LAST_COMMIT_MESSAGE" value="Knapp til handlekurv i popup" />
   </component>
 </project>

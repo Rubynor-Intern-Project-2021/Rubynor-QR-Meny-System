@@ -21,7 +21,7 @@ export const ModalAlert = ({text, handleClose, handleClick, linkText}) => {
 
 export const ModalConfirm = ({header, text, handleCancel, handleConfirm}) => {
     return (
-        <div className="w-80 rounded-md bg-white border border-purple-200">
+        <div className="rounded-md bg-white border border-purple-200">
             <div className="flex justify-center text-gray-900 font-bold pt-5 pb-3 px-7">
                 {header}
             </div>

@@ -1,8 +1,9 @@
 <!-- retter som vises under menyene-->
 <% menu.menu_items.where(:status => 1).order('number ASC').each do |menu_item| %>
+  <div class="relative">
   <%= link_to menu_item_path(menu_item) do %>
     <!-- Hver rad-->
-    <div class="flex my-3 shadow relative rounded-sm">
+    <div class="flex my-3 shadow relative rounded-sm z-0">
       <div class="w-2/5 md:w-1/3">
         <% if menu_item.image.attached? %>
           <%= image_tag menu_item.image, class:"object-cover rounded-l-sm w-full h-full align-middle border-none"%>
@@ -38,5 +39,10 @@
         </div>
       </div>
     </div>
+
   <% end %>
+  <div class="absolute top-1 right-1 z-50">
+    <%= react_component("add_to/add_icon", { menuItem: menu_item }) %>
+  </div>
+    </div>
 <% end %>
