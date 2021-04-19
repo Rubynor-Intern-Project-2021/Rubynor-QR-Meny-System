@@ -119,6 +119,9 @@ const MenuItem = ({menu, menuItems}) => {
             <tr className="admin-tbl-border">
                 <th className="text-left">
                     <div className="pl-2 md:pl-8 lg:pl-8 inline-block ">
+                        Nr. {menu.number}
+                    </div>
+                    <div className="pl-2 md:pl-8 lg:pl-8 inline-block ">
                         {menu.name}
                     </div>
                     <div className="inline-block">
