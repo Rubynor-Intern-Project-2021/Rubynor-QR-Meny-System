@@ -12,33 +12,33 @@
 <% end %>
 
 <div >
-  <%= form.label :name, class: 'text-gray-700' %>
+  <%= form.label "Navn", class: 'text-gray-700' %>
   <div>
   <%= form.text_field :name, class: 'w-80 border-gray-800 rounded-lg' %></div>
 </div>
 
 <div class="field">
-  <%= form.label :username, class: 'text-gray-700' %>
+  <%= form.label "Brukernavn", class: 'text-gray-700' %>
   <div>
   <%= form.text_field :username, class: 'w-80 border-gray-800 rounded-lg'  %>
   </div>
 </div>
 
 <div class="field">
-  <%= form.label :password, class: 'text-gray-700' %>
+  <%= form.label "Nytt passord", class: 'text-gray-700' %>
   <div>
     <%= form.password_field :password, class: 'w-80 border-gray-800 rounded-lg'  %>
   </div>
 </div>
 
 <div class="field">
-  <%= form.label :password_confirmation, class: 'text-gray-700' %>
+  <%= form.label "Repeter passord", class: 'text-gray-700' %>
   <div>
     <%= form.password_field :password_confirmation, class: 'w-80 border-gray-800 rounded-lg'  %>
   </div>
 </div>
 
 <div class="actions">
-  <%= form.submit class: 'btn-indigo'  %>
+  <%= form.submit "Lagre endring", class: 'btn-indigo'  %>
 </div>
 </div>

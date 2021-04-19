@@ -14,7 +14,7 @@
 
     <div>
       <% if menu_item.image.attached? %>
-        <%= image_tag menu_item.image, style: "shadow object-fill rounded-t-2xl w-full border-none"%>
+        <%= image_tag menu_item.image,  style: "shadow object-fill rounded-t-2xl w-full border-none"%>
       <% end %>
 
     </div>
@@ -59,7 +59,7 @@
       </div>
 
       <div class="actions text-gray-700 pt-5">
-        <%= form.submit class: 'btn-indigo' %>
+        <%= form.submit "Lagre", class: 'btn-indigo' %>
       </div>
     </div>
   </div>
