@@ -2,7 +2,6 @@ import React from 'react'
 import axios from "axios";
 import { showModal, storeIcon, storeModalAlert } from '../configureStore'
 import { IoAddCircleOutline } from "react-icons/io5";
-import {gray} from "colorette";
 
 const addIcon = ({menuItem}) => {
 
