@@ -10,7 +10,7 @@
         <!-- Menyer -->
         <% @menus.each_with_index do |menu, index| %>
           <div class="pb-2 mr-4 text-gray-500 tracking-wide hover:text-gray-800 flex flex-nowrap">
-            <%= link_to menu.name, selected_menu_path(menu), onclick: 'get_id(this.id)', id: index, remote: true %>
+            <%= link_to menu.name, selected_menu_path(menu_id: menu), onclick: 'get_id(this.id)', id: index, remote: true %>
           </div>
         <% end %>
       </div>
