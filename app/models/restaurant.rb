@@ -5,14 +5,7 @@ class Restaurant < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   has_secure_password
 
-
-  def get_allergen_map 
-    arr = Array.new() 
-
-    allergens.each do |allergen|
-      arr << allergen.short_name + ' = ' + allergen.name
-    end
-
-    return arr;
+  def get_allergen_map
+    allergens.map { |a| a.short_name + ' = ' + a.name }
   end
 end
