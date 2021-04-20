@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
 
     p "create order 3"
     session[:cart].each do |item|
-      @order_item=@order.add_menu_item(item)
+      @order_item= @order.add_menu_item(item_id: item['item_id'], quantity: item['amount'])
       p item
     end
 

@@ -8,11 +8,13 @@ class Order < ApplicationRecord
     "Betalt" => 2
   }
 
-  def add_menu_item(menu_item)
+  def add_menu_item(item_id:, quantity:)
     p "test add_menu_item"
-    current_item = order_items.build(menu_item_id: menu_item["item_id"])
-    current_item.quantity = menu_item["amount"]
-    current_item.save
+    current_item = order_items.build(menu_item_id: item_id, quantity: quantity)
+    # BAD: Silent failure
+    #current_item.save # true/false
+    # GOOD: Explicit error
+    current_item.save! # true or CRAAAAASH
     p current_item
 
     current_item
