@@ -8,18 +8,18 @@
       </div>
       <div class="flex overflow-x-scroll hide-scroll-bar ">
         <!-- Menyer -->
-        <% @restaurant.menus.where(:status => 1).order(:number).each_with_index do |menu, index| %>
+        <% @menus.each_with_index do |menu, index| %>
           <div class="pb-2 mr-4 text-gray-500 tracking-wide hover:text-gray-800 flex flex-nowrap">
-            <%= link_to menu.name, selected_menu_path(:menu_id => menu), :onclick => 'get_id(this.id)', :id => index, :remote => true %>
+            <%= link_to menu.name, selected_menu_path(menu), onclick: 'get_id(this.id)', id: index, remote: true %>
           </div>
         <% end %>
       </div>
 
       <!-- Meny-innhold-->
       <div id="selected_menu">
-        <% if @selected == nil && @restaurant.menus.where(:status => 1).length > 0 %>
+        <% if @selected.nil? && @menus.exists? %>
           <div>
-            <%= render partial: 'menu/selected_menu', locals: { menu: @restaurant.menus.where(:status=>1).order(:number).first } %>
+            <%= render partial: 'menu/selected_menu', locals: { menu: @menus.first } %>
           </div>
         <% end %>
       </div>
@@ -38,7 +38,7 @@
 <script>
     document.getElementById(0).classList.add("active");
     function get_id(id) {
-        for (let i = 0; i < <%= @restaurant.menus.size %>; i++) {
+        for (let i = 0; i < <%= @menus.size %>; i++) {
             document.getElementById(i).classList.remove("active");
         }
         document.getElementById(id).classList.add("active");

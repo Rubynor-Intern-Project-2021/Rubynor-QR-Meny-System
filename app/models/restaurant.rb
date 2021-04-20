@@ -8,4 +8,8 @@ class Restaurant < ApplicationRecord
   def get_allergen_map
     allergens.map { |a| a.short_name + ' = ' + a.name }
   end
+
+  def visible_menus
+    menus.visible.ordered
+  end
 end
