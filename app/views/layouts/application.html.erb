@@ -25,7 +25,9 @@
 
   <div class="flex justify-center">
     <div class="absolute top-16">
-      <%= react_component("modal/modalAlert", { restaurantId: @restaurant.id }) %>
+      <% if @restaurant %>
+        <%= react_component("modal/modalAlert", { restaurantId: @restaurant.id }) %>
+      <% end %>
       <%= react_component("modal/modalOrdered") %>
     </div>
     <div class="absolute top-1/3">
