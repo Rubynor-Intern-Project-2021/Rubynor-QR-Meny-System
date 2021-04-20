@@ -24,7 +24,7 @@
   </div>
 
   <div class="flex justify-center">
-    <div class="absolute top-16">
+    <div class="fixed top-16">
       <% if @restaurant %>
         <%= react_component("modal/modalAlert", { restaurantId: @restaurant.id }) %>
       <% end %>
