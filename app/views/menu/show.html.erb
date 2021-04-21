@@ -1,4 +1,5 @@
-<div class="flex flex-col w-full bg-white lg:rounded-2xl lg:w-2/5">
+<div class="flex lg:py-16 justify-center">
+    <div class="flex flex-col w-full bg-white lg:rounded-2xl lg:w-2/5">
     <div class="px-2 py-8 sm:px-8">
         <div>
             <p class="mb-4 lg:mb-6 text-gray-900 font-semibold text-xl"><%= @menu.name %></p>
@@ -60,4 +61,5 @@
             <%= @restaurant.get_allergen_map.join(', ') %>
         </div>
     </div>
+</div>
 </div>
