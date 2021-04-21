@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_16_092610) do
+ActiveRecord::Schema.define(version: 2021_04_21_094556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,7 +64,9 @@ ActiveRecord::Schema.define(version: 2021_04_16_092610) do
     t.string "number"
     t.integer "status", default: 1
     t.integer "empty", default: 0
+    t.bigint "sub_menu_id", default: 1, null: false
     t.index ["menu_id"], name: "index_menu_items_on_menu_id"
+    t.index ["sub_menu_id"], name: "index_menu_items_on_sub_menu_id"
   end
 
   create_table "menus", force: :cascade do |t|
@@ -107,13 +109,21 @@ ActiveRecord::Schema.define(version: 2021_04_16_092610) do
     t.string "qr_code"
   end
 
+  create_table "sub_menus", force: :cascade do |t|
+    t.string "name"
+    t.bigint "menu_id", null: false
+    t.index ["menu_id"], name: "index_sub_menus_on_menu_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "allergen_items", "allergens"
   add_foreign_key "allergen_items", "menu_items"
   add_foreign_key "allergens", "restaurants"
   add_foreign_key "menu_items", "menus"
+  add_foreign_key "menu_items", "sub_menus"
   add_foreign_key "menus", "restaurants"
   add_foreign_key "order_items", "menu_items"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "restaurants"
+  add_foreign_key "sub_menus", "menus"
 end
