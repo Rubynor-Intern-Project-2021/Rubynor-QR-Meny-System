@@ -9,7 +9,7 @@
         </div>
 
         <div id="selected_menu">
-            <% @menu.menu_items.where(:status => 1).order('number ASC').each do |menu_item| %>
+            <% @menu.menu_items.where(:status => 2).order('number ASC').each do |menu_item| %>
             <div class="relative">
                 <%= link_to menu_item_path(menu_item) do %>
                 <div class="flex my-3 shadow relative rounded-sm z-0">
@@ -22,7 +22,7 @@
                     <div class="w-3/5 lg:w-2/3 py-2 px-2 lg:px-4">
                         <div class="">
                             <div>
-                                <% if menu_item.empty == 1 %>
+                                <% if menu_item.empty == 2 %>
                                 <div class="font-semibold pb-1 text-red-500">
                                 <% else %>
                                 <div class="font-semibold pb-1">
