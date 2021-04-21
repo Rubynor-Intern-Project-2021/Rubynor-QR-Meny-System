@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import axios from "axios";
 import { showModal, storeIcon, storeModalAlert } from '../configureStore'
 import { IoAddCircleOutline } from "react-icons/io5";
@@ -8,6 +8,10 @@ const addIcon = ({menuItem}) => {
     storeModalAlert.subscribe(() => {
         console.log("alert " + storeModalAlert.getState())
     });
+
+    useEffect(() => {
+        console.log("add_icon show")
+    }, []);
 
     const addOneToCart = () => {
         axios.get('/api/v1/add_to_cart',
@@ -27,13 +31,12 @@ const addIcon = ({menuItem}) => {
 
 
     return (
-        <>
-            <button id="leggTil"
-                    onClick={() => { addOneToCart(); storeModalAlert.dispatch(showModal()); }}
+        <div>
+            <button onClick={() => { addOneToCart(); storeModalAlert.dispatch(showModal()); }}
                     className="text-purple-900">
                 <IoAddCircleOutline size={27}/>
             </button>
-        </>
+        </div>
     )
 }
 
