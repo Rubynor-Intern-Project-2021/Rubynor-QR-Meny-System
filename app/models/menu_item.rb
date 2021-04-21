@@ -2,7 +2,21 @@ class MenuItem < ApplicationRecord
   has_many :order_items
   has_many :allergen_items
   belongs_to :menu
+  belongs_to :sub_menu
   has_one_attached :image
+
+=begin
+  enum statuss: {
+    remove: 0,
+    hide: 1,
+    visible: 2
+  }
+  enum empty: {
+    has_ingredients: 0,
+    limited: 1,
+    empty: 2
+  }
+=end
 
   def get_allergen_names_short
     allergens_arr = Array.new

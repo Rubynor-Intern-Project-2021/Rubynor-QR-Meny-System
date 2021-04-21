@@ -3,6 +3,15 @@ class Menu < ApplicationRecord
     belongs_to :restaurant
     has_one_attached :image
 
-    scope :visible, -> { where(status: 1) }
+=begin
+    enum status: {
+      "remove" => 0,
+      "hide" => 1,
+      "visible" => 2
+    }
+=end
+
+    scope :visible, -> { where(status: 2) }
     scope :ordered, -> { order(:number) }
+
 end

@@ -58,7 +58,7 @@ const MenuItem = ({menu, menuItems}) => {
             <tbody>
             {menuItems.map((item, index) =>
                 (
-                item.status !== 3 ?
+                item.status !== 0 ?
                     <tr key={index} className="admin-content-row">
                         <td className="pl-2 md:pl-8 lg:pl-8">
                             <div className="w-1/12 flex float-left inline-block align-text-top pr-4 md:pr-10 lg:pr-10">
@@ -74,21 +74,21 @@ const MenuItem = ({menu, menuItems}) => {
                             <div className="md:flex float-right inline-block align-text-top pr-4 md:pr-10 lg:pr-10">
                                  {item.empty===0?
                                     <Link icon={<RiForbid2Line size={20}/>} 
-                                          label="Vis tomt" href={Routes.admin_set_item_empty_status_path({item_id: item.id, status: 1})} />
+                                          label="Vis tomt" href={Routes.admin_set_item_empty_status_path({item_id: item.id, status: 2})} />
                                     : <Link icon={<IoFastFoodOutline size={20}/>} 
                                             label="Vis vanlig" href={Routes.admin_set_item_empty_status_path({item_id: item.id, status: 0})} />}
                                 |
-                                {item.status === 2 ?
+                                {item.status === 1 ?
                                     <Link icon={<GoEye size={20}/>}
                                           label="Vis"
                                           href={Routes.admin_set_item_status_path({
                                               item_id: item.id,
-                                              status: 1})}/>
+                                              status: 2})}/>
                                     : <Link icon={<GoEyeClosed size={20}/>}
                                             label="Skjul"
                                             href={Routes.admin_set_item_status_path({
                                                 item_id: item.id,
-                                                status: 2})}/>
+                                                status: 1})}/>
                                 }
                                 | <Link icon={<BiPencil size={20}/> }
                                         label="Rediger"
@@ -128,12 +128,12 @@ const MenuItem = ({menu, menuItems}) => {
                     </div>
                     <div className="flex inline-block float-right pr-4 md:pr-8 lg:pr-8">
 
-                        {menu.status === 2 ?
+                        {menu.status === 1 ?
                             <Link icon={<GoEye size={20}/>}
                                   label="Vis"
-                                  href={Routes.admin_set_menu_status_path({menu_id: menu.id, status: 1})}/>
+                                  href={Routes.admin_set_menu_status_path({menu_id: menu.id, status: 2})}/>
                             : <Link icon={<GoEyeClosed size={20}/>} label="Skjul"
-                                    href={Routes.admin_set_menu_status_path({menu_id: menu.id, status: 2})}/>}
+                                    href={Routes.admin_set_menu_status_path({menu_id: menu.id, status: 1})}/>}
                         | <Link icon={<BiPencil size={20}/>}
                                 label="Rediger"
                                 href={Routes.edit_admin_menu_path(menu)}/>
