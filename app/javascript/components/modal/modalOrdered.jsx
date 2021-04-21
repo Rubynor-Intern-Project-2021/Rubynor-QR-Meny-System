@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { ModalAlert } from "./modals";
+import React, { useState } from 'react';
+import { ModalForOrder } from "./modals";
 import { storeModalOrdered, hideModal } from "../configureStore";
 
 const ModalOrdered = ({restaurantId}) => {
@@ -7,20 +7,14 @@ const ModalOrdered = ({restaurantId}) => {
 
     storeModalOrdered.subscribe(() => {
         setModalStatus(storeModalOrdered.getState())
+        console.log("restaurantId: " + restaurantId)
     });
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setModalStatus(false);
-        }, 5000);
-        return () => clearTimeout(timer);
-    }, [modalStatus]);
 
     let modal = null;
     if(modalStatus) {
         modal =
             <div className="flex justify-center">
-                <ModalAlert
+                <ModalForOrder
                     text="Takk for din bestilling! Maten din vil komme så fort den er klar."
                     handleClose={() => storeModalOrdered.dispatch(hideModal())}
                     handleClick={ () => window.location.href = Routes.restaurant_path({id: restaurantId})}

@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
-import {animated, useSpring} from "react-spring";
+import React, { useState } from 'react';
+import { animated, useSpring } from "react-spring";
 import PropTypes from "prop-types";
 
-export default function OrderBigScreen({menuItem, quantity}) {
+export default function OrderBigScreen({ menuItem, quantity }) {
 
     OrderBigScreen.propTypes = {
         name: PropTypes.string,

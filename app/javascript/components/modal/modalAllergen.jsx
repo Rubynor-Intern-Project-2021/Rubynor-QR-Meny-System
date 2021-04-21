@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { ModalConfirm } from "./modals";
+import { ModalForConfirm } from "./modals";
 import {storeModalAllergen, storeDeleteItem, hideModal } from "../configureStore";
 
-const ModalConfirmMenu = () => {
+const ModalAllergen = () => {
     const [modalStatus, setModalStatus] = useState(false);
     const [allergenId, setAllergenId] = useState();
 
@@ -19,7 +19,7 @@ const ModalConfirmMenu = () => {
     if(modalStatus) {
         modal =
             <div className="flex justify-center">
-                <ModalConfirm
+                <ModalForConfirm
                     header="Slett allergen"
                     text="Ønsker du å slette dette allergenet?"
                     handleCancel={() => storeModalAllergen.dispatch(hideModal())}
@@ -36,4 +36,4 @@ const ModalConfirmMenu = () => {
     );
 };
 
-export default ModalConfirmMenu;
+export default ModalAllergen;
