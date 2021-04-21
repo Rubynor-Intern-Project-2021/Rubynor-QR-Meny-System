@@ -26,11 +26,15 @@
   <div class="flex justify-center">
     <div class="fixed top-16">
       <% if @restaurant %>
-        <%= react_component("modal/modalAlert", { restaurantId: @restaurant.id }) %>
+        <%= react_component("modal/modalAlertCart", { restaurantId: @restaurant.id }) %>
       <% end %>
-      <%= react_component("modal/modalOrdered") %>
     </div>
-    <div class="absolute top-1/3">
+    <div class="fixed top-12">
+      <% if @restaurant %>
+        <%= react_component("modal/modalOrdered", { restaurantId: @restaurant.id }) %>
+      <% end %>
+    </div>
+    <div class="fixed top-1/3">
       <%= react_component("modal/modalMenu") %>
       <%= react_component("modal/modalMenuItem") %>
       <%= react_component("modal/modalAllergen") %>

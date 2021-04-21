@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ModalAlert } from "./modals";
+import { ModalForAlert } from "./modals";
 import { storeModalAlert, hideModal } from "../configureStore";
 
 const ModalAlertCart = ({restaurantId}) => {
@@ -20,7 +20,7 @@ const ModalAlertCart = ({restaurantId}) => {
     if(modalStatus) {
         modal =
             <div className="flex justify-center">
-                <ModalAlert
+                <ModalForAlert
                     text="Varen ble lagt til i "
                     handleClose={() => storeModalAlert.dispatch(hideModal())}
                     handleClick={ () => window.location.href = Routes.order_path({id: restaurantId})}

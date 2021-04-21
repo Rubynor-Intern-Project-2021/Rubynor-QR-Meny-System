@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ModalConfirm } from "./modals";
+import { ModalForConfirm } from "./modals";
 import {storeModalMenu, storeDeleteItem, hideModal } from "../configureStore";
 
 const ModalMenu = () => {
@@ -19,7 +19,7 @@ const ModalMenu = () => {
     if(modalStatus) {
         modal =
             <div className="flex justify-center">
-                <ModalConfirm
+                <ModalForConfirm
                     header="Slett meny"
                     text="Ønsker du å slette denne menyen?"
                     handleCancel={() => storeModalMenu.dispatch(hideModal())}
