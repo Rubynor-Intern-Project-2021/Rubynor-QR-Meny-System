@@ -2,7 +2,6 @@
 <% menu.menu_items.where(:status => 1).order('number ASC').each do |menu_item| %>
   <div class="relative">
   <%= link_to menu_item_path(menu_item) do %>
-    <!-- Hver rad-->
     <div class="flex my-3 shadow relative rounded-sm z-0">
       <div class="w-2/5 md:w-1/3">
         <% if menu_item.image.attached? %>
