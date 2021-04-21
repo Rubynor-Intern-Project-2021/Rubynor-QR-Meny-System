@@ -1,6 +1,4 @@
 class Api::V1::ApiController < ApplicationController
-  skip_before_action :authorize
-
   def total_price
     total_prices = session[:cart].map do |item|
       MenuItem.find(item["item_id"]).price * item["amount"]

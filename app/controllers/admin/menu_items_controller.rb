@@ -7,16 +7,19 @@ class Admin::MenuItemsController < ApplicationController
     @menu_id=params['menu_id']
     @menu_item = MenuItem.new(:menu_id=>@menu_id)
     @restaurant = @menu_item.menu.restaurant
+    verify_signin(@restaurant.id)
   end
 
   # GET /menu_items/1/edit
   def edit
     @restaurant = @menu_item.menu.restaurant
+    verify_signin(@restaurant.id)
   end
 
   # POST /menu_items or /menu_items.json
   def create
     @menu_item = MenuItem.new(menu_item_params)
+    verify_signin(@menu_item.menu.restaurant.id)
 
     respond_to do |format|
       if @menu_item.save

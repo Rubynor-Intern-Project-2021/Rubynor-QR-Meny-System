@@ -7,6 +7,7 @@ class Admin::RestaurantsController < ApplicationController
   def index
     # Send the user directly to their own restaurant
     redirect_to admin_restaurant_url id: session[:restaurant_id]
+    verify_signin(@restaurant.id)
   end
 
   # GET /restaurants/1 or /restaurants/1.json
@@ -16,13 +17,9 @@ class Admin::RestaurantsController < ApplicationController
       add_qr_code()
     end
 
+    verify_signin(@restaurant.id)
+
     @allergens = @restaurant.allergens  
-  end
-
-
-  # GET /restaurants/new
-  def new
-    @restaurant = Restaurant.new
   end
 
   # GET /restaurants/1/edit
@@ -32,6 +29,7 @@ class Admin::RestaurantsController < ApplicationController
   # POST /restaurants or /restaurants.json
   def create
     @restaurant = Restaurant.new(restaurant_params)
+    verify_signin(@restaurant.id)
     add_qr_code()
 
     respond_to do |format|
@@ -45,6 +43,7 @@ class Admin::RestaurantsController < ApplicationController
 
   # PATCH/PUT /restaurants/1 or /restaurants/1.json
   def update
+    verify_signin(@restaurant.id)
     respond_to do |format|
       if @restaurant.update(restaurant_params)
         format.html { redirect_to admin_restaurant_url(@restaurant.id), notice: "Restaurant was successfully updated." }
@@ -56,6 +55,7 @@ class Admin::RestaurantsController < ApplicationController
 
   # DELETE /restaurants/1 or /restaurants/1.json
   def destroy
+    verify_signin(@restaurant.id)
     @restaurant.destroy
     respond_to do |format|
       format.html { redirect_to admin_restaurants_url, notice: "Restaurant was successfully destroyed." }

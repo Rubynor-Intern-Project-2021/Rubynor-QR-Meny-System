@@ -1,6 +1,4 @@
 class SessionsController < ApplicationController
-  skip_before_action :authorize
-
   def new
     if session[:restaurant_id] != nil
       redirect_to admin_restaurant_url id: session[:restaurant_id]
