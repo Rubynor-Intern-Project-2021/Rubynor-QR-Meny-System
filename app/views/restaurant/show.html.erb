@@ -8,11 +8,12 @@
             <div class="">
              <!-- Menyer -->
               <% @menus.each_with_index do |menu, index| %>
+              <div class="shadow my-3">
                   <%= link_to menu_path(menu) do %>
-                      <% if menu.image.attached? %>
-                        <%= image_tag menu.image,  class: "shadow object-cover rounded-sm h-20 w-full border-none"%>
-                      <% end %>
-                    <div class="w-full my-3 px-5 pb-5 shadow relative rounded-sm z-0">
+                    <% if menu.image.attached? %>
+                      <%= image_tag menu.image,  class: "object-cover rounded-sm h-20 w-full border-none"%>
+                    <% end %>
+                    <div class="w-full p-5 relative rounded-sm z-0">
                       <div class="font-semibold pb-1">
                         <%= menu.name %>
                       </div>
@@ -21,6 +22,7 @@
                       </div>
                     </div>
                   <% end %>
+                  </div>
               <% end %>
             </div>
         </div>
