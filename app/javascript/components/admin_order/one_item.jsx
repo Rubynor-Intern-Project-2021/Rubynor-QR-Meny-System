@@ -10,7 +10,7 @@ class OrderItem extends Component {
 
         // Allow collapseField to use the state variable
         this.collapseField = this.collapseField.bind(this);
-        this.finishOrder = this.finishOrder.bind(this);
+        this.finishOrder = this.finishOrder.bind(this)
     }
 
     componentDidMount() {
@@ -20,9 +20,9 @@ class OrderItem extends Component {
 
         function refresh() {
             axios.get('/api/v1/get_order_items?id=' + this.props.orderItem.id).then(res => {
-                    let state = this.state;
-                    state.menuItems = res.data;
-                    this.setState(state)
+                let state = this.state;
+                state.menuItems = res.data;
+                this.setState(state)
             });
         }
 
@@ -46,7 +46,7 @@ class OrderItem extends Component {
 
     finishOrder(e) {
         axios.get("/api/v1/finish_order?id=" + this.state.orderItem.id).then(res => {
-            
+
         });
     }
 
@@ -57,7 +57,7 @@ class OrderItem extends Component {
         const orderItem = this.state.orderItem;
 
         const menuItems = this.state.menuItems;
-        
+
         if(!menuItems)
             return <p>Loading..</p>
 
@@ -65,23 +65,23 @@ class OrderItem extends Component {
         let collapseButton = <IoIosArrowForward/>
 
         let finishBtn = <p></p>
-        if(orderItem.order_status === "Startet") {
+        if(orderItem.order_status == "Startet") {
             finishBtn = (<div className="inline-block float-right pr-10">
-                            <button onClick={this.finishOrder}>{orderItem.order_status} Fullfør</button>
-                        </div>)
-        }
-
-        let finishItemBtn =
-            (<div className="inline-block float-right pr-10">
                 <button onClick={this.finishOrder}>Fullfør</button>
             </div>)
+        }
 
+        let finishItemBtn = <p></p>
+        if(oneItem.status == "Startet") {
+            finishItemBtn = (<div className="inline-block float-right pr-10">
+                <button onClick={this.finishOrder}>Fullfør</button>
+            </div>)
+        }
 
         if(!this.state.collapsed) {
             body = (
                 <tbody>
                 { menuItems.map((item, index) => (
-
                     <tr key={index} className="admin-content-row">
                         <td className="pl-8">
                             <div className="inline-block">
@@ -90,13 +90,8 @@ class OrderItem extends Component {
                             <div className="inline-block float-right pr-10">
                                 {item.total_price},-
                             </div>
-                            {true  &&
-                               <div>{finishItemBtn}
-                                   hallo {item.order_item_status} ....
-                               </div>
-                            }
                         </td>
-                     </tr>)
+                    </tr>)
                 )}
                 <tr className="h-8">
                     <td className="pl-8">
@@ -110,24 +105,24 @@ class OrderItem extends Component {
 
         return (
             <table className="mb-4 admin-title-row">
-              <thead className="">
+                <thead className="">
                 <tr className="admin-tbl-border">
-                  <th className="text-left">
-                    <div className="ml-8 inline-block pr-5">
-                      <strong>Sted: {orderItem.location} - Bestilling: {orderItem.id}</strong>
-                    </div>
-                    <div className="inline-block">
-                        {orderItem.created_at}
-                    </div>
-                    <div className="inline-block float-right pr-10">
-                      <button onClick={this.collapseField} className="collapsible w-5 h-5">{collapseButton}</button>
-                    </div>
+                    <th className="text-left">
+                        <div className="ml-8 inline-block pr-5">
+                            <strong>Sted: {orderItem.location} - Bestilling: {orderItem.id}</strong>
+                        </div>
+                        <div className="inline-block">
+                            {orderItem.created_at}
+                        </div>
+                        <div className="inline-block float-right pr-10">
+                            <button onClick={this.collapseField} className="collapsible w-5 h-5">{collapseButton}</button>
+                        </div>
 
-                    {finishBtn}
+                        {finishBtn}
 
-                  </th>
+                    </th>
                 </tr>
-              </thead>
+                </thead>
                 {body}
             </table>
         )
