@@ -25,8 +25,8 @@
       <div class="font-bold text-white text-3xl my-5">
         Menyer
       </div>
-      <% @restaurant.menus.where.not(:status => 3).order(:number).each do |menu| %>
-        <% menu_items = menu.menu_items.order('number ASC') %>
+      <% @restaurant.menus.where.not(:status => 0).order('number, id').each do |menu| %>
+        <% menu_items = menu.menu_items.order('number, id ASC') %>
         <%= react_component("admin_menu/menu_item", { menu: menu, menuItems: menu_items }) %>
       <% end %>
       <div class="h-20 mt-10">
