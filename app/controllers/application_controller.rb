@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
 
   protected
     def authorize
-      unless Restaurant.find_by(id: session[:restaurant_id]) 
+      if session[:restaurant_id].to_s != params[:id].to_s || !Restaurant.find_by(id: session[:restaurant_id]) 
         redirect_to login_url, notice: "Please log in"
       end
     end
