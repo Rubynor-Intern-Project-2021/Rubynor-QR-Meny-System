@@ -1,5 +1,4 @@
 class OrdersController < ApplicationController
-  skip_before_action :authorize
 
   def make_order
     p "create order 1"

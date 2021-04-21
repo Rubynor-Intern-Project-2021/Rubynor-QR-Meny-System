@@ -7,16 +7,19 @@ class Admin::MenuItemsController < ApplicationController
     @menu_id=params['menu_id']
     @menu_item = MenuItem.new(:menu_id=>@menu_id)
     @restaurant = @menu_item.menu.restaurant
+    verify_signin(@restaurant.id)
   end
 
   # GET /menu_items/1/edit
   def edit
     @restaurant = @menu_item.menu.restaurant
+    verify_signin(@restaurant.id)
   end
 
   # POST /menu_items or /menu_items.json
   def create
     @menu_item = MenuItem.new(menu_item_params)
+    verify_signin(@menu_item.menu.restaurant.id)
 
     respond_to do |format|
       if @menu_item.save
@@ -52,7 +55,7 @@ class Admin::MenuItemsController < ApplicationController
     item=MenuItem.find(params[:item_id])
     item.status=params[:status]
     p "menu_items Status2"
-    item.save
+    item.save!
     p "menu_items Status3"
     respond_to do |format|
       format.html { redirect_to admin_restaurant_url(item.menu.restaurant.id), notice: "Menu item was successfully changed." }
@@ -67,7 +70,7 @@ class Admin::MenuItemsController < ApplicationController
     p params[:status]
     p item.status
     p "menu_items Status2"
-    item.save
+    item.save!
     p "menu_items Status3"
     respond_to do |format|
       format.html { redirect_to admin_restaurant_url(item.menu.restaurant.id), notice: "Menu item was successfully changed." }

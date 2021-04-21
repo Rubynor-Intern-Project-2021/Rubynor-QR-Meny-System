@@ -56,8 +56,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # De vi har lagt til
 gem "tailwindcss-rails", "~> 0.3.1"
 
-gem 'rqrcode'
-
 gem 'pry-rails'
 
 gem "azure-storage", require: false
