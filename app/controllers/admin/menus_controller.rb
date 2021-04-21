@@ -60,7 +60,7 @@ class Admin::MenusController < ApplicationController
     verify_signin(menu.restaurant.id)
     menu.status=params[:status]
     p "menu_items Status2"
-    menu.save
+    menu.save!
     p "menu_items Status3"
 
     respond_to do |format|

@@ -133,7 +133,7 @@ class Api::V1::ApiController < ApplicationController
   def finish_order
     order              = Order.find(params[:id])
     order.order_status = "Ferdig"
-    order.save()       # Silent failure :O
+    order.save!
 
     render json: { message: 'Successfully finished order.' }, status: 200
   end
@@ -141,7 +141,7 @@ class Api::V1::ApiController < ApplicationController
   def set_item_status
     item        = MenuItem.find(params[:item_id])
     item.status = params[:status]
-    item.save()
+    item.save!
 
     render json: { message: 'Successfully changed status.' }, status: 200
   end

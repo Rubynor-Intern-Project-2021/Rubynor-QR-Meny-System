@@ -55,7 +55,7 @@ class Admin::MenuItemsController < ApplicationController
     item=MenuItem.find(params[:item_id])
     item.status=params[:status]
     p "menu_items Status2"
-    item.save
+    item.save!
     p "menu_items Status3"
     respond_to do |format|
       format.html { redirect_to admin_restaurant_url(item.menu.restaurant.id), notice: "Menu item was successfully changed." }
@@ -70,7 +70,7 @@ class Admin::MenuItemsController < ApplicationController
     p params[:status]
     p item.status
     p "menu_items Status2"
-    item.save
+    item.save!
     p "menu_items Status3"
     respond_to do |format|
       format.html { redirect_to admin_restaurant_url(item.menu.restaurant.id), notice: "Menu item was successfully changed." }
