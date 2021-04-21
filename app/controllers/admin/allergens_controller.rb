@@ -4,17 +4,20 @@ class Admin::AllergensController < ApplicationController
   # GET /allergens/new
   def new
     @restaurant = Restaurant.find(session[:restaurant_id])
+    verify_signin(@restaurant.id)
     @allergen = Allergen.new()
   end
 
   # GET /allergens/1/edit
   def edit
     @restaurant = Restaurant.find(session[:restaurant_id])
+    verify_signin(@restaurant.id)
   end
 
   # POST /allergens or /allergens.json
   def create
     @restaurant = Restaurant.find(session[:restaurant_id])
+    verify_signin(@restaurant.id)
     @allergen = Allergen.new(allergen_params)
     @allergen.restaurant_id = @restaurant.id
 
@@ -30,6 +33,7 @@ class Admin::AllergensController < ApplicationController
   # PATCH/PUT /allergens/1 or /allergens/1.json
   def update
     @restaurant = Restaurant.find(session[:restaurant_id])
+    verify_signin(@restaurant.id)
     respond_to do |format|
       if @allergen.update(allergen_params)
         format.html { redirect_to admin_restaurant_url(@restaurant.id), notice: "Allergen was successfully updated." }
@@ -42,6 +46,7 @@ class Admin::AllergensController < ApplicationController
   # DELETE /allergens/1 or /allergens/1.json
   def destroy
     @restaurant = Restaurant.find(session[:restaurant_id])
+    verify_signin(@restaurant.id)
     allergen=Allergen.find(params[:a_id])
     allergen.destroy
     respond_to do |format|

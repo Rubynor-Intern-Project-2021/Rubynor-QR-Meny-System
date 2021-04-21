@@ -10,11 +10,8 @@ class Order < ApplicationRecord
 
   def add_menu_item(item_id:, quantity:, order_item_status:)
     p "test add_menu_item"
-    current_item = order_items.build(menu_item_id: item_id, quantity: quantity, order_item_status: order_item_status)
-    # BAD: Silent failure
-    #current_item.save # true/false
-    # GOOD: Explicit error
-    current_item.save! # true or CRAAAAASH
+    current_item = order_items.build(menu_item_id: item_id, quantity: quantity)
+    current_item.save!
     p current_item
 
     current_item

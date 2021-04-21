@@ -1,6 +1,4 @@
 class Api::V1::ApiController < ApplicationController
-  skip_before_action :authorize
-
   def total_price
     total_prices = session[:cart].map do |item|
       MenuItem.find(item["item_id"]).price * item["amount"]
@@ -116,7 +114,7 @@ class Api::V1::ApiController < ApplicationController
   def finish_order
     order              = Order.find(params[:id])
     order.order_status = "Ferdig"
-    order.save()       # Silent failure :O
+    order.save!
 
     render json: { message: 'Successfully finished order.' }, status: 200
   end
@@ -145,7 +143,7 @@ class Api::V1::ApiController < ApplicationController
   def finish_order_item
     order_item        = OrderItem.find(params[:id])
     order_item.order_item_status = "Ferdig"
-    order_item.save()       # Silent failure :O
+    order_item.save!
 
     render json: { message: 'Successfully finished orderitem.' }, status: 200
   end

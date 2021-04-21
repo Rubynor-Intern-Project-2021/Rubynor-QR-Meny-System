@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  before_action :authorize
   before_action :setup_session_cart_array
 
   def total_amount
@@ -16,8 +15,8 @@ class ApplicationController < ActionController::Base
 
 
   protected
-    def authorize
-      if session[:restaurant_id].to_s != params[:id].to_s || !Restaurant.find_by(id: session[:restaurant_id]) 
+    def verify_signin(restaurant_id) 
+      if session[:restaurant_id] != restaurant_id || !Restaurant.find_by(id: session[:restaurant_id]) 
         redirect_to login_url, notice: "Please log in"
       end
     end

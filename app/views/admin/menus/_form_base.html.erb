@@ -8,8 +8,20 @@
       </ul>
     </div>
   <% end %>
+  
+    <div>
+      <% if menu.image.attached? %>
+        <%= image_tag menu.image,  class: "shadow object-fill rounded-t-2xl w-full border-none"%>
+      <% end %>
+
+    </div>
+
 
   <div class="w-80 space-y-3">
+      <div class="field">
+        <%= form.label "Bilde" %><br>
+        <%= form.file_field :image %>
+      </div>
     <div class="field">
       <% #form.label :restaurant_id, class: 'text-gray-700' %>
       <div>
