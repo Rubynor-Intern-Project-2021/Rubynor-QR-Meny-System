@@ -49,8 +49,8 @@ class Admin::MenuItemsController < ApplicationController
 
   def set_item_status
     p "menu_items Status"
-    item=MenuItem.find(params[:item_id])
-    item.status=params[:status]
+    item = MenuItem.find(params[:item_id])
+    item.status = params[:status]
     p "menu_items Status2"
     item.save
     p "menu_items Status3"
@@ -62,8 +62,8 @@ class Admin::MenuItemsController < ApplicationController
 
   def set_item_empty_status
     p "menu_items Status"
-    item=MenuItem.find(params[:item_id])
-    item.empty=params[:status]
+    item = MenuItem.find(params[:item_id])
+    item.empty = params[:status]
     p params[:status]
     p item.status
     p "menu_items Status2"

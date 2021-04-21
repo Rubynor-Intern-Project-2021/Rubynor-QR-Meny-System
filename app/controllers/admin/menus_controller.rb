@@ -9,7 +9,7 @@ class Admin::MenusController < ApplicationController
 
   # GET /admin_menus/new
   def new
-    @restaurant_id=params['restaurant_id']
+    @restaurant_id = params['restaurant_id']
     @menu = Menu.new(:restaurant_id=>@restaurant_id)
     @restaurant = @menu.restaurant
   end
@@ -56,7 +56,7 @@ class Admin::MenusController < ApplicationController
 
   def set_menu_status
     p "menu_items Status"
-    menu=Menu.find(params[:menu_id])
+    menu = Menu.find(params[:menu_id])
     menu.status=params[:status]
     p "menu_items Status2"
     menu.save
