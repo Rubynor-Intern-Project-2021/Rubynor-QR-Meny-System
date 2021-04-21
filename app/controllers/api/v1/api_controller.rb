@@ -112,6 +112,15 @@ class Api::V1::ApiController < ApplicationController
     render json: orders
   end
 
+
+  def finish_order
+    order              = Order.find(params[:id])
+    order.order_status = "Ferdig"
+    order.save()       # Silent failure :O
+
+    render json: { message: 'Successfully finished order.' }, status: 200
+  end
+
   def get_order_items
     order_items = []
 
@@ -120,6 +129,7 @@ class Api::V1::ApiController < ApplicationController
       order_item[:number]      = order.menu_item.number
       order_item[:name]        = order.menu_item.name
       order_item[:description] = order.menu_item.description
+      order_item[:order_item_status] = order.menu_item.order_item_status
       if (order.menu_item.price)
         order_item[:total_price] = order.menu_item.price * order.quantity
       else
@@ -132,18 +142,18 @@ class Api::V1::ApiController < ApplicationController
     render json: order_items
   end
 
-  def finish_order
-    order              = Order.find(params[:id])
-    order.order_status = "Ferdig"
-    order.save()       # Silent failure :O
+  def finish_order_item
+    order_item        = OrderItem.find(params[:id])
+    order_item.order_item_status = "Ferdig"
+    order_item.save()       # Silent failure :O
 
-    render json: { message: 'Successfully finished order.' }, status: 200
+    render json: { message: 'Successfully finished orderitem.' }, status: 200
   end
 
   def set_item_status
     item        = MenuItem.find(params[:item_id])
     item.status = params[:status]
-    item.save()
+    item.save!
 
     render json: { message: 'Successfully changed status.' }, status: 200
   end
