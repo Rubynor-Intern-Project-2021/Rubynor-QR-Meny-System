@@ -10,7 +10,8 @@ class OrderItem extends Component {
 
         // Allow collapseField to use the state variable
         this.collapseField = this.collapseField.bind(this);
-        this.finishOrder = this.finishOrder.bind(this);
+        this.finishOrder = this.finishOrder.bind(this)
+        this.finishOrderItem = this.finishOrderItem.bind(this)
     }
 
     componentDidMount() {
@@ -30,7 +31,6 @@ class OrderItem extends Component {
 
         refresh();
 
-        this.interval = setInterval(refresh, 1000);
     }
 
     componentWillUnmount() {
@@ -47,6 +47,14 @@ class OrderItem extends Component {
     finishOrder(e) {
         axios.get("/api/v1/finish_order?id=" + this.state.orderItem.id).then(res => {
             
+        });
+    }
+
+
+    finishOrderItem(itemId)
+    {
+        axios.get("/api/v1/finish_order_item?id=" + itemId).then(res => {
+
         });
     }
 
@@ -67,7 +75,7 @@ class OrderItem extends Component {
         let finishBtn = <p></p>
         if(orderItem.order_status === "Startet") {
             finishBtn = (<div className="inline-block float-right pr-10">
-                            <button onClick={this.finishOrder}>{orderItem.order_status} Fullfør</button>
+                            <button onClick={this.finishOrder}>Fullfør</button>
                         </div>)
         }
 
@@ -90,9 +98,9 @@ class OrderItem extends Component {
                             <div className="inline-block float-right pr-10">
                                 {item.total_price},-
                             </div>
-                            {true  &&
-                               <div>{finishItemBtn}
-                                   hallo {item.order_item_status} ....
+                            {item.order_item_status == "Startet" &&
+                               <div>
+                                   hallo {item.number} {item.menu_item_id}
                                </div>
                             }
                         </td>

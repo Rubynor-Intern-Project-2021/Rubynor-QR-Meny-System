@@ -2,10 +2,10 @@ class ApplicationController < ActionController::Base
   before_action :setup_session_cart_array
 
   def total_amount
-    @totalAmount=0
-    if session[:cart]!=nil
+    @totalAmount = 0
+    if session[:cart] != nil
       session[:cart].each do |item|
-        @totalAmount+=(item["amount"])
+        @totalAmount += (item["amount"])
       end
     end
     @totalAmount

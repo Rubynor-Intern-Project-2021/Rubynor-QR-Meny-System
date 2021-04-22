@@ -127,8 +127,8 @@ class Api::V1::ApiController < ApplicationController
       order_item[:number]      = order.menu_item.number
       order_item[:name]        = order.menu_item.name
       order_item[:description] = order.menu_item.description
-      order_item[:order_item_status] = order.menu_item.order_item_status
-      if (order.menu_item.price)
+      order_item[:order_item_status] = "Startet"
+      if order.menu_item.price
         order_item[:total_price] = order.menu_item.price * order.quantity
       else
         order_item[:total_price] = 0
@@ -141,7 +141,7 @@ class Api::V1::ApiController < ApplicationController
   end
 
   def finish_order_item
-    order_item        = OrderItem.find(params[:id])
+    order_item        = OrderItem.find_by_order_id
     order_item.order_item_status = "Ferdig"
     order_item.save!
 
