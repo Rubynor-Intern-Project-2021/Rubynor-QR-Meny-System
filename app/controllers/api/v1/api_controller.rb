@@ -124,10 +124,12 @@ class Api::V1::ApiController < ApplicationController
 
     Order.find(params[:id]).order_items.each do |order|
       order_item               = {}
+      order_item[:id]          = order.id
       order_item[:number]      = order.menu_item.number
       order_item[:name]        = order.menu_item.name
       order_item[:description] = order.menu_item.description
-      order_item[:order_item_status] = "Startet"
+      order_item[:order_item_status] = order.order_item_status
+
       if order.menu_item.price
         order_item[:total_price] = order.menu_item.price * order.quantity
       else
@@ -140,9 +142,13 @@ class Api::V1::ApiController < ApplicationController
     render json: order_items
   end
 
-  def finish_order_item
-    order_item        = OrderItem.find_by_order_id
-    order_item.order_item_status = "Ferdig"
+  def change_order_item_status
+    order_item        = OrderItem.find(params[:id])
+    if order_item.order_item_status == "Startet"
+      order_item.order_item_status = "Ferdig"
+    else
+      order_item.order_item_status = "Startet"
+    end
     order_item.save!
 
     render json: { message: 'Successfully finished orderitem.' }, status: 200

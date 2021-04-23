@@ -543,6 +543,9 @@ Based on Rails 6.0.3.6 routes of RubynorQrMenySystem::Application
 // api_v1_add_to_cart => /api/v1/add_to_cart(.:format)
   // function(options)
   api_v1_add_to_cart_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"v1",false],[2,[7,"/",false],[2,[6,"add_to_cart",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
+// api_v1_change_order_item_status => /api/v1/change_order_item_status(.:format)
+  // function(options)
+  api_v1_change_order_item_status_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"v1",false],[2,[7,"/",false],[2,[6,"change_order_item_status",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
 // api_v1_empty_cart => /api/v1/empty_cart(.:format)
   // function(options)
   api_v1_empty_cart_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"v1",false],[2,[7,"/",false],[2,[6,"empty_cart",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),

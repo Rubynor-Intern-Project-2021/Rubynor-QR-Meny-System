@@ -11,7 +11,13 @@ class OrderItem extends Component {
         // Allow collapseField to use the state variable
         this.collapseField = this.collapseField.bind(this);
         this.finishOrder = this.finishOrder.bind(this)
-        this.finishOrderItem = this.finishOrderItem.bind(this)
+        this.changeOrderItem = this.changeOrderItem.bind(this)
+        this.state = {
+            unchecked: false
+        }
+        this.state = {
+            checked: true
+        }
     }
 
     componentDidMount() {
@@ -50,13 +56,20 @@ class OrderItem extends Component {
         });
     }
 
-
-    finishOrderItem(itemId)
-    {
-        axios.get("/api/v1/finish_order_item?id=" + itemId).then(res => {
+    changeOrderItem(itemId) {
+        axios.get("/api/v1/change_order_item_status?id=" + itemId).then(res => {
 
         });
     }
+
+    handleChange = (itemId, e) => {
+        const { unchecked } = e.target
+        this.setState({
+            checked: unchecked
+        })
+        this.changeOrderItem(itemId)
+    }
+
 
     render() {
         if(!this.state.orderItem)
@@ -79,17 +92,11 @@ class OrderItem extends Component {
                         </div>)
         }
 
-        let finishItemBtn =
-            (<div className="inline-block float-right pr-10">
-                <button onClick={this.finishOrder}>Fullfør</button>
-            </div>)
-
 
         if(!this.state.collapsed) {
             body = (
                 <tbody>
                 { menuItems.map((item, index) => (
-
                     <tr key={index} className="admin-content-row">
                         <td className="pl-8">
                             <div className="inline-block">
@@ -98,11 +105,26 @@ class OrderItem extends Component {
                             <div className="inline-block float-right pr-10">
                                 {item.total_price},-
                             </div>
-                            {item.order_item_status == "Startet" &&
-                               <div>
-                                   hallo {item.number} {item.menu_item_id}
-                               </div>
-                            }
+                            <div className="flex inline-block float-right pr-10">
+                                {item.order_item_status === "Startet" ?
+                                <label className="inline-flex ">
+                                    <input type="checkbox"
+                                           onChange={e => this.handleChange(item.id, e)}
+                                           defaultChecked={this.state.unchecked}
+                                           className="form-checkbox h-5 w-5 text-gray-600"/>
+                                        <span className="ml-2 text-gray-700">Fullført
+                                        </span>
+                                </label> :
+                                <label className="inline-flex ">
+                                    <input type="checkbox"
+                                           onChange={e => this.handleChange(item.id, e)}
+                                           defaultChecked={this.state.checked}
+                                           className="form-checkbox h-5 w-5 text-gray-600 "/>
+                                    <span className="ml-2 text-gray-700">Fullført
+                                    </span>
+                                </label>
+                                }
+                            </div>
                         </td>
                      </tr>)
                 )}
