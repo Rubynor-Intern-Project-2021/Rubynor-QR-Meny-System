@@ -1,12 +1,15 @@
 <div class="flex lg:py-16 justify-center">
     <div class="flex flex-col w-full bg-white lg:rounded-2xl lg:w-2/5">
     <div class="px-2 py-8 sm:px-8">
-        <div>
+        <div class="flex">
+            <div class="pt-1 pr-2">
+                <%= react_component("back_button", { path: restaurant_path(@menu.restaurant) })%>
+            </div>
             <p class="mb-4 lg:mb-6 text-gray-900 font-semibold text-xl"><%= @menu.name %></p>
         </div>
 
         <div id="selected_menu">
-            <% @menu.menu_items.where(:status => 1).order('number ASC').each do |menu_item| %>
+            <% @menu.menu_items.where(:status => 2).order('number ASC').each do |menu_item| %>
             <div class="relative">
                 <%= link_to menu_item_path(menu_item) do %>
                 <div class="flex my-3 shadow relative rounded-sm z-0">
@@ -19,7 +22,7 @@
                     <div class="w-3/5 lg:w-2/3 py-2 px-2 lg:px-4">
                         <div class="">
                             <div>
-                                <% if menu_item.empty == 1 %>
+                                <% if menu_item.empty == 2 %>
                                 <div class="font-semibold pb-1 text-red-500">
                                 <% else %>
                                 <div class="font-semibold pb-1">

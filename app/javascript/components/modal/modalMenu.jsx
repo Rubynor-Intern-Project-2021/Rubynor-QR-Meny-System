@@ -24,7 +24,7 @@ const ModalMenu = () => {
                     text="Ønsker du å slette denne menyen?"
                     handleCancel={() => storeModalMenu.dispatch(hideModal())}
                     handleConfirm={() => { storeModalMenu.dispatch(hideModal());
-                    window.location.href = Routes.admin_set_menu_status_path({menu_id: menuId, status: 3});}}
+                    window.location.href = Routes.admin_set_menu_status_path({menu_id: menuId, status: 0});}}
                 />
             </div>
     }

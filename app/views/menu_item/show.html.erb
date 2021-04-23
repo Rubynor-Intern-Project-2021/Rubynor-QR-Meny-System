@@ -9,7 +9,10 @@
     </div>
     <div class="m-6">
       <div class="flex flex-row justify-between">
-        <div class="font-semibold text-xl">
+        <div class="flex font-semibold text-xl">
+            <div class="pt-1 pr-2">
+                <%= react_component("back_button", { path: menu_path(@menu_item.menu) })%>
+            </div>
           <%= @menu_item.name %>
         </div>
 
