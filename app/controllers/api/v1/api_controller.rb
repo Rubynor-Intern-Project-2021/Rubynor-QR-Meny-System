@@ -110,11 +110,10 @@ class Api::V1::ApiController < ApplicationController
     end
     render json: orders
   end
-
-
+  
   def set_order_finish
     order              = Order.find(params[:id])
-    order.order_status = "finished"
+    order.order_status = "Finished"
     order.save!
 
     render json: { message: 'Successfully changed order status to finished.' }, status: 200
@@ -154,7 +153,7 @@ class Api::V1::ApiController < ApplicationController
   def change_order_item_status
     order_item        = OrderItem.find(params[:id])
     if order_item.order_item_status == "Started"
-      order_item.order_item_status = "finished"
+      order_item.order_item_status = "Finished"
     else
       order_item.order_item_status = "Started"
     end

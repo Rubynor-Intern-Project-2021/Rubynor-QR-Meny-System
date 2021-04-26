@@ -50,15 +50,15 @@ class Order extends Component {
     }
 
     orderFinish() {
-        axios.get("/api/v1/set_order_finish?id=" + this.state.order.id).then(r =>{} );
+        axios.get("/api/v1/set_order_finish?id=" + this.state.order.id);
     }
 
-    orderPaid() {
-        axios.get("/api/v1/set_order_paid?id=" + this.state.order.id).then(r =>{} );
+    orderPaid(e) {
+        axios.get("/api/v1/set_order_paid?id=" + this.state.order.id);
     }
 
     changeOrderItem(itemId) {
-        axios.get("/api/v1/change_order_item_status?id=" + itemId).then(r =>{} );
+        axios.get("/api/v1/change_order_item_status?id=" + itemId);
     }
 
     handleChange = (itemId, e) => {
@@ -81,7 +81,7 @@ class Order extends Component {
         if (!orderItems)
             return <p>Loading..</p>
 
-        let body = null
+        let body = (<tbody></tbody>)
         let collapseButton = <IoIosArrowForward/>
 
         let right = null
@@ -89,14 +89,13 @@ class Order extends Component {
             right = (
                 <div className="relative flex inline-block float-right pr-4 md:pr-8 lg:pr-8">
                     <div className="pr-14">Sum: {order.total_price}</div>
-                    <div className="absolute -bottom-0.5 right-3 ">
-                        <button className="text-sm bg-gray-200 border border-gray-400 rounded hover:bg-gray-300 py-1 px-2 "
-                                onClick={this.orderFinish()}>Fullfør</button>
+                    <div className="absolute -bottom-0.5 right-4 ">
+                        <button className="text-sm bg-gray-200 border border-gray-400 rounded hover:bg-gray-300 py-1 px-2"
+                                onClick={this.orderFinish}>Fullfør</button>
                     </div>
                 </div>
             )
         }
-
         else if (order.order_status === "Finished") {
             right = (
                 <div className="relative flex inline-block float-right pr-4 md:pr-8 lg:pr-8">
@@ -181,9 +180,7 @@ class Order extends Component {
                             <button onClick={this.collapseField}
                                     className="collapsible w-5 h-5">{collapseButton}</button>
                         </div>
-
-                            {right}
-
+                        {right}
                     </th>
                 </tr>
                 </thead>
