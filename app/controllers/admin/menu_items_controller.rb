@@ -4,10 +4,11 @@ class Admin::MenuItemsController < ApplicationController
 
   # GET /menu_items/new
   def new
-    @menu_id=params['menu_id']
-    @menu_item = MenuItem.new(:menu_id=>@menu_id)
     @restaurant = @menu_item.menu.restaurant
     verify_signin(@restaurant.id)
+
+    @menu_id=params['menu_id']
+    @menu_item = MenuItem.new(:menu_id=>@menu_id)
   end
 
   # GET /menu_items/1/edit
@@ -19,6 +20,7 @@ class Admin::MenuItemsController < ApplicationController
   # POST /menu_items or /menu_items.json
   def create
     @menu_item = MenuItem.new(menu_item_params)
+
     verify_signin(@menu_item.menu.restaurant.id)
 
     respond_to do |format|

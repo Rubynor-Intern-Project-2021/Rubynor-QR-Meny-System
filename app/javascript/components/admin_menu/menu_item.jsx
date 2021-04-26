@@ -109,6 +109,13 @@ const MenuItem = ({menu, menuItems}) => {
                           href={Routes.new_admin_menu_item_path({menu_id: menu.id})}/>
                 </td>
             </tr>
+
+            <tr className="bg-gray-100 h-10">
+                <td className="pl-1 md:pl-7 lg:pl-7">
+                    <Link icon={<IoIosAddCircleOutline size={22}/>} label="Legg til undermeny"
+                          href={Routes.new_admin_sub_menu_path({menu_id: menu.id})}/>
+                </td>
+            </tr>
             </tbody>
     }
 

@@ -537,6 +537,12 @@ Based on Rails 6.0.3.6 routes of RubynorQrMenySystem::Application
 // admin_set_menu_status => /admin/set_menu_status(.:format)
   // function(options)
   admin_set_menu_status_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"admin",false],[2,[7,"/",false],[2,[6,"set_menu_status",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]),
+// admin_sub_menu => /admin/sub_menus/:id(.:format)
+  // function(id, options)
+  admin_sub_menu_path: Utils.route([["id",true],["format",false]], {}, [2,[7,"/",false],[2,[6,"admin",false],[2,[7,"/",false],[2,[6,"sub_menus",false],[2,[7,"/",false],[2,[3,"id",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
+// admin_sub_menus => /admin/sub_menus(.:format)
+  // function(options)
+  admin_sub_menus_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"admin",false],[2,[7,"/",false],[2,[6,"sub_menus",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]),
 // api_v1_add_one_to_cart => /api/v1/add_one_to_cart(.:format)
   // function(options)
   api_v1_add_one_to_cart_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"v1",false],[2,[7,"/",false],[2,[6,"add_one_to_cart",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
@@ -549,9 +555,6 @@ Based on Rails 6.0.3.6 routes of RubynorQrMenySystem::Application
 // api_v1_empty_cart => /api/v1/empty_cart(.:format)
   // function(options)
   api_v1_empty_cart_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"v1",false],[2,[7,"/",false],[2,[6,"empty_cart",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
-// api_v1_finish_order => /api/v1/finish_order(.:format)
-  // function(options)
-  api_v1_finish_order_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"v1",false],[2,[7,"/",false],[2,[6,"finish_order",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
 // api_v1_get_order_items => /api/v1/get_order_items(.:format)
   // function(options)
   api_v1_get_order_items_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"v1",false],[2,[7,"/",false],[2,[6,"get_order_items",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
@@ -567,6 +570,12 @@ Based on Rails 6.0.3.6 routes of RubynorQrMenySystem::Application
 // api_v1_set_item_status => /api/v1/set_item_status(.:format)
   // function(options)
   api_v1_set_item_status_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"v1",false],[2,[7,"/",false],[2,[6,"set_item_status",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
+// api_v1_set_order_finish => /api/v1/set_order_finish(.:format)
+  // function(options)
+  api_v1_set_order_finish_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"v1",false],[2,[7,"/",false],[2,[6,"set_order_finish",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
+// api_v1_set_order_paid => /api/v1/set_order_paid(.:format)
+  // function(options)
+  api_v1_set_order_paid_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"v1",false],[2,[7,"/",false],[2,[6,"set_order_paid",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
 // api_v1_total_amount => /api/v1/total_amount(.:format)
   // function(options)
   api_v1_total_amount_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"v1",false],[2,[7,"/",false],[2,[6,"total_amount",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
@@ -588,6 +597,9 @@ Based on Rails 6.0.3.6 routes of RubynorQrMenySystem::Application
 // edit_admin_restaurant => /admin/restaurants/:id/edit(.:format)
   // function(id, options)
   edit_admin_restaurant_path: Utils.route([["id",true],["format",false]], {}, [2,[7,"/",false],[2,[6,"admin",false],[2,[7,"/",false],[2,[6,"restaurants",false],[2,[7,"/",false],[2,[3,"id",false],[2,[7,"/",false],[2,[6,"edit",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]]),
+// edit_admin_sub_menu => /admin/sub_menus/:id/edit(.:format)
+  // function(id, options)
+  edit_admin_sub_menu_path: Utils.route([["id",true],["format",false]], {}, [2,[7,"/",false],[2,[6,"admin",false],[2,[7,"/",false],[2,[6,"sub_menus",false],[2,[7,"/",false],[2,[3,"id",false],[2,[7,"/",false],[2,[6,"edit",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]]]),
 // edit_menu => /menu/:id/edit(.:format)
   // function(id, options)
   edit_menu_path: Utils.route([["id",true],["format",false]], {}, [2,[7,"/",false],[2,[6,"menu",false],[2,[7,"/",false],[2,[3,"id",false],[2,[7,"/",false],[2,[6,"edit",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
@@ -645,6 +657,9 @@ Based on Rails 6.0.3.6 routes of RubynorQrMenySystem::Application
 // new_admin_restaurant => /admin/restaurants/new(.:format)
   // function(options)
   new_admin_restaurant_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"admin",false],[2,[7,"/",false],[2,[6,"restaurants",false],[2,[7,"/",false],[2,[6,"new",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
+// new_admin_sub_menu => /admin/sub_menus/new(.:format)
+  // function(options)
+  new_admin_sub_menu_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"admin",false],[2,[7,"/",false],[2,[6,"sub_menus",false],[2,[7,"/",false],[2,[6,"new",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
 // new_menu => /menu/new(.:format)
   // function(options)
   new_menu_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"menu",false],[2,[7,"/",false],[2,[6,"new",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]),

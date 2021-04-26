@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :restaurants
     resources :menus
     resources :allergens
+    resources :sub_menus
     resources :menu_items
     resources :orders
     controller :menu_items do
