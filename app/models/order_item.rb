@@ -3,8 +3,8 @@ class OrderItem < ApplicationRecord
   belongs_to :order
 
   enum order_item_status: {
-    "Startet" => 0,
-    "Ferdig" => 1
+    "Started" => 0,
+    "Finished" => 1
   }
 
   def price

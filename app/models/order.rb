@@ -3,9 +3,9 @@ class Order < ApplicationRecord
   belongs_to :restaurant
 
   enum order_status: {
-    "Startet" => 0,
-    "Ferdig" => 1,
-    "Betalt" => 2
+    "Started" => 0,
+    "Finished" => 1,
+    "Paid" => 2
   }
 
   def add_menu_item(item_id:, quantity:, order_item_status:)

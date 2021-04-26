@@ -58,13 +58,13 @@ class OrderView extends Component {
         let orders = [];
 
         this.state.orders.forEach(order => {
-            if(this.state.showFinished && order.order_status === "Ferdig") {
+            if(this.state.showFinished && order.order_status === "Finished") {
                 orders.push(order);
             }
-            else if (this.state.showNotFinished && order.order_status === "Startet") {
+            else if (this.state.showNotFinished && order.order_status === "Started") {
                 orders.push(order);
             }
-            else if (this.state.showPaid && order.order_status === "Betalt") {
+            else if (this.state.showPaid && order.order_status === "Paid") {
                 orders.push(order);
             }
         });

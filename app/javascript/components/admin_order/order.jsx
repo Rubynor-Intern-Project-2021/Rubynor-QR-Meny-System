@@ -42,13 +42,13 @@ class Order extends Component {
     }
 
 
-    collapseField(e) {
+    collapseField() {
         let state = this.state;
         state.collapsed = !state.collapsed;
         this.setState(state)
     }
 
-    orderFinish(e) {
+    orderFinish() {
         axios.get("/api/v1/set_order_finish?id=" + this.state.order.id);
     }
 
@@ -84,13 +84,13 @@ class Order extends Component {
         let collapseButton = <IoIosArrowForward/>
 
         let finishBtn = <p></p>
-        if(order.order_status === "Startet") {
+        if(order.order_status === "Started") {
             finishBtn = (<div className="inline-block float-right pr-10">
                             <button className="text-sm bg-gray-200 border border-gray-400 rounded hover:bg-gray-300 py-1 px-2" onClick={this.orderFinish}>Fullfør</button>
                         </div>)
         }
 
-        if(order.order_status === "Ferdig") {
+        if(order.order_status === "Finished") {
             finishBtn = (<div className="inline-block float-right pr-10">
                 <button className="text-sm bg-gray-200 border border-gray-400 rounded hover:bg-gray-300 py-1 px-2" onClick={this.orderPaid}>Betalt</button>
             </div>)
@@ -109,9 +109,9 @@ class Order extends Component {
                                 {item.total_price},-
                             </div>
                             <div className="flex inline-block float-right pr-10">
-                                { order.order_status === "Startet" &&
+                                { order.order_status === "Started" &&
                                 <>
-                                    {item.order_item_status === "Startet" ?
+                                    {item.order_item_status === "Started" ?
                                     <label className="inline-flex ">
                                         <input type="checkbox"
                                                onChange={e => this.handleChange(item.id, e)}

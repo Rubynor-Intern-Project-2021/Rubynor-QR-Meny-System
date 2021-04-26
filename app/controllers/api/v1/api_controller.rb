@@ -113,15 +113,15 @@ class Api::V1::ApiController < ApplicationController
 
   def set_order_finish
     order              = Order.find(params[:id])
-    order.order_status = "Ferdig"
+    order.order_status = "finished"
     order.save!
 
-    render json: { message: 'Successfully changed order status to finish.' }, status: 200
+    render json: { message: 'Successfully changed order status to finished.' }, status: 200
   end
 
   def set_order_paid
     order              = Order.find(params[:id])
-    order.order_status = "Betalt"
+    order.order_status = "Paid"
     order.save!
 
     render json: { message: 'Successfully changed order status to paid.' }, status: 200
@@ -152,14 +152,14 @@ class Api::V1::ApiController < ApplicationController
 
   def change_order_item_status
     order_item        = OrderItem.find(params[:id])
-    if order_item.order_item_status == "Startet"
-      order_item.order_item_status = "Ferdig"
+    if order_item.order_item_status == "Started"
+      order_item.order_item_status = "finished"
     else
-      order_item.order_item_status = "Startet"
+      order_item.order_item_status = "Started"
     end
     order_item.save!
 
-    render json: { message: 'Successfully finished orderitem.' }, status: 200
+    render json: { message: 'Successfully changed order status.' }, status: 200
   end
 
   def set_item_status
@@ -167,6 +167,6 @@ class Api::V1::ApiController < ApplicationController
     item.status = params[:status]
     item.save!
 
-    render json: { message: 'Successfully changed status.' }, status: 200
+    render json: { message: 'Successfully changed item status.' }, status: 200
   end
 end
