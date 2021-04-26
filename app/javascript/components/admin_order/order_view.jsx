@@ -24,11 +24,8 @@ class OrderView extends Component {
                 });
         }
         refresh = refresh.bind(this);
-
         refresh();
-
         this.interval = setInterval(refresh, 1000);
-
         this.showNotFinished()
     }
 
@@ -40,7 +37,6 @@ class OrderView extends Component {
         this.state.showNotFinished = true;
         this.state.showFinished = false;
         this.state.showPaid = false;
-
         this.setState(this.state);
     }
 
@@ -99,9 +95,9 @@ class OrderView extends Component {
 
         return (
             <div className="text-gray-200">
-                <button className="pr-2" onClick={this.showNotFinished}>Ikke Fullført</button>|
-                <button className="pl-2" onClick={this.showFinished}>Fullført</button> |
-                <button className="pl-2" onClick={this.showPaid}>Betalt</button>
+                <button className="p-2" onClick={this.showNotFinished}>Ikke Fullført</button>|
+                <button className="p-2" onClick={this.showFinished}>Fullført</button>|
+                <button className="p-2" onClick={this.showPaid}>Betalt</button>
                 {orders.map((order, index) =>
                     <Order key={order.id.toString()} order={order}/>
                 )}

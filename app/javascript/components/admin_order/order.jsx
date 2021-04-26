@@ -33,11 +33,8 @@ class Order extends Component {
                     this.setState(state)
             });
         }
-
         refresh = refresh.bind(this);
-
         refresh();
-
     }
 
     componentWillUnmount() {
@@ -89,13 +86,13 @@ class Order extends Component {
         let finishBtn = <p></p>
         if(order.order_status === "Startet") {
             finishBtn = (<div className="inline-block float-right pr-10">
-                            <button onClick={this.orderFinish}>Fullfør</button>
+                            <button className="text-sm bg-gray-200 border border-gray-400 rounded hover:bg-gray-300 py-1 px-2" onClick={this.orderFinish}>Fullfør</button>
                         </div>)
         }
 
         if(order.order_status === "Ferdig") {
             finishBtn = (<div className="inline-block float-right pr-10">
-                <button onClick={this.orderPaid}>Betalt</button>
+                <button className="text-sm bg-gray-200 border border-gray-400 rounded hover:bg-gray-300 py-1 px-2" onClick={this.orderPaid}>Betalt</button>
             </div>)
         }
 
