@@ -50,15 +50,15 @@ class Order extends Component {
     }
 
     orderFinish() {
-        axios.get("/api/v1/set_order_finish?id=" + this.state.order.id);
+        axios.get("/api/v1/set_order_finish?id=" + this.state.order.id).then(r =>{} );
     }
 
-    orderPaid(e) {
-        axios.get("/api/v1/set_order_paid?id=" + this.state.order.id);
+    orderPaid() {
+        axios.get("/api/v1/set_order_paid?id=" + this.state.order.id).then(r =>{} );
     }
 
     changeOrderItem(itemId) {
-        axios.get("/api/v1/change_order_item_status?id=" + itemId);
+        axios.get("/api/v1/change_order_item_status?id=" + itemId).then(r =>{} );
     }
 
     handleChange = (itemId, e) => {
@@ -81,7 +81,7 @@ class Order extends Component {
         if (!orderItems)
             return <p>Loading..</p>
 
-        let body = (<tbody></tbody>)
+        let body = null
         let collapseButton = <IoIosArrowForward/>
 
         let right = null
@@ -115,8 +115,6 @@ class Order extends Component {
                 </div>
             )
         }
-
-        <div className="pr-16">Sum: {order.total_price}</div>
 
 
         if (!this.state.collapsed) {
