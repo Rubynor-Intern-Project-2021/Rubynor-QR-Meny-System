@@ -112,22 +112,18 @@ const MenuItem = ({menu, menuItems}) => {
             </tbody>
     }
 
-
     return (
         <table className="mb-3 admin-title-row">
             <thead className="">
             <tr className="admin-tbl-border">
                 <th className="text-left">
-                    <div className="pl-2 md:pl-8 lg:pl-8 inline-block ">
+                    <div className="pl-2 md:pl-8 lg:pl-8 inline-block">
                         Nr. {menu.number}
                     </div>
-                    <div className="pl-2 md:pl-8 lg:pl-8 inline-block ">
+                    <div className="pl-2 md:pl-8 lg:pl-8 inline-block">
                         {menu.name}
                     </div>
-                    <div className="inline-block">
-                    </div>
                     <div className="flex inline-block float-right pr-4 md:pr-8 lg:pr-8">
-
                         {menu.status === 1 ?
                             <Link icon={<GoEye size={20}/>}
                                   label="Vis"

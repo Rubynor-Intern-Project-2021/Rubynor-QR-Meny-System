@@ -104,6 +104,7 @@ class Api::V1::ApiController < ApplicationController
         order_status:  order.order_status,
         customer_info: order.customer_info,
         location:      order.location,
+        total_price:   order.total_price,
         created_at:    order.created_at.strftime("%d.%m.%y kl. %H:%M")
       }
     end

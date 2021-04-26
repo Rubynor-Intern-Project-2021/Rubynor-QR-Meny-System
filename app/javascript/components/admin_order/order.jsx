@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import axios from 'axios'
 import {IoIosArrowForward, IoIosArrowDown} from "react-icons/io";
 
@@ -28,11 +28,12 @@ class Order extends Component {
 
         function refresh() {
             axios.get('/api/v1/get_order_items?id=' + this.props.order.id).then(res => {
-                    let state = this.state;
-                    state.orderItems = res.data;
-                    this.setState(state)
+                let state = this.state;
+                state.orderItems = res.data;
+                this.setState(state)
             });
         }
+
         refresh = refresh.bind(this);
         refresh();
     }
@@ -61,7 +62,7 @@ class Order extends Component {
     }
 
     handleChange = (itemId, e) => {
-        const { unchecked } = e.target
+        const {unchecked} = e.target
         this.setState({
             checked: unchecked
         })
@@ -70,74 +71,96 @@ class Order extends Component {
 
 
     render() {
-        if(!this.state.order)
+        if (!this.state.order)
             return <p>Waiting for order items</p>
 
         const order = this.state.order;
 
         const orderItems = this.state.orderItems;
-        
-        if(!orderItems)
+
+        if (!orderItems)
             return <p>Loading..</p>
 
         let body = (<tbody></tbody>)
         let collapseButton = <IoIosArrowForward/>
 
-        let finishBtn = <p></p>
-        if(order.order_status === "Started") {
-            finishBtn = (<div className="inline-block float-right pr-10">
-                            <button className="text-sm bg-gray-200 border border-gray-400 rounded hover:bg-gray-300 py-1 px-2" onClick={this.orderFinish}>Fullfør</button>
-                        </div>)
+        let right = null
+        if (order.order_status === "Started") {
+            right = (
+                <div className="relative flex inline-block float-right pr-4 md:pr-8 lg:pr-8">
+                    <div className="pr-14">Sum: {order.total_price}</div>
+                    <div className="absolute -bottom-0.5 right-3 ">
+                        <button className="text-sm bg-gray-200 border border-gray-400 rounded hover:bg-gray-300 py-1 px-2 "
+                                onClick={this.orderFinish()}>Fullfør</button>
+                    </div>
+                </div>
+            )
         }
 
-        if(order.order_status === "Finished") {
-            finishBtn = (<div className="inline-block float-right pr-10">
-                <button className="text-sm bg-gray-200 border border-gray-400 rounded hover:bg-gray-300 py-1 px-2" onClick={this.orderPaid}>Betalt</button>
-            </div>)
+        else if (order.order_status === "Finished") {
+            right = (
+                <div className="relative flex inline-block float-right pr-4 md:pr-8 lg:pr-8">
+                    <div className="pr-14">Sum: {order.total_price}</div>
+                    <div className="absolute -bottom-0.5 right-4 ">
+                        <button className="text-sm bg-gray-200 border border-gray-400 rounded hover:bg-gray-300 py-1 px-2 "
+                                onClick={this.orderPaid}>Betalt</button>
+                    </div>
+                </div>
+            )
+        }
+        else {
+            right = (
+                <div className="inline-block float-right pr-2">
+                    Sum: {order.total_price}
+                </div>
+            )
         }
 
-        if(!this.state.collapsed) {
+        <div className="pr-16">Sum: {order.total_price}</div>
+
+
+        if (!this.state.collapsed) {
             body = (
                 <tbody>
-                { orderItems.map((item, index) => (
+                {orderItems.map((item, index) => (
                     <tr key={index} className="admin-content-row">
                         <td className="pl-8">
                             <div className="inline-block">
-                                {item.number} { item.name } x{item.quantity}
+                                {item.number} {item.name} x{item.quantity}
                             </div>
                             <div className="inline-block float-right pr-10">
                                 {item.total_price},-
                             </div>
                             <div className="flex inline-block float-right pr-10">
-                                { order.order_status === "Started" &&
+                                {order.order_status === "Started" &&
                                 <>
                                     {item.order_item_status === "Started" ?
-                                    <label className="inline-flex ">
-                                        <input type="checkbox"
-                                               onChange={e => this.handleChange(item.id, e)}
-                                               defaultChecked={this.state.unchecked}
-                                               className="form-checkbox h-5 w-5 text-gray-600"/>
+                                        <label className="inline-flex ">
+                                            <input type="checkbox"
+                                                   onChange={e => this.handleChange(item.id, e)}
+                                                   defaultChecked={this.state.unchecked}
+                                                   className="form-checkbox h-5 w-5 text-gray-600"/>
                                             <span className="ml-2 text-gray-700">Fullført
                                             </span>
-                                    </label> :
-                                    <label className="inline-flex ">
-                                        <input type="checkbox"
-                                               onChange={e => this.handleChange(item.id, e)}
-                                               defaultChecked={this.state.checked}
-                                               className="form-checkbox h-5 w-5 text-gray-600 "/>
-                                        <span className="ml-2 text-gray-700">Fullført
+                                        </label> :
+                                        <label className="inline-flex ">
+                                            <input type="checkbox"
+                                                   onChange={e => this.handleChange(item.id, e)}
+                                                   defaultChecked={this.state.checked}
+                                                   className="form-checkbox h-5 w-5 text-gray-600 "/>
+                                            <span className="ml-2 text-gray-700">Fullført
                                         </span>
-                                    </label>
+                                        </label>
                                     }
                                 </>
                                 }
                             </div>
                         </td>
-                     </tr>)
+                    </tr>)
                 )}
                 <tr className="h-8">
                     <td className="pl-8">
-                        Kommentar: { order.customer_info }
+                        Kommentar: {order.customer_info}
                     </td>
                 </tr>
                 </tbody>)
@@ -146,25 +169,26 @@ class Order extends Component {
         }
 
         return (
-            <table className="mb-4 admin-title-row">
-              <thead className="">
+            <table className="mb-3 admin-title-row">
+                <thead className="">
                 <tr className="admin-tbl-border">
-                  <th className="text-left">
-                    <div className="ml-8 inline-block pr-5">
-                      <strong>Sted: {order.location} - Bestilling: {order.id}</strong>
-                    </div>
-                    <div className="inline-block">
-                        {order.created_at}
-                    </div>
-                    <div className="inline-block float-right pr-10">
-                      <button onClick={this.collapseField} className="collapsible w-5 h-5">{collapseButton}</button>
-                    </div>
+                    <th className="text-left">
+                        <div className="pl-2 md:pl-8 lg:pl-8 inline-block">
+                            Sted: {order.location} - Bestilling: {order.id}
+                        </div>
+                        <div className="pl-2 md:pl-8 lg:pl-8 inline-block">
+                            {order.created_at}
+                        </div>
+                        <div className="flex inline-block float-right pr-4 md:pr-8 lg:pr-8">
+                            <button onClick={this.collapseField}
+                                    className="collapsible w-5 h-5">{collapseButton}</button>
+                        </div>
 
-                    {finishBtn}
+                            {right}
 
-                  </th>
+                    </th>
                 </tr>
-              </thead>
+                </thead>
                 {body}
             </table>
         )
