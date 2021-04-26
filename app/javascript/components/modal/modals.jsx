@@ -44,7 +44,10 @@ export const ModalForOrder = ({text, handleClose, handleClick, linkText}) => {
 
 export const ModalForConfirm = ({header, text, handleCancel, handleConfirm}) => {
     return (
-            <div className="rounded-md bg-white border border-gray-300">
+        <div className="relative flex justify-center">
+            <div className=" w-screen h-screen bg-gray-400 opacity-50">
+            </div>
+            <div className="absolute top-48 rounded-md bg-white border border-gray-300">
                 <div className="flex justify-center text-gray-900 font-bold pt-5 pb-3 px-7">
                     {header}
                 </div>
@@ -64,6 +67,6 @@ export const ModalForConfirm = ({header, text, handleCancel, handleConfirm}) => 
                     </div>
                 </div>
             </div>
-
+        </div>
     );
 };
