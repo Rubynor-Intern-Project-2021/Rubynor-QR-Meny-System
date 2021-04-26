@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import OrderItem from './order_item'
+import Order from './order'
 
 
 class OrderView extends Component {
@@ -12,6 +12,7 @@ class OrderView extends Component {
         super(props)
         this.showNotFinished = this.showNotFinished.bind(this);
         this.showFinished = this.showFinished.bind(this);
+        this.showPaid = this.showPaid.bind(this);
     }
 
     componentDidMount() {
@@ -27,19 +28,33 @@ class OrderView extends Component {
         refresh();
 
         this.interval = setInterval(refresh, 1000);
+
+        this.showNotFinished()
     }
 
     componentWillUnmount() {
         clearInterval(this.interval);
     }
 
-    showNotFinished(e) {
+    showNotFinished() {
+        this.state.showNotFinished = true;
         this.state.showFinished = false;
+        this.state.showPaid = false;
+
         this.setState(this.state);
     }
 
-    showFinished(e) {
+    showFinished() {
+        this.state.showNotFinished = false;
         this.state.showFinished = true;
+        this.state.showPaid = false;
+        this.setState(this.state);
+    }
+
+    showPaid() {
+        this.state.showNotFinished = false;
+        this.state.showFinished = false;
+        this.state.showPaid = true;
         this.setState(this.state);
     }
 
@@ -47,10 +62,13 @@ class OrderView extends Component {
         let orders = [];
 
         this.state.orders.forEach(order => {
-            if(this.state.showFinished && order.order_status == "Ferdig") {
+            if(this.state.showFinished && order.order_status === "Ferdig") {
                 orders.push(order);
             }
-            else if (!this.state.showFinished && order.order_status == "Startet") {
+            else if (this.state.showNotFinished && order.order_status === "Startet") {
+                orders.push(order);
+            }
+            else if (this.state.showPaid && order.order_status === "Betalt") {
                 orders.push(order);
             }
         });
@@ -82,10 +100,10 @@ class OrderView extends Component {
         return (
             <div className="text-gray-200">
                 <button className="pr-2" onClick={this.showNotFinished}>Ikke Fullført</button>|
-                <button className="pl-2" onClick={this.showFinished}>Fullført</button>
-                {orders.map((item, index) => 
-                    <OrderItem key={item.id.toString()} orderItem={item}/>
-
+                <button className="pl-2" onClick={this.showFinished}>Fullført</button> |
+                <button className="pl-2" onClick={this.showPaid}>Betalt</button>
+                {orders.map((order, index) =>
+                    <Order key={order.id.toString()} order={order}/>
                 )}
             </div>
         );

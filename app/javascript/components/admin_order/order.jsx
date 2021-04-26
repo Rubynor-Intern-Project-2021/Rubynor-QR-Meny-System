@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import {IoIosArrowForward, IoIosArrowDown} from "react-icons/io";
 
-class OrderItem extends Component {
+class Order extends Component {
     state = {}
 
     constructor(props) {
@@ -10,7 +10,8 @@ class OrderItem extends Component {
 
         // Allow collapseField to use the state variable
         this.collapseField = this.collapseField.bind(this);
-        this.finishOrder = this.finishOrder.bind(this)
+        this.orderFinish = this.orderFinish.bind(this)
+        this.orderPaid = this.orderPaid.bind(this)
         this.changeOrderItem = this.changeOrderItem.bind(this)
         this.state = {
             unchecked: false
@@ -21,14 +22,14 @@ class OrderItem extends Component {
     }
 
     componentDidMount() {
-        this.state.orderItem = this.props.orderItem;
+        this.state.order = this.props.order;
         this.state.collapsed = true;
         this.setState(this.state)
 
         function refresh() {
-            axios.get('/api/v1/get_order_items?id=' + this.props.orderItem.id).then(res => {
+            axios.get('/api/v1/get_order_items?id=' + this.props.order.id).then(res => {
                     let state = this.state;
-                    state.menuItems = res.data;
+                    state.orderItems = res.data;
                     this.setState(state)
             });
         }
@@ -50,16 +51,16 @@ class OrderItem extends Component {
         this.setState(state)
     }
 
-    finishOrder(e) {
-        axios.get("/api/v1/finish_order?id=" + this.state.orderItem.id).then(res => {
-            
-        });
+    orderFinish(e) {
+        axios.get("/api/v1/set_order_finish?id=" + this.state.order.id);
+    }
+
+    orderPaid(e) {
+        axios.get("/api/v1/set_order_paid?id=" + this.state.order.id);
     }
 
     changeOrderItem(itemId) {
-        axios.get("/api/v1/change_order_item_status?id=" + itemId).then(res => {
-
-        });
+        axios.get("/api/v1/change_order_item_status?id=" + itemId);
     }
 
     handleChange = (itemId, e) => {
@@ -72,31 +73,36 @@ class OrderItem extends Component {
 
 
     render() {
-        if(!this.state.orderItem)
+        if(!this.state.order)
             return <p>Waiting for order items</p>
 
-        const orderItem = this.state.orderItem;
+        const order = this.state.order;
 
-        const menuItems = this.state.menuItems;
+        const orderItems = this.state.orderItems;
         
-        if(!menuItems)
+        if(!orderItems)
             return <p>Loading..</p>
 
         let body = (<tbody></tbody>)
         let collapseButton = <IoIosArrowForward/>
 
         let finishBtn = <p></p>
-        if(orderItem.order_status === "Startet") {
+        if(order.order_status === "Startet") {
             finishBtn = (<div className="inline-block float-right pr-10">
-                            <button onClick={this.finishOrder}>Fullfør</button>
+                            <button onClick={this.orderFinish}>Fullfør</button>
                         </div>)
         }
 
+        if(order.order_status === "Ferdig") {
+            finishBtn = (<div className="inline-block float-right pr-10">
+                <button onClick={this.orderPaid}>Betalt</button>
+            </div>)
+        }
 
         if(!this.state.collapsed) {
             body = (
                 <tbody>
-                { menuItems.map((item, index) => (
+                { orderItems.map((item, index) => (
                     <tr key={index} className="admin-content-row">
                         <td className="pl-8">
                             <div className="inline-block">
@@ -106,23 +112,27 @@ class OrderItem extends Component {
                                 {item.total_price},-
                             </div>
                             <div className="flex inline-block float-right pr-10">
-                                {item.order_item_status === "Startet" ?
-                                <label className="inline-flex ">
-                                    <input type="checkbox"
-                                           onChange={e => this.handleChange(item.id, e)}
-                                           defaultChecked={this.state.unchecked}
-                                           className="form-checkbox h-5 w-5 text-gray-600"/>
+                                { order.order_status === "Startet" &&
+                                <>
+                                    {item.order_item_status === "Startet" ?
+                                    <label className="inline-flex ">
+                                        <input type="checkbox"
+                                               onChange={e => this.handleChange(item.id, e)}
+                                               defaultChecked={this.state.unchecked}
+                                               className="form-checkbox h-5 w-5 text-gray-600"/>
+                                            <span className="ml-2 text-gray-700">Fullført
+                                            </span>
+                                    </label> :
+                                    <label className="inline-flex ">
+                                        <input type="checkbox"
+                                               onChange={e => this.handleChange(item.id, e)}
+                                               defaultChecked={this.state.checked}
+                                               className="form-checkbox h-5 w-5 text-gray-600 "/>
                                         <span className="ml-2 text-gray-700">Fullført
                                         </span>
-                                </label> :
-                                <label className="inline-flex ">
-                                    <input type="checkbox"
-                                           onChange={e => this.handleChange(item.id, e)}
-                                           defaultChecked={this.state.checked}
-                                           className="form-checkbox h-5 w-5 text-gray-600 "/>
-                                    <span className="ml-2 text-gray-700">Fullført
-                                    </span>
-                                </label>
+                                    </label>
+                                    }
+                                </>
                                 }
                             </div>
                         </td>
@@ -130,7 +140,7 @@ class OrderItem extends Component {
                 )}
                 <tr className="h-8">
                     <td className="pl-8">
-                        Kommentar: { orderItem.customer_info }
+                        Kommentar: { order.customer_info }
                     </td>
                 </tr>
                 </tbody>)
@@ -144,10 +154,10 @@ class OrderItem extends Component {
                 <tr className="admin-tbl-border">
                   <th className="text-left">
                     <div className="ml-8 inline-block pr-5">
-                      <strong>Sted: {orderItem.location} - Bestilling: {orderItem.id}</strong>
+                      <strong>Sted: {order.location} - Bestilling: {order.id}</strong>
                     </div>
                     <div className="inline-block">
-                        {orderItem.created_at}
+                        {order.created_at}
                     </div>
                     <div className="inline-block float-right pr-10">
                       <button onClick={this.collapseField} className="collapsible w-5 h-5">{collapseButton}</button>
@@ -165,4 +175,4 @@ class OrderItem extends Component {
 }
 
 
-export default OrderItem;
+export default Order;
