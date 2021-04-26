@@ -111,12 +111,20 @@ class Api::V1::ApiController < ApplicationController
   end
 
 
-  def finish_order
+  def set_order_finish
     order              = Order.find(params[:id])
     order.order_status = "Ferdig"
     order.save!
 
-    render json: { message: 'Successfully finished order.' }, status: 200
+    render json: { message: 'Successfully changed order status to finish.' }, status: 200
+  end
+
+  def set_order_paid
+    order              = Order.find(params[:id])
+    order.order_status = "Betalt"
+    order.save!
+
+    render json: { message: 'Successfully changed order status to paid.' }, status: 200
   end
 
   def get_order_items
