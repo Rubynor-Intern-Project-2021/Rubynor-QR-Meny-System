@@ -57,7 +57,8 @@ Rails.application.routes.draw do
 
         get 'get_orders' => :get_orders
         get 'get_order_items' => :get_order_items
-        get 'finish_order' => :finish_order
+        get 'set_order_finish' => :set_order_finish
+        get 'set_order_paid' => :set_order_paid
         get 'change_order_item_status' => :change_order_item_status
 
         get 'set_item_status' => :set_item_status
