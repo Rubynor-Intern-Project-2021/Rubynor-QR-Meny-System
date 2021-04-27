@@ -29,10 +29,10 @@ const cartIcon = () => {
 
     return (
         <div className="relative">
-            <div className="text-pink-700 lg:text-gray-100">
+            <div className="text-pink-700 lg:text-white">
                 <BsBag size={28}/>
             </div>
-            <div className="text-xs font-bold absolute top-2.5 right-2.5 lg:text-gray-900">
+            <div className="text-xs font-bold absolute top-2.5 right-2.5 lg:text-white">
                 {amount}
             </div>
         </div>

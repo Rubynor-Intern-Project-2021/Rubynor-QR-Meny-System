@@ -1,5 +1,5 @@
 <div class="flex lg:py-16 justify-center">
-  <div class="flex flex-col bg-white lg:rounded-2xl lg:w-1/3">
+  <div class="flex flex-col w-full bg-white lg:rounded-2xl lg:w-1/3">
     <div>
       <% if @menu_item.image.attached? %>
         <%= image_tag @menu_item.image, class:"object-cover h-full lg:rounded-t-2xl w-full align-middle border-none"%>
@@ -20,12 +20,12 @@
       <div class="text-gray-700 pt-6">
         <%= @menu_item.description %>
       </div>
-      <div class="text-gray-700 pt-10 mb-16 sm:mb-6">
+      <div class="text-gray-700 pt-10 mb-20 sm:mb-6">
         Allergener:
         <br>
         <%= @menu_item.get_allergen_names_long.join(', ') %>
       </div>
-      <div class="fixed bottom-2 right-4 left-4 sm:static ">
+      <div class="bg-white fixed bottom-0 right-5 left-5 sm:static">
         <%= react_component("add_to/add_to_cart", { menuItem: @menu_item }) %>
       </div>
     </div>
