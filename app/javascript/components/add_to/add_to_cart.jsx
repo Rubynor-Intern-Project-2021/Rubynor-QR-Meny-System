@@ -39,32 +39,27 @@ const addToCart = ({menuItem}) => {
         })
     };
 
-
     return (
-        <>
-        <div className="">
-            <div className="flex justify-between py-2">
-                <div className="text-gray-800 mb-3 py-2 px-4 rounded-sm border border-purple-200 ">
-                    <div className="flex">
-                        <button onClick={decNum}  className="">
-                            <AiOutlineMinus/>
-                        </button>
-                        <p className="px-5 font-semibold"> {num} </p>
-                        <button onClick={incNum}  className="">
-                            <AiOutlinePlus/>
-                        </button>
-                    </div>
+        <div className="flex w-full mb-2">
+            <div className="w-1/3 border border-pink-800 rounded-l-sm bg-white text-gray-800 py-2 px-2">
+                <div className="flex justify-between">
+                    <button onClick={decNum}  className="">
+                        <AiOutlineMinus/>
+                    </button>
+                    <p className=""> {num} </p>
+                    <button onClick={incNum}  className="">
+                        <AiOutlinePlus/>
+                    </button>
                 </div>
             </div>
 
-            <div>
+            <div className="text-white bg-pink-800 py-2 w-2/3 flex rounded-r-sm justify-center">
                 <button id="leggTil" onClick={() => { addMultipleToCart(); storeModalAlert.dispatch(showModal()); }}
-                        className="uppercase text-white bg-gray-700 mb-3 mt-1 py-2 w-full">
-                        Legg i handlekurv
+                        className="uppercase">
+                        Legg i kurv
                 </button>
             </div>
         </div>
-        </>
     )
 }
 
