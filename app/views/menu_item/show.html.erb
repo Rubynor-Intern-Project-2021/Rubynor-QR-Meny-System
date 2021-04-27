@@ -30,7 +30,6 @@
         <br>
         <%= @menu_item.get_allergen_names_long.join(', ') %>
       </div>
-
       <%= react_component("add_to/add_to_cart", { menuItem: @menu_item }) %>
     </div>
   </div>
