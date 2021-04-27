@@ -2,7 +2,7 @@ class MenuItem < ApplicationRecord
   has_many :order_items
   has_many :allergen_items
   belongs_to :menu
-  belongs_to :sub_menu
+  has_one :sub_menu
   has_one_attached :image
 
 =begin
