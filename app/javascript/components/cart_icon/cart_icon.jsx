@@ -1,7 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-import { RiShoppingBag2Line } from 'react-icons/ri';
-import { BsFillCircleFill } from 'react-icons/bs';
+import { BsBag } from 'react-icons/bs';
 import axios from "axios";
 import { useEffect } from 'react';
 import { storeIcon } from '../configureStore'
@@ -30,13 +29,10 @@ const cartIcon = () => {
 
     return (
         <div className="relative">
-            <div className="text-gray-800 lg:text-gray-100">
-                <RiShoppingBag2Line size={25}/>
+            <div className="text-pink-700 lg:text-white">
+                <BsBag size={28}/>
             </div>
-            <div className="text-gray-800 absolute top-3 -right-0.5 lg:text-gray-100">
-                <BsFillCircleFill />
-            </div>
-            <div className="text-xs text-white absolute top-3 right-0.5 lg:text-gray-900">
+            <div className="text-xs font-bold absolute top-2.5 right-2.5 lg:text-white">
                 {amount}
             </div>
         </div>

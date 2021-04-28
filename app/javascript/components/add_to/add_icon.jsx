@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import axios from "axios";
 import { showModal, storeIcon, storeModalAlert } from '../configureStore'
-import { IoAddCircleOutline } from "react-icons/io5";
+import { IoIosAddCircleOutline } from "react-icons/io";
 
 const addIcon = ({menuItem}) => {
 
@@ -33,8 +33,8 @@ const addIcon = ({menuItem}) => {
     return (
         <div>
             <button onClick={() => { addOneToCart(); storeModalAlert.dispatch(showModal()); }}
-                    className="text-purple-900">
-                <IoAddCircleOutline size={27}/>
+                    className="text-pink-700">
+                <IoIosAddCircleOutline size={27}/>
             </button>
         </div>
     )

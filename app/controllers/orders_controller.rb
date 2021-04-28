@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
   def emptyCart
     session[:cart] = []
     p session[:cart]
-    redirect_to restaurant_path(session[:restaurant_id])
+    redirect_to restaurant_path(params[:restaurant_id])
   end
 
   helper_method :emptyCart
