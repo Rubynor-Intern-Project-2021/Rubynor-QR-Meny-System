@@ -17,7 +17,7 @@
 
       <div class="mx-6 mb-6">
         <div>
-          <%= button_to 'Slett handlekurv', empty_cart_path, method: :delete, class: "text-pink-700 bg-white text-sm py-2 px-4 mt-2 rounded-sm border border-pink-600 hover:bg-gray-100" %>
+          <%= button_to 'Slett handlekurv', empty_cart_path(restaurant_id: @restaurant.id), method: :delete, class: "text-pink-700 bg-white text-sm py-2 px-4 mt-2 rounded-sm border border-pink-600 hover:bg-gray-100" %>
         </div>
 
         <%= form_with local: true, url: make_order_path(restaurant_id: @restaurant.id), method: :post, builder: TailwindBuilder do |form| %>
