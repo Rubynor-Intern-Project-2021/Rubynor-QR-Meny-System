@@ -22,7 +22,7 @@ const AdminQr = ({restaurant_id}) => {
         const data = textImage.toDataURL(location);
 
         const options = {
-            text: window.location.host + Routes.restaurant_path(restaurant_id) + "?location=" + location,
+            text: "https://" + window.location.host + Routes.restaurant_path(restaurant_id) + "?location=" + location,
             logo: data,
             width: 256,
             height: 256,
