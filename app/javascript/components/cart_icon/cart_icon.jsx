@@ -8,9 +8,14 @@ import { storeIcon } from '../configureStore'
 
 const cartIcon = () => {
     const [amount, setAmount] = useState('')
+    const [iconClass, setIconClass] = useState('relative animate-none')
 
     storeIcon.subscribe(() => {
         setAmount(storeIcon.getState())
+        setIconClass("relative animate-bounce")
+        setTimeout(() => {
+            setIconClass("relative animate-none")
+        }, 1000);
     });
 
     function GetAmount() {
@@ -28,7 +33,7 @@ const cartIcon = () => {
     }, [])
 
     return (
-        <div className="relative">
+        <div className={iconClass}>
             <div className="text-pink-700 lg:text-white">
                 <BsBag size={28}/>
             </div>
