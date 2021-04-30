@@ -37,7 +37,7 @@ const cartIcon = () => {
             <div className="text-pink-700 lg:text-white">
                 <BsBag size={28}/>
             </div>
-            <div className="text-xs font-bold absolute top-2.5 right-2.5 lg:text-white">
+            <div className="w-full text-center text-xs font-bold absolute top-2.5  lg:text-white">
                 {amount}
             </div>
         </div>
