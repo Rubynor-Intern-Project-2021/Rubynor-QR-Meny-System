@@ -30,24 +30,26 @@
             <div class="mt-4">
               <%= form.label :"Bordnr" %>
             </div>
-            <%= form.text_field :location, placeholder: "F.eks. 5834", :maxlength => "5", :value => "#{@location}" %>
-          </div>
-        <% end %>
-        <div class="bg-white fixed bottom-0 right-5 left-5 sm:static">
-          <div class="w-full bg-white">
-            <div class="flex justify-between ">
-              <div class="font-semibold">
-                Totalt
-              </div>
-              <div class="font-semibold">
-                <%= react_component("total_price") %>
+            <div>
+              <%= form.text_field :location, placeholder: "F.eks. 5834", :maxlength => "5", :value => "#{@location}" %>
+            </div>
+            <div class="bg-white fixed bottom-0 right-5 left-5 sm:static">
+              <div class="w-full bg-white">
+                <div class="flex justify-between ">
+                  <div class="font-semibold">
+                    Totalt
+                  </div>
+                  <div class="font-semibold">
+                    <%= react_component("total_price") %>
+                  </div>
+                </div>
+                <button class="w-full" type="submit" value="Submit">
+                  <%= react_component("add_to/add_to_order") %>
+                </button>
               </div>
             </div>
-            <button class="w-full" type="submit" value="Submit">
-              <%= react_component("add_to/add_to_order") %>
-            </button>
           </div>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>
