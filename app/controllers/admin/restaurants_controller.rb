@@ -12,7 +12,8 @@ class Admin::RestaurantsController < ApplicationController
   def show
     verify_signin(@restaurant.id)
 
-    @allergens = @restaurant.allergens  
+    @allergens = @restaurant.allergens
+    @all_menus = @restaurant.menus
   end
 
   # GET /restaurants/1/edit

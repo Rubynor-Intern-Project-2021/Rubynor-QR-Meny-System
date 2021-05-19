@@ -14,7 +14,7 @@
       </div>
 
       <div id="selected_menu">
-        <% @menu.menu_items.where(:status => 2, :sub_menu_id => nil).order('number ASC').each do |menu_item| %>
+        <% @menu.menu_items.where(:status => 2, :sub_menu_id => nil).order('length(number), number, id').each do |menu_item| %>
           <div class="relative">
             <%= link_to menu_item_path(menu_item) do %>
               <div class="flex my-3 shadow relative rounded-sm z-0">
@@ -69,11 +69,11 @@
             </div>
         <% end %>
         <div id="subMenu">
-          <% @menu.sub_menus.where(:status => 2).order('number ASC').each do |sub_menu| %>
+          <% @menu.sub_menus.where(:status => 2).order('length(number), number, id').each do |sub_menu| %>
             <p class="mt-4 lg:mt-6 text-gray-900 font-semibold text-l">
               <%= sub_menu.name %>
             </p>
-            <% @menu.menu_items.where(:status => 2, :sub_menu_id => sub_menu.id).order('number ASC').each do |menu_item| %>
+            <% @menu.menu_items.where(:status => 2, :sub_menu_id => sub_menu.id).order('length(number), number, id').each do |menu_item| %>
               <div class="relative">
                 <%= link_to menu_item_path(menu_item) do %>
                   <div class="flex my-3 shadow relative rounded-sm z-0">

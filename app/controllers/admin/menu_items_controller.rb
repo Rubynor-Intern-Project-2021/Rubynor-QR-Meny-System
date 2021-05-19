@@ -6,7 +6,8 @@ class Admin::MenuItemsController < ApplicationController
   def new
     @menu_id=params['menu_id']
     @menu_item = MenuItem.new(:menu_id=>@menu_id)
-    @restaurant = @menu_item.menu.restaurant
+
+    @restaurant = Restaurant.find(session[:restaurant_id])
     verify_signin(@restaurant.id)
   end
 

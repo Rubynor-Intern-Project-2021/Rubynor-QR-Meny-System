@@ -26,12 +26,23 @@
       <div class="font-bold text-white text-3xl my-5">
         Menyer
       </div>
-      <% @restaurant.menus.where.not(:status => 0).order('number, id').each do |menu| %>
-        <% menu_items = menu.menu_items.order('number, id ASC') %>
+      <% @restaurant.menus.where.not(:status => 0).order('length(number), number, id').each do |menu| %>
+        <% menu_items = menu.menu_items.order('length(number), number, id') %>
         <%= react_component("admin_menu/menu_item", { menu: menu, menuItems: menu_items }) %>
       <% end %>
       <div class="h-20 mt-10">
         <%= link_to 'Ny meny', new_admin_menu_path(:restaurant_id => params[:id]), class: "text-sm bg-gray-200 border border-gray-400 rounded hover:bg-gray-300 py-1 px-2" %>
+      </div>
+
+      <% @all_menus.where.not(:status => 0).each do |one_menu| %>
+        <% sub_menus = one_menu.sub_menus%>
+        <% sub_menus.where.not(:status => 0).order('length(number), number, id').each do |sub_menu| %>
+          <%= sub_menu.name %>
+        <% end %>
+      <% end %>
+
+      <div class="h-20 mt-10">
+        <% link_to 'Ny under meny', new_admin_sub_menu_path(:restaurant_id => params[:id]), class: "text-sm bg-gray-200 border border-gray-400 rounded hover:bg-gray-300 py-1 px-2" %>
       </div>
     </div>
     <div class="container mx-auto bg-gray-700 px-4 pb-1 pt-4 ">

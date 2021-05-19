@@ -14,9 +14,18 @@
 
 
     <div class="mx-10">
+
+      <div class="field text-gray-700 pt-5">
+        <% form.label :menu_id, class: 'text-gray-700'  %>
+        <%= form.text_field :menu_id, class: 'w-80 border-gray-800 rounded-lg'  %>
+      </div>
       <div class="field text-gray-700 pt-5">
         <%= form.label "Navn", class: 'text-gray-700' %><br>
         <%= form.text_field :name, class: 'w-80 border-gray-800 rounded-lg' %>
+      </div>
+      <div class="field text-gray-700 pt-5">
+        <%= form.label "Rekkefølge", class: 'text-gray-700' %><br>
+        <%= form.text_field :number, class: 'w-80 border-gray-800 rounded-lg' %>
       </div>
 
       <div class="actions text-gray-700 pt-5">
