@@ -1,5 +1,6 @@
 class Menu < ApplicationRecord
     has_many :menu_items, dependent: :destroy
+    has_many :sub_menus, dependent: :destroy
     belongs_to :restaurant
     has_one_attached :image
 
