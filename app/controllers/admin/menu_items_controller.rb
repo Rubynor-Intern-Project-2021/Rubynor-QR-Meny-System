@@ -88,7 +88,7 @@ class Admin::MenuItemsController < ApplicationController
     def menu_item_params
       used_allergens = params[:allergens]
 
-      params_to_return = params.require(:menu_item).permit(:name, :number, :description, :price, :menu_id, :image)
+      params_to_return = params.require(:menu_item).permit(:name, :number, :description, :price, :menu_id, :image, :sub_menu_id)
 
       AllergenItem.where(:menu_item_id=>params[:id]).each do |item|
         item.destroy
