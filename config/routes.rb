@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :restaurants
     resources :menus
     resources :allergens
+    resources :sub_menus
     resources :menu_items
     resources :orders
     controller :menu_items do
@@ -23,6 +24,9 @@ Rails.application.routes.draw do
     end
     controller :menus do
       get 'set_menu_status' => :set_menu_status
+    end
+    controller :sub_menus do
+      get 'set_sub_menu_status' => :set_sub_menu_status
     end
   end
 

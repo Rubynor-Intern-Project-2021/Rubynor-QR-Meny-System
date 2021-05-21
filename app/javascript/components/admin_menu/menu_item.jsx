@@ -5,7 +5,7 @@ import {GoEye, GoEyeClosed, IoFastFoodOutline, RiForbid2Line } from "react-icons
 import {storeDeleteItem, storeModalMenuItem, storeModalMenu, showModal } from "../configureStore";
 
 
-const MenuItem = ({menu, menuItems}) => {
+const MenuItem = ({menu, menuItems, sub_menus}) => {
     const [isCollapsed, setIsCollapsed] = useState(false)
     const [collapseButton, setCollapseButton] = useState(<IoIosArrowForward/>)
 
@@ -58,7 +58,7 @@ const MenuItem = ({menu, menuItems}) => {
             <tbody>
             {menuItems.map((item, index) =>
                 (
-                item.status !== 0 ?
+                item.status !== 0 /*&& item.sub_menu_id === null*/ ?
                     <tr key={index} className="admin-content-row">
                         <td className="pl-2 md:pl-8 lg:pl-8">
                             <div className="w-1/12 flex float-left inline-block align-text-top pr-4 md:pr-10 lg:pr-10">
@@ -102,11 +102,57 @@ const MenuItem = ({menu, menuItems}) => {
                     </tr> : null
                 )
             )}
+            {sub_menus.map((sub_menu, index) =>
+                (
+                    sub_menu.status !== 0 ?
+                        <tr key={index} className="admin-title-row">
+                            <td className="pl-2 md:pl-8 lg:pl-8">
+                                <div className="w-2/12 flex float-left inline-block align-text-top pr-4 md:pr-10 lg:pr-10">
+                                    Sub Menu {sub_menu.number}
+                                </div>
+                                <div className="w-3/12 flex float-left inline-block align-text-top pr-4 md:pr-10 lg:pr-10">
+                                    {sub_menu.name}
+                                </div>
 
+                                <div className="md:flex float-right inline-block align-text-top pr-4 md:pr-10 lg:pr-10">
+
+                                    {sub_menu.status === 1 ?
+                                        <Link icon={<GoEye size={20}/>}
+                                              label="Vis"
+                                              href={Routes.admin_set_sub_menu_status_path({
+                                                  sub_menu_id: sub_menu.id,
+                                                  status: 2})}/>
+                                        : <Link icon={<GoEyeClosed size={20}/>}
+                                                label="Skjul"
+                                                href={Routes.admin_set_sub_menu_status_path({
+                                                    sub_menu_id: sub_menu.id,
+                                                    status: 1})}/>
+                                    }
+                                    | <Link icon={<BiPencil size={20}/> }
+                                            label="Rediger"
+                                            href={Routes.edit_admin_sub_menu_path(sub_menu)}/>
+                                    | <Link icon={<BiXCircle size={20}/> }
+                                            label="Slett"
+                                            href={Routes.admin_set_sub_menu_status_path({
+                                                sub_menu_id: sub_menu.id,
+                                                status: 0})}/>
+                                </div>
+                            </td>
+                        </tr>
+                    : null
+                )
+            )}
             <tr className="bg-gray-100 h-10">
                 <td className="pl-1 md:pl-7 lg:pl-7">
                     <Link icon={<IoIosAddCircleOutline size={22}/>} label="Legg til"
                           href={Routes.new_admin_menu_item_path({menu_id: menu.id})}/>
+                </td>
+            </tr>
+
+            <tr className="bg-gray-100 h-10">
+                <td className="pl-1 md:pl-7 lg:pl-7">
+                    <Link icon={<IoIosAddCircleOutline size={22}/>} label="Legg til undermeny"
+                          href={Routes.new_admin_sub_menu_path({menu_id: menu.id})}/>
                 </td>
             </tr>
             </tbody>
