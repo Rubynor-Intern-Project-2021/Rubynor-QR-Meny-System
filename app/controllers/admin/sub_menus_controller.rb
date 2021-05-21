@@ -60,6 +60,18 @@ class Admin::SubMenusController < ApplicationController
     end
   end
 
+  def set_sub_menu_status
+    p "sub_menu Status"
+    sub_menu = SubMenu.find(params[:sub_menu_id])
+    sub_menu.status = params[:status]
+    p "sub_menu Status2"
+    sub_menu.save!
+    p "sub_menu Status3"
+    respond_to do |format|
+      format.html { redirect_to admin_restaurant_url(sub_menu.menu.restaurant.id), notice: "Sub menu was successfully changed." }
+    end
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_sub_menu

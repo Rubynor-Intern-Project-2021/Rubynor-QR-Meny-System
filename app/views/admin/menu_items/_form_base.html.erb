@@ -48,7 +48,7 @@
 
       <div class="field text-gray-700 pt-5">
         <%= form.label "Under menyer", class: 'text-gray-700' %><br>
-        <%= form.select :sub_menu_id, SubMenu.where(:menu_id => @menu_item.menu_id).find_each.map { |sub_menu| [sub_menu.name, sub_menu.id] } %>
+        <%= form.select :sub_menu_id, SubMenu.where(:menu_id => @menu_item.menu_id).find_each.map { |sub_menu| [sub_menu.name, sub_menu.id] }, { :include_blank => "Ingen undermeny" }, { :class => "w-80 border-gray-800 rounded-lg" } %>
       </div>
 
 
@@ -63,7 +63,7 @@
       </div>
 
       <div class="actions text-gray-700 pt-5">
-        <%= form.submit "Lagre", class: 'btn-indigo' %>
+        <%= form.submit "Lagre", class: 'btn-indigo mb-32' %>
       </div>
     </div>
   </div>

@@ -25,6 +25,9 @@ Rails.application.routes.draw do
     controller :menus do
       get 'set_menu_status' => :set_menu_status
     end
+    controller :sub_menus do
+      get 'set_sub_menu_status' => :set_sub_menu_status
+    end
   end
 
   # Bruker

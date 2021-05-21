@@ -537,6 +537,9 @@ Based on Rails 6.0.3.6 routes of RubynorQrMenySystem::Application
 // admin_set_menu_status => /admin/set_menu_status(.:format)
   // function(options)
   admin_set_menu_status_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"admin",false],[2,[7,"/",false],[2,[6,"set_menu_status",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]),
+// admin_set_sub_menu_status => /admin/set_sub_menu_status(.:format)
+  // function(options)
+  admin_set_sub_menu_status_path: Utils.route([["format",false]], {}, [2,[7,"/",false],[2,[6,"admin",false],[2,[7,"/",false],[2,[6,"set_sub_menu_status",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]),
 // admin_sub_menu => /admin/sub_menus/:id(.:format)
   // function(id, options)
   admin_sub_menu_path: Utils.route([["id",true],["format",false]], {}, [2,[7,"/",false],[2,[6,"admin",false],[2,[7,"/",false],[2,[6,"sub_menus",false],[2,[7,"/",false],[2,[3,"id",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]]),
